@@ -159,6 +159,7 @@ int main(){
 		    inithashtab();
 			yylex();
 			cleanup();//equal to dorm
+        //
 		}
 int yywrap()
 {
