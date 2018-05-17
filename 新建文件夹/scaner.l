@@ -4,7 +4,7 @@
 #include "HashTable.h"
 #define MAX_LINE_LENG 256
 #define lineNum     		strcat(buf,yytext)
-#define token(t)		{lineNum; printf("<'%s'>\n",t);return (t)}
+#define token(t)		{lineNum; printf("<'%s'>\n",t);return (t);}
 #define captial(t) 		{for(int i = 0; i < strlen(t); i++){t[i] = toupper(t[i]);};printf("<%s>\n", t); }
 #define keyword(t) 		{lineNum; captial(t)}
 #define tokenInteger	{lineNum; printf("<%s:%s>\n","tokeninteger",yytext);}
