@@ -12,7 +12,7 @@
 #define tokenBoolean 	{lineNum; printf("<%s:%s>\n","tokenboolean",yytext);}
 #define tokenId			{lineNum; printf("<%s:%s>\n","tokenid",yytext);}
 #define tokenString(t,s){lineNum; printf("<%s:%s>\n","tokenstring",s);}
-
+#include"y.tab.h"
 int linecount = 1;
 char buf[MAX_LINE_LENG];
 char str[512];
