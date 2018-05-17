@@ -1,0 +1,1 @@
+cmd_/home/qwe/class/final-src-osc9e/final-src-osc9e/ch2/simple.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/qwe/class/final-src-osc9e/final-src-osc9e/ch2/simple.ko /home/qwe/class/final-src-osc9e/final-src-osc9e/ch2/simple.o /home/qwe/class/final-src-osc9e/final-src-osc9e/ch2/simple.mod.o
