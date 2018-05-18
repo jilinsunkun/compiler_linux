@@ -13,7 +13,7 @@
 #define tokenInteger	{lineNum; printf("<%s:%s>\n","tokeninteger",yytext);}
 #define tokenReal 		{lineNum; printf("<%s:%s>\n","tokenreal", yytext);}
 #define tokenBoolean 	{lineNum; printf("<%s:%s>\n","tokenboolean",yytext);}
-#define tokenId			{lineNum; printf("<%s:%s>\n","tokenid",yytext);}
+#define tokenId			{lineNum; printf("<%s:%s>\n","tokenid",yytext);return tokenId;}
 #define tokenString(t,s){lineNum; printf("<%s:%s>\n","tokenstring",s);}
 #include"y.tab.h"
 int linecount = 1;
@@ -63,7 +63,7 @@ whitespace   [ \t]+
 "*="	{tokenoperation(MUL_OP);}
 "/="	{tokenoperation(DIV_OP);}
 
-
+"let"	{keyword(yytext);}
 "break"	{keyword(yytext);}
 "char"	{keyword(yytext);}
 "continue"	{keyword(yytext);}
