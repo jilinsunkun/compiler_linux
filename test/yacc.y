@@ -1,5 +1,6 @@
 %{
 	#include <stdio.h>
+	#include"HashTable.h"
 %}
 %union{
 	double dval;
@@ -17,6 +18,28 @@
 %type<var_value> statement expression
 
 %%
+
+
+constants			:	let'+'constant_equation
+					;
+
+constant_equation	:	constant_type'='constant_value
+					;
+constant_type		:	constant_name':'type_specific
+					|	constant_name
+
+
+
+type_specific		:	FLOAT
+					|	BOOL
+					| 	REAL
+					| 	INT
+					| 	VOID
+					;
+
+
+
+
 
 statement: statement expression '\n' { printf("= %d\n", $2);}
 		 | NAME '=' expression '\n' 

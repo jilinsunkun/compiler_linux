@@ -46,31 +46,16 @@ extern int yydebug;
   enum yytokentype
   {
     NAME = 258,
-    NUMBER = 259,
-    NEG = 260
+    NUMBER = 259
   };
 #endif
 /* Tokens.  */
 #define NAME 258
 #define NUMBER 259
-#define NEG 260
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-
-union YYSTYPE
-{
-#line 4 "yacc.y" /* yacc.c:1909  */
-
-	double dval;
-	int vbino;
-	double var_value;
-	char var_number;
-
-#line 71 "y.tab.h" /* yacc.c:1909  */
-};
-
-typedef union YYSTYPE YYSTYPE;
+typedef int YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

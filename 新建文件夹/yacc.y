@@ -1,24 +1,18 @@
 %{
 	#include <stdio.h>
-	#include<stdlib.h>
-	#include <ctype.h>
-	#define YYSTYPE TreeNode *
-
 %}
-
 %union{
-  char typeOF[200];
-  char val[200];
-  double double_type;
-  int int_type;
-  int int_val;
+	double dval;
+	int vbino;
 }
-%token IF THEN ELSE END REPEAT READ WRITE
-%token ID NUM
-%token 
-
-
-
-
-
-
+%token <dval> NAME 
+%token<dval>  NUMBER
+%%
+statement: NAME '=' expression
+		 | expression { printf("= %d\n", $1); }
+		 ;
+expression: expression '+' NUMBER { $$ = $1 + $3; }
+		 | expression '-' NUMBER { $$ = $1 - $3; }
+		 | NUMBER { $$ = $1; }
+		 ;
+%%
