@@ -3,19 +3,18 @@
 	#include"HashTable.h"
 %}
 %union{
-	double dval;
-	int vbino;
-	double var_value;
-	char var_number;
+  char typeOF[200];
+  char val[200];
+  double double_type;
+  int int_type;
+  int int_val;
 }
-%token <dval> NAME 
-%token<var_value>  NUMBER
 %precedence '='
 %left '-' '+'
 %left '*' '/'
 %precedence NEG /* negation--unary minus */
 %right '^'      /* exponentiation */
-%type<var_value> statement expression
+%type<val> constatnts type_specific
 
 %%
 
@@ -36,19 +35,6 @@ type_specific		:	FLOAT
 					| 	INT
 					| 	VOID
 					;
-
-
-
-
-
-statement: statement expression '\n' { printf("= %d\n", $2);}
-		 | NAME '=' expression '\n' 
-		 | expression '\n'{ printf("= %d\n", $1); }
-		 ;
-expression: expression '+' NUMBER  { $$ = $1 + $3; }
-		 | expression '-' NUMBER  { $$ = $1 - $3; }
-		 | NUMBER  { $$ = $1; }
-		 ;
 %%
 int yyerror(char *s)
 {

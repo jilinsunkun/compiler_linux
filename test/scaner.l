@@ -1,12 +1,15 @@
 %{
 #include <stdio.h>
 #include<ctype.h>
-	
+
 #define MAX_LINE_LENG 256
 #define lineNum     		strcat(buf,yytext)
-#define token(t)		{lineNum; printf("<'%s'>\n",t);}
+#define token(t)		{lineNum; printf("<'%s'>\n",t);return t;}
 #define captial(t) 		{for(int i = 0; i < strlen(t); i++){t[i] = toupper(t[i]);};printf("<%s>\n", t); }
-#define keyword(t) 		{lineNum; captial(t)}
+#define keyword(t) 		{lineNum; captial(t) ;return t;}
+
+#define tokenoperation(t)	{strcpy(yylval.val, yytext); printf("<'%s'>\n",t);return t;}
+
 #define tokenInteger	{lineNum; printf("<%s:%s>\n","tokeninteger",yytext);}
 #define tokenReal 		{lineNum; printf("<%s:%s>\n","tokenreal", yytext);}
 #define tokenBoolean 	{lineNum; printf("<%s:%s>\n","tokenboolean",yytext);}
@@ -43,21 +46,22 @@ whitespace   [ \t]+
 "-"	{token("-");}
 "*"	{token("*");}
 "/"	{token("/");}
-"++"	{token("++");}
-"--"	{token("--");}
 "%"	{token("%");}
 "<"	{token("<");}
 ">"	{token(">");}
-"<="	{token("<=");}
-">="	{token(">=");}
-"!="	{token("!=");}
-"&&"	{token("&&");}
-"||"	{token("||");}
 "!"	{token("!");}
-"+="	{token("+=");}
-"-="	{token("-=");}
-"*="	{token("*=");}
-"/="	{token("/=");}
+
+"++"	{tokenoperation(ADD_ADD);}
+"--"	{tokenoperation(LES_LES);}
+"<="	{tokenoperation(LE_OP);}
+">="	{tokenoperation(GE_OP);}
+"!="	{tokenoperation(NE_OP);}
+"&&"	{tokenoperation(AND_AND);}
+"||"	{tokenoperation(OR_OR);}
+"+="	{tokenoperation(ADD_OP);}
+"-="	{tokenoperation(LES_OP);}
+"*="	{tokenoperation(MUL_OP);}
+"/="	{tokenoperation(DIV_OP);}
 
 
 "break"	{keyword(yytext);}
