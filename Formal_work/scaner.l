@@ -6,14 +6,14 @@
 #define lineNum     		strcat(buf,yytext)
 #define token(t)		{lineNum; printf("<'%s'>\n",t);return t;}
 #define captial(t) 		{for(int i = 0; i < strlen(t); i++){t[i] = toupper(t[i]);};printf("<%s>\n", t); }
-#define keyword(t) 		{lineNum; captial(t) ;return t;}
+#define keyword(t) 		{ captial(t) ;strcpy(yylval.val, yytext);return t;}
 
 #define tokenoperation(t)	{strcpy(yylval.val, yytext); printf("<'%s'>\n",t);return t;}
 
-#define tokenInteger	{lineNum; printf("<%s:%s>\n","tokeninteger",yytext);}
-#define tokenReal 		{lineNum; printf("<%s:%s>\n","tokenreal", yytext);}
+#define tokenInteger	{yylval.int_type = atoi(yytext);return (INTEGER);}
+#define tokenReal 		{sscanf(yytext, "%lf", &yylval.double_type);return (REALCONSTANTS);}
 #define tokenBoolean 	{lineNum; printf("<%s:%s>\n","tokenboolean",yytext);}
-#define tokenId			{lineNum; printf("<%s:%s>\n","tokenid",yytext);return tokenId;}
+#define tokenId			{strcpy(yylval.val, yytext);return (IDENTIFIER);}
 #define tokenString(t,s){lineNum; printf("<%s:%s>\n","tokenstring",s);}
 #include"y.tab.h"
 int linecount = 1;
@@ -78,7 +78,7 @@ whitespace   [ \t]+
 "int"	{keyword(yytext);}
 "if"	{keyword(yytext);}
 "in"	{keyword(yytext);}
-"let"	{keyword(yytext);}
+
 "loop"	{keyword(yytext);}
 "match"	{keyword(yytext);}
 "mut"	{keyword(yytext);}
@@ -93,7 +93,7 @@ whitespace   [ \t]+
 "use"	{keyword(yytext);}
 "while"	{keyword(yytext);}
 "bool"	{tokenBoolean("BOOL");}
-{id}  		{tokenId;}
+{id}  		        {tokenId;}
 {integer}     		{tokenInteger;}
 {real}        		{tokenReal;}
 
@@ -158,4 +158,11 @@ whitespace   [ \t]+
         			printf("%d: %s", linecount++, buf);
         			buf[0] = '\0';
         			}
+
 %%
+
+
+
+
+
+
