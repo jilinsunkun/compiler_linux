@@ -51,48 +51,48 @@ whitespace   [ \t]+
 ">"	{token(">");}
 "!"	{token("!");}
 
-"++"	{tokenoperation(ADD_ADD);}
-"--"	{tokenoperation(LES_LES);}
-"<="	{tokenoperation(LE_OP);}
-">="	{tokenoperation(GE_OP);}
-"!="	{tokenoperation(NE_OP);}
-"&&"	{tokenoperation(AND_AND);}
-"||"	{tokenoperation(OR_OR);}
-"+="	{tokenoperation(ADD_OP);}
-"-="	{tokenoperation(LES_OP);}
-"*="	{tokenoperation(MUL_OP);}
-"/="	{tokenoperation(DIV_OP);}
+"++"	{strcpy(yylval.val, yytext);return (ADD_ADD);}
+"--"	{strcpy(yylval.val, yytext);return (LES_LES);}
+"<="	{strcpy(yylval.val, yytext);return (LE_OP);}
+">="	{strcpy(yylval.val, yytext);return (GE_OP);}
+"!="	{strcpy(yylval.val, yytext);return (NE_OP);}
+"&&"	{strcpy(yylval.val, yytext);return (AND_AND);}
+"||"	{strcpy(yylval.val, yytext);return (OR_OR);}
+"+="	{strcpy(yylval.val, yytext);return (ADD_OP);}
+"-="	{strcpy(yylval.val, yytext);return (LES_OP);}
+"*="	{strcpy(yylval.val, yytext);return (MUL_OP);}
+"/="	{strcpy(yylval.val, yytext);return (DIV_OP);}
 
-"let"	{keyword(yytext);}
-"break"	{keyword(yytext);}
-"char"	{keyword(yytext);}
-"continue"	{keyword(yytext);}
-"do"	{keyword(yytext);}
-"else"	{keyword(yytext);}
-"enum"	{keyword(yytext);}
-"extern"	{keyword(yytext);}
-"false"	{keyword(yytext);}
-"float"	{keyword(yytext);}
-"for"	{keyword(yytext);}
-"fn"	{keyword(yytext);}
-"int"	{keyword(yytext);}
-"if"	{keyword(yytext);}
-"in"	{keyword(yytext);}
+"let"	{strcpy(yylval.val, yytext);return (LET);}
+"break"	{strcpy(yylval.val, yytext);return (BREAK);}
+"char"	{strcpy(yylval.val, yytext);return (CHAR);}
+"continue"	{strcpy(yylval.val, yytext);return (CONTINUE);}
+"do"	{strcpy(yylval.val, yytext);return (DO);}
+"else"	{strcpy(yylval.val, yytext);return (ELSE);}
+"enum"	{strcpy(yylval.val, yytext);return (ENUM);}
+"extern"	{strcpy(yylval.val, yytext);return (EXTERN);}
+"false"	{strcpy(yylval.val, yytext);return (FALSE);}
+"float"	{strcpy(yylval.val, yytext);return (FLOAT);}
+"for"	{strcpy(yylval.val, yytext);return (FOR);}
+"fn"	{strcpy(yylval.val, yytext);return (FN);}
+"int"	{strcpy(yylval.val, yytext);return (INT);}
+"if"	{strcpy(yylval.val, yytext);return (IF);}
+"in"	{strcpy(yylval.val, yytext);return (IN);}
 
-"loop"	{keyword(yytext);}
-"match"	{keyword(yytext);}
-"mut"	{keyword(yytext);}
-"print"	{keyword(yytext);}
-"println"	{keyword(yytext);}
-"pub"	{keyword(yytext);}
-"return"	{keyword(yytext);}
-"self"	{keyword(yytext);}
-"static"	{keyword(yytext);}
-"true"	{keyword(yytext);}
-"where"	{keyword(yytext);}
-"use"	{keyword(yytext);}
-"while"	{keyword(yytext);}
-"bool"	{tokenBoolean("BOOL");}
+"loop"	{strcpy(yylval.val, yytext);return (LOOP);}
+"match"	{strcpy(yylval.val, yytext);return (MATCH);}
+"mut"	{strcpy(yylval.val, yytext);return (MUT);}
+"print"	{strcpy(yylval.val, yytext);return (PRINT);}
+"println"	{strcpy(yylval.val, yytext);return (PRINTLN);}
+"pub"	{strcpy(yylval.val, yytext);return (PUB);}
+"return"	{strcpy(yylval.val, yytext);return (RETURN);}
+"self"	{strcpy(yylval.val, yytext);return (SELF);}
+"static"	{strcpy(yylval.val, yytext);return (STATIC);}
+"true"	{strcpy(yylval.val, yytext);return (TRUE);}
+"where"	{strcpy(yylval.val, yytext);return (WHERE);}
+"use"	{strcpy(yylval.val, yytext);return (USE);}
+"while"	{strcpy(yylval.val, yytext);return (WHILE);}
+"bool"	{strcpy(yylval.val, yytext);return (BOOL);}
 {id}  		        {tokenId;}
 {integer}     		{tokenInteger;}
 {real}        		{tokenReal;}
