@@ -65,7 +65,7 @@ whitespace   [ \t]+
 "else"	{strcpy(yylval.val, yytext);return (ELSE);}
 "enum"	{strcpy(yylval.val, yytext);return (ENUM);}
 "extern"	{strcpy(yylval.val, yytext);return (EXTERN);}
-"false"	{strcpy(yylval.val, yytext);return (FALSE);}
+
 "float"	{strcpy(yylval.val, yytext);return (FLOAT);}
 "for"	{strcpy(yylval.val, yytext);return (FOR);}
 "fn"	{strcpy(yylval.val, yytext);return (FN);}
@@ -82,11 +82,14 @@ whitespace   [ \t]+
 "return"	{strcpy(yylval.val, yytext);return (RETURN);}
 "self"	{strcpy(yylval.val, yytext);return (SELF);}
 "static"	{strcpy(yylval.val, yytext);return (STATIC);}
-"true"	{strcpy(yylval.val, yytext);return (TRUE);}
+
 "where"	{strcpy(yylval.val, yytext);return (WHERE);}
 "use"	{strcpy(yylval.val, yytext);return (USE);}
 "while"	{strcpy(yylval.val, yytext);return (WHILE);}
-"bool"	{strcpy(yylval.val, yytext);return (BOOL);}
+
+true {strcpy(yylval.val, yytext);return (TRUE);}
+false {strcpy(yylval.val, yytext);return (FALSE);}
+bool	{strcpy(yylval.val, yytext);return (BOOL);}
 {id}  		        {strcpy(yylval.val, yytext);return (IDENTIFIER);}
 {integer}     		{yylval.int_type = atoi(yytext);return (INTEGER);}
 {real}        		{sscanf(yytext, "%lf", &yylval.double_type);return (REALCONSTANTS);}

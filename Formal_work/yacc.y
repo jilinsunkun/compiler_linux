@@ -80,15 +80,19 @@ declaration
 	: LET IDENTIFIER '=' value_declaration {
 		insert($2, "const" , $4);
 	}
-	| VAR IDENTIFIER type_specifier {
-		insert($2, $3, "");
+	| LET IDENTIFIER ':'type_specifier'='value_declaration{
+		insert($2,$4,$6);
 	}
-	| VAR IDENTIFIER type_specifier '=' value_declaration {
-		insert($2, $3, "");
+	| LET MUT IDENTIFIER '=' value_declaration{
+		insert($3,"",$5)
 	}
-	| VAR IDENTIFIER '[' INTEGER ']' type_specifier {
-		insert($2, "array" , $6);
+	| LET MUT IDENTIFIER ':'type_specifier'='value_declaration{
+		insert($3,$5,$7);
 	}
+	| LET MUT IDENTIFIER'['type_specifier','value_declaration']'{
+		insert($3,"array",$5)
+	}
+	
 	;
 external_declaration
 	
