@@ -1,5 +1,10 @@
 %{
+	
 	#include <stdio.h>
+	#include <stdlib.h>
+	#include <string.h>
+
+
 	#include"HashTable.h"
 %}
 %union{
@@ -26,17 +31,49 @@
 
 %start program
 
-%type  <val> value_declaration program primary_expression type_specifier declarator_list declarator declaration_list
-%type <int_type> number_declaration 
-
+%type  <val> value_declaration program  type_specifier declarator_list declarator declaration_list
 %%
 
+declarator_list
+	: declarator
+	| declarator_list '(' declarator_list ')' 
+	| declarator_list ','
+	;
+
+declarator
+	: IDENTIFIER  
+	| value_declaration 
+	;
 
 type_specifier
 	: BOOL
 	| FLOAT
 	| INT
 	| VOID
+	;
+
+value_declaration
+	: STR  {
+		strcpy($$, $1);
+	}
+	| TRUE  {
+		strcpy($$, $1);
+	}
+	| FALSE {
+		strcpy($$, $1);
+	}
+	| INTEGER 
+	{
+		char tempStr[50];
+		sprintf( tempStr, "%d", $1 );
+		strcpy($$, tempStr);
+	}
+	| REALCONSTANTS 
+	{
+		char tempStr[50];
+		sprintf( tempStr, "%g", $1 );
+		strcpy($$, tempStr);
+	}
 	;
 declaration_list
 	: declaration

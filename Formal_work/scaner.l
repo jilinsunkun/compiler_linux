@@ -5,24 +5,15 @@
 #define MAX_LINE_LENG 256
 #define lineNum     		strcat(buf,yytext)
 #define token(t)		{lineNum; printf("<'%s'>\n",t);return t;}
-#define captial(t) 		{for(int i = 0; i < strlen(t); i++){t[i] = toupper(t[i]);};printf("<%s>\n", t); }
-#define keyword(t) 		{ captial(t) ;strcpy(yylval.val, yytext);return t;}
-
-#define tokenoperation(t)	{strcpy(yylval.val, yytext); printf("<'%s'>\n",t);return t;}
-
-#define tokenInteger	{yylval.int_type = atoi(yytext);return (INTEGER);}
-#define tokenReal 		{sscanf(yytext, "%lf", &yylval.double_type);return (REALCONSTANTS);}
-#define tokenBoolean 	{lineNum; printf("<%s:%s>\n","tokenboolean",yytext);}
-#define tokenId			{strcpy(yylval.val, yytext);return (IDENTIFIER);}
-#define tokenString(t,s){lineNum; printf("<%s:%s>\n","tokenstring",s);}
 #include"y.tab.h"
 int linecount = 1;
 char buf[MAX_LINE_LENG];
 char str[512];
 
+char tempStrBuf[1024];    
 
 %}
-%x	String
+%x	STRING
 %x 	commion
 %x  Commionex
 digit      [0-9]
@@ -34,22 +25,23 @@ whitespace   [ \t]+
 
 
 %%
-"("	{token("(");}
-")"	{token(")");}
-","	{token(",");}
-":"	{token(":");}
-";"	{token(";");}
-"["	{token("[");}
-"]"	{token("]");}
-"{"	{token("}");}
-"+"	{token("+");}
-"-"	{token("-");}
-"*"	{token("*");}
-"/"	{token("/");}
-"%"	{token("%");}
-"<"	{token("<");}
-">"	{token(">");}
-"!"	{token("!");}
+"("	{return('(');}
+")"	{return(')');}
+","	{return(',');}
+":"	{return(':');}
+";"	{return(';');}
+"["	{return('[');}
+"]"	{return(']');}
+"{"	{return('{');}
+"}" {return('}');}
+"+"	{return('+');}
+"-"	{return('-');}
+"*"	{return('*');}
+"/"	{return('/');}
+"%"	{return('%');}
+"<"	{return('<');}
+">"	{return('>');}
+"!"	{return('!');}
 
 "++"	{strcpy(yylval.val, yytext);return (ADD_ADD);}
 "--"	{strcpy(yylval.val, yytext);return (LES_LES);}
