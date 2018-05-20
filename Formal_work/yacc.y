@@ -71,6 +71,30 @@ value_declaration
 		strcpy($$, tempStr);
 	}
 	;
+func_expression:
+	FUNC {
+		isShouldAdd = 0;
+		itemDepth++;
+	};
+
+function_definition 
+	: func_expression  type_specifier IDENTIFIER '(' parameter_list ')' compound_statement 
+	{
+		insert($3, $2, "");
+	}
+	| func_expression IDENTIFIER '(' parameter_list ')' compound_statement 
+	{
+		insert($2, "", "");
+	}
+	| func_expression type_specifier IDENTIFIER '('  ')' compound_statement 
+	{
+		insert($3, $2, "");
+	}
+	| func_expression IDENTIFIER '('  ')' compound_statement 
+	{
+		insert($2, "", "");
+	}
+	
 declaration_list
 	: declaration {printf("call declaration\n");}
 	| declaration_list declaration {printf("call declaration_list declaration\n");}
