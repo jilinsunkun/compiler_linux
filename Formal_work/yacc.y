@@ -84,13 +84,13 @@ declaration
 		insert($2,$4,$6);
 	}
 	| LET MUT IDENTIFIER '=' value_declaration{
-		insert($3,"",$5)
+		insert($3,"",$5);
 	}
 	| LET MUT IDENTIFIER ':'type_specifier'='value_declaration{
 		insert($3,$5,$7);
 	}
 	| LET MUT IDENTIFIER'['type_specifier','value_declaration']'{
-		insert($3,"array",$5)
+		insert($3,"array",$5);
 	}
 	
 	;
