@@ -45,62 +45,29 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    NEG = 258,
-    ADD_ADD = 259,
-    LES_LES = 260,
-    LE_OP = 261,
-    GE_OP = 262,
-    NE_OP = 263,
-    AND_AND = 264,
-    OR_OR = 265,
-    ADD_OP = 266,
-    LES_OP = 267,
-    MUL_OP = 268,
-    DIV_OP = 269,
-    FLOAT = 270,
-    BOOL = 271,
-    INT = 272,
-    VOID = 273,
-    let = 274,
-    tokenId = 275,
-    INTEGER = 276
+    NAME = 258,
+    NUMBER = 259,
+    NEG = 260
   };
 #endif
 /* Tokens.  */
-#define NEG 258
-#define ADD_ADD 259
-#define LES_LES 260
-#define LE_OP 261
-#define GE_OP 262
-#define NE_OP 263
-#define AND_AND 264
-#define OR_OR 265
-#define ADD_OP 266
-#define LES_OP 267
-#define MUL_OP 268
-#define DIV_OP 269
-#define FLOAT 270
-#define BOOL 271
-#define INT 272
-#define VOID 273
-#define let 274
-#define tokenId 275
-#define INTEGER 276
+#define NAME 258
+#define NUMBER 259
+#define NEG 260
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 5 "yacc.y" /* yacc.c:1909  */
+#line 4 "yacc.y" /* yacc.c:1909  */
 
-  char typeOF[200];
-  char val[200];
-  double double_type;
-  int int_type;
-  int int_val;
+	double dval;
+	int vbino;
+	double var_value;
+	char var_number;
 
-#line 104 "y.tab.h" /* yacc.c:1909  */
+#line 71 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
