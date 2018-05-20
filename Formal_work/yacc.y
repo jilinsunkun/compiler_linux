@@ -73,7 +73,7 @@ value_declaration
 	;
 
 func_expression:
-	FUNC {
+	FN {
 		isShouldAdd = 0;
 		itemDepth++;
 	};
@@ -88,17 +88,17 @@ parameter_declaration
 	}
 	;
 function_definition
-	:func_expression	type_specifier	IDENTIFIER '('parameter_list')' compound_statement
+	:func_expression IDENTIFIER '('parameter_list')' compound_statement '-''>' type_specifier
 	{
-		insert($3,$2,"")
+		insert($2,$9,"")
 	}
 	|func_expression IDENTIFIER '(' parameter_list ')' compound_statement 
 	{
 		insert($2, "", "");
 	}
-	|func_expression type_specifier IDENTIFIER '('  ')' compound_statement 
+	|func_expression IDENTIFIER '('  ')' compound_statement '-''>' type_specifier
 	{
-		insert($3, $2, "");
+		insert($2, $8, "");
 	}
 	| func_expression IDENTIFIER '('  ')' compound_statement 
 	{
@@ -122,7 +122,7 @@ compound_end
 		itemDepth--;
 	}
 	;
-compound_statement:
+compound_statement
 	: compound_start statement_list compound_end
 	| compound_start declaration_list compound_end
 	| compound_start declaration_list statement_list compound_end
@@ -138,19 +138,20 @@ statement
 	| compound_statement
 	| expression_statement 
 	| selection_statement 
-	| iteration_statement 
-	| jump_statement 
 	;
 simple_statment
 	: IDENTIFIER '[' INTEGER ']' '=' expression 
 	| PRINT expression
 	| PRINTLN expression 
-	| READ IDENTIFIER 
+	| IDENTIFIER '=' expression
 	| RETURN 
 	| RETURN expression
 	;
 expression_statement
 	:  expression 
+	;
+expression
+	:	expression
 	;
 selection_statement
 	: IF '(' expression ')' statement
