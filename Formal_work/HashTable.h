@@ -1,6 +1,10 @@
-  
-  int  yylex  (void);
-  int  yyerror  ( char *str);
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int  yylex  (void);
+void  yyerror  (const char *str);
+
+
 int isShouldAdd = 0;
 int keyId = 1;
 int itemDepth = 0;
@@ -48,37 +52,36 @@ int lookup(char *idName , int depth) {
 }
 //Inserts s into  the symbol table
 void insert(char *idName , char *type, char *value) {
-    
-       struct DataItem *item = (struct DataItem*) malloc(sizeof(struct DataItem));
-       strcpy(item->idName, idName);
-       strcpy(item->type, type);
-        strcpy(item->value, value);
-        item->depth = itemDepth;
-        item->key = keyId;
+  
+     struct DataItem *item = (struct DataItem*) malloc(sizeof(struct DataItem));
+     strcpy(item->idName, idName);
+     strcpy(item->type, type);
+    strcpy(item->value, value);
+    item->depth = itemDepth;
+      item->key = keyId;
 
-        hashArray[keyId] = item;
-        keyId ++;
+    hashArray[keyId] = item;
+    keyId ++;
 }
 
 void clear(){
    for(int i = 1;i < SIZE;i++)
    {
-        if(hashArray[i] != NULL)
-        {
-            hashArray[i] = NULL;
-        }
-    }
+    if(hashArray[i] != NULL)
+      {
+          hashArray[i] = NULL;
+      }
+  }
 }
 
 //Dumps all entries of the symbol table. returns index of the entry.
 void dump() {
    for(int i = 1;i < SIZE;i++)
    {
-        if(hashArray[i] != NULL)
-        {
-          printf("%-*d:%-*s%-*s%-*s%-*d\n", 5, i, 20, hashArray[i]->idName, 15, hashArray[i]->type, 30, hashArray[i]->value, 5, hashArray[i]->depth);
-        }
-    }
-    clear();
+    if(hashArray[i] != NULL)
+      {
+        printf("%-*d:%-*s%-*s%-*s%-*d\n", 5, i, 20, hashArray[i]->idName, 15, hashArray[i]->type, 30, hashArray[i]->value, 5, hashArray[i]->depth);
+      }
+  }
+  clear();
 }
-

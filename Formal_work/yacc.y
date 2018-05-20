@@ -1,9 +1,5 @@
 %{
 	
-	#include <stdio.h>
-	#include <stdlib.h>
-	#include <string.h>
-
 
 	#include"HashTable.h"
 %}
@@ -76,13 +72,14 @@ value_declaration
 	}
 	;
 declaration_list
-	: declaration
-	| declaration_list declaration
+	: declaration {printf("call declaration\n");}
+	| declaration_list declaration {printf("call declaration_list declaration\n");}
 	;
 
 declaration
 	: LET IDENTIFIER '=' value_declaration {
 		insert($2, "const" , $4);
+		printf("call reght");
 	}
 	| LET IDENTIFIER type_specifier {
 		insert($2, $3, "");
@@ -96,26 +93,46 @@ declaration
 	;
 external_declaration
 	
-	: declaration_list
+	: declaration_list	{printf("call declaration_list\n");}
 	| IDENTIFIER '(' declarator_list ')' 
 	;
 
 program
-	: external_declaration
-	| program external_declaration
+	: external_declaration	{printf("call external_declaration\n");}
+	| program external_declaration	{printf("call external_declaration\n");}
 	;
 %%
-int yyerror(char *s)
-{
- fprintf(stderr, "%s\n", s);
- return 0;
-}
-int main(void)
-{
- yyparse();
- return 0;
+void yyerror(const char *str){
+    printf("error:%s\n",str);
 }
 
+int yywrap(){
+    return 1;
+}
+
+int main()
+{
+	isShouldAdd = 0;
+	itemDepth = 0;
+	hashArray = create();
+
+    yyparse();
+    ;
+
+    printf("%s\n", "------Test Lookup In example.go:------");
+    printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");
+    if (lookup("a" , 0) >= 0 && lookup("a" , 1) >= 0)
+    {
+    	printf("%-*s%-*d\n", 20 ,hashArray[lookup("a" , 0)]->idName ,5 , hashArray[lookup("a" , 0)]->depth);
+    	printf("%-*s%-*d\n", 20 ,hashArray[lookup("a" , 1)]->idName ,5 , hashArray[lookup("a" , 1)]->depth);
+    }
+    
+    printf("\n\n%s\n", "------Symbol Table:------");
+    printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");
+    printf("%-*s:%-*s%-*s%-*s%-*d\n", 5, "Index:", 20, "Name", 15, "Type", 30, "Value", 5, "Depth");
+  	dump();
+  	return 0;
+}
 
 
 

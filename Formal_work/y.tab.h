@@ -92,9 +92,7 @@ extern int yydebug;
     STATIC = 302,
     WHERE = 303,
     USE = 304,
-    WHILE = 305,
-    CONST = 306,
-    VAR = 307
+    WHILE = 305
   };
 #endif
 /* Tokens.  */
@@ -146,15 +144,13 @@ extern int yydebug;
 #define WHERE 303
 #define USE 304
 #define WHILE 305
-#define CONST 306
-#define VAR 307
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 10 "yacc.y" /* yacc.c:1909  */
+#line 6 "yacc.y" /* yacc.c:1909  */
 
   char typeOF[200];
   char val[200];
@@ -162,7 +158,7 @@ union YYSTYPE
   int int_type;
   int int_val;
 
-#line 166 "y.tab.h" /* yacc.c:1909  */
+#line 162 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

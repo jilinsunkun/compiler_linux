@@ -3,8 +3,9 @@
 #include<ctype.h>
 
 #define MAX_LINE_LENG 256
-#define lineNum     		strcat(buf,yytext)
-#define token(t)		{lineNum; printf("<'%s'>\n",t);return t;}
+#define lineNum         strcat(buf,yytext)
+ #define token(t)   {lineNum; printf("<'%s'>\n",t);return t;}
+  #define tokenString(t,s){lineNum; printf("<%s:%s>\n","tokenstring",s);return s;}
 #include"y.tab.h"
 int linecount = 1;
 char buf[MAX_LINE_LENG];
@@ -13,7 +14,7 @@ char str[512];
 char tempStrBuf[1024];    
 
 %}
-%x	STRING
+%x	String
 %x 	commion
 %x  Commionex
 digit      [0-9]
@@ -55,7 +56,7 @@ whitespace   [ \t]+
 "*="	{strcpy(yylval.val, yytext);return (MUL_OP);}
 "/="	{strcpy(yylval.val, yytext);return (DIV_OP);}
 
-"let"	{strcpy(yylval.val, yytext);return (LET);}
+"let"	{strcpy(yylval.val, yytext);printf("let");return (LET);}
 "break"	{strcpy(yylval.val, yytext);return (BREAK);}
 "char"	{strcpy(yylval.val, yytext);return (CHAR);}
 "continue"	{strcpy(yylval.val, yytext);return (CONTINUE);}
@@ -85,7 +86,7 @@ whitespace   [ \t]+
 "use"	{strcpy(yylval.val, yytext);return (USE);}
 "while"	{strcpy(yylval.val, yytext);return (WHILE);}
 "bool"	{strcpy(yylval.val, yytext);return (BOOL);}
-{id}  		        {strcpy(yylval.val, yytext);return (IDENTIFIER);}
+{id}  		        {strcpy(yylval.val, yytext);printf("id");return (IDENTIFIER);}
 {integer}     		{yylval.int_type = atoi(yytext);return (INTEGER);}
 {real}        		{sscanf(yytext, "%lf", &yylval.double_type);return (REALCONSTANTS);}
 
@@ -118,12 +119,32 @@ whitespace   [ \t]+
 <commion>.     {
                       		lineNum;
                     	}
-
-\"{1} {BEGIN(STRING);}
-<STRING>([^"]*)+ {strcat(tempStrBuf, yytext);}
-<STRING>"\"\"" {strcat(tempStrBuf, "\"\"");}
-<STRING>\"{1} {strcpy(yylval.val, tempStrBuf);tempStrBuf[0] = '\0';BEGIN(INITIAL);
-return (STR);}
+\"              {
+                    lineNum;
+                    BEGIN String;
+                  }
+ 
+ <String>\"     {
+                      char c = input();
+                      if(c=='\"')
+                     {
+                      strcat(buf,"\"");
+                      strcat(str,yytext);
+                      lineNum;
+                     }
+                      else
+                     {
+                      tokenString("string",str);
+                      unput(c);
+                      str[0] = '\0';
+                      BEGIN 0;
+                     }
+                     return (STR);
+                    }
+ <String>.      {
+                       lineNum;
+                       strcat(str,yytext);
+                     }
 
                     
 [ \t]*  			{lineNum;}
