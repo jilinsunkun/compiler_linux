@@ -23,7 +23,7 @@
 %token <double_type> REALCONSTANTS 
 %token <val> STR TRUE FALSE IDENTIFIER BOOL STRINGKEYWORD REAL INT VOID
 %token LOOP MATCH MUT PRINT PRINTLN PUB RETURN SELF STATIC  WHERE USE WHILE 
-
+%token CONST VAR
 
 %start program
 
@@ -79,15 +79,14 @@ declaration_list
 declaration
 	: LET IDENTIFIER '=' value_declaration {
 		insert($2, "const" , $4);
-		printf("call reght");
 	}
-	| LET IDENTIFIER type_specifier {
+	| VAR IDENTIFIER type_specifier {
 		insert($2, $3, "");
 	}
-	| LET IDENTIFIER type_specifier '=' value_declaration {
+	| VAR IDENTIFIER type_specifier '=' value_declaration {
 		insert($2, $3, "");
 	}
-	| LET IDENTIFIER '[' INTEGER ']' type_specifier {
+	| VAR IDENTIFIER '[' INTEGER ']' type_specifier {
 		insert($2, "array" , $6);
 	}
 	;
@@ -117,7 +116,7 @@ int main()
 	hashArray = create();
 
     yyparse();
-    ;
+    
 
     printf("%s\n", "------Test Lookup In example.go:------");
     printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");

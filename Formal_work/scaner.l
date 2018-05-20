@@ -43,6 +43,7 @@ whitespace   [ \t]+
 "<"	{return('<');}
 ">"	{return('>');}
 "!"	{return('!');}
+"=" {return('=');}
 
 "++"	{strcpy(yylval.val, yytext);return (ADD_ADD);}
 "--"	{strcpy(yylval.val, yytext);return (LES_LES);}
@@ -56,7 +57,7 @@ whitespace   [ \t]+
 "*="	{strcpy(yylval.val, yytext);return (MUL_OP);}
 "/="	{strcpy(yylval.val, yytext);return (DIV_OP);}
 
-"let"	{strcpy(yylval.val, yytext);printf("let");return (LET);}
+"let"	{strcpy(yylval.val, yytext);;return (LET);}
 "break"	{strcpy(yylval.val, yytext);return (BREAK);}
 "char"	{strcpy(yylval.val, yytext);return (CHAR);}
 "continue"	{strcpy(yylval.val, yytext);return (CONTINUE);}
@@ -86,7 +87,7 @@ whitespace   [ \t]+
 "use"	{strcpy(yylval.val, yytext);return (USE);}
 "while"	{strcpy(yylval.val, yytext);return (WHILE);}
 "bool"	{strcpy(yylval.val, yytext);return (BOOL);}
-{id}  		        {strcpy(yylval.val, yytext);printf("id");return (IDENTIFIER);}
+{id}  		        {strcpy(yylval.val, yytext);return (IDENTIFIER);}
 {integer}     		{yylval.int_type = atoi(yytext);return (INTEGER);}
 {real}        		{sscanf(yytext, "%lf", &yylval.double_type);return (REALCONSTANTS);}
 
