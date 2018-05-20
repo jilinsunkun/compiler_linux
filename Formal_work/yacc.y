@@ -71,22 +71,32 @@ value_declaration
 		strcpy($$, tempStr);
 	}
 	;
+
 func_expression:
 	FUNC {
 		isShouldAdd = 0;
 		itemDepth++;
 	};
-
-function_definition 
-	: func_expression  type_specifier IDENTIFIER '(' parameter_list ')' compound_statement 
+parameter_list
+	: parameter_declaration
+	| parameter_list ',' parameter_declaration
+	;
+parameter_declaration
+	: IDENTIFIER ':' type_specifier 
 	{
-		insert($3, $2, "");
+		insert($1, $3 , "");
 	}
-	| func_expression IDENTIFIER '(' parameter_list ')' compound_statement 
+	;
+function_definition
+	:func_expression	type_specifier	IDENTIFIER '('parameter_list')' compound_statement
+	{
+		insert($3,$2,"")
+	}
+	|func_expression IDENTIFIER '(' parameter_list ')' compound_statement 
 	{
 		insert($2, "", "");
 	}
-	| func_expression type_specifier IDENTIFIER '('  ')' compound_statement 
+	|func_expression type_specifier IDENTIFIER '('  ')' compound_statement 
 	{
 		insert($3, $2, "");
 	}
@@ -94,7 +104,59 @@ function_definition
 	{
 		insert($2, "", "");
 	}
-	
+compound_start
+	: '{'
+	{
+		if (isShouldAdd == 1)
+		{
+			itemDepth++;
+		}
+		else{
+			isShouldAdd++;
+		}
+	}
+	;	
+compound_end
+	: '}'
+	{
+		itemDepth--;
+	}
+	;
+compound_statement:
+	: compound_start statement_list compound_end
+	| compound_start declaration_list compound_end
+	| compound_start declaration_list statement_list compound_end
+	| compound_start compound_end
+	;
+statement_list
+	: statement
+	| statement_list statement
+	;
+
+statement
+	: simple_statment
+	| compound_statement
+	| expression_statement 
+	| selection_statement 
+	| iteration_statement 
+	| jump_statement 
+	;
+simple_statment
+	: IDENTIFIER '[' INTEGER ']' '=' expression 
+	| PRINT expression
+	| PRINTLN expression 
+	| READ IDENTIFIER 
+	| RETURN 
+	| RETURN expression
+	;
+expression_statement
+	:  expression 
+	;
+selection_statement
+	: IF '(' expression ')' statement
+	| IF '(' expression ')' statement ELSE statement
+	;
+
 declaration_list
 	: declaration {printf("call declaration\n");}
 	| declaration_list declaration {printf("call declaration_list declaration\n");}
