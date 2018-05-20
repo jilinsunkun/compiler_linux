@@ -93,9 +93,9 @@ whitespace   [ \t]+
 "use"	{strcpy(yylval.val, yytext);return (USE);}
 "while"	{strcpy(yylval.val, yytext);return (WHILE);}
 "bool"	{strcpy(yylval.val, yytext);return (BOOL);}
-{id}  		        {tokenId;}
-{integer}     		{tokenInteger;}
-{real}        		{tokenReal;}
+{id}  		        {strcpy(yylval.val, yytext);return (IDENTIFIER);}
+{integer}     		{yylval.int_type = atoi(yytext);return (INTEGER);}
+{real}        		{sscanf(yytext, "%lf", &yylval.double_type);return (REALCONSTANTS);}
 
 "//"          		{
                		lineNum;
@@ -126,31 +126,13 @@ whitespace   [ \t]+
 <commion>.     {
                       		lineNum;
                     	}
-\"          		{
-              			lineNum;
-              			BEGIN String;
-              		}
 
-<String>\" 		{
-                    	char c = input();
-                    	if(c=='\"')
-                    {
-                    	strcat(buf,"\"");
-                    	strcat(str,yytext);
-                    	lineNum;
-                    }
-                    	else
-                    {
-                    	tokenString("string",str);
-                    	unput(c);
-                    	str[0] = '\0';
-                    	BEGIN 0;
-                    }
-                  	}
-<String>.     	{
-                      lineNum;
-                      strcat(str,yytext);
-                    }
+\"{1} {BEGIN(STRING);}
+<STRING>([^"]*)+ {strcat(tempStrBuf, yytext);}
+<STRING>"\"\"" {strcat(tempStrBuf, "\"\"");}
+<STRING>\"{1} {strcpy(yylval.val, tempStrBuf);tempStrBuf[0] = '\0';BEGIN(INITIAL);
+return (STR);}
+
                     
 [ \t]*  			{lineNum;}
 \n 			  		{
