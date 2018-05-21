@@ -44,7 +44,9 @@ whitespace   [ \t]+
 ">"	{return('>');}
 "!"	{return('!');}
 "=" {return('=');}
+";" {return(';');}
 
+"==" {strcpy(yylval.val, yytext);return (ADD_ADD);}
 "++"	{strcpy(yylval.val, yytext);return (ADD_ADD);}
 "--"	{strcpy(yylval.val, yytext);return (LES_LES);}
 "<="	{strcpy(yylval.val, yytext);return (LE_OP);}
@@ -56,6 +58,7 @@ whitespace   [ \t]+
 "-="	{strcpy(yylval.val, yytext);return (LES_OP);}
 "*="	{strcpy(yylval.val, yytext);return (MUL_OP);}
 "/="	{strcpy(yylval.val, yytext);return (DIV_OP);}
+"->"  {strcpy(yylval.val, yytext);return (OP_LE);}
 
 "let"	{strcpy(yylval.val, yytext);;return (LET);}
 "break"	{strcpy(yylval.val, yytext);return (BREAK);}

@@ -17,7 +17,7 @@
 %right '^'      /* exponentiation */
 
 
-%token ADD_ADD LES_LES LE_OP GE_OP NE_OP AND_AND OR_OR ADD_OP LES_OP MUL_OP DIV_OP
+%token ADD_ADD LES_LES LE_OP GE_OP NE_OP AND_AND OR_OR ADD_OP LES_OP MUL_OP DIV_OP OP_LE
 %token LET BREAK CHAR CONTINUE DO ELSE ENUM EXTERN  FLOAT  FOR FN  IF IN 
 %token <int_type> INTEGER
 %token <double_type> REALCONSTANTS 
@@ -27,8 +27,76 @@
 
 %start program
 
-%type  <val> value_declaration program  type_specifier declarator_list declarator declaration_list
+%type  <val> value_declaration program primary_expression type_specifier declarator_list declarator
+%type <int_type> number_declaration
 %%
+expression_statement
+	:  expression 
+	;
+expression
+	: assignment_expression
+	| expression assignment_expression
+	;
+unary_expression
+	: primary_expression
+	| '-' primary_expression
+	;
+
+multiplicative_expression
+	: unary_expression
+	| multiplicative_expression '*' unary_expression
+	| multiplicative_expression '/' unary_expression
+	;
+
+additive_expression
+	: multiplicative_expression
+	| additive_expression '+' multiplicative_expression
+	| additive_expression '-' multiplicative_expression
+	;
+
+
+relational_expression
+	: additive_expression
+	| relational_expression '<' primary_expression
+	| relational_expression '>' primary_expression
+	| relational_expression LE_OP primary_expression
+	| relational_expression GE_OP primary_expression
+	| relational_expression ADD_OP primary_expression
+	| relational_expression LES_OP primary_expression
+	| relational_expression MUL_OP primary_expression
+	| relational_expression DIV_OP primary_expression
+	| relational_expression NE_OP primary_expression
+	;
+
+equality_expression
+	: relational_expression
+	| equality_expression EQ_OP relational_expression
+	| equality_expression NE_OP relational_expression
+	;
+
+assignment_expression
+	: inclusive_or_expression
+	| inclusive_or_expression '=' assignment_expression
+	;
+	
+inclusive_or_expression
+	: and_expression
+	| inclusive_or_expression '|' and_expression
+	
+	;
+
+and_expression
+	: equality_expression
+	| and_expression '&' equality_expression
+	;
+
+primary_expression
+	: value_declaration
+	| declarator_list 
+	| primary_expression value_declaration 
+	| primary_expression declarator_list
+	;
+
 
 declarator_list
 	: declarator
@@ -88,19 +156,19 @@ parameter_declaration
 	}
 	;
 function_definition
-	:func_expression IDENTIFIER '('parameter_list')' compound_statement '-''>' type_specifier
+	:func_expression IDENTIFIER '('parameter_list')'  OP_LE type_specifier compound_statement
 	{
-		insert($2,$9,"")
+		insert($2,$7,"");
 	}
 	|func_expression IDENTIFIER '(' parameter_list ')' compound_statement 
 	{
 		insert($2, "", "");
 	}
-	|func_expression IDENTIFIER '('  ')' compound_statement '-''>' type_specifier
+	|func_expression IDENTIFIER '('  ')'  OP_LE type_specifier compound_statement
 	{
-		insert($2, $8, "");
+		insert($2, $6, "");
 	}
-	| func_expression IDENTIFIER '('  ')' compound_statement 
+	| func_expression IDENTIFIER '('  ')'   compound_statement
 	{
 		insert($2, "", "");
 	}
@@ -128,6 +196,16 @@ compound_statement
 	| compound_start declaration_list statement_list compound_end
 	| compound_start compound_end
 	;
+iteration_statement
+	: FOR '(' expression_statement ')' statement
+	| FOR '(' expression_statement ";" expression_statement ')' statement
+	| FOR '(' expression_statement ";"  expression_statement ";"  expression_statement ')' statement
+	;
+
+selection_statement
+	: IF '(' expression ')' statement
+	| IF '(' expression ')' statement ELSE statement
+	;
 statement_list
 	: statement
 	| statement_list statement
@@ -138,6 +216,11 @@ statement
 	| compound_statement
 	| expression_statement 
 	| selection_statement 
+	| iteration_statement
+	| while_srarement
+	;
+while_srarement
+	:WHILE '(' expression ')' compound_statement
 	;
 simple_statment
 	: IDENTIFIER '[' INTEGER ']' '=' expression 
@@ -147,49 +230,40 @@ simple_statment
 	| RETURN 
 	| RETURN expression
 	;
-expression_statement
-	:  expression 
-	;
-expression
-	:	expression
-	;
-selection_statement
-	: IF '(' expression ')' statement
-	| IF '(' expression ')' statement ELSE statement
-	;
+
 
 declaration_list
-	: declaration {printf("call declaration\n");}
-	| declaration_list declaration {printf("call declaration_list declaration\n");}
+	: declaration 
+	| declaration_list declaration 
 	;
 
 declaration
-	: LET IDENTIFIER '=' value_declaration {
+	: LET IDENTIFIER '=' value_declaration ';' {
 		insert($2, "const" , $4);
 	}
-	| LET IDENTIFIER ':'type_specifier'='value_declaration{
+	| LET IDENTIFIER ':'type_specifier'='value_declaration ';'{
 		insert($2,$4,$6);
 	}
-	| LET MUT IDENTIFIER '=' value_declaration{
+	| LET MUT IDENTIFIER '=' value_declaration ';'{
 		insert($3,"",$5);
 	}
-	| LET MUT IDENTIFIER ':'type_specifier'='value_declaration{
+	| LET MUT IDENTIFIER ':'type_specifier'='value_declaration ';'{
 		insert($3,$5,$7);
 	}
-	| LET MUT IDENTIFIER'['type_specifier','value_declaration']'{
+	| LET MUT IDENTIFIER'['type_specifier','value_declaration']' ';'{
 		insert($3,"array",$5);
 	}
 	
 	;
 external_declaration
-	
-	: declaration_list	{printf("call declaration_list\n");}
-	| IDENTIFIER '(' declarator_list ')' 
+	: function_definition
+	| declaration_list	
+	| IDENTIFIER '(' declarator_list ')' ';'
 	;
 
 program
-	: external_declaration	{printf("call external_declaration\n");}
-	| program external_declaration	{printf("call external_declaration\n");}
+	: external_declaration	
+	| program external_declaration	
 	;
 %%
 void yyerror(const char *str){

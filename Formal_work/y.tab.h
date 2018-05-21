@@ -57,44 +57,45 @@ extern int yydebug;
     LES_OP = 267,
     MUL_OP = 268,
     DIV_OP = 269,
-    LET = 270,
-    BREAK = 271,
-    CHAR = 272,
-    CONTINUE = 273,
-    DO = 274,
-    ELSE = 275,
-    ENUM = 276,
-    EXTERN = 277,
-    FLOAT = 278,
-    FOR = 279,
-    FN = 280,
-    IF = 281,
-    IN = 282,
-    INTEGER = 283,
-    REALCONSTANTS = 284,
-    STR = 285,
-    TRUE = 286,
-    FALSE = 287,
-    IDENTIFIER = 288,
-    BOOL = 289,
-    STRINGKEYWORD = 290,
-    REAL = 291,
-    INT = 292,
-    VOID = 293,
-    LOOP = 294,
-    MATCH = 295,
-    MUT = 296,
-    PRINT = 297,
-    PRINTLN = 298,
-    PUB = 299,
-    RETURN = 300,
-    SELF = 301,
-    STATIC = 302,
-    WHERE = 303,
-    USE = 304,
-    WHILE = 305,
-    CONST = 306,
-    VAR = 307
+    OP_LE = 270,
+    LET = 271,
+    BREAK = 272,
+    CHAR = 273,
+    CONTINUE = 274,
+    DO = 275,
+    ELSE = 276,
+    ENUM = 277,
+    EXTERN = 278,
+    FLOAT = 279,
+    FOR = 280,
+    FN = 281,
+    IF = 282,
+    IN = 283,
+    INTEGER = 284,
+    REALCONSTANTS = 285,
+    STR = 286,
+    TRUE = 287,
+    FALSE = 288,
+    IDENTIFIER = 289,
+    BOOL = 290,
+    STRINGKEYWORD = 291,
+    REAL = 292,
+    INT = 293,
+    VOID = 294,
+    LOOP = 295,
+    MATCH = 296,
+    MUT = 297,
+    PRINT = 298,
+    PRINTLN = 299,
+    PUB = 300,
+    RETURN = 301,
+    SELF = 302,
+    STATIC = 303,
+    WHERE = 304,
+    USE = 305,
+    WHILE = 306,
+    CONST = 307,
+    VAR = 308
   };
 #endif
 /* Tokens.  */
@@ -110,44 +111,45 @@ extern int yydebug;
 #define LES_OP 267
 #define MUL_OP 268
 #define DIV_OP 269
-#define LET 270
-#define BREAK 271
-#define CHAR 272
-#define CONTINUE 273
-#define DO 274
-#define ELSE 275
-#define ENUM 276
-#define EXTERN 277
-#define FLOAT 278
-#define FOR 279
-#define FN 280
-#define IF 281
-#define IN 282
-#define INTEGER 283
-#define REALCONSTANTS 284
-#define STR 285
-#define TRUE 286
-#define FALSE 287
-#define IDENTIFIER 288
-#define BOOL 289
-#define STRINGKEYWORD 290
-#define REAL 291
-#define INT 292
-#define VOID 293
-#define LOOP 294
-#define MATCH 295
-#define MUT 296
-#define PRINT 297
-#define PRINTLN 298
-#define PUB 299
-#define RETURN 300
-#define SELF 301
-#define STATIC 302
-#define WHERE 303
-#define USE 304
-#define WHILE 305
-#define CONST 306
-#define VAR 307
+#define OP_LE 270
+#define LET 271
+#define BREAK 272
+#define CHAR 273
+#define CONTINUE 274
+#define DO 275
+#define ELSE 276
+#define ENUM 277
+#define EXTERN 278
+#define FLOAT 279
+#define FOR 280
+#define FN 281
+#define IF 282
+#define IN 283
+#define INTEGER 284
+#define REALCONSTANTS 285
+#define STR 286
+#define TRUE 287
+#define FALSE 288
+#define IDENTIFIER 289
+#define BOOL 290
+#define STRINGKEYWORD 291
+#define REAL 292
+#define INT 293
+#define VOID 294
+#define LOOP 295
+#define MATCH 296
+#define MUT 297
+#define PRINT 298
+#define PRINTLN 299
+#define PUB 300
+#define RETURN 301
+#define SELF 302
+#define STATIC 303
+#define WHERE 304
+#define USE 305
+#define WHILE 306
+#define CONST 307
+#define VAR 308
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -162,7 +164,7 @@ union YYSTYPE
   int int_type;
   int int_val;
 
-#line 166 "y.tab.h" /* yacc.c:1909  */
+#line 168 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
