@@ -17,7 +17,7 @@
 %right '^'      /* exponentiation */
 
 
-%token ADD_ADD LES_LES LE_OP GE_OP NE_OP AND_AND OR_OR ADD_OP LES_OP MUL_OP DIV_OP OP_LE
+%token ADD_ADD LES_LES LE_OP GE_OP NE_OP AND_AND OR_OR ADD_OP LES_OP MUL_OP DIV_OP OP_LE EQ_OP
 %token LET BREAK CHAR CONTINUE DO ELSE ENUM EXTERN  FLOAT  FOR FN  IF IN 
 %token <int_type> INTEGER
 %token <double_type> REALCONSTANTS 
@@ -101,7 +101,7 @@ primary_expression
 declarator_list
 	: declarator
 	| declarator_list '(' declarator_list ')' 
-	| declarator_list ','
+	| declarator_list ',' declarator_list
 	;
 
 declarator
@@ -114,6 +114,7 @@ type_specifier
 	| FLOAT
 	| INT
 	| VOID
+	| STR
 	;
 
 value_declaration
@@ -258,7 +259,7 @@ declaration
 external_declaration
 	: function_definition
 	| declaration_list	
-	| IDENTIFIER '(' declarator_list ')' ';'
+	| IDENTIFIER '(' declarator_list ')'
 	;
 
 program
@@ -283,8 +284,8 @@ int main()
     yyparse();
     
 
-    printf("%s\n", "------Test Lookup In example.go:------");
-    printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");
+   // printf("%s\n", "------Test Lookup In example.go:------");
+   // printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");
     if (lookup("a" , 0) >= 0 && lookup("a" , 1) >= 0)
     {
     	printf("%-*s%-*d\n", 20 ,hashArray[lookup("a" , 0)]->idName ,5 , hashArray[lookup("a" , 0)]->depth);

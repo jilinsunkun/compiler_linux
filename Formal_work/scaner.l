@@ -46,7 +46,7 @@ whitespace   [ \t]+
 "=" {return('=');}
 ";" {return(';');}
 
-"==" {strcpy(yylval.val, yytext);return (ADD_ADD);}
+"==" {strcpy(yylval.val, yytext);return (EQ_OP);}
 "++"	{strcpy(yylval.val, yytext);return (ADD_ADD);}
 "--"	{strcpy(yylval.val, yytext);return (LES_LES);}
 "<="	{strcpy(yylval.val, yytext);return (LE_OP);}
@@ -141,7 +141,7 @@ bool	{strcpy(yylval.val, yytext);return (BOOL);}
                      }
                       else
                      {
-                      tokenString("string",str);
+                      
                       unput(c);
                       str[0] = '\0';
                       BEGIN 0;
