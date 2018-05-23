@@ -61,11 +61,6 @@ relational_expression
 	| relational_expression '>' primary_expression
 	| relational_expression LE_OP primary_expression
 	| relational_expression GE_OP primary_expression
-	| relational_expression ADD_OP primary_expression
-	| relational_expression LES_OP primary_expression
-	| relational_expression MUL_OP primary_expression
-	| relational_expression DIV_OP primary_expression
-	| relational_expression NE_OP primary_expression
 	;
 
 equality_expression
@@ -81,13 +76,13 @@ assignment_expression
 	
 inclusive_or_expression
 	: and_expression
-	| inclusive_or_expression '|' and_expression
+	| inclusive_or_expression OR_OR and_expression
 	
 	;
 
 and_expression
 	: equality_expression
-	| and_expression '&' equality_expression
+	| and_expression AND_AND equality_expression
 	;
 
 primary_expression
@@ -111,7 +106,6 @@ declarator
 
 type_specifier
 	: BOOL
-	| FLOAT
 	| INT
 	| VOID
 	| STR
@@ -224,12 +218,12 @@ while_srarement
 	:WHILE '(' expression ')' compound_statement
 	;
 simple_statment
-	: IDENTIFIER '[' INTEGER ']' '=' expression 
-	| PRINT expression
-	| PRINTLN expression 
-	| IDENTIFIER '=' expression
-	| RETURN 
-	| RETURN expression
+	: IDENTIFIER '[' INTEGER ']' '=' expression ';'
+	| PRINT expression ';'
+	| PRINTLN expression ';'
+	| IDENTIFIER '=' expression  ';'
+	| RETURN ';'
+	| RETURN expression  ';'
 	;
 
 
@@ -239,7 +233,7 @@ declaration_list
 	;
 
 declaration
-	: LET IDENTIFIER '=' value_declaration ';' {
+	: LET IDENTIFIER '=' value_declaration ';'{
 		insert($2, "const" , $4);
 	}
 	| LET IDENTIFIER ':'type_specifier'='value_declaration ';'{
@@ -283,9 +277,6 @@ int main()
 
     yyparse();
     
-
-   // printf("%s\n", "------Test Lookup In example.go:------");
-   // printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");
     if (lookup("a" , 0) >= 0 && lookup("a" , 1) >= 0)
     {
     	printf("%-*s%-*d\n", 20 ,hashArray[lookup("a" , 0)]->idName ,5 , hashArray[lookup("a" , 0)]->depth);
