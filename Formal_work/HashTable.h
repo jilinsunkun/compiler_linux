@@ -7,7 +7,7 @@ void  yyerror  (const char *str);
 
 int isShouldAdd = 0;
 int keyId = 1;
-int itemDepth = 0;
+int depth = 0;
 
 #define SIZE 1024
 #define MAX_LINE_LENG 1024
@@ -57,7 +57,7 @@ void insert(char *idName , char *type, char *value) {
      strcpy(item->idName, idName);
      strcpy(item->type, type);
     strcpy(item->value, value);
-    item->depth = itemDepth;
+    item->depth = depth;
       item->key = keyId;
 
     hashArray[keyId] = item;

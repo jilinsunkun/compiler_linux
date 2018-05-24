@@ -27,41 +27,9 @@
 
 %start program
 
-%type  <val> value_declaration program primary_expression type_specifier declarator_list declarator
+%type  <val> value_declaration program pre_expression type_specifier declarator_list declarator
 %type <int_type> number_declaration
 %%
-expression_statement
-	:  expression 
-	;
-expression
-	: assignment_expression
-	| expression assignment_expression
-	;
-unary_expression
-	: primary_expression
-	| '-' primary_expression
-	;
-
-multiplicative_expression
-	: unary_expression
-	| multiplicative_expression '*' unary_expression
-	| multiplicative_expression '/' unary_expression
-	;
-
-additive_expression
-	: multiplicative_expression
-	| additive_expression '+' multiplicative_expression
-	| additive_expression '-' multiplicative_expression
-	;
-
-
-relational_expression
-	: additive_expression
-	| relational_expression '<' primary_expression
-	| relational_expression '>' primary_expression
-	| relational_expression LE_OP primary_expression
-	| relational_expression GE_OP primary_expression
-	;
 
 equality_expression
 	: relational_expression
@@ -79,19 +47,48 @@ inclusive_or_expression
 	| inclusive_or_expression OR_OR and_expression
 	
 	;
-
+relational_expression
+	: additive_expression
+	| relational_expression '<' pre_expression
+	| relational_expression GE_OP pre_expression
+	| relational_expression '>' pre_expression
+	| relational_expression LE_OP pre_expression
+	;
 and_expression
 	: equality_expression
 	| and_expression AND_AND equality_expression
 	;
 
-primary_expression
+pre_expression
 	: value_declaration
 	| declarator_list 
-	| primary_expression value_declaration 
-	| primary_expression declarator_list
+	| pre_expression value_declaration 
+	| pre_expression declarator_list
 	;
 
+expression_sta
+	:  expression 
+	;
+expression
+	: assignment_expression
+	| expression assignment_expression
+	;
+U_nary
+	: pre_expression
+	| '-' pre_expression
+	;
+
+multiplicative_expression
+	: U_nary
+	| multiplicative_expression '*' U_nary
+	| multiplicative_expression '/' U_nary
+	;
+
+additive_expression
+	: multiplicative_expression
+	| additive_expression '+' multiplicative_expression
+	| additive_expression '-' multiplicative_expression
+	;
 
 declarator_list
 	: declarator
@@ -111,34 +108,10 @@ type_specifier
 	| STR
 	;
 
-value_declaration
-	: STR  {
-		strcpy($$, $1);
-	}
-	| TRUE  {
-		strcpy($$, $1);
-	}
-	| FALSE {
-		strcpy($$, $1);
-	}
-	| INTEGER 
-	{
-		char tempStr[50];
-		sprintf( tempStr, "%d", $1 );
-		strcpy($$, tempStr);
-	}
-	| REALCONSTANTS 
-	{
-		char tempStr[50];
-		sprintf( tempStr, "%g", $1 );
-		strcpy($$, tempStr);
-	}
-	;
-
 func_expression:
 	FN {
 		isShouldAdd = 0;
-		itemDepth++;
+		depth++;
 	};
 parameter_list
 	: parameter_declaration
@@ -167,12 +140,37 @@ function_definition
 	{
 		insert($2, "", "");
 	}
+
+value_declaration
+	: STR  {
+		strcpy($$, $1);
+	}
+	| TRUE  {
+		strcpy($$, $1);
+	}
+	| FALSE {
+		strcpy($$, $1);
+	}
+	| INTEGER 
+	{
+		char tempStr[50];
+		sprintf( tempStr, "%d", $1 );
+		strcpy($$, tempStr);
+	}
+	| REALCONSTANTS 
+	{
+		char tempStr[50];
+		sprintf( tempStr, "%g", $1 );
+		strcpy($$, tempStr);
+	}
+	;
+
 compound_start
 	: '{'
 	{
 		if (isShouldAdd == 1)
 		{
-			itemDepth++;
+			depth++;
 		}
 		else{
 			isShouldAdd++;
@@ -182,7 +180,7 @@ compound_start
 compound_end
 	: '}'
 	{
-		itemDepth--;
+		depth--;
 	}
 	;
 compound_statement
@@ -192,9 +190,9 @@ compound_statement
 	| compound_start compound_end
 	;
 iteration_statement
-	: FOR '(' expression_statement ')' statement
-	| FOR '(' expression_statement ";" expression_statement ')' statement
-	| FOR '(' expression_statement ";"  expression_statement ";"  expression_statement ')' statement
+	: FOR '(' expression_sta ')' statement
+	| FOR '(' expression_sta ";" expression_sta ')' statement
+	| FOR '(' expression_sta ";"  expression_sta ";"  expression_sta ')' statement
 	;
 
 selection_statement
@@ -209,7 +207,7 @@ statement_list
 statement
 	: simple_statment
 	| compound_statement
-	| expression_statement 
+	| expression_sta 
 	| selection_statement 
 	| iteration_statement
 	| while_srarement
@@ -248,7 +246,12 @@ declaration
 	| LET MUT IDENTIFIER'['type_specifier','value_declaration']' ';'{
 		insert($3,"array",$5);
 	}
-	
+	|  LET MUT IDENTIFIER ';'{
+    	insert( $3, "int", "" );
+	}
+	| LET MUT IDENTIFIER ':' type_specifier ';'{
+    insert($3 , $5 , "" );
+  }
 	;
 external_declaration
 	: function_definition
@@ -272,7 +275,7 @@ int yywrap(){
 int main()
 {
 	isShouldAdd = 0;
-	itemDepth = 0;
+	depth = 0;
 	hashArray = create();
 
     yyparse();
@@ -285,7 +288,7 @@ int main()
     
     printf("\n\n%s\n", "------Symbol Table:------");
     printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");
-    printf("%-*s:%-*s%-*s%-*s%-*d\n", 5, "Index:", 20, "Name", 15, "Type", 30, "Value", 5, "Depth");
+    printf("%-*s:%-*s%-*s%-*s%-*s\n", 5, "Index", 20, "Name", 15, "Type", 30, "Value", 5, "Depth");
   	dump();
   	return 0;
 }

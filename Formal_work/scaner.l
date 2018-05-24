@@ -4,8 +4,8 @@
 
 #define MAX_LINE_LENG 256
 #define lineNum         strcat(buf,yytext)
- #define token(t)   {lineNum; printf("<'%s'>\n",t);return t;}
-  #define tokenString(t,s){lineNum; printf("<%s:%s>\n","tokenstring",s);return s;}
+ #define token(t)   {lineNum; return t;}
+  #define tokenString(t,s){lineNum; return s;}
 #include"y.tab.h"
 int linecount = 1;
 char buf[MAX_LINE_LENG];
@@ -44,7 +44,6 @@ whitespace   [ \t]+
 ">"	{return('>');}
 "!"	{return('!');}
 "=" {return('=');}
-";" {return(';');}
 
 "==" {strcpy(yylval.val, yytext);return (EQ_OP);}
 "++"	{strcpy(yylval.val, yytext);return (ADD_ADD);}
@@ -103,7 +102,7 @@ bool	{strcpy(yylval.val, yytext);return (BOOL);}
             		  }
 <Commionex>\n 	{
                       lineNum;
-                      printf("%d: %s", linecount++, buf);
+                       linecount++;
                       buf[0] = '\0';
                       BEGIN 0;
                     }
@@ -116,7 +115,7 @@ bool	{strcpy(yylval.val, yytext);return (BOOL);}
                     }
 <commion>\n {
                       lineNum;
-                      printf("%d: %s", linecount++, buf);
+                       linecount++;
                       buf[0] = '\0';
                      	}
 <commion>"*/"	{
@@ -141,7 +140,7 @@ bool	{strcpy(yylval.val, yytext);return (BOOL);}
                      }
                       else
                      {
-                      
+
                       unput(c);
                       str[0] = '\0';
                       BEGIN 0;
