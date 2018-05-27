@@ -1,7 +1,6 @@
 %{
-	
-
 	#include"HashTable.h"
+	int statment_number;
 %}
 %union{
   char typeOF[200];
@@ -27,14 +26,13 @@
 
 %start program
 
-%type  <val> value_declaration program pre_expression type_specifier declarator_list declarator
-%type <int_type> number_declaration
+%type  <val> val_delecation program pre_expression type_specifier Delector_list declarator
 %%
 
-equality_expression
-	: relational_expression
-	| equality_expression EQ_OP relational_expression
-	| equality_expression NE_OP relational_expression
+EQU_express
+	: re_expression
+	| EQU_express EQ_OP re_expression
+	| EQU_express NE_OP re_expression
 	;
 
 assignment_expression
@@ -47,23 +45,23 @@ inclusive_or_expression
 	| inclusive_or_expression OR_OR and_expression
 	
 	;
-relational_expression
+re_expression
 	: additive_expression
-	| relational_expression '<' pre_expression
-	| relational_expression GE_OP pre_expression
-	| relational_expression '>' pre_expression
-	| relational_expression LE_OP pre_expression
+	| re_expression '<' pre_expression
+	| re_expression GE_OP pre_expression
+	| re_expression '>' pre_expression
+	| re_expression LE_OP pre_expression
 	;
 and_expression
-	: equality_expression
-	| and_expression AND_AND equality_expression
+	: EQU_express
+	| and_expression AND_AND EQU_express
 	;
 
 pre_expression
-	: value_declaration
-	| declarator_list 
-	| pre_expression value_declaration 
-	| pre_expression declarator_list
+	: val_delecation
+	| Delector_list 
+	| pre_expression val_delecation 
+	| pre_expression Delector_list
 	;
 
 expression_sta
@@ -71,6 +69,7 @@ expression_sta
 	;
 expression
 	: assignment_expression
+	| '(' assignment_expression ')'
 	| expression assignment_expression
 	;
 U_nary
@@ -78,27 +77,27 @@ U_nary
 	| '-' pre_expression
 	;
 
-multiplicative_expression
+multp_expression
 	: U_nary
-	| multiplicative_expression '*' U_nary
-	| multiplicative_expression '/' U_nary
+	| multp_expression '*' U_nary
+	| multp_expression '/' U_nary
 	;
 
 additive_expression
-	: multiplicative_expression
-	| additive_expression '+' multiplicative_expression
-	| additive_expression '-' multiplicative_expression
+	: multp_expression
+	| additive_expression '+' multp_expression
+	| additive_expression '-' multp_expression
 	;
 
-declarator_list
+Delector_list
 	: declarator
-	| declarator_list '(' declarator_list ')' 
-	| declarator_list ',' declarator_list
+	| Delector_list '(' Delector_list ')' 
+	| Delector_list ',' Delector_list
 	;
 
 declarator
 	: IDENTIFIER  
-	| value_declaration 
+	| val_delecation 
 	;
 
 type_specifier
@@ -106,6 +105,7 @@ type_specifier
 	| INT
 	| VOID
 	| STR
+	| FLOAT
 	;
 
 func_expression:
@@ -124,24 +124,24 @@ parameter_declaration
 	}
 	;
 function_definition
-	:func_expression IDENTIFIER '('parameter_list')'  OP_LE type_specifier compound_statement
+	:func_expression IDENTIFIER '('parameter_list')'  OP_LE type_specifier block_stament
 	{
 		insert($2,$7,"");
 	}
-	|func_expression IDENTIFIER '(' parameter_list ')' compound_statement 
+	|func_expression IDENTIFIER '(' parameter_list ')' block_stament 
 	{
 		insert($2, "", "");
 	}
-	|func_expression IDENTIFIER '('  ')'  OP_LE type_specifier compound_statement
+	|func_expression IDENTIFIER '('  ')'  OP_LE type_specifier block_stament
 	{
 		insert($2, $6, "");
 	}
-	| func_expression IDENTIFIER '('  ')'   compound_statement
+	| func_expression IDENTIFIER '('  ')'   block_stament
 	{
 		insert($2, "", "");
 	}
 
-value_declaration
+val_delecation
 	: STR  {
 		strcpy($$, $1);
 	}
@@ -165,7 +165,7 @@ value_declaration
 	}
 	;
 
-compound_start
+block_start
 	: '{'
 	{
 		if (isShouldAdd == 1)
@@ -177,22 +177,11 @@ compound_start
 		}
 	}
 	;	
-compound_end
+block_end
 	: '}'
 	{
 		depth--;
 	}
-	;
-compound_statement
-	: compound_start statement_list compound_end
-	| compound_start declaration_list compound_end
-	| compound_start declaration_list statement_list compound_end
-	| compound_start compound_end
-	;
-iteration_statement
-	: FOR '(' expression_sta ')' statement
-	| FOR '(' expression_sta ";" expression_sta ')' statement
-	| FOR '(' expression_sta ";"  expression_sta ";"  expression_sta ')' statement
 	;
 
 selection_statement
@@ -201,19 +190,34 @@ selection_statement
 	;
 statement_list
 	: statement
+	{
+		statment_number=statment_number+1;
+	}
 	| statement_list statement
 	;
+block_stament
+	: block_start statement_list block_end
+	| block_start declaration_list block_end
+	| block_start declaration_list statement_list block_end
+	| block_start block_end
+	;
+iteration_statement
+	: FOR '(' expression_sta ')' statement
+	| FOR '(' expression_sta ";" expression_sta ')' statement
+	| FOR '(' expression_sta ";"  expression_sta ";"  expression_sta ')' statement
+	;
+
 
 statement
 	: simple_statment
-	| compound_statement
+	| block_stament
 	| expression_sta 
 	| selection_statement 
 	| iteration_statement
 	| while_srarement
 	;
 while_srarement
-	:WHILE '(' expression ')' compound_statement
+	:WHILE '(' expression ')' block_stament
 	;
 simple_statment
 	: IDENTIFIER '[' INTEGER ']' '=' expression ';'
@@ -231,37 +235,37 @@ declaration_list
 	;
 
 declaration
-	: LET IDENTIFIER '=' value_declaration ';'{
+	: LET IDENTIFIER '=' val_delecation ';'{
 		insert($2, "const" , $4);
 	}
-	| LET IDENTIFIER ':'type_specifier'='value_declaration ';'{
+	| LET IDENTIFIER ':'type_specifier'='val_delecation ';'{
 		insert($2,$4,$6);
 	}
-	| LET MUT IDENTIFIER '=' value_declaration ';'{
+	| LET MUT IDENTIFIER '=' val_delecation ';'{
 		insert($3,"",$5);
 	}
-	| LET MUT IDENTIFIER ':'type_specifier'='value_declaration ';'{
+	| LET MUT IDENTIFIER ':'type_specifier'='val_delecation ';'{
 		insert($3,$5,$7);
 	}
-	| LET MUT IDENTIFIER'['type_specifier','value_declaration']' ';'{
+	| LET MUT IDENTIFIER'['type_specifier','val_delecation']' ';'{
 		insert($3,"array",$5);
 	}
 	|  LET MUT IDENTIFIER ';'{
     	insert( $3, "int", "" );
 	}
 	| LET MUT IDENTIFIER ':' type_specifier ';'{
-    insert($3 , $5 , "" );
+    	insert($3 , $5 , "" );
   }
 	;
-external_declaration
+EX_delection
 	: function_definition
 	| declaration_list	
-	| IDENTIFIER '(' declarator_list ')'
+	| IDENTIFIER '(' Delector_list ')'
 	;
 
 program
-	: external_declaration	
-	| program external_declaration	
+	: EX_delection	
+	| program EX_delection	
 	;
 %%
 void yyerror(const char *str){
@@ -290,6 +294,11 @@ int main()
     printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");
     printf("%-*s:%-*s%-*s%-*s%-*s\n", 5, "Index", 20, "Name", 15, "Type", 30, "Value", 5, "Depth");
   	dump();
+  	int a=0;
+  	if(statment_number==0)
+  	{
+  		printf("statment_number wrong\n");
+  	}
   	return 0;
 }
 

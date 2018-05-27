@@ -31,10 +31,10 @@ struct DataItem* * create(){
 int lookup(char *idName , int depth) {
    int hashIndex = 1;
    int isFind = 0;
-
    while(hashArray[hashIndex] != NULL) {
       if(strcmp(hashArray[hashIndex]->idName, idName) == 0 && hashArray[hashIndex]->depth == depth)
       {
+
         isFind = 1;
         break;
       }
@@ -48,7 +48,7 @@ int lookup(char *idName , int depth) {
    }
    else{
      return -1;
-   }
+   }                   
 }
 //Inserts s into  the symbol table
 void insert(char *idName , char *type, char *value) {

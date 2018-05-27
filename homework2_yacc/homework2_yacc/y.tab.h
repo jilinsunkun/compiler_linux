@@ -45,128 +45,125 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    NEG = 258,
-    ADD_ADD = 259,
-    LES_LES = 260,
-    LE_OP = 261,
-    GE_OP = 262,
-    NE_OP = 263,
-    AND_AND = 264,
-    OR_OR = 265,
-    ADD_OP = 266,
-    LES_OP = 267,
-    MUL_OP = 268,
-    DIV_OP = 269,
-    OP_LE = 270,
-    EQ_OP = 271,
-    LET = 272,
-    BREAK = 273,
-    CHAR = 274,
-    CONTINUE = 275,
-    DO = 276,
-    ELSE = 277,
-    ENUM = 278,
-    EXTERN = 279,
-    FLOAT = 280,
-    FOR = 281,
-    FN = 282,
+    STR = 258,
+    TRUE = 259,
+    FALSE = 260,
+    BOOL = 261,
+    INT = 262,
+    VOID = 263,
+    FLOAT = 264,
+    INTEGER = 265,
+    BREAK = 266,
+    CONTINUE = 267,
+    DEFAULT = 268,
+    ELSE = 269,
+    MATCH = 270,
+    MUT = 271,
+    CHAR = 272,
+    ENUM = 273,
+    RETURN = 274,
+    SELF = 275,
+    USE = 276,
+    STATIC = 277,
+    STRUCT = 278,
+    SWITCH = 279,
+    FOR = 280,
+    FUNC = 281,
+    DO = 282,
     IF = 283,
     IN = 284,
-    INTEGER = 285,
-    REALCONSTANTS = 286,
-    STR = 287,
-    TRUE = 288,
-    FALSE = 289,
-    IDENTIFIER = 290,
-    BOOL = 291,
-    STRINGKEYWORD = 292,
-    REAL = 293,
-    INT = 294,
-    VOID = 295,
-    LOOP = 296,
-    MATCH = 297,
-    MUT = 298,
-    PRINT = 299,
-    PRINTLN = 300,
-    PUB = 301,
-    RETURN = 302,
-    SELF = 303,
-    STATIC = 304,
-    WHERE = 305,
-    USE = 306,
-    WHILE = 307,
-    CONST = 308,
-    VAR = 309
+    PRINT = 285,
+    PRINTLN = 286,
+    EXTERN = 287,
+    LET = 288,
+    LOOP = 289,
+    PUB = 290,
+    READ = 291,
+    LE_OP = 292,
+    GE_OP = 293,
+    EQ_OP = 294,
+    NE_OP = 295,
+    AND = 296,
+    OR = 297,
+    NOR = 298,
+    EQUALS = 299,
+    FU_OP = 300,
+    WHILE = 301,
+    WHERE = 302,
+    ADD_ASSIGN = 303,
+    SUB_ASSIGN = 304,
+    MUL_ASSIGN = 305,
+    DIV_ASSIGN = 306,
+    IDENTIFIER = 307,
+    FLOATTYPE = 308
   };
 #endif
 /* Tokens.  */
-#define NEG 258
-#define ADD_ADD 259
-#define LES_LES 260
-#define LE_OP 261
-#define GE_OP 262
-#define NE_OP 263
-#define AND_AND 264
-#define OR_OR 265
-#define ADD_OP 266
-#define LES_OP 267
-#define MUL_OP 268
-#define DIV_OP 269
-#define OP_LE 270
-#define EQ_OP 271
-#define LET 272
-#define BREAK 273
-#define CHAR 274
-#define CONTINUE 275
-#define DO 276
-#define ELSE 277
-#define ENUM 278
-#define EXTERN 279
-#define FLOAT 280
-#define FOR 281
-#define FN 282
+#define STR 258
+#define TRUE 259
+#define FALSE 260
+#define BOOL 261
+#define INT 262
+#define VOID 263
+#define FLOAT 264
+#define INTEGER 265
+#define BREAK 266
+#define CONTINUE 267
+#define DEFAULT 268
+#define ELSE 269
+#define MATCH 270
+#define MUT 271
+#define CHAR 272
+#define ENUM 273
+#define RETURN 274
+#define SELF 275
+#define USE 276
+#define STATIC 277
+#define STRUCT 278
+#define SWITCH 279
+#define FOR 280
+#define FUNC 281
+#define DO 282
 #define IF 283
 #define IN 284
-#define INTEGER 285
-#define REALCONSTANTS 286
-#define STR 287
-#define TRUE 288
-#define FALSE 289
-#define IDENTIFIER 290
-#define BOOL 291
-#define STRINGKEYWORD 292
-#define REAL 293
-#define INT 294
-#define VOID 295
-#define LOOP 296
-#define MATCH 297
-#define MUT 298
-#define PRINT 299
-#define PRINTLN 300
-#define PUB 301
-#define RETURN 302
-#define SELF 303
-#define STATIC 304
-#define WHERE 305
-#define USE 306
-#define WHILE 307
-#define CONST 308
-#define VAR 309
+#define PRINT 285
+#define PRINTLN 286
+#define EXTERN 287
+#define LET 288
+#define LOOP 289
+#define PUB 290
+#define READ 291
+#define LE_OP 292
+#define GE_OP 293
+#define EQ_OP 294
+#define NE_OP 295
+#define AND 296
+#define OR 297
+#define NOR 298
+#define EQUALS 299
+#define FU_OP 300
+#define WHILE 301
+#define WHERE 302
+#define ADD_ASSIGN 303
+#define SUB_ASSIGN 304
+#define MUL_ASSIGN 305
+#define DIV_ASSIGN 306
+#define IDENTIFIER 307
+#define FLOATTYPE 308
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 5 "yacc.y" /* yacc.c:1909  */
+#line 13 "yacc_hw2.y" /* yacc.c:1909  */
 
-  char typeOF[200];
   char val[200];
-  double double_type;
+  float float_type;
   int int_type;
-  int int_val;
+  char int_id[200];
 
-#line 170 "y.tab.h" /* yacc.c:1909  */
+#line 167 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
