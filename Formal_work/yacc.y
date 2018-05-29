@@ -221,9 +221,9 @@ while_srarement
 	;
 simple_statment
 	: IDENTIFIER '[' INTEGER ']' '=' expression ';'
+	| IDENTIFIER '=' expression  ';'
 	| PRINT expression ';'
 	| PRINTLN expression ';'
-	| IDENTIFIER '=' expression  ';'
 	| RETURN ';'
 	| RETURN expression  ';'
 	;

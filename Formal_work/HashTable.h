@@ -34,7 +34,6 @@ int lookup(char *idName , int depth) {
    while(hashArray[hashIndex] != NULL) {
       if(strcmp(hashArray[hashIndex]->idName, idName) == 0 && hashArray[hashIndex]->depth == depth)
       {
-
         isFind = 1;
         break;
       }
@@ -48,11 +47,10 @@ int lookup(char *idName , int depth) {
    }
    else{
      return -1;
-   }                   
+   }
 }
 //Inserts s into  the symbol table
-void insert(char *idName , char *type, char *value) {
-  
+void insert(char *idName , char *type, char *value,char *type) {
      struct DataItem *item = (struct DataItem*) malloc(sizeof(struct DataItem));
      strcpy(item->idName, idName);
      strcpy(item->type, type);
@@ -80,7 +78,7 @@ void dump() {
    {
     if(hashArray[i] != NULL)
       {
-        printf("%-*d:%-*s%-*s%-*s%-*d\n", 5, i, 20, hashArray[i]->idName, 15, hashArray[i]->type, 30, hashArray[i]->value, 5, hashArray[i]->depth);
+        printf("%-*d:%-*s%-*s%-*s%-*d%-*s\n", 5, i, 20, hashArray[i]->idName, 15, hashArray[i]->type, 30, hashArray[i]->value, 5, hashArray[i]->depth,5,hashArray[i]->type);
       }
   }
   clear();
