@@ -158,7 +158,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 5 "yacc.y" /* yacc.c:1909  */
+#line 9 "yacc.y" /* yacc.c:1909  */
 
   char typeOF[200];
   char val[200];

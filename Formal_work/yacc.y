@@ -1,5 +1,9 @@
 %{
+
+	#include <stdlib.h>
+	#include<string.h>
 	#include"HashTable.h"
+
 	int statment_number;
 %}
 %union{
@@ -127,23 +131,52 @@ parameter_declaration
 		insert($1, $3 , "","");
 	}
 	;
-function_definition
-	:func_expression IDENTIFIER '('parameter_list')'  OP_LE type_specifier block_stament
-	{
-		insert($2,$7,"","");
-	}
-	|func_expression IDENTIFIER '(' parameter_list ')' block_stament 
-	{
-		insert($2, "", "","" );
-	}
-	|func_expression IDENTIFIER '('  ')'  OP_LE type_specifier block_stament
-	{
-		insert($2, $6, "","");
-	}
-	| func_expression IDENTIFIER '('  ')'   block_stament
-	{
-		insert($2, "", "","");
-	}
+function_definition:
+		func_expression type_specifier IDENTIFIER '('
+		{
+			insert($3,$2,"","");
+			memset(temp_parameter,0,strlen(temp_parameter));
+			now_fun_index++;
+			function_index++;
+		}
+		parameter_list ')'
+		{
+			strcat(jasm,"\tmethod public static");
+			strcat(jasm,$2);
+			strcat(jasm," ");
+			strcat(jasm,$3);
+			strcat(jasm,"(");
+			for (int i = 0; i < sizeof(temp_parameter)/sizeof(temp_parameter[0]); ++i)
+			{
+				if (temp_parameter[i]==0)
+				{
+					temp_parameter[i-1]='\0';
+					break;
+					/* code */
+				}
+				/* code */
+			}
+			strcat(jasm,temp_parameter);
+			strcat(jasm,")\n");
+			strcat(jasm,"\tmax_stack 15\n\tmax_locals 15\n\t{\n");
+		}
+		 '{' statement_list '}'
+		 {
+		 	strcat(jasm,"\t}\n");
+		 	now_fun_index--;
+		 }
+	| func_expression type_specifier IDENTIFIER '('{now_fun_index++;function_index++;}
+	 {insert($3,$2,"","");now_fun_index++;}
+	 add_main_func_first block_stament statement_list block_end
+	 {
+	 	if (strcmp($3,"main")==0)
+	 	{
+	 		strcat(jasm,"\t\treturn\n\t}\n");
+
+	 	}
+	 	now_fun_index--;
+	 }
+	 ;
 
 val_delecation
 	: STR  {
