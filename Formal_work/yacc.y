@@ -108,6 +108,10 @@ type_specifier
 	| FLOAT
 	;
 
+add_main_func_first:
+{
+	strcat(jasm, "\tmethod public static void main(java.lang.String[])\n\tmax_stack 15\n\tmax_locals 15\n\t{\n");
+};
 func_expression:
 	FN {
 		isShouldAdd = 0;

@@ -9,6 +9,16 @@ int isShouldAdd = 0;
 int keyId = 1;
 int depth = 0;
 
+
+char jasm[10000];
+char temp_parameter[1000];
+char unary_symbol[20];
+int now_fun_index = 0;
+int function_index = 0;
+int temp_fun_index = 0;
+int is_print = 0;
+int is_assigning = 0;
+
 #define SIZE 1024
 #define MAX_LINE_LENG 1024
 
@@ -53,12 +63,8 @@ int lookup(char *idName , int depth) {
    }                   
 }
 //Inserts s into  the symbol table
-<<<<<<< HEAD
 void insert(char *idName , char *type, char *value,char *ty) {
-=======
-void insert(char *idName , char *type, char *value) {
-  
->>>>>>> parent of a8d04c0... insert
+
      struct DataItem *item = (struct DataItem*) malloc(sizeof(struct DataItem));
      strcpy(item->idName, idName);
      strcpy(item->type, type);
@@ -88,11 +94,8 @@ void dump() {
    {
     if(hashArray[i] != NULL)
       {
-<<<<<<< HEAD
         printf("%-*d:%-*s%-*s%-*s%-*d%-*s\n", 5, i, 20, hashArray[i]->idName, 15, hashArray[i]->type, 15, hashArray[i]->value, 5, hashArray[i]->depth,10,hashArray[i]->ty);
-=======
-        printf("%-*d:%-*s%-*s%-*s%-*d\n", 5, i, 20, hashArray[i]->idName, 15, hashArray[i]->type, 30, hashArray[i]->value, 5, hashArray[i]->depth);
->>>>>>> parent of a8d04c0... insert
+
       }
   }
   clear();

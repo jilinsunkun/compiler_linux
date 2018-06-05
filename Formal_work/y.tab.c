@@ -547,12 +547,12 @@ static const yytype_uint16 yyrline[] =
       50,    51,    52,    53,    56,    57,    61,    62,    63,    64,
       68,    71,    72,    73,    76,    77,    81,    82,    83,    87,
       88,    89,    93,    94,    95,    99,   100,   104,   105,   106,
-     107,   108,   112,   117,   118,   121,   127,   131,   135,   139,
-     145,   148,   151,   154,   160,   169,   181,   188,   189,   192,
-     196,   199,   200,   201,   202,   205,   206,   207,   212,   213,
-     214,   215,   216,   217,   220,   223,   224,   225,   226,   227,
-     228,   233,   234,   238,   241,   244,   247,   250,   253,   256,
-     261,   262,   263,   267,   268
+     107,   108,   116,   121,   122,   125,   131,   135,   139,   143,
+     149,   152,   155,   158,   164,   173,   185,   192,   193,   196,
+     200,   203,   204,   205,   206,   209,   210,   211,   216,   217,
+     218,   219,   220,   221,   224,   227,   228,   229,   230,   231,
+     232,   237,   238,   242,   245,   248,   251,   254,   257,   260,
+     265,   266,   267,   271,   272
 };
 #endif
 
@@ -653,10 +653,10 @@ static const yytype_uint8 yydefact[] =
        0,     0,     0,     0,     0,     0,    79,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,    19,
       18,    23,     0,     0,     0,     0,    61,    60,    62,     0,
-       0,    86,     0,     0,     0,     0,     0,    77,    78,    80,
+       0,    86,     0,     0,     0,     0,     0,    76,    77,    80,
        0,    22,     4,     3,     6,     8,    13,    11,    10,    12,
       15,    27,    28,    31,    30,    63,    46,    87,     0,     0,
-       0,    76,     0,     0,    65,     0,    57,     0,    74,     0,
+       0,    78,     0,     0,    65,     0,    57,     0,    74,     0,
        0,     0,     0,    66,     0,    58,    75,     0,    67
 };
 
@@ -809,7 +809,7 @@ static const yytype_uint8 yyr2[] =
        1,     1,     1,     1,     3,     3,     8,     6,     7,     5,
        1,     1,     1,     1,     1,     1,     1,     5,     7,     1,
        2,     3,     3,     4,     2,     5,     7,     9,     1,     1,
-       1,     1,     1,     1,     5,     7,     4,     3,     3,     2,
+       1,     1,     1,     1,     5,     7,     3,     3,     4,     2,
        3,     1,     2,     5,     7,     6,     8,     9,     4,     6,
        1,     1,     4,     1,     2
 };
@@ -1488,7 +1488,7 @@ yyreduce:
   switch (yyn)
     {
         case 42:
-#line 112 "yacc.y" /* yacc.c:1646  */
+#line 116 "yacc.y" /* yacc.c:1646  */
     {
 		isShouldAdd = 0;
 		depth++;
@@ -1497,47 +1497,47 @@ yyreduce:
     break;
 
   case 45:
-#line 122 "yacc.y" /* yacc.c:1646  */
+#line 126 "yacc.y" /* yacc.c:1646  */
     {
-		insert((yyvsp[-2].val), (yyvsp[0].val) , "");
+		insert((yyvsp[-2].val), (yyvsp[0].val) , "","");
 	}
 #line 1505 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 128 "yacc.y" /* yacc.c:1646  */
+#line 132 "yacc.y" /* yacc.c:1646  */
     {
-		insert((yyvsp[-6].val),(yyvsp[-1].val),"");
+		insert((yyvsp[-6].val),(yyvsp[-1].val),"","");
 	}
 #line 1513 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 132 "yacc.y" /* yacc.c:1646  */
+#line 136 "yacc.y" /* yacc.c:1646  */
     {
-		insert((yyvsp[-4].val), "", "");
+		insert((yyvsp[-4].val), "", "","" );
 	}
 #line 1521 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 136 "yacc.y" /* yacc.c:1646  */
+#line 140 "yacc.y" /* yacc.c:1646  */
     {
-		insert((yyvsp[-5].val), (yyvsp[-1].val), "");
+		insert((yyvsp[-5].val), (yyvsp[-1].val), "","");
 	}
 #line 1529 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 140 "yacc.y" /* yacc.c:1646  */
+#line 144 "yacc.y" /* yacc.c:1646  */
     {
-		insert((yyvsp[-3].val), "", "");
+		insert((yyvsp[-3].val), "", "","");
 	}
 #line 1537 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 145 "yacc.y" /* yacc.c:1646  */
+#line 149 "yacc.y" /* yacc.c:1646  */
     {
 		strcpy((yyval.val), (yyvsp[0].val));
 	}
@@ -1545,7 +1545,7 @@ yyreduce:
     break;
 
   case 51:
-#line 148 "yacc.y" /* yacc.c:1646  */
+#line 152 "yacc.y" /* yacc.c:1646  */
     {
 		strcpy((yyval.val), (yyvsp[0].val));
 	}
@@ -1553,7 +1553,7 @@ yyreduce:
     break;
 
   case 52:
-#line 151 "yacc.y" /* yacc.c:1646  */
+#line 155 "yacc.y" /* yacc.c:1646  */
     {
 		strcpy((yyval.val), (yyvsp[0].val));
 	}
@@ -1561,7 +1561,7 @@ yyreduce:
     break;
 
   case 53:
-#line 155 "yacc.y" /* yacc.c:1646  */
+#line 159 "yacc.y" /* yacc.c:1646  */
     {
 		char tempStr[50];
 		sprintf( tempStr, "%d", (yyvsp[0].int_type) );
@@ -1571,7 +1571,7 @@ yyreduce:
     break;
 
   case 54:
-#line 161 "yacc.y" /* yacc.c:1646  */
+#line 165 "yacc.y" /* yacc.c:1646  */
     {
 		char tempStr[50];
 		sprintf( tempStr, "%g", (yyvsp[0].double_type) );
@@ -1581,7 +1581,7 @@ yyreduce:
     break;
 
   case 55:
-#line 170 "yacc.y" /* yacc.c:1646  */
+#line 174 "yacc.y" /* yacc.c:1646  */
     {
 		if (isShouldAdd == 1)
 		{
@@ -1595,7 +1595,7 @@ yyreduce:
     break;
 
   case 56:
-#line 182 "yacc.y" /* yacc.c:1646  */
+#line 186 "yacc.y" /* yacc.c:1646  */
     {
 		depth--;
 	}
@@ -1603,7 +1603,7 @@ yyreduce:
     break;
 
   case 59:
-#line 193 "yacc.y" /* yacc.c:1646  */
+#line 197 "yacc.y" /* yacc.c:1646  */
     {
 		statment_number=statment_number+1;
 	}
@@ -1611,57 +1611,57 @@ yyreduce:
     break;
 
   case 83:
-#line 238 "yacc.y" /* yacc.c:1646  */
+#line 242 "yacc.y" /* yacc.c:1646  */
     {
-		insert((yyvsp[-3].val), "const" , (yyvsp[-1].val));
+		insert((yyvsp[-3].val), "" , (yyvsp[-1].val),"const");
 	}
 #line 1619 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 84:
-#line 241 "yacc.y" /* yacc.c:1646  */
+#line 245 "yacc.y" /* yacc.c:1646  */
     {
-		insert((yyvsp[-5].val),(yyvsp[-3].val),(yyvsp[-1].val));
+		insert((yyvsp[-5].val),(yyvsp[-3].val),(yyvsp[-1].val),"const");
 	}
 #line 1627 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 85:
-#line 244 "yacc.y" /* yacc.c:1646  */
+#line 248 "yacc.y" /* yacc.c:1646  */
     {
-		insert((yyvsp[-3].val),"",(yyvsp[-1].val));
+		insert((yyvsp[-3].val),"",(yyvsp[-1].val),"");
 	}
 #line 1635 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 86:
-#line 247 "yacc.y" /* yacc.c:1646  */
+#line 251 "yacc.y" /* yacc.c:1646  */
     {
-		insert((yyvsp[-5].val),(yyvsp[-3].val),(yyvsp[-1].val));
+		insert((yyvsp[-5].val),(yyvsp[-3].val),(yyvsp[-1].val),"");
 	}
 #line 1643 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 87:
-#line 250 "yacc.y" /* yacc.c:1646  */
+#line 254 "yacc.y" /* yacc.c:1646  */
     {
-		insert((yyvsp[-6].val),"array",(yyvsp[-4].val));
+		insert((yyvsp[-6].val),"array",(yyvsp[-4].val),"");
 	}
 #line 1651 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 88:
-#line 253 "yacc.y" /* yacc.c:1646  */
+#line 257 "yacc.y" /* yacc.c:1646  */
     {
-    	insert( (yyvsp[-1].val), "int", "" );
+    	insert( (yyvsp[-1].val), "int", "" ,"");
 	}
 #line 1659 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 89:
-#line 256 "yacc.y" /* yacc.c:1646  */
+#line 260 "yacc.y" /* yacc.c:1646  */
     {
-    	insert((yyvsp[-3].val) , (yyvsp[-1].val) , "" );
+    	insert((yyvsp[-3].val) , (yyvsp[-1].val) , "" ,"");
   }
 #line 1667 "y.tab.c" /* yacc.c:1646  */
     break;
@@ -1895,7 +1895,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 270 "yacc.y" /* yacc.c:1906  */
+#line 274 "yacc.y" /* yacc.c:1906  */
 
 void yyerror(const char *str){
     printf("error:%s\n",str);
@@ -1921,12 +1921,19 @@ int main()
     
     printf("\n\n%s\n", "------Symbol Table:------");
     printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");
-    printf("%-*s:%-*s%-*s%-*s%-*s\n", 5, "Index", 20, "Name", 15, "Type", 30, "Value", 5, "Depth");
+    printf("%-*s:%-*s%-*s%-*s%-*s  %s\n", 5, "Index", 20, "Name", 15, "Type", 15, "Value", 5, "Depth", "Const");
   	dump();
   	int a=0;
   	if(statment_number==0)
   	{
   		printf("statment_number wrong\n");
+  	}
+  	while(a<=depth)
+  	{
+  		printf("Depth%d\t ", depth);
+  		printf("thr look return number is%d\t",lookup("main",0) );
+  		printf("thisdepth is%d\n",a );
+  	a++;
   	}
   	return 0;
 }
