@@ -120,25 +120,25 @@ parameter_list
 parameter_declaration
 	: IDENTIFIER ':' type_specifier 
 	{
-		insert($1, $3 , "");
+		insert($1, $3 , "","");
 	}
 	;
 function_definition
 	:func_expression IDENTIFIER '('parameter_list')'  OP_LE type_specifier block_stament
 	{
-		insert($2,$7,"");
+		insert($2,$7,"","");
 	}
 	|func_expression IDENTIFIER '(' parameter_list ')' block_stament 
 	{
-		insert($2, "", "");
+		insert($2, "", "","" );
 	}
 	|func_expression IDENTIFIER '('  ')'  OP_LE type_specifier block_stament
 	{
-		insert($2, $6, "");
+		insert($2, $6, "","");
 	}
 	| func_expression IDENTIFIER '('  ')'   block_stament
 	{
-		insert($2, "", "");
+		insert($2, "", "","");
 	}
 
 val_delecation
@@ -221,9 +221,9 @@ while_srarement
 	;
 simple_statment
 	: IDENTIFIER '[' INTEGER ']' '=' expression ';'
-	| IDENTIFIER '=' expression  ';'
 	| PRINT expression ';'
 	| PRINTLN expression ';'
+	| IDENTIFIER '=' expression  ';'
 	| RETURN ';'
 	| RETURN expression  ';'
 	;
@@ -236,25 +236,25 @@ declaration_list
 
 declaration
 	: LET IDENTIFIER '=' val_delecation ';'{
-		insert($2, "const" , $4);
+		insert($2, "" , $4,"const");
 	}
 	| LET IDENTIFIER ':'type_specifier'='val_delecation ';'{
-		insert($2,$4,$6);
+		insert($2,$4,$6,"const");
 	}
 	| LET MUT IDENTIFIER '=' val_delecation ';'{
-		insert($3,"",$5);
+		insert($3,"",$5,"");
 	}
 	| LET MUT IDENTIFIER ':'type_specifier'='val_delecation ';'{
-		insert($3,$5,$7);
+		insert($3,$5,$7,"");
 	}
 	| LET MUT IDENTIFIER'['type_specifier','val_delecation']' ';'{
-		insert($3,"array",$5);
+		insert($3,"array",$5,"");
 	}
 	|  LET MUT IDENTIFIER ';'{
-    	insert( $3, "int", "" );
+    	insert( $3, "int", "" ,"");
 	}
 	| LET MUT IDENTIFIER ':' type_specifier ';'{
-    	insert($3 , $5 , "" );
+    	insert($3 , $5 , "" ,"");
   }
 	;
 EX_delection
@@ -292,12 +292,19 @@ int main()
     
     printf("\n\n%s\n", "------Symbol Table:------");
     printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");
-    printf("%-*s:%-*s%-*s%-*s%-*s\n", 5, "Index", 20, "Name", 15, "Type", 30, "Value", 5, "Depth");
+    printf("%-*s:%-*s%-*s%-*s%-*s  %s\n", 5, "Index", 20, "Name", 15, "Type", 15, "Value", 5, "Depth", "Const");
   	dump();
   	int a=0;
   	if(statment_number==0)
   	{
   		printf("statment_number wrong\n");
+  	}
+  	while(a<=depth)
+  	{
+  		printf("Depth%d\t ", depth);
+  		printf("thr look return number is%d\t",lookup("main",0) );
+  		printf("thisdepth is%d\n",a );
+  	a++;
   	}
   	return 0;
 }
