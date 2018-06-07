@@ -128,55 +128,26 @@ parameter_list
 parameter_declaration
 	: IDENTIFIER ':' type_specifier 
 	{
-		insert($1, $3 , "","");
+		insert($1, $3 , "");
 	}
 	;
-function_definition:
-		func_expression type_specifier IDENTIFIER '('
-		{
-			insert($3,$2,"","");
-			memset(temp_parameter,0,strlen(temp_parameter));
-			now_fun_index++;
-			function_index++;
-		}
-		parameter_list ')'
-		{
-			strcat(jasm,"\tmethod public static");
-			strcat(jasm,$2);
-			strcat(jasm," ");
-			strcat(jasm,$3);
-			strcat(jasm,"(");
-			for (int i = 0; i < sizeof(temp_parameter)/sizeof(temp_parameter[0]); ++i)
-			{
-				if (temp_parameter[i]==0)
-				{
-					temp_parameter[i-1]='\0';
-					break;
-					/* code */
-				}
-				/* code */
-			}
-			strcat(jasm,temp_parameter);
-			strcat(jasm,")\n");
-			strcat(jasm,"\tmax_stack 15\n\tmax_locals 15\n\t{\n");
-		}
-		 '{' statement_list '}'
-		 {
-		 	strcat(jasm,"\t}\n");
-		 	now_fun_index--;
-		 }
-	| func_expression type_specifier IDENTIFIER '('{now_fun_index++;function_index++;}
-	 {insert($3,$2,"","");now_fun_index++;}
-	 add_main_func_first block_stament statement_list block_end
-	 {
-	 	if (strcmp($3,"main")==0)
-	 	{
-	 		strcat(jasm,"\t\treturn\n\t}\n");
-
-	 	}
-	 	now_fun_index--;
-	 }
-	 ;
+function_definition
+	:func_expression IDENTIFIER '('parameter_list')'  OP_LE type_specifier block_stament
+	{
+		insert($2,$7,"");
+	}
+	|func_expression IDENTIFIER '(' parameter_list ')' block_stament 
+	{
+		insert($2, "", "");
+	}
+	|func_expression IDENTIFIER '('  ')'  OP_LE type_specifier block_stament
+	{
+		insert($2, $6, "");
+	}
+	| func_expression IDENTIFIER '('  ')'   block_stament
+	{
+		insert($2, "", "");
+	}
 
 val_delecation
 	: STR  {
@@ -258,9 +229,9 @@ while_srarement
 	;
 simple_statment
 	: IDENTIFIER '[' INTEGER ']' '=' expression ';'
+	| IDENTIFIER '=' expression  ';'
 	| PRINT expression ';'
 	| PRINTLN expression ';'
-	| IDENTIFIER '=' expression  ';'
 	| RETURN ';'
 	| RETURN expression  ';'
 	;
@@ -273,25 +244,25 @@ declaration_list
 
 declaration
 	: LET IDENTIFIER '=' val_delecation ';'{
-		insert($2, "" , $4,"const");
+		insert($2, "const" , $4);
 	}
 	| LET IDENTIFIER ':'type_specifier'='val_delecation ';'{
-		insert($2,$4,$6,"const");
+		insert($2,$4,$6);
 	}
 	| LET MUT IDENTIFIER '=' val_delecation ';'{
-		insert($3,"",$5,"");
+		insert($3,"",$5);
 	}
 	| LET MUT IDENTIFIER ':'type_specifier'='val_delecation ';'{
-		insert($3,$5,$7,"");
+		insert($3,$5,$7);
 	}
 	| LET MUT IDENTIFIER'['type_specifier','val_delecation']' ';'{
-		insert($3,"array",$5,"");
+		insert($3,"array",$5);
 	}
 	|  LET MUT IDENTIFIER ';'{
-    	insert( $3, "int", "" ,"");
+    	insert( $3, "int", "" );
 	}
 	| LET MUT IDENTIFIER ':' type_specifier ';'{
-    	insert($3 , $5 , "" ,"");
+    	insert($3 , $5 , "" );
   }
 	;
 EX_delection
@@ -329,19 +300,12 @@ int main()
     
     printf("\n\n%s\n", "------Symbol Table:------");
     printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");
-    printf("%-*s:%-*s%-*s%-*s%-*s  %s\n", 5, "Index", 20, "Name", 15, "Type", 15, "Value", 5, "Depth", "Const");
+    printf("%-*s:%-*s%-*s%-*s%-*s\n", 5, "Index", 20, "Name", 15, "Type", 30, "Value", 5, "Depth");
   	dump();
   	int a=0;
   	if(statment_number==0)
   	{
   		printf("statment_number wrong\n");
-  	}
-  	while(a<=depth)
-  	{
-  		printf("Depth%d\t ", depth);
-  		printf("thr look return number is%d\t",lookup("main",0) );
-  		printf("thisdepth is%d\n",a );
-  	a++;
   	}
   	return 0;
 }
