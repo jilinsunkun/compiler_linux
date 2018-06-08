@@ -135,18 +135,30 @@ function_definition
 	:func_expression IDENTIFIER '('parameter_list')'  OP_LE type_specifier block_stament
 	{
 		insert($2,$7,"");
+		memset(temp_parameter,0,strlen(temp_parameter));
+			now_fun_index++;
+			function_index++;
 	}
 	|func_expression IDENTIFIER '(' parameter_list ')' block_stament 
 	{
 		insert($2, "", "");
+		memset(temp_parameter,0,strlen(temp_parameter));
+			now_fun_index++;
+			function_index++;
 	}
 	|func_expression IDENTIFIER '('  ')'  OP_LE type_specifier block_stament
 	{
 		insert($2, $6, "");
+		memset(temp_parameter,0,strlen(temp_parameter));
+			now_fun_index++;
+			function_index++;
 	}
 	| func_expression IDENTIFIER '('  ')'   block_stament
 	{
 		insert($2, "", "");
+		memset(temp_parameter,0,strlen(temp_parameter));
+			now_fun_index++;
+			function_index++;
 	}
 
 val_delecation
@@ -286,7 +298,7 @@ int yywrap(){
 
 int main()
 {
-	isShouldAdd = 0;
+	/*isShouldAdd = 0;
 	depth = 0;
 	hashArray = create();
 
@@ -307,7 +319,40 @@ int main()
   	{
   		printf("statment_number wrong\n");
   	}
-  	return 0;
+  	return 0;*/
+  		depth = 0;
+		hashArray = create();
+
+		strcat(jasm, "class go_test\n{\n ");
+		yyparse();
+
+		printf("\n\n%s\n", "------ Symbol Table: ------");
+		printf("%-*s:%-*s%-*s%-*s%-*s%-*s\n", 5, "Index:", 15, "Name", 15, "Type", 20, "Value", 15, "Fun_index", 5, "Depth");
+		dump();
+
+		printf("\n\n%s\n", "------ Write Java Assembly Code Into go_test.jasm ------");
+		strcat(jasm, "}\n");
+		
+		FILE *fpt;
+		char file_name[100];
+		fpt = fopen("go_test.jasm", "w"); 
+		fprintf(fpt, jasm);
+		fclose(fpt);
+
+		char command[100] = "";
+		printf("\n\n%s\n", "------ Convert go_test.jasm To go_test.class By javaa program------");
+		strcat(command, "./javaa go_test.jasm");
+		printf("%s%s\n\n", "Execute linux command1: ", command);
+		system(command);
+
+		// clear the command string 
+		memset(command, '\0', sizeof(command)-1);
+
+		printf("\n\n%s\n", "------ Result After Run go_test.class ------");
+		strcat(command, "java go_test");
+		printf("%s%s\n\n", "Execute linux command2: ", command);
+		system(command);
+		return 0;
 }
 
 
