@@ -168,7 +168,7 @@ function_definition:
 	{
 		insert($2,$7,"");
 	}*/
-	/*|func_expression IDENTIFIER '(' parameter_list ')' block_stament 
+	|func_expression IDENTIFIER '(' parameter_list ')' block_stament 
 	{
 		insert($2, "", "");
 	}
@@ -179,7 +179,7 @@ function_definition:
 	| func_expression IDENTIFIER '('  ')'   block_stament
 	{
 		insert($2, "", "");
-	}*/
+	}
 	;
 val_delecation
 	: STR  {
