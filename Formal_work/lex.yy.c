@@ -1195,8 +1195,8 @@ YY_RULE_SETUP
 #line 103 "scaner.l"
 {
                       lineNum;
-                       linecount++;
-                      buf[0] = '\0';
+              printf("%d: %s", linecount++, buf);
+              buf[0] = '\0';
                       BEGIN 0;
                     }
 	YY_BREAK
@@ -1220,9 +1220,9 @@ case 68:
 YY_RULE_SETUP
 #line 116 "scaner.l"
 {
-                      lineNum;
-                       linecount++;
-                      buf[0] = '\0';
+                     lineNum;
+              printf("%d: %s", linecount++, buf);
+              buf[0] = '\0';
                      	}
 	YY_BREAK
 case 69:

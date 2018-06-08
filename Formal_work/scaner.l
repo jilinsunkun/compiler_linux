@@ -102,8 +102,8 @@ bool	{strcpy(yylval.val, yytext);return (BOOL);}
             		  }
 <Commionex>\n 	{
                       lineNum;
-                       linecount++;
-                      buf[0] = '\0';
+              printf("%d: %s", linecount++, buf);
+              buf[0] = '\0';
                       BEGIN 0;
                     }
 <Commionex>.    {
@@ -114,9 +114,9 @@ bool	{strcpy(yylval.val, yytext);return (BOOL);}
                       BEGIN commion;
                     }
 <commion>\n {
-                      lineNum;
-                       linecount++;
-                      buf[0] = '\0';
+                     lineNum;
+              printf("%d: %s", linecount++, buf);
+              buf[0] = '\0';
                      	}
 <commion>"*/"	{
                       		lineNum;

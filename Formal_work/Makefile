@@ -6,4 +6,4 @@ lex.yy.c:scaner.l
 	flex scaner.l
 
 clean:
-	rm -f *.o lex.yy.c y.tab.c y.tab.h
+	rm -f *.o lex.yy.c y.tab.c y.tab.h *.out  *.jasm

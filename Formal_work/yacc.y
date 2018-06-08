@@ -116,11 +116,6 @@ add_main_func_first:
 {
 	strcat(jasm, "\tmethod public static void main(java.lang.String[])\n\tmax_stack 15\n\tmax_locals 15\n\t{\n");
 };
-func_expression:
-	FN {
-		isShouldAdd = 0;
-		depth++;
-	};
 parameter_list
 	: parameter_declaration
 	| parameter_list ',' parameter_declaration
@@ -131,36 +126,61 @@ parameter_declaration
 		insert($1, $3 , "");
 	}
 	;
-function_definition
-	:func_expression IDENTIFIER '('parameter_list')'  OP_LE type_specifier block_stament
+func_expression:
+	FN {
+		isShouldAdd = 0;
+		depth++;
+	};
+function_definition:
+	func_expression IDENTIFIER '(' parameter_list ')' OP_LE type_specifier
+	{	
+		memset(temp_parameter,0,strlen(temp_parameter)); 
+		now_fun_index++; 
+		function_index++;
+		insert($2,$7,"");
+		strcat (jasm,"\tmethod public static ");
+		strcat (jasm,$2);
+		strcat (jasm," ");
+		strcat (jasm,$2);
+		strcat(jasm,"(");
+	
+		for (int i = 0; i < sizeof(temp_parameter)/sizeof(temp_parameter[0]); ++i)
+			{
+				if (temp_parameter[i] == 0)
+				{
+					temp_parameter[i-1] = '\0';
+					break;
+				}
+			}
+		strcat(jasm,temp_parameter);
+		strcat(jasm,")\n");
+		strcat(jasm,"\tmax_stack 15\n\tmax_locals 15\n\t{\n");
+	}
+	block_stament
+	{
+		strcat (jasm,"\t}\n");
+		now_fun_index--;
+	}
+	| func_expression  IDENTIFIER '(' {now_fun_index++;function_index++;} ')' OP_LE type_specifier
+	 
+	
+	/*:func_expression IDENTIFIER '('parameter_list')'  OP_LE type_specifier block_stament
 	{
 		insert($2,$7,"");
-		memset(temp_parameter,0,strlen(temp_parameter));
-			now_fun_index++;
-			function_index++;
-	}
-	|func_expression IDENTIFIER '(' parameter_list ')' block_stament 
+	}*/
+	/*|func_expression IDENTIFIER '(' parameter_list ')' block_stament 
 	{
 		insert($2, "", "");
-		memset(temp_parameter,0,strlen(temp_parameter));
-			now_fun_index++;
-			function_index++;
 	}
 	|func_expression IDENTIFIER '('  ')'  OP_LE type_specifier block_stament
 	{
 		insert($2, $6, "");
-		memset(temp_parameter,0,strlen(temp_parameter));
-			now_fun_index++;
-			function_index++;
 	}
 	| func_expression IDENTIFIER '('  ')'   block_stament
 	{
 		insert($2, "", "");
-		memset(temp_parameter,0,strlen(temp_parameter));
-			now_fun_index++;
-			function_index++;
-	}
-
+	}*/
+	;
 val_delecation
 	: STR  {
 		strcpy($$, $1);
@@ -221,6 +241,7 @@ block_stament
 	| block_start declaration_list statement_list block_end
 	| block_start block_end
 	;
+
 iteration_statement
 	: FOR '(' expression_sta ')' statement
 	| FOR '(' expression_sta ";" expression_sta ')' statement

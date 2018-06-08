@@ -1,3 +1,8 @@
 class go_test
 {
- }
+ 	method public static add add()
+	max_stack 15
+	max_locals 15
+	{
+	}
+}
