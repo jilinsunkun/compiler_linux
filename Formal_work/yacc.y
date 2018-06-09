@@ -30,7 +30,7 @@
 
 %start program
 
-%type  <val> val_delecation program pre_expression type_specifier Delector_list declarator
+%type  <val> val_delecation program pre_expression type_specifier Delector_list declarator expression
 %%
 
 EQU_express
@@ -77,6 +77,7 @@ expression
 	| expression assignment_expression
 	;
 U_nary
+
 	: pre_expression
 	| '-' pre_expression
 	;
@@ -156,8 +157,8 @@ function_definition:
 		strcat(jasm,")\n");
 		strcat(jasm,"\tmax_stack 15\n\tmax_locals 15\n\t{\n");
 	}
-	block_stament
-	{
+	'{' statement_list '}'
+	{ 
 		strcat (jasm,"\t}\n");
 		now_fun_index--;
 	}
@@ -228,10 +229,12 @@ block_start
 	;
 	
 block_stament
-	:  
-		{strcat(jasm, "\tLbody:\n");strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");depth--;}  
-	|  {strcat(jasm, "\tLbody:\n");} statement_list {strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");depth--;}  
-	
+		//: block_start statement_list block_end
+		// | block_start declaration_list block_end
+		// | block_start declaration_list statement_list block_end
+		// | block_start block_end
+	:|  {strcat(jasm, "\tLbody:\n");strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");depth--;}  
+	| {strcat(jasm, "\tLbody:\n");} statement_list {strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");depth--;}  
 	;
 	
 block_end
@@ -240,11 +243,25 @@ block_end
 		depth--;
 	}
 	;
-
-selection_statement
-	: IF '(' expression ')' statement
-	| IF '(' expression ')' statement ELSE statement
+If_After_Check:
+	{
+		strcat(jasm, " L0\n");
+		strcat(jasm, "\t\ticonst_0\n");
+		strcat(jasm, "\t\tgoto Lfalse\n");
+		strcat(jasm, "\tL0:\n");
+		strcat(jasm, "\t\ticonst_1\n");
+		strcat(jasm, "\tL1:\n");
+		strcat(jasm, "\t\tifeq L2\n");
+	}
 	;
+
+	If_After_Ltrue:
+	{
+		strcat(jasm, "\t\tgoto L3\n");
+		strcat(jasm, "\tL2:");
+	};
+selection_statement
+	: IF '('  expression If_After_Check ')'  '{'  statement_list  '}' If_After_Ltrue ELSE '{'  statement_list  '}' {strcat(jasm, "\tL3:\n");} 
 statement_list
 	: statement
 	{
@@ -276,6 +293,10 @@ simple_statment
 	| PRINTLN expression ';'
 	| RETURN ';'
 	| RETURN expression  ';'
+		{
+			strcat(jasm, $2);
+			strcat(jasm, "\t\treturn\n");
+		}
 	;
 
 
