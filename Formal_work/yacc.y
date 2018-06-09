@@ -225,7 +225,15 @@ block_start
 			isShouldAdd++;
 		}
 	}
-	;	
+	;
+	
+block_stament
+	:  
+		{strcat(jasm, "\tLbody:\n");strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");depth--;}  
+	|  {strcat(jasm, "\tLbody:\n");} statement_list {strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");depth--;}  
+	
+	;
+	
 block_end
 	: '}'
 	{
@@ -244,13 +252,6 @@ statement_list
 	}
 	| statement_list statement
 	;
-block_stament
-	:  
-		{strcat(jasm, "\tLbody:\n");strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");depth--;}  
-	|  {strcat(jasm, "\tLbody:\n");} statement_list {strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");depth--;}  
-	
-	;
-
 iteration_statement
 	: FOR '(' expression_sta ')' statement
 	| FOR '(' expression_sta ";" expression_sta ')' statement
