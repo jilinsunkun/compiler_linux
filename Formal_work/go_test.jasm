@@ -4,5 +4,5 @@ class go_test
 	max_stack 15
 	max_locals 15
 	{
-	}
+	Lbody:
 }

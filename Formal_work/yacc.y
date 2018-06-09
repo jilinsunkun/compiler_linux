@@ -261,7 +261,6 @@ iteration_statement
 
 statement
 	: simple_statment
-	| block_stament
 	| expression_sta 
 	| selection_statement 
 	| iteration_statement
