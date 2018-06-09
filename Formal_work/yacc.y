@@ -30,7 +30,7 @@
 
 %start program
 
-%type  <val> val_delecation program pre_expression type_specifier Delector_list declarator expression
+%type  <val> val_delecation program pre_expression type_specifier Delector_list declarator expression assignment_expression inclusive_or_expression and_expression and_expression EQU_express re_expression additive_expression multp_expression
 %%
 
 EQU_express
