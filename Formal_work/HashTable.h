@@ -2,10 +2,10 @@
 
 int  yylex  (void);
 void  yyerror  (const char *str);
-
+#define SIZE 1024
 int keyId = 1;
-int itemDepth = 0;
-
+int depth = 0;
+int isShouldAdd=0;
 char jasm[10000];
 char temp_parameter[1000];
 char unary_symbol[20];
@@ -125,7 +125,7 @@ void insert(char *idName , char *type, char *value) {
   strcpy(item->idName, idName);
   strcpy(item->type, type);
   strcpy(item->value, value);
-  item->depth = itemDepth;
+  item->depth = depth;
   item->fun_index = function_index;
   item->key = keyId;
 

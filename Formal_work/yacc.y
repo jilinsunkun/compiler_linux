@@ -192,10 +192,14 @@ function_definition:
 	}*/
 	;
 val_delecation
-	: STR  {
-		strcpy($$, $1);
+	: STR   {
+		strcat(jasm, "\t\tldc ");
+		strcat(jasm, "\"");
+		strcat(jasm, $1);
+		strcat(jasm, "\"");
+		strcat(jasm, "\n");
 	}
-	| TRUE  {
+	| TRUE {
 		strcpy($$, $1);
 	}
 	| FALSE {
@@ -205,15 +209,27 @@ val_delecation
 	{
 		char tempStr[50];
 		sprintf( tempStr, "%d", $1 );
-		strcpy($$, tempStr);
+
+		if (is_assigning == 0)
+		{
+			if (is_print != 1)
+			{
+				strcat(jasm, "\t\tsipush ");
+				strcat(jasm, tempStr);
+				strcat(jasm, "\n");
+			}
+		}
+		else{
+			strcpy($$, tempStr);
+		}
 	}
 	| REALCONSTANTS 
 	{
+		
 		char tempStr[50];
 		sprintf( tempStr, "%g", $1 );
 		strcpy($$, tempStr);
-	}
-	;
+	};
 
 block_start
 	: '{'

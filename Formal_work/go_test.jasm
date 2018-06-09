@@ -1,0 +1,28 @@
+class go_test
+{
+ 		sipush 5
+	method public static add add()
+	max_stack 15
+	max_locals 15
+	{
+a		ireturn
+	}
+	method public static void main(java.lang.String[])
+	max_stack 15
+	max_locals 15
+	{
+		sipush 10
+		sipush 10
+ 	L0
+		iconst_0
+		goto Lfalse
+	L0:
+		iconst_1
+	L1:
+		ifeq L2
+		goto L3
+	L2:	L3:
+		ldc "println"
+		return
+	}
+}
