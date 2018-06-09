@@ -161,8 +161,17 @@ function_definition:
 		strcat (jasm,"\t}\n");
 		now_fun_index--;
 	}
-	| func_expression  IDENTIFIER '(' {now_fun_index++;function_index++;} ')' OP_LE type_specifier
-	 
+	| func_expression  IDENTIFIER '('')' 
+	{insert($2,"","");now_fun_index++;}
+	 add_main_func_first  block_start  statement_list  block_end 
+	 {
+	 	if (strcmp($2,"main")==0)
+	 	{
+	 		strcat(jasm,"\t\treturn\n\t}\n");
+	 		/* code */
+	 	}
+	 	now_fun_index--;
+	 }
 	
 	/*:func_expression IDENTIFIER '('parameter_list')'  OP_LE type_specifier block_stament
 	{
@@ -236,10 +245,10 @@ statement_list
 	| statement_list statement
 	;
 block_stament
-	: block_start statement_list block_end
-	| block_start declaration_list block_end
-	| block_start declaration_list statement_list block_end
-	| block_start block_end
+	:  
+		{strcat(jasm, "\tLbody:\n");strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");depth--;}  
+	|  {strcat(jasm, "\tLbody:\n");} statement_list {strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");depth--;}  
+	
 	;
 
 iteration_statement
