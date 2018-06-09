@@ -245,7 +245,7 @@ block_end
 	;
 If_After_Check:
 	{
-		strcat(jasm, " L0\n");
+		strcat(jasm, " \tL0\n");
 		strcat(jasm, "\t\ticonst_0\n");
 		strcat(jasm, "\t\tgoto Lfalse\n");
 		strcat(jasm, "\tL0:\n");
@@ -295,7 +295,7 @@ simple_statment
 	| RETURN expression  ';'
 		{
 			strcat(jasm, $2);
-			strcat(jasm, "\t\treturn\n");
+			strcat(jasm, "\t\tireturn\n");
 		}
 	;
 

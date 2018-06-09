@@ -4,13 +4,13 @@ class go_test
 	max_stack 15
 	max_locals 15
 	{
-a		return
+a		ireturn
 	}
 	method public static void main(java.lang.String[])
 	max_stack 15
 	max_locals 15
 	{
- L0
+ 	L0
 		iconst_0
 		goto Lfalse
 	L0:

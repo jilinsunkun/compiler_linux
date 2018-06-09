@@ -1667,7 +1667,7 @@ yyreduce:
   case 62:
 #line 247 "yacc.y" /* yacc.c:1646  */
     {
-		strcat(jasm, " L0\n");
+		strcat(jasm, " \tL0\n");
 		strcat(jasm, "\t\ticonst_0\n");
 		strcat(jasm, "\t\tgoto Lfalse\n");
 		strcat(jasm, "\tL0:\n");
@@ -1705,7 +1705,7 @@ yyreduce:
 #line 296 "yacc.y" /* yacc.c:1646  */
     {
 			strcat(jasm, (yyvsp[-1].val));
-			strcat(jasm, "\t\treturn\n");
+			strcat(jasm, "\t\tireturn\n");
 		}
 #line 1711 "y.tab.c" /* yacc.c:1646  */
     break;
