@@ -25,9 +25,15 @@ a		ireturn
 		iconst_1
 	L1:
 		ifeq L2
+
+		getstatic java.io.PrintStream java.lang.System.out
 		getstatic int go_test.c
+		invokevirtual void java.io.PrintStream.print(int)
 		goto L3
-	L2:		getstatic int go_test.c
+	L2:
+		getstatic java.io.PrintStream java.lang.System.out
+		getstatic int go_test.c
+		invokevirtual void java.io.PrintStream.print(int)
 	L3:
 		ldc "println"
 		return
