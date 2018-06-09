@@ -5,13 +5,18 @@ class go_test
 	max_stack 15
 	max_locals 15
 	{
+		getstatic int go_test.a
+		sipush b
 a		ireturn
 	}
 	method public static void main(java.lang.String[])
 	max_stack 15
 	max_locals 15
 	{
+		iload 0
+		getstatic int go_test.a
 		sipush 10
+		getstatic int go_test.c
 		sipush 10
  	L0
 		iconst_0
@@ -20,8 +25,10 @@ a		ireturn
 		iconst_1
 	L1:
 		ifeq L2
+		getstatic int go_test.c
 		goto L3
-	L2:	L3:
+	L2:		getstatic int go_test.c
+	L3:
 		ldc "println"
 		return
 	}

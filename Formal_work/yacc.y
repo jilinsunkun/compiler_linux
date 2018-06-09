@@ -104,7 +104,7 @@ declarator
 	: IDENTIFIER  
 	{
 	int is_found_ident = 0;
-	int tempdepth = itemDepth;
+	int tempdepth = depth;
 	temp_fun_index = now_fun_index;
 
 	if(temp_fun_index != 0){
