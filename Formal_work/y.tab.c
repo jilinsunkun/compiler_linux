@@ -2007,7 +2007,7 @@ int yywrap(){
 
 int main()
 {
-	isShouldAdd = 0;
+	/*isShouldAdd = 0;
 	depth = 0;
 	hashArray = create();
 
@@ -2021,15 +2021,15 @@ int main()
     
     printf("\n\n%s\n", "------Symbol Table:------");
     printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");
-    printf("%-*s:%-*s%-*s%-*s%-*s%-*s\n", 5, "Index:", 15, "Name", 15, "Type", 20, "Value", 15, "Fun_index", 5, "Depth");
+    printf("%-*s:%-*s%-*s%-*s%-*s\n", 5, "Index", 20, "Name", 15, "Type", 30, "Value", 5, "Depth");
   	dump();
   	int a=0;
   	if(statment_number==0)
   	{
   		printf("statment_number wrong\n");
   	}
-  	return 0;
-  		/*depth = 0;
+  	return 0;*/
+  		depth = 0;
 		hashArray = create();
 
 		strcat(jasm, "class go_test\n{\n ");
@@ -2061,7 +2061,7 @@ int main()
 		strcat(command, "java go_test");
 		printf("%s%s\n\n", "Execute linux command2: ", command);
 		system(command);
-		return 0;*/
+		return 0;
 }
 
 
