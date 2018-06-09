@@ -102,6 +102,59 @@ Delector_list
 
 declarator
 	: IDENTIFIER  
+	{
+	int is_found_ident = 0;
+	int tempdepth = itemDepth;
+	temp_fun_index = now_fun_index;
+
+	if(temp_fun_index != 0){
+		while(tempdepth > -1){
+			int index_depth = lookup($1, tempdepth);
+			if(index_depth >= 0)
+			{
+				strcat(jasm, "\t\tiload ");
+				char index_depth_str[10];
+				sprintf(index_depth_str, "%d" , index_depth);
+
+				strcat(jasm, index_depth_str);
+				strcat(jasm, "\n");
+				is_found_ident = 1;
+				break;
+			}
+			tempdepth--;
+		}
+		temp_fun_index = 0;
+	}
+
+	if (is_found_ident == 0)
+	{
+		if (lookup($1, 0) >= 0)
+		{
+			strcat(jasm, "\t\tgetstatic int go_test.");
+			strcat(jasm, $1);
+			
+		}
+		else if(strcmp(lookup_const($1), "") != 0)
+		{
+			strcat(jasm, "\t\tsipush ");
+			strcat(jasm, lookup_const($1));
+			strcpy($1, lookup_const($1));
+		}
+		else{
+			strcat(jasm, "\t\tsipush ");
+			strcat(jasm, $1);
+		}
+		
+		strcat(jasm, "\n");
+	}
+
+	if (is_print == 1)
+	{		
+		is_print = 2;
+		strcat(jasm, unary_symbol);
+		memset(unary_symbol,0,strlen(unary_symbol));
+	}
+} 
 	| val_delecation 
 	;
 
