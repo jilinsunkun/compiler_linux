@@ -377,7 +377,18 @@ simple_statment
 	| PRINTLN {	
 		is_print = 1;
 		strcat(jasm, "\t\tgetstatic java.io.PrintStream java.lang.System.out\n");}
-	expression ';'
+	expression 
+	{
+		if(is_print==2)
+		{
+			strcat(jasm,"\t\tinvokevirtual void java.io.PrintStream.println(java.lang.String)\n");
+		}
+		else{
+			strcat(jasm,"\t\tinvokevirtual void java.io.PrintStream.println(java.lang.String)\n");
+		}
+		is_print=0;
+	}
+	';'
 	| RETURN ';'
 	| RETURN expression  ';'
 		{
