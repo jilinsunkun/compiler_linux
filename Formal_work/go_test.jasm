@@ -1,8 +1,7 @@
 class go_test
 {
  	filed staticinterger c
-		sipush 5
-	filed static a = 
+	filed staticinterger a = 5
 	method public static add add()
 	max_stack 15
 	max_locals 15

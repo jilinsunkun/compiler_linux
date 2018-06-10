@@ -262,19 +262,7 @@ val_delecation
 	{
 		char tempStr[50];
 		sprintf( tempStr, "%d", $1 );
-
-		if (is_assigning == 0)
-		{
-			if (is_print != 1)
-			{
-				strcat(jasm, "\t\tsipush ");
-				strcat(jasm, tempStr);
-				strcat(jasm, "\n");
-			}
-		}
-		else{
-			strcpy($$, tempStr);
-		}
+		strcpy($$, tempStr);
 	}
 	| REALCONSTANTS 
 	{
@@ -414,12 +402,12 @@ declaration
 	}
 	| LET MUT IDENTIFIER '=' val_delecation ';'{
 		insert($3,"",$5);
-		printf("%s\n",$3 );
 		if(lookup($3,0)>=0)
 		{
+			printf("aaa%s\n",$5 );
 			is_assigning=1;
 			strcat(jasm,"\tfiled static");
-			strcat(jasm,$5);
+			strcat(jasm,"interger");
 			strcat(jasm," ");
 			strcat(jasm,$3);
 			strcat(jasm," = ");
