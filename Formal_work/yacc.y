@@ -409,16 +409,16 @@ declaration
 		is_assigning=0;
 
 	}
-	/*| LET IDENTIFIER ':'type_specifier'='val_delecation ';'{
+	| LET IDENTIFIER ':'type_specifier'='val_delecation ';'{
 		insert($2,$4,$6);
 	}
 	| LET MUT IDENTIFIER '=' val_delecation ';'{
 		insert($3,"",$5);
 
-	}*/
-	| LET MUT IDENTIFIER ':'type_specifier{is_assigning=1}'='val_delecation ';'{
-		insert($3,$5,$7);
-		if(lookup($2,0)>=0)
+	}
+	| LET MUT IDENTIFIER ':'type_specifier{is_assigning=1;}'='val_delecation ';'{
+		insert($3,$5,"");
+		if(lookup($3,0)>=0)
 		{
 			strcat(jasm,"\tfiled static");
 			strcat(jasm,$5);
@@ -432,13 +432,13 @@ declaration
 	| LET MUT IDENTIFIER'['type_specifier','val_delecation']' ';'{
 		insert($3,"array",$5);
 	}
-	/*| LET MUT IDENTIFIER ';'{
+	| LET MUT IDENTIFIER ';'{
     	insert( $3, "int", "" );
-	}*/
+	}
 	| LET MUT IDENTIFIER ':' type_specifier ';'{
     	insert($3 , $5 , "" );
     	//global variable
-    	if(lookup($2,0)>=0)
+    	if(lookup($3,0)>=0)
 		{
 			strcat(jasm,"\tfiled static ");
 			strcat(jasm,$5);
