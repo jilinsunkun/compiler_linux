@@ -358,7 +358,7 @@ while_srarement
 simple_statment
 	: IDENTIFIER '[' INTEGER ']' '=' expression ';'
 	| IDENTIFIER '=' expression  ';'
-| PRINT {is_print=1;strcat(jasm, "\n\t\tgetstatic java.io.PrintStream java.lang.System.out\n");}expression{if(is_print==2){strcat(jasm, "\t\tinvokevirtual void java.io.PrintStream.print(int)\n");}else{strcat(jasm, "\t\tinvokevirtual void java.io.PrintStream.print(java.lang.String)\n");}is_print=0;} ';'
+	| PRINT {is_print=1;strcat(jasm, "\n\t\tgetstatic java.io.PrintStream java.lang.System.out\n");}expression{if(is_print==2){strcat(jasm, "\t\tinvokevirtual void java.io.PrintStream.print(int)\n");}else{strcat(jasm, "\t\tinvokevirtual void java.io.PrintStream.print(java.lang.String)\n");}is_print=0;} ';'
 	| PRINTLN expression ';'
 	| RETURN ';'
 	| RETURN expression  ';'
