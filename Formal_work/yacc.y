@@ -414,17 +414,30 @@ declaration
 	}
 	| LET MUT IDENTIFIER '=' val_delecation ';'{
 		insert($3,"",$5);
-
-	}
-	| LET MUT IDENTIFIER ':'type_specifier{is_assigning=1;}'='val_delecation ';'{
-		insert($3,$5,"");
+		printf("%s\n",$3 );
 		if(lookup($3,0)>=0)
 		{
+			is_assigning=1;
 			strcat(jasm,"\tfiled static");
 			strcat(jasm,$5);
 			strcat(jasm," ");
 			strcat(jasm,$3);
 			strcat(jasm," = ");
+			strcat(jasm,$5);
+			strcat(jasm,"\n");
+		}
+	}
+	| LET MUT IDENTIFIER ':'type_specifier'='val_delecation ';'{
+		insert($3,$5,"");
+		if(lookup($3,0)>=0)
+		{
+			is_assigning=1;
+			strcat(jasm,"\tfiled static");
+			strcat(jasm,$5);
+			strcat(jasm," ");
+			strcat(jasm,$3);
+			strcat(jasm," = ");
+			strcat(jasm,$7);
 			strcat(jasm,"\n");
 		}
 		is_assigning=0;
