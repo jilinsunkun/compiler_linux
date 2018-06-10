@@ -406,12 +406,15 @@ declaration_list
 declaration
 	: LET IDENTIFIER '=' val_delecation ';'{
 		insert($2, "const" , $4);
+		is_assigning=0;
+
 	}
 	| LET IDENTIFIER ':'type_specifier'='val_delecation ';'{
 		insert($2,$4,$6);
 	}
 	| LET MUT IDENTIFIER '=' val_delecation ';'{
 		insert($3,"",$5);
+
 	}
 	| LET MUT IDENTIFIER ':'type_specifier'='val_delecation ';'{
 		insert($3,$5,$7);
@@ -424,6 +427,15 @@ declaration
 	}
 	| LET MUT IDENTIFIER ':' type_specifier ';'{
     	insert($3 , $5 , "" );
+    	if(lookup($2,0)>=0)
+		{
+			strcat(jasm,"\tfiled static ");
+			strcat(jasm,$5);
+			strcat(jasm, " ");
+			strcat(jasm,$3);
+			strcat(jasm,"\n");
+		}
+		is_assigning=0;
   }
 	;
 EX_delection
