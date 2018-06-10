@@ -260,7 +260,7 @@ val_delecation
 	}
 	| INTEGER 
 	{
-		char tempStr[50];
+		/*char tempStr[50];
 		sprintf( tempStr, "%d", $1 );
 
 		if (is_assigning == 0)
@@ -274,7 +274,11 @@ val_delecation
 		}
 		else{
 			strcpy($$, tempStr);
-		}
+		}*/
+		
+		char tempStr[50];
+		sprintf( tempStr, "%d", $1 );
+		strcpy($$, tempStr);
 	}
 	| REALCONSTANTS 
 	{
