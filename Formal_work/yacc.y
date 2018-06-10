@@ -434,6 +434,14 @@ declaration
 	}
 	| LET MUT IDENTIFIER ';'{
     	insert( $3, "int", "" );
+    	if(lookup($3,0)>=0)
+    	{
+    		strcat(jasm,"\tfiled static");
+    		strcat(jasm,"interger");
+    		strcat(jasm," ");
+    		strcat(jasm,$3);
+    		strcat(jasm,"\n");
+    	}
 	}
 	| LET MUT IDENTIFIER ':' type_specifier ';'{
     	insert($3 , $5 , "" );

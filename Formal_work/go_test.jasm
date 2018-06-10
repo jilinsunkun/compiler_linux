@@ -1,43 +1,4 @@
 class go_test
 {
- 		sipush 5
-	method public static add add()
-	max_stack 15
-	max_locals 15
-	{
-		getstatic int go_test.a
-		sipush b
-a		ireturn
-	}
-	method public static void main(java.lang.String[])
-	max_stack 15
-	max_locals 15
-	{
-		iload 0
-		getstatic int go_test.a
-		sipush 10
-		getstatic int go_test.c
-		sipush 10
- 	L0
-		iconst_0
-		goto Lfalse
-	L0:
-		iconst_1
-	L1:
-		ifeq L2
-
-		getstatic java.io.PrintStream java.lang.System.out
-		getstatic int go_test.c
-		invokevirtual void java.io.PrintStream.print(int)
-		goto L3
-	L2:
-		getstatic java.io.PrintStream java.lang.System.out
-		getstatic int go_test.c
-		invokevirtual void java.io.PrintStream.print(int)
-	L3:
-		getstatic java.io.PrintStream java.lang.System.out
-		ldc "println"
-		invokevirtual void java.io.PrintStream.println(java.lang.String)
-		return
-	}
+ 	filed staticinterger a = 
 }

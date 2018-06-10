@@ -556,8 +556,8 @@ static const yytype_uint16 yyrline[] =
      306,   310,   316,   328,   333,   335,   339,   342,   343,   344,
      349,   350,   351,   352,   353,   356,   359,   360,   362,   367,
      361,   377,   381,   377,   392,   393,   402,   403,   407,   412,
-     415,   419,   419,   432,   435,   438,   453,   454,   455,   459,
-     460
+     415,   419,   419,   432,   435,   447,   462,   463,   464,   468,
+     469
 };
 #endif
 
@@ -1898,12 +1898,21 @@ yyreduce:
 #line 435 "yacc.y" /* yacc.c:1646  */
     {
     	insert( (yyvsp[-1].val), "int", "" );
+    	if(lookup((yyvsp[-1].val),0)>=0)
+    	{
+    		strcat(jasm,"\tfiled static");
+    		strcat(jasm,"interger");
+    		strcat(jasm," ");
+    		strcat(jasm,(yyvsp[-1].val));
+    		strcat(jasm, " = ");
+    		strcat(jasm,"\n");
+    	}
 	}
-#line 1903 "y.tab.c" /* yacc.c:1646  */
+#line 1912 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 95:
-#line 438 "yacc.y" /* yacc.c:1646  */
+#line 447 "yacc.y" /* yacc.c:1646  */
     {
     	insert((yyvsp[-3].val) , (yyvsp[-1].val) , "" );
     	//global variable
@@ -1917,11 +1926,11 @@ yyreduce:
 		}
 		is_assigning=0;
 	}
-#line 1921 "y.tab.c" /* yacc.c:1646  */
+#line 1930 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1925 "y.tab.c" /* yacc.c:1646  */
+#line 1934 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2149,7 +2158,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 462 "yacc.y" /* yacc.c:1906  */
+#line 471 "yacc.y" /* yacc.c:1906  */
 
 void yyerror(const char *str){
     printf("error:%s\n",str);
