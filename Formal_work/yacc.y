@@ -422,7 +422,7 @@ declaration
 		{
 			printf("aaa%s\n",$5 );
 			is_assigning=1;
-			strcat(jasm,"\tfiled static");
+			strcat(jasm,"\tfiled static ");
 			strcat(jasm,"interger");
 			strcat(jasm," ");
 			strcat(jasm,$3);
@@ -436,7 +436,7 @@ declaration
 		if(lookup($3,0)>=0)
 		{
 			is_assigning=1;
-			strcat(jasm,"\tfiled static");
+			strcat(jasm,"\tfiled static ");
 			strcat(jasm,$5);
 			strcat(jasm," ");
 			strcat(jasm,$3);
@@ -453,7 +453,7 @@ declaration
     	insert( $3, "int", "" );
     	if(lookup($3,0)>=0)
     	{
-    		strcat(jasm,"\tfiled static");
+    		strcat(jasm,"\tfiled static ");
     		strcat(jasm,"interger");
     		strcat(jasm," ");
     		strcat(jasm,$3);

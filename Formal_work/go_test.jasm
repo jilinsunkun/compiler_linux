@@ -1,4 +1,4 @@
 class go_test
 {
- 	filed staticinterger a = 10
+ 	filed staticinterger a = 100
 }
