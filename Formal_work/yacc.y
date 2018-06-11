@@ -593,13 +593,24 @@ selection_statement
 : IF '('  expression If_After_Check ')'  '{'  statement_list  '}' If_After_Ltrue ELSE '{'  statement_list  '}' {strcat(jasm, "\tL3:\n");}  
 ;
 while_srarement
-	:WHILE '(' expression while_After_Check')' '{'  statement_list  '}'
+	:WHILE '(' expression while_After_Check')' '{'  statement_list  '}' while_After_Ltrue
 	;
 while_After_Check:
 {
 	strcat(jasm,"\tLbegin:\n");
+	strcat(jasm,"\t\ticonst_0\n");
+	strcat(jasm,"\t\tgoto Lfalse\n");
+	strcat(jasm,"\tLtrue:\n");
+	strcat(jasm,"\t\ticonst_1\n");
+	strcat(jasm,"\tLfalse:\n");
+	strcat(jasm,"\tifeq\tLexit\n");
+
+
 }
 ;
+while_After_Ltrue:
+{strcat(jasm, "\t\tgoto Lexit\n");
+	strcat(jasm, "\tL2:");}
 iteration_statement
 :  FOR  '('   relational_expression 
 {
