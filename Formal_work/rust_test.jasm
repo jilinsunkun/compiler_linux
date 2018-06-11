@@ -16,9 +16,11 @@ class rust_test
 	max_locals 15
 	{
 		iload 0
+		sipush 10
 		invokestatic int rust_test.add(int,int)
 		putstatic int rust_test.c
 		getstatic int rust_test.c
+		sipush 10
 		isub
 		ifgt  	L0
 		iconst_0
