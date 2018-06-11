@@ -30,7 +30,7 @@
 
 %start program
 
-%type  <val> multp_expression value_declaration program pre_expression type_specifier declarator_list declarator expression  assignment_expression relational_expression additive_expression  parameter_list parameter_declaration external_declation U_nary declaration function_definition declaration_list  '-'
+%type  <val> multp_expression value_declaration program pre_expression type_specifier Declarator_l declarator expression  assignment_expression relational_expression additive_expression  parameter_list parameter_declaration external_declation U_nary declaration function_definition declaration_list  '-'
 
 %%
 
@@ -133,15 +133,15 @@ declarator
 ;
 
 // when function be called
-declarator_list
+Declarator_l
 	: declarator
-	| declarator_list ',' declarator_list
+	| Declarator_l ',' Declarator_l
 	;
 
 
 pre_expression
-: declarator_list
-| pre_expression declarator_list
+: Declarator_l
+| pre_expression Declarator_l
 ;
 
 U_nary
@@ -303,7 +303,7 @@ expression
 | expression assignment_expression
 | relational_expression
 | expression relational_expression
-| IDENTIFIER '=' IDENTIFIER '(' declarator_list  ')' ';'
+| IDENTIFIER '=' IDENTIFIER '(' Declarator_l  ')' ';'
 {
 	strcat(jasm, "\t\tinvokestatic int rust_test.");
 	strcat(jasm, $3);
@@ -737,7 +737,7 @@ function_definition:
 external_declation
 	: function_definition
 	| declaration_list
-	| IDENTIFIER '(' declarator_list ')' 
+	| IDENTIFIER '(' Declarator_l ')' 
 ;
 
 program
