@@ -603,14 +603,14 @@ while_After_Check:
 	strcat(jasm,"\tLtrue:\n");
 	strcat(jasm,"\t\ticonst_1\n");
 	strcat(jasm,"\tLfalse:\n");
-	strcat(jasm,"\tifeq\tLexit\n");
+	strcat(jasm,"\t\tifeq\tLexit\n");
 
 
 }
 ;
 while_After_Ltrue:
 {strcat(jasm, "\t\tgoto Lexit\n");
-	strcat(jasm, "\tL2:");}
+	strcat(jasm, "\tLext:");}
 iteration_statement
 :  FOR  '('   relational_expression 
 {

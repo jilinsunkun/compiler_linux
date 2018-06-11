@@ -2121,7 +2121,7 @@ yyreduce:
 	strcat(jasm,"\tLtrue:\n");
 	strcat(jasm,"\t\ticonst_1\n");
 	strcat(jasm,"\tLfalse:\n");
-	strcat(jasm,"\tifeq\tLexit\n");
+	strcat(jasm,"\t\tifeq\tLexit\n");
 
 
 }
@@ -2131,7 +2131,7 @@ yyreduce:
   case 76:
 #line 612 "yacc.y" /* yacc.c:1646  */
     {strcat(jasm, "\t\tgoto Lexit\n");
-	strcat(jasm, "\tL2:");}
+	strcat(jasm, "\tLext:");}
 #line 2136 "y.tab.c" /* yacc.c:1646  */
     break;
 

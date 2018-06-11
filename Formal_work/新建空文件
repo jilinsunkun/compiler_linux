@@ -1,7 +1,6 @@
-let n=10;
+let n=1;
 fn main(){
-n = 1;
-while (n <= 10) {
+while (n < 10) {
 n = n + 1;
 }
 }
