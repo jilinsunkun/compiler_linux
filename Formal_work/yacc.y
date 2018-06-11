@@ -30,7 +30,8 @@
 
 %start program
 
-%type  <val> val_delecation program pre_expression type_specifier Delector_list declarator U_nary expression assignment_expression inclusive_or_expression and_expression  EQU_express re_expression additive_expression multp_expression
+%type  <val> value_declaration program primary_expression type_specifier declarator_list declarator expression  assignment_expression relational_expression additive_expression  parameter_list parameter_declaration external_declaration unary_expression declaration function_definition declaration_list  '-'
+
 %%
 
 value_declaration
@@ -355,7 +356,6 @@ expression
 	is_print = 0;
 	
 }
-| READ IDENTIFIER
 | RETURN
 | RETURN expression
 {
@@ -378,44 +378,142 @@ compound_end
 }
 ;
 
-declaration
-: CONST {is_assigning = 1;} IDENTIFIER '=' value_declaration {
-	insert($3, "const" , $5);
-	is_assigning = 0;
-}
-| VAR  IDENTIFIER  type_specifier {
-	insert($2, $3, "");
-	if (lookup($2, 0) >= 0)
-	{
-		// global variable
-		strcat(jasm, "\tfield static ");
-		strcat(jasm, $3);
-		strcat(jasm, " ");
-		strcat(jasm, $2);
-		strcat(jasm, "\n");
-	}
-	is_assigning = 0;
-}
-| VAR  IDENTIFIER type_specifier {is_assigning = 1;} '=' value_declaration {
 
-	insert($2, $3, "");
-	if (lookup($2, 0) >= 0)
-	{
-		// global variable
-		strcat(jasm, "\tfield static ");
-		strcat(jasm, $3);
-		strcat(jasm, " ");
-		strcat(jasm, $2);
-		strcat(jasm, " = ");
-		strcat(jasm, $6);
-		strcat(jasm, "\n");
+declaration
+	: LET {is_assigning = 1;} IDENTIFIER '=' value_declaration {
+
+		insert($3, "const" , $5);
+		is_assigning = 0;
 	}
-	is_assigning = 0;
-}
-| VAR IDENTIFIER '[' INTEGER ']' type_specifier {
-	insert($2, "array" , $6);
-}
-;
+	| LET IDENTIFIER ':'type_specifier'='value_declaration ';'{
+		insert($2,$4,$6);
+		//let a:int;
+	}
+	| LET MUT IDENTIFIER ';'
+	{
+		is_assigning=1;
+		insert($3,"interger","0");
+		is_assigning=0;
+
+	}
+	| LET MUT IDENTIFIER '=' value_declaration ';'
+	{
+		//let mut a=9;
+		insert($3,"",$5);
+		if (lookup($3, 0) >= 0)
+		{
+			// global variable
+			strcat(jasm, "\tfield static ");
+			strcat(jasm, "INTEGER");
+			strcat(jasm, " ");
+			strcat(jasm, $3);
+			strcat(jasm, "\n");
+		}
+		is_assigning = 0;
+	}
+	| LET MUT IDENTIFIER ':'type_specifier {
+		//let mut a:int;
+		insert($3, $5, "");
+		if (lookup($3, 0) >= 0)
+		{
+			// global variable
+			strcat(jasm, "\tfield static ");
+			strcat(jasm, $5);
+			strcat(jasm, " ");
+			strcat(jasm, $3);
+			strcat(jasm, "\n");
+		}
+		is_assigning = 0;
+	}
+	| LET MUT IDENTIFIER ':' type_specifier {is_assigning = 1;} '=' value_declaration {
+		//let mut a:int =10;
+		insert($3, $5, "");
+		if (lookup($3, 0) >= 0)
+		{
+			// global variable
+			strcat(jasm, "\tfield static ");
+			strcat(jasm, $5);
+			strcat(jasm, " ");
+			strcat(jasm, $3);
+			strcat(jasm, " = ");
+			strcat(jasm, $8);
+			strcat(jasm, "\n");
+		}
+		is_assigning = 0;
+	}
+
+	| LET MUT IDENTIFIER'['type_specifier','value_declaration']' ';'{
+		insert($3,"array",$5);
+	}
+	;
+	// : LET IDENTIFIER '=' value_declaration ';'{
+	// 	is_assigning=1;
+	// 	insert($2, "const" , $4);
+	// 	is_assigning=0;
+
+	// }
+	// | LET IDENTIFIER ':'type_specifier'='value_declaration ';'{
+	// 	insert($2,$4,$6);
+	// }
+	// | LET MUT IDENTIFIER '=' value_declaration ';'{
+	// 	insert($3,"",$5);
+	// 	if(lookup($3,0)>=0)
+	// 	{
+
+	// 		is_assigning=1;
+	// 		strcat(jasm,"\tfiled static ");
+	// 		strcat(jasm,"interger");
+	// 		strcat(jasm," ");
+	// 		strcat(jasm,$3);
+	// 		strcat(jasm," = ");
+	// 		strcat(jasm,$5);
+	// 		strcat(jasm,"\n");
+	// 	}
+	// }
+	// | LET MUT IDENTIFIER ':'type_specifier'='value_declaration ';'{
+	// 	is_assigning=1;
+	// 	insert($3,$5,"");
+	// 	if(lookup($3,0)>=0)
+	// 	{
+	// 		is_assigning=1;
+	// 		strcat(jasm,"\tfiled static ");
+	// 		strcat(jasm,$5);
+	// 		strcat(jasm," ");
+	// 		strcat(jasm,$3);
+	// 		strcat(jasm," = ");
+	// 		strcat(jasm,$7);
+	// 		strcat(jasm,"\n");
+	// 	}
+	// 	is_assigning=0;
+	// }
+	// | LET MUT IDENTIFIER'['type_specifier','value_declaration']' ';'{
+	// 	insert($3,"array",$5);
+	// }
+	// | LET MUT IDENTIFIER ';'{
+ //    	insert( $3, "int", "" );
+ //    	if(lookup($3,0)>=0)
+ //    	{
+ //    		strcat(jasm,"\tfiled static ");
+ //    		strcat(jasm,"interger");
+ //    		strcat(jasm," ");
+ //    		strcat(jasm,$3);
+ //    		strcat(jasm,"\n");
+ //    	}
+	// }
+	// | LET MUT IDENTIFIER ':' type_specifier ';'{
+ //    	insert($3 , $5 , "" );
+ //    	//global variable
+ //    	if(lookup($3,0)>=0)
+	// 	{
+	// 		strcat(jasm,"\tfiled static ");
+	// 		strcat(jasm,$5);
+	// 		strcat(jasm, " ");
+	// 		strcat(jasm,$3);
+	// 		strcat(jasm,"\n");
+	// 	}
+	// 	is_assigning=0;
+	// }
+	// ;
 
 declaration_list
 : declaration
@@ -508,9 +606,6 @@ FOR  '('  assignment_expression ';' {strcat(jasm, "\tLtest:\n");} relational_exp
 
 ;
 
-jump_statement
-: GO IDENTIFIER '(' expression_statement ')'
-;
 
 statement_list
 : statement
@@ -522,14 +617,12 @@ statement
 | expression_statement
 | selection_statement
 | iteration_statement
-| jump_statement
 ;
 
 func_expression:
-FUNC {
+	FN {
 	itemDepth = 0;
-};
-
+	};
 add_main_func_first:
 {
 	strcat(jasm, "\tmethod public static void main(java.lang.String[])\n\tmax_stack 15\n\tmax_locals 15\n\t{\n");
@@ -562,11 +655,23 @@ function_definition:
 		strcat(jasm, ")\n");
 		strcat(jasm, "\tmax_stack 15\n\tmax_locals 15\n\t{\n");
 	} 
-	block_stament {
+	'{'statement_list '}'{
 	 	strcat(jasm, "\t}\n");
 	 	now_fun_index--;
  	}
+ 	| func_expression  IDENTIFIER '('')' 
+	{insert($2,"","");now_fun_index++;}
+	 add_main_func_first  compound_start  statement_list  compound_end 
+	 {
+	 	if (strcmp($2,"main")==0)
+	 	{
+	 		strcat(jasm,"\t\treturn\n\t}\n");
+	 		/* code */
+	 	}
+	 	now_fun_index--;
+	 }
 
+;
 	 /*func_expression  type_specifier IDENTIFIER  '(' 
 	{
 		insert($3, $2, "");
@@ -620,609 +725,7 @@ program
 : external_declaration
 | program external_declaration
 ;
-
-// EQU_express
-// 	: re_expression
-// 	| EQU_express EQ_OP re_expression
-// 	| EQU_express NE_OP re_expression
-// 	;
-
-// assignment_expression
-// 	| inclusive_or_expression '=' assignment_expression
-// 	{
-// 		is_assigning=1;
-// 		if(strcmp($3,"\t\tisub\n")==0|strcmp($3,"\t\tiadd\n")==0)
-// 		{
-// 			strcat(jasm,$3);
-// 		}
-// 		int is_found_ident=0;
-// 		int tempdepth=depth;
-// 		temp_fun_index=now_fun_index;
-// 		if (temp_fun_index!=0)
-// 		{
-// 			while(tempdepth>=-1){
-// 				int index_depth=lookup($1,tempdepth);
-// 				if(index_depth>=0){
-// 					strcat(jasm,"\t\tistore");
-// 					char index_depth_str[10];
-// 					sprintf(index_depth_str,"%d",index_depth);
-// 					strcat(jasm,index_depth_str);
-// 					strcat(jasm,"\n");
-// 					is_found_ident=-1;
-// 					break;
-// 				}
-// 				tempdepth--;
-
-// 			}
-// 			temp_fun_index=0;
-// 		}
-// 		if (is_found_ident==0)
-// 		{
-// 			if(strcmp(lookup_const($1),"")!=0)
-// 			{
-
-// 			}
-// 			else if(lookup($1,0)>=0)
-// 			{
-// 				strcat(jasm,"\t\tpusstatic int rust_test.");
-// 				strcat(jasm,$1);
-// 				strcat(jasm,"\n");
-// 			}
-// 			else{
-// 				strcat(jasm,"\t\tsipush");
-// 				strcat(jasm,$1);
-// 				strcat(jasm,"\n");
-// 			}
-// 			else{
-// 				strcat(jasm,"\t\tsipush ");
-// 				strcat(jasm,$1);
-// 				strcat(jasm,"\n");
-// 			}
-
-// 		}
-// 		is_assigning=0;
-// 	}
-// 	;
-	
-// inclusive_or_expression
-// 	: and_expression
-// 	| inclusive_or_expression OR_OR and_expression
-	
-// 	;
-// re_expression
-// 	: additive_expression
-// 	| re_expression '<' pre_expression
-// 	{
-// 		if (lookup($1, 0) >= 0)
-// 		{
-// 			strcat(jasm, "\tgetstatic int go_test.");
-// 			strcat(jasm, $1);
-// 			strcat(jasm, "\n");
-// 			strcat(jasm, "\tsipush ");
-// 			strcat(jasm, $3);
-// 			strcat(jasm, "\n");
-// 			strcat(jasm, "\tisub\n");
-// 			strcat(jasm, "\tiflt ");
-// 		}
-// 		else{
-// 			strcat(jasm, "\tiload ");
-// 			strcat(jasm, $1);
-// 			strcat(jasm, "\n");
-// 			strcat(jasm, "\tsipush ");
-// 			strcat(jasm, $3);
-// 			strcat(jasm, "\n");
-// 			strcat(jasm, "\tisub\n");
-// 			strcat(jasm, "\tiflt ");
-// 		}
-// 	}
-// 	| re_expression GE_OP pre_expression
-// 	| re_expression '>' pre_expression
-// 	{
-// 		strcat(jasm, "\t\tisub\n");
-// 		strcat(jasm, "\t\tifgt ");
-// 	}
-// 	| re_expression LE_OP pre_expression
-// 	{
-// 		strcat(jasm, "\t\tisub\n");
-// 		strcat(jasm, "\t\tifle ");
-// 	}
-// 	;
-// and_expression
-// 	: EQU_express
-// 	| and_expression AND_AND EQU_express
-// 	;
-
-// pre_expression
-// 	: val_delecation
-// 	| Delector_list 
-// 	| pre_expression val_delecation 
-// 	| pre_expression Delector_list
-// 	;
-
-// expression_sta
-// 	:  expression 
-// 	;
-// expression
-// 	: unary_expression
-// 	| assignment_expression
-// 	| expression assignment_expression
-// 	| relational_expression
-// 	| expression relational_expression
-// 	| IDENTIFIER '=' IDENTIFIER '(' declarator_list  ')'
-// 	{
-// 		strcat(jasm, "\t\tinvokestatic int go_test.");
-// 		strcat(jasm, $3);
-// 		strcat(jasm, "(");
-// 		strcat(jasm, "int,int");
-// 		strcat(jasm, ")");
-// 		strcat(jasm, "\n");
-
-// 			if (lookup($1, 0) >= 0)
-// 			{
-// 				strcat(jasm, "\t\tputstatic int go_test.");
-// 			}
-// 			else{
-// 				strcat(jasm, "\t\tistore ");
-// 			}
-
-// 			strcat(jasm, $1);
-// 			strcat(jasm, "\n");
-// 	}
-// 	/*: assignment_expression
-// 	| '(' assignment_expression ')'
-// 	| expression assignment_expression
-// 	;*/
-// U_nary
-
-// 	: pre_expression
-// 	| '-' pre_expression
-// 	{
-// 			if (is_print == 1)
-// 		{
-// 			strcpy(unary_symbol,"\t\tineg\n");
-// 		}
-// 	}
-// 	;
-
-// multp_expression
-// 	: U_nary
-// 	| multp_expression '*' U_nary
-// 	{
-// 		char tempjasm[10010]="";
-// 		int is_found_ident=0;
-// 		int temp depth=depth;
-// 		temp_fun_index=now_fun_index;
-// 		strcat(tempjasm,"\t\timul\n");
-// 		strcpy($$,tempjasm)
-// 	}
-// 	| multp_expression '/' U_nary
-// 	{
-// 		char tempjasm[10010]="";
-// 		int is_found_ident=0;
-// 		int temp depth=depth;
-// 		temp_fun_index=now_fun_index;
-// 		strcat(tempjasm,"\t\tidiv\n");
-// 		strcpy($$,tempjasm)
-// 	}
-// 	;
-
-// additive_expression
-// 		: declarator/*multp_expression*/
-// 	| additive_expression '+' multp_expression
-// 	{
-// 		char tempjasm[10010]="";
-// 		int is_found_ident=0;
-// 		int temp depth=depth;
-// 		temp_fun_index=now_fun_index;
-// 		strcat(tempjasm,"\t\tiadd\n");
-// 		strcpy($$,tempjasm)
-// 	}
-// 	| additive_expression '-' multp_expression
-// 	{
-// 		char tempJasm[1000] = "";
-// 		int is_found_ident = 0;
-// 		int tempdepth = itemDepth;
-
-// 		temp_fun_index = now_fun_index;
-// 		strcat(tempJasm, "\t\tisub\n");
-// 		strcpy($$, tempJasm);
-// 	}
-// 	;
-
-// Delector_list
-// 	: declarator
-// 	| Delector_list '(' Delector_list ')' 
-// 	| Delector_list ',' Delector_list
-// 	;
-
-// declarator
-// 	: IDENTIFIER  
-// 	{
-// 		int is_found_ident = 0;
-// 		int tempdepth = depth;
-// 		temp_fun_index = now_fun_index;
-
-// 		if(temp_fun_index != 0){
-// 			while(tempdepth > -1){
-// 				int index_depth = lookup($1, tempdepth);
-// 				if(index_depth >= 0)
-// 				{
-// 					strcat(jasm, "\t\tiload ");
-// 					char index_depth_str[10];
-// 					sprintf(index_depth_str, "%d" , index_depth);
-
-// 					strcat(jasm, index_depth_str);
-// 					strcat(jasm, "\n");
-// 					is_found_ident = 1;
-// 					break;
-// 				}
-// 				tempdepth--;
-// 			}
-// 			temp_fun_index = 0;
-// 		}
-
-// 		if (is_found_ident == 0)
-// 		{
-// 			if (lookup($1, 0) >= 0)
-// 			{
-// 				strcat(jasm, "\t\tgetstatic int go_test.");
-// 				strcat(jasm, $1);
-				
-// 			}
-// 			else if(strcmp(lookup_const($1), "") != 0)
-// 			{
-// 				strcat(jasm, "\t\tsipush ");
-// 				strcat(jasm, lookup_const($1));
-// 				strcpy($1, lookup_const($1));
-// 			}
-// 			else{
-// 				strcat(jasm, "\t\tsipush ");
-// 				strcat(jasm, $1);
-// 			}
-			
-// 			strcat(jasm, "\n");
-// 		}
-
-// 		if (is_print == 1)
-// 		{		
-// 			is_print = 2;
-// 			strcat(jasm, unary_symbol);
-// 			memset(unary_symbol,0,strlen(unary_symbol));
-// 		}
-// 	} 
-// 	| val_delecation 
-// 	;
-
-// type_specifier
-// 	: BOOL
-// 	| INT
-// 	| VOID
-// 	| STR
-// 	| FLOAT
-// 	;
-
-// add_main_func_first:
-// {
-// 	strcat(jasm, "\tmethod public static void main(java.lang.String[])\n\tmax_stack 15\n\tmax_locals 15\n\t{\n");
-// };
-// parameter_list
-// 	: parameter_declaration
-// 	| parameter_list ',' parameter_declaration
-// 	;
-// parameter_declaration
-// 	: IDENTIFIER ':' type_specifier 
-// 	{
-// 		insert($1, $3 , "");
-// 	}
-// 	;
-// func_expression:
-// 	FN {
-// 		isShouldAdd = 0;
-// 		depth++;
-// 	};
-// function_definition:
-// 	func_expression IDENTIFIER '(' parameter_list ')' OP_LE type_specifier
-// 	{	
-// 		memset(temp_parameter,0,strlen(temp_parameter)); 
-// 		now_fun_index++; 
-// 		function_index++;
-// 		insert($2,$7,"");
-// 		strcat (jasm,"\tmethod public static ");
-// 		strcat (jasm,$2);
-// 		strcat (jasm," ");
-// 		strcat (jasm,$2);
-// 		strcat(jasm,"(");
-	
-// 		for (int i = 0; i < sizeof(temp_parameter)/sizeof(temp_parameter[0]); ++i)
-// 			{
-// 				if (temp_parameter[i] == 0)
-// 				{
-// 					temp_parameter[i-1] = '\0';
-// 					break;
-// 				}
-// 			}
-// 		strcat(jasm,temp_parameter);
-// 		strcat(jasm,")\n");
-// 		strcat(jasm,"\tmax_stack 15\n\tmax_locals 15\n\t{\n");
-// 	}
-// 	'{' statement_list '}'
-// 	{ 
-// 		strcat (jasm,"\t}\n");
-// 		now_fun_index--;
-// 	}
-// 	| func_expression  IDENTIFIER '('')' 
-// 	{insert($2,"","");now_fun_index++;}
-// 	 add_main_func_first  block_start  statement_list  block_end 
-// 	 {
-// 	 	if (strcmp($2,"main")==0)
-// 	 	{
-// 	 		strcat(jasm,"\t\treturn\n\t}\n");ss
-// 	 		/* code */
-// 	 	}
-// 	 	now_fun_index--;
-// 	 }
-	
-// 	/*:func_expression IDENTIFIER '('parameter_list')'  OP_LE type_specifier block_stament
-// 	{
-// 		insert($2,$7,"");
-// 	}*/
-// 	/*|func_expression IDENTIFIER '(' parameter_list ')' block_stament 
-// 	{
-// 		insert($2, "", "");
-// 	}
-// 	|func_expression IDENTIFIER '('  ')'  OP_LE type_specifier block_stament
-// 	{
-// 		insert($2, $6, "");
-// 	}
-// 	| func_expression IDENTIFIER '('  ')'   block_stament
-// 	{	{
-
-// 		insert($2, "", "");
-// 	}*/
-// 	;
-// val_delecation
-// 	: STR   {
-// 		strcat(jasm, "\t\tldc ");
-// 		strcat(jasm, "\"");
-// 		strcat(jasm, $1);
-// 		strcat(jasm, "\"");
-// 		strcat(jasm, "\n");
-// 	}
-// 	| TRUE {
-// 		strcpy($$, $1);
-// 	}
-// 	| FALSE {
-// 		strcpy($$, $1);
-// 	}
-// 	| INTEGER 
-// 	{
-// 		/*char tempStr[50];
-// 		sprintf( tempStr, "%d", $1 );
-
-// 		if (is_assigning == 0)
-// 		{
-// 			if (is_print != 1)
-// 			{
-// 				strcat(jasm, "\t\tsipush ");
-// 				strcat(jasm, tempStr);
-// 				strcat(jasm, "\n");
-// 			}
-// 		}
-// 		else{
-// 			strcpy($$, tempStr);
-// 		}*/
-		
-// 		char tempStr[50];
-// 		sprintf( tempStr, "%d", $1 );
-// 		strcpy($$, tempStr);
-// 	}
-// 	| REALCONSTANTS 
-// 	{
-		
-// 		char tempStr[50];
-// 		sprintf( tempStr, "%g", $1 );
-// 		strcpy($$, tempStr);
-// 	};
-
-// block_start
-// 	: '{'
-// 	{
-// 		if (isShouldAdd == 1)
-// 		{
-// 			depth++;
-// 		}
-// 		else{
-// 			isShouldAdd++;
-// 		}
-// 	}
-// 	;
-	
-// block_stament
-// 		//: block_start statement_list block_end
-// 		// | block_start declaration_list block_end
-// 		// | block_start declaration_list statement_list block_end
-// 		// | block_start block_end
-// 	:|  {strcat(jasm, "\tLbody:\n");strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm,"\tLexit:\n");depth--;}  
-// 	| {strcat(jasm, "\tLbody:\n");} statement_list {strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm,"\tLexit:\n");depth--;}  
-// 	;
-	
-// block_end
-// 	: '}'
-// 	{
-// 		depth--;
-// 	}
-// 	;
-// If_After_Check:
-// 	{
-// 		strcat(jasm, " \tL0\n");
-// 		strcat(jasm, "\t\ticonst_0\n");
-// 		strcat(jasm, "\t\tgoto Lfalse\n");
-// 		strcat(jasm, "\tL0:\n");
-// 		strcat(jasm, "\t\ticonst_1\n");
-// 		strcat(jasm, "\tL1:\n");
-// 		strcat(jasm, "\t\tifeq L2\n");
-// 	}
-// 	;
-
-// 	If_After_Ltrue:
-// 	{
-// 		strcat(jasm, "\t\tgoto L3\n");
-// 		strcat(jasm, "\tL2:");
-// 	};
-// selection_statement
-// 	: IF '('  expression If_After_Check ')'  '{'  statement_list  '}' If_After_Ltrue ELSE '{'  statement_list  '}' {strcat(jasm, "\tL3:\n");} 
-// statement_list
-// 	: statement
-// 	{
-// 		statment_number=statment_number+1;
-// 	}
-// 	| statement_list statement
-// 	;
-// iteration_statement
-// 	: FOR '(' expression_sta ')' statement
-// 	| FOR '(' expression_sta ";" expression_sta ')' statement
-// 	| FOR '(' expression_sta ";"  expression_sta ";"  expression_sta ')' statement
-// 	;
-
-
-// statement
-// 	: simple_statment
-// 	| expression_sta 
-// 	| selection_statement 
-// 	| iteration_statement
-// 	| while_srarement
-// 	;
-// while_srarement
-// 	:WHILE '(' expression ')' block_stament
-// 	;
-// simple_statment
-// 	: IDENTIFIER '[' INTEGER ']' '=' expression ';'
-// 	| IDENTIFIER '=' expression  ';'
-// 	| PRINT 
-// 	{
-// 		is_print=1;
-// 		strcat(jasm, "\n\t\tgetstatic java.io.PrintStream java.lang.System.out\n");
-// 	}
-// 	expression
-// 	{
-// 		if(is_print==2)
-// 			{strcat(jasm, "\t\tinvokevirtual void java.io.PrintStream.print(int)\n");
-// 	}
-// 	else
-// 		{
-// 			strcat(jasm, "\t\tinvokevirtual void java.io.PrintStream.print(java.lang.String)\n");
-// 		}
-// 		is_print=0;
-// 	} ';'
-// 	| PRINTLN {	
-// 		is_print = 1;
-// 		strcat(jasm, "\t\tgetstatic java.io.PrintStream java.lang.System.out\n");}
-// 	expression 
-// 	{
-// 		if(is_print==2)
-// 		{
-// 			strcat(jasm,"\t\tinvokevirtual void java.io.PrintStream.println(java.lang.String)\n");
-// 		}
-// 		else{
-// 			strcat(jasm,"\t\tinvokevirtual void java.io.PrintStream.println(java.lang.String)\n");
-// 		}
-// 		is_print=0;
-// 	}
-// 	';'
-// 	| RETURN ';'
-// 	| RETURN expression  ';'
-// 		{
-// 			strcat(jasm, $2);
-// 			strcat(jasm, "\t\tireturn\n");
-// 		}
-// 	;
-
-
-// declaration_list
-// 	: declaration 
-// 	| declaration_list declaration 
-// 	;
-
-// declaration
-// 	: LET IDENTIFIER '=' val_delecation ';'{
-// 		is_assigning=1;
-// 		insert($2, "const" , $4);
-// 		is_assigning=0;
-
-// 	}
-// 	| LET IDENTIFIER ':'type_specifier'='val_delecation ';'{
-// 		insert($2,$4,$6);
-// 	}
-// 	| LET MUT IDENTIFIER '=' val_delecation ';'{
-// 		insert($3,"",$5);
-// 		if(lookup($3,0)>=0)
-// 		{
-
-// 			is_assigning=1;
-// 			strcat(jasm,"\tfiled static ");
-// 			strcat(jasm,"interger");
-// 			strcat(jasm," ");
-// 			strcat(jasm,$3);
-// 			strcat(jasm," = ");
-// 			strcat(jasm,$5);
-// 			strcat(jasm,"\n");
-// 		}
-// 	}
-// 	| LET MUT IDENTIFIER ':'type_specifier'='val_delecation ';'{
-// 		is_assigning=1;
-// 		insert($3,$5,"");
-// 		if(lookup($3,0)>=0)
-// 		{
-// 			is_assigning=1;
-// 			strcat(jasm,"\tfiled static ");
-// 			strcat(jasm,$5);
-// 			strcat(jasm," ");
-// 			strcat(jasm,$3);
-// 			strcat(jasm," = ");
-// 			strcat(jasm,$7);
-// 			strcat(jasm,"\n");
-// 		}
-// 		is_assigning=0;
-// 	}
-// 	| LET MUT IDENTIFIER'['type_specifier','val_delecation']' ';'{
-// 		insert($3,"array",$5);
-// 	}
-// 	| LET MUT IDENTIFIER ';'{
-//     	insert( $3, "int", "" );
-//     	if(lookup($3,0)>=0)
-//     	{
-//     		strcat(jasm,"\tfiled static ");
-//     		strcat(jasm,"interger");
-//     		strcat(jasm," ");
-//     		strcat(jasm,$3);
-//     		strcat(jasm,"\n");
-//     	}
-// 	}
-// 	| LET MUT IDENTIFIER ':' type_specifier ';'{
-//     	insert($3 , $5 , "" );
-//     	//global variable
-//     	if(lookup($3,0)>=0)
-// 		{
-// 			strcat(jasm,"\tfiled static ");
-// 			strcat(jasm,$5);
-// 			strcat(jasm, " ");
-// 			strcat(jasm,$3);
-// 			strcat(jasm,"\n");
-// 		}
-// 		is_assigning=0;
-// 	}
-// 	;
-// EX_delection
-// 	: function_definition
-// 	| declaration_list	
-// 	| IDENTIFIER '(' Delector_list ')'
-// 	;
-
-// program
-// 	: EX_delection	
-// 	| program EX_delection	
-// 	;
-// %%
+%%
 void yyerror(const char *str){
     printf("error:%s\n",str);
 }
@@ -1255,7 +758,7 @@ int main()
   		printf("statment_number wrong\n");
   	}
   	return 0;*/
-  		depth = 0;
+  		itemDepth = 0;
 		hashArray = create();
 
 		strcat(jasm, "class go_test\n{\n ");
