@@ -149,14 +149,14 @@ multp_expression
 
 additive_expression
 	: multp_expression
-	| additive_expression '+' declarator
+	| additive_expression '+' multp_expression
 	{
 		char tempjasm[10010]="";
 		int is_found_ident=0;
 		int temp depth=depth;
 		temp_fun_index=now_fun_index;
 		strcat(tempjasm,"\t\tiadd\n");
-		strcpy($$,tempjasm);
+		strcpy($$,tempjasm)
 	}
 	| additive_expression '-' multp_expression
 	;
