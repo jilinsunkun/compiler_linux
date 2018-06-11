@@ -2266,7 +2266,7 @@ yyreduce:
 
   case 96:
 #line 721 "yacc.y" /* yacc.c:1646  */
-    {insert((yyvsp[-2].val),"","");now_fun_index++;}
+    {insert((yyvsp[-2].val),"","");now_fun_index++;function_index++;}
 #line 2271 "y.tab.c" /* yacc.c:1646  */
     break;
 

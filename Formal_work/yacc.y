@@ -718,7 +718,7 @@ function_definition:
 	 	strcat(jasm, "\t}\n");
 	 	now_fun_index--;
  	}
- 	| func_expression  IDENTIFIER '('')' {insert($2,"","");now_fun_index++;} add_main_func_first  compound_start  statement_list  compound_end 
+ 	| func_expression  IDENTIFIER '('')' {insert($2,"","");now_fun_index++;function_index++;} add_main_func_first  compound_start  statement_list  compound_end 
 	 {
 	 	if (strcmp($2,"main")==0)
 	 	{
