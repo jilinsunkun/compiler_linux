@@ -42,6 +42,13 @@ EQU_express
 assignment_expression
 	: inclusive_or_expression
 	| inclusive_or_expression '=' assignment_expression
+	{
+		is_assigning=1;
+		if(strcmp($3,"\t\tisub\n")==0|strcmp($3,"\t\tiadd\n")==0)
+		{
+			strcat(jasm,$3);
+		}
+	}
 	;
 	
 inclusive_or_expression
