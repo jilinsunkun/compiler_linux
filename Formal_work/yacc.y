@@ -24,7 +24,7 @@
 %token LET BREAK CHAR CONTINUE DO ELSE ENUM EXTERN  FLOAT  FOR FN  IF IN 
 %token <int_type> INTEGER
 %token <double_type> REALCONSTANTS 
-%token <val> STR TRUE FALSE IDENTIFIER BOOL STRINGKEYWORD REAL INT VOID
+%token <val> STR TRUE FALSE IDENTIFIER BOOL  REAL INT VOID
 %token LOOP MATCH MUT PRINT PRINTLN PUB RETURN SELF STATIC  WHERE USE WHILE 
 %token CONST VAR
 
@@ -50,21 +50,10 @@ value_declaration
 }
 | INTEGER
 {
-	char tempStr[50];
-	sprintf( tempStr, "%d", $1 );
-
-	if (is_assigning == 0)
-	{
-		if (is_print != 1)
-		{
-			strcat(jasm, "\t\tsipush ");
-			strcat(jasm, tempStr);
-			strcat(jasm, "\n");
-		}
-	}
-	else{
+		char tempStr[50];
+		sprintf( tempStr, "%d", $1 );
 		strcpy($$, tempStr);
-	}
+	
 }
 | REALCONSTANTS
 {
@@ -103,7 +92,7 @@ declarator
 	{
 		if (lookup($1, 0) >= 0)
 		{
-			strcat(jasm, "\t\tgetstatic int go_test.");
+			strcat(jasm, "\t\tgetstatic int rust_test.");
 			strcat(jasm, $1);
 			
 		}
@@ -133,9 +122,10 @@ declarator
 
 // when function be called
 declarator_list
-: declarator
-|  declarator ',' declarator_list
-;
+	: declarator
+	| declarator_list ',' declarator_list
+	;
+
 
 primary_expression
 : declarator_list
@@ -194,7 +184,7 @@ relational_expression
 {
 	if (lookup($1, 0) >= 0)
 	{
-		strcat(jasm, "\tgetstatic int go_test.");
+		strcat(jasm, "\tgetstatic int rust_test.");
 		strcat(jasm, $1);
 		strcat(jasm, "\n");
 		strcat(jasm, "\tsipush ");
@@ -257,7 +247,7 @@ assignment_expression
 		}
 		else if (lookup($1, 0) >= 0)
 		{
-			strcat(jasm, "\t\tputstatic int go_test.");
+			strcat(jasm, "\t\tputstatic int rust_test.");
 			strcat(jasm, $1);
 			strcat(jasm, "\n");
 			
@@ -278,9 +268,9 @@ expression
 | expression assignment_expression
 | relational_expression
 | expression relational_expression
-| IDENTIFIER '=' IDENTIFIER '(' declarator_list  ')'
+| IDENTIFIER '=' IDENTIFIER '(' declarator_list  ')' ';'
 {
-	strcat(jasm, "\t\tinvokestatic int go_test.");
+	strcat(jasm, "\t\tinvokestatic int rust_test.");
 	strcat(jasm, $3);
 	strcat(jasm, "(");
 	strcat(jasm, "int,int");
@@ -289,7 +279,7 @@ expression
 
 		if (lookup($1, 0) >= 0)
 		{
-			strcat(jasm, "\t\tputstatic int go_test.");
+			strcat(jasm, "\t\tputstatic int rust_test.");
 		}
 		else{
 			strcat(jasm, "\t\tistore ");
@@ -301,28 +291,74 @@ expression
 ;
 
 type_specifier
-: BOOL
-| STRINGKEYWORD
-| REAL
-| INT
-| VOID
-;
+	: BOOL
+	| INT
+	| VOID
+	| STR
+	| FLOAT
+	;
+
 
 // when funtion be defined
 parameter_list
 : parameter_declaration
 | parameter_list ','  parameter_declaration 
 ;
-parameter_declaration
-: IDENTIFIER type_specifier
-{
-	insert($1, $2 , "");
-	strcat(temp_parameter, $2);
-	strcat(temp_parameter, ",");
-};
 
+parameter_declaration
+	: IDENTIFIER ':' type_specifier 
+	{
+		insert($1, $3 , "");
+		strcat(temp_parameter, $3);
+		strcat(temp_parameter, ",");
+	}
+	;
+simple_statment
+	: IDENTIFIER '[' INTEGER ']' '=' expression ';'
+	| IDENTIFIER '=' expression  ';'
+	| PRINT 
+	{
+		is_print=1;
+		strcat(jasm, "\n\t\tgetstatic java.io.PrintStream java.lang.System.out\n");
+	}
+	expression
+	{
+		if(is_print==2)
+			{strcat(jasm, "\t\tinvokevirtual void java.io.PrintStream.print(int)\n");
+	}
+	else
+		{
+			strcat(jasm, "\t\tinvokevirtual void java.io.PrintStream.print(java.lang.String)\n");
+		}
+		is_print=0;
+	} ';'
+	| PRINTLN {	
+		is_print = 1;
+		strcat(jasm, "\t\tgetstatic java.io.PrintStream java.lang.System.out\n");}
+	expression 
+	{
+		if(is_print==2)
+		{
+			strcat(jasm,"\t\tinvokevirtual void java.io.PrintStream.println(java.lang.String)\n");
+		}
+		else{
+			strcat(jasm,"\t\tinvokevirtual void java.io.PrintStream.println(java.lang.String)\n");
+		}
+		is_print=0;
+	}
+	';'
+	| RETURN ';'
+	| RETURN expression  ';'
+		{
+			strcat(jasm, $2);
+			strcat(jasm, "\t\tireturn\n");
+		}
+	;
+
+/*
 simple_statment
 : IDENTIFIER '[' INTEGER ']' '=' expression
+| declaration
 | PRINT
 {
 	is_print = 1;
@@ -363,7 +399,7 @@ expression
 	strcat(jasm, "\t\tireturn\n");
 }
 ;
-
+*/
 compound_start
 : '{'
 {
@@ -385,34 +421,49 @@ declaration
 		insert($3, "const" , $5);
 		is_assigning = 0;
 	}
-	| LET IDENTIFIER ':'type_specifier'='value_declaration ';'{
-		insert($2,$4,$6);
+	| LET IDENTIFIER {is_assigning=1;}':'type_specifier'='value_declaration ';'{
+		insert($2,$5,$7);
 		//let a:int;
 	}
 	| LET MUT IDENTIFIER ';'
 	{
 		is_assigning=1;
+
+		
 		insert($3,"interger","0");
+		if (lookup($3, 0) >= 0)
+		{
+			// global variable
+			strcat(jasm, "\tfield static ");
+			strcat(jasm, "int");
+			strcat(jasm, " ");
+			strcat(jasm, $3);
+			strcat(jasm, "\n");
+		}
 		is_assigning=0;
 
 	}
 	| LET MUT IDENTIFIER '=' value_declaration ';'
 	{
 		//let mut a=9;
+		is_assigning = 1;
 		insert($3,"",$5);
 		if (lookup($3, 0) >= 0)
 		{
 			// global variable
 			strcat(jasm, "\tfield static ");
-			strcat(jasm, "INTEGER");
+			strcat(jasm, "int");
 			strcat(jasm, " ");
 			strcat(jasm, $3);
+			strcat(jasm,"=");
+			strcat(jasm,$5);
 			strcat(jasm, "\n");
 		}
 		is_assigning = 0;
 	}
 	| LET MUT IDENTIFIER ':'type_specifier {
 		//let mut a:int;
+		is_assigning = 1;
 		insert($3, $5, "");
 		if (lookup($3, 0) >= 0)
 		{
@@ -427,6 +478,7 @@ declaration
 	}
 	| LET MUT IDENTIFIER ':' type_specifier {is_assigning = 1;} '=' value_declaration {
 		//let mut a:int =10;
+		is_assigning = 1;
 		insert($3, $5, "");
 		if (lookup($3, 0) >= 0)
 		{
@@ -446,75 +498,7 @@ declaration
 		insert($3,"array",$5);
 	}
 	;
-	// : LET IDENTIFIER '=' value_declaration ';'{
-	// 	is_assigning=1;
-	// 	insert($2, "const" , $4);
-	// 	is_assigning=0;
-
-	// }
-	// | LET IDENTIFIER ':'type_specifier'='value_declaration ';'{
-	// 	insert($2,$4,$6);
-	// }
-	// | LET MUT IDENTIFIER '=' value_declaration ';'{
-	// 	insert($3,"",$5);
-	// 	if(lookup($3,0)>=0)
-	// 	{
-
-	// 		is_assigning=1;
-	// 		strcat(jasm,"\tfiled static ");
-	// 		strcat(jasm,"interger");
-	// 		strcat(jasm," ");
-	// 		strcat(jasm,$3);
-	// 		strcat(jasm," = ");
-	// 		strcat(jasm,$5);
-	// 		strcat(jasm,"\n");
-	// 	}
-	// }
-	// | LET MUT IDENTIFIER ':'type_specifier'='value_declaration ';'{
-	// 	is_assigning=1;
-	// 	insert($3,$5,"");
-	// 	if(lookup($3,0)>=0)
-	// 	{
-	// 		is_assigning=1;
-	// 		strcat(jasm,"\tfiled static ");
-	// 		strcat(jasm,$5);
-	// 		strcat(jasm," ");
-	// 		strcat(jasm,$3);
-	// 		strcat(jasm," = ");
-	// 		strcat(jasm,$7);
-	// 		strcat(jasm,"\n");
-	// 	}
-	// 	is_assigning=0;
-	// }
-	// | LET MUT IDENTIFIER'['type_specifier','value_declaration']' ';'{
-	// 	insert($3,"array",$5);
-	// }
-	// | LET MUT IDENTIFIER ';'{
- //    	insert( $3, "int", "" );
- //    	if(lookup($3,0)>=0)
- //    	{
- //    		strcat(jasm,"\tfiled static ");
- //    		strcat(jasm,"interger");
- //    		strcat(jasm," ");
- //    		strcat(jasm,$3);
- //    		strcat(jasm,"\n");
- //    	}
-	// }
-	// | LET MUT IDENTIFIER ':' type_specifier ';'{
- //    	insert($3 , $5 , "" );
- //    	//global variable
- //    	if(lookup($3,0)>=0)
-	// 	{
-	// 		strcat(jasm,"\tfiled static ");
-	// 		strcat(jasm,$5);
-	// 		strcat(jasm, " ");
-	// 		strcat(jasm,$3);
-	// 		strcat(jasm,"\n");
-	// 	}
-	// 	is_assigning=0;
-	// }
-	// ;
-
+	
 declaration_list
 : declaration
 | declaration_list declaration
@@ -622,6 +606,7 @@ statement
 func_expression:
 	FN {
 	itemDepth = 0;
+
 	};
 add_main_func_first:
 {
@@ -629,17 +614,14 @@ add_main_func_first:
 };
 
 function_definition:
-	func_expression IDENTIFIER '('parameter_list')'  OP_LE type_specifier
+	func_expression IDENTIFIER '('{memset(temp_parameter,0,strlen(temp_parameter));now_fun_index++;function_index++;}parameter_list')'  OP_LE type_specifier
 	{
-		insert($2,$7,"");
-		memset(temp_parameter,0,strlen(temp_parameter));
-		now_fun_index++;
-		function_index++;
+		insert($2,$8,"");
 
 		strcat(jasm, "\tmethod public static ");
 		strcat(jasm, $2);
 		strcat(jasm, " ");
-		strcat(jasm, $7);
+		strcat(jasm, $8);
 		strcat(jasm, "(");
 
 		for (int i = 0; i < sizeof(temp_parameter)/sizeof(temp_parameter[0]); ++i)
@@ -659,9 +641,7 @@ function_definition:
 	 	strcat(jasm, "\t}\n");
 	 	now_fun_index--;
  	}
- 	| func_expression  IDENTIFIER '('')' 
-	{insert($2,"","");now_fun_index++;}
-	 add_main_func_first  compound_start  statement_list  compound_end 
+ 	| func_expression  IDENTIFIER '('')' {insert($2,"","");now_fun_index++;} add_main_func_first  compound_start  statement_list  compound_end 
 	 {
 	 	if (strcmp($2,"main")==0)
 	 	{
@@ -672,53 +652,11 @@ function_definition:
 	 }
 
 ;
-	 /*func_expression  type_specifier IDENTIFIER  '(' 
-	{
-		insert($3, $2, "");
-		memset(temp_parameter,0,strlen(temp_parameter));
-		now_fun_index++;
-		function_index++;
-	}
-	 parameter_list ')'  
-	{
-		strcat(jasm, "\tmethod public static ");
-		strcat(jasm, $2);
-		strcat(jasm, " ");
-		strcat(jasm, $3);
-		strcat(jasm, "(");
-
-		for (int i = 0; i < sizeof(temp_parameter)/sizeof(temp_parameter[0]); ++i)
-		{
-			if (temp_parameter[i] == 0)
-			{
-				temp_parameter[i-1] = '\0';
-				break;
-			}
-		}
-		
-		strcat(jasm, temp_parameter);
-		strcat(jasm, ")\n");
-		strcat(jasm, "\tmax_stack 15\n\tmax_locals 15\n\t{\n");
-	}  
-	 '{'  statement_list  '}' 
-	 {
-	 	strcat(jasm, "\t}\n");
-	 	now_fun_index--;
-	 }
-
-	| func_expression type_specifier IDENTIFIER '(' {now_fun_index++;function_index++;} ')' {insert($3, $2, "");now_fun_index++;} add_main_func_first  compound_start  statement_list  compound_end 
-	{
-		if (strcmp($3, "main") == 0)
-		{
-			strcat(jasm, "\t\treturn\n\t}\n");
-		}
-	 	now_fun_index--;
-	}
-	;
-*/
+	
 external_declaration
-: function_definition
-| declaration_list
+	: function_definition
+	| declaration_list
+	| IDENTIFIER '(' declarator_list ')' 
 ;
 
 program
@@ -758,39 +696,39 @@ int main()
   		printf("statment_number wrong\n");
   	}
   	return 0;*/
-  		itemDepth = 0;
-		hashArray = create();
+	itemDepth = 0;
+	hashArray = create();
 
-		strcat(jasm, "class go_test\n{\n ");
-		yyparse();
+	strcat(jasm, "class rust_test\n{\n ");
+	yyparse();
 
-		printf("\n\n%s\n", "------ Symbol Table: ------");
-		printf("%-*s:%-*s%-*s%-*s%-*s%-*s\n", 5, "Index:", 15, "Name", 15, "Type", 20, "Value", 15, "Fun_index", 5, "Depth");
-		dump();
+	printf("\n\n%s\n", "------ Symbol Table: ------");
+	printf("%-*s:%-*s%-*s%-*s%-*s%-*s\n", 5, "Index:", 15, "Name", 15, "Type", 20, "Value", 15, "Fun_index", 5, "Depth");
+	dump();
 
-		printf("\n\n%s\n", "------ Write Java Assembly Code Into go_test.jasm ------");
-		strcat(jasm, "}\n");
-		
-		FILE *fpt;
-		char file_name[100];
-		fpt = fopen("go_test.jasm", "w"); 
-		fprintf(fpt, jasm);
-		fclose(fpt);
+	printf("\n\n%s\n", "------ Write Java Assembly Code Into rust_test.jasm ------");
+	strcat(jasm, "}\n");
+	
+	FILE *fpt;
+	char file_name[100];
+	fpt = fopen("rust_test.jasm", "w"); 
+	fprintf(fpt, jasm);
+	fclose(fpt);
 
-		char command[100] = "";
-		printf("\n\n%s\n", "------ Convert go_test.jasm To go_test.class By javaa program------");
-		strcat(command, "./javaa go_test.jasm");
-		printf("%s%s\n\n", "Execute linux command1: ", command);
-		system(command);
+	char command[100] = "";
+	printf("\n\n%s\n", "------ Convert rust_test.jasm To rust_test.class By javaa program------");
+	strcat(command, "./javaa rust_test.jasm");
+	printf("%s%s\n\n", "Execute linux command1: ", command);
+	system(command);
 
-		// clear the command string 
-		memset(command, '\0', sizeof(command)-1);
+	// clear the command string 
+	memset(command, '\0', sizeof(command)-1);
 
-		printf("\n\n%s\n", "------ Result After Run go_test.class ------");
-		strcat(command, "java go_test");
-		printf("%s%s\n\n", "Execute linux command2: ", command);
-		system(command);
-		return 0;
+	printf("\n\n%s\n", "------ Result After Run rust_test.class ------");
+	strcat(command, "java rust_test");
+	printf("%s%s\n\n", "Execute linux command2: ", command);
+	system(command);
+	return 0;
 }
 
 

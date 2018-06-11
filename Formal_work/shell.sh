@@ -1,3 +1,3 @@
 make clean
 make
-./a.out<test.rust
+./a.out<exampe.rust

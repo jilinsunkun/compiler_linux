@@ -5,9 +5,9 @@
 // variables
 
 
-	let mut c;
+	let mut c=10;
 fn main() 
 {
 
-	let mut c;
+	let mut c=10;
 }

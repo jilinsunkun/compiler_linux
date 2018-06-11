@@ -79,24 +79,23 @@ extern int yydebug;
     FALSE = 289,
     IDENTIFIER = 290,
     BOOL = 291,
-    STRINGKEYWORD = 292,
-    REAL = 293,
-    INT = 294,
-    VOID = 295,
-    LOOP = 296,
-    MATCH = 297,
-    MUT = 298,
-    PRINT = 299,
-    PRINTLN = 300,
-    PUB = 301,
-    RETURN = 302,
-    SELF = 303,
-    STATIC = 304,
-    WHERE = 305,
-    USE = 306,
-    WHILE = 307,
-    CONST = 308,
-    VAR = 309
+    REAL = 292,
+    INT = 293,
+    VOID = 294,
+    LOOP = 295,
+    MATCH = 296,
+    MUT = 297,
+    PRINT = 298,
+    PRINTLN = 299,
+    PUB = 300,
+    RETURN = 301,
+    SELF = 302,
+    STATIC = 303,
+    WHERE = 304,
+    USE = 305,
+    WHILE = 306,
+    CONST = 307,
+    VAR = 308
   };
 #endif
 /* Tokens.  */
@@ -134,24 +133,23 @@ extern int yydebug;
 #define FALSE 289
 #define IDENTIFIER 290
 #define BOOL 291
-#define STRINGKEYWORD 292
-#define REAL 293
-#define INT 294
-#define VOID 295
-#define LOOP 296
-#define MATCH 297
-#define MUT 298
-#define PRINT 299
-#define PRINTLN 300
-#define PUB 301
-#define RETURN 302
-#define SELF 303
-#define STATIC 304
-#define WHERE 305
-#define USE 306
-#define WHILE 307
-#define CONST 308
-#define VAR 309
+#define REAL 292
+#define INT 293
+#define VOID 294
+#define LOOP 295
+#define MATCH 296
+#define MUT 297
+#define PRINT 298
+#define PRINTLN 299
+#define PUB 300
+#define RETURN 301
+#define SELF 302
+#define STATIC 303
+#define WHERE 304
+#define USE 305
+#define WHILE 306
+#define CONST 307
+#define VAR 308
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -166,7 +164,7 @@ union YYSTYPE
   int int_type;
   int int_val;
 
-#line 170 "y.tab.h" /* yacc.c:1909  */
+#line 168 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
