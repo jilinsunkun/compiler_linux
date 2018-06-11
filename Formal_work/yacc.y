@@ -39,9 +39,8 @@ EQU_express
 	| EQU_express NE_OP re_expression
 	;
 
-assignment_expression
-	: inclusive_or_expression
-	| inclusive_or_expression '=' assignment_expression
+assignment_expression:
+	 inclusive_or_expression '=' assignment_expression
 	{
 		is_assigning=1;
 		if(strcmp($3,"\t\tisub\n")==0|strcmp($3,"\t\tiadd\n")==0)
@@ -95,7 +94,7 @@ assignment_expression
 		}
 		is_assigning=0;
 	}
-	;
+		;
 	
 inclusive_or_expression
 	: and_expression
@@ -146,11 +145,11 @@ and_expression
 	;
 
 pre_expression
-	: val_delecation
+/*	: val_delecation
 	| Delector_list 
 	| pre_expression val_delecation 
 	| pre_expression Delector_list
-	;
+	;*/
 
 expression_sta
 	:  expression 
@@ -220,7 +219,7 @@ multp_expression
 	;
 
 additive_expression
-	: multp_expression
+	: declarator/*multp_expression*/
 	| additive_expression '+' multp_expression
 	{
 		char tempjasm[10010]="";
