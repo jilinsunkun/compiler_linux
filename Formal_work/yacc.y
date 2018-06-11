@@ -42,7 +42,7 @@ EQU_express
 assignment_expression
 	: inclusive_or_expression
 	| inclusive_or_expression '=' assignment_expression
-	/*{
+	{
 		is_assigning=1;
 		if(strcmp($3,"\t\tisub\n")==0|strcmp($3,"\t\tiadd\n")==0)
 		{
@@ -94,7 +94,7 @@ assignment_expression
 
 		}
 		is_assigning=0;
-	}*/
+	}
 	;
 	
 inclusive_or_expression
@@ -105,9 +105,40 @@ inclusive_or_expression
 re_expression
 	: additive_expression
 	| re_expression '<' pre_expression
+	{
+		if (lookup($1, 0) >= 0)
+		{
+			strcat(jasm, "\tgetstatic int go_test.");
+			strcat(jasm, $1);
+			strcat(jasm, "\n");
+			strcat(jasm, "\tsipush ");
+			strcat(jasm, $3);
+			strcat(jasm, "\n");
+			strcat(jasm, "\tisub\n");
+			strcat(jasm, "\tiflt ");
+		}
+		else{
+			strcat(jasm, "\tiload ");
+			strcat(jasm, $1);
+			strcat(jasm, "\n");
+			strcat(jasm, "\tsipush ");
+			strcat(jasm, $3);
+			strcat(jasm, "\n");
+			strcat(jasm, "\tisub\n");
+			strcat(jasm, "\tiflt ");
+		}
+	}
 	| re_expression GE_OP pre_expression
 	| re_expression '>' pre_expression
+	{
+		strcat(jasm, "\t\tisub\n");
+		strcat(jasm, "\t\tifgt ");
+	}
 	| re_expression LE_OP pre_expression
+	{
+		strcat(jasm, "\t\tisub\n");
+		strcat(jasm, "\t\tifle ");
+	}
 	;
 and_expression
 	: EQU_express
@@ -125,10 +156,35 @@ expression_sta
 	:  expression 
 	;
 expression
-	: assignment_expression
+	: unary_expression
+	| assignment_expression
+	| expression assignment_expression
+	| relational_expression
+	| expression relational_expression
+	| IDENTIFIER '=' IDENTIFIER '(' declarator_list  ')'
+	{
+		strcat(jasm, "\t\tinvokestatic int go_test.");
+		strcat(jasm, $3);
+		strcat(jasm, "(");
+		strcat(jasm, "int,int");
+		strcat(jasm, ")");
+		strcat(jasm, "\n");
+
+			if (lookup($1, 0) >= 0)
+			{
+				strcat(jasm, "\t\tputstatic int go_test.");
+			}
+			else{
+				strcat(jasm, "\t\tistore ");
+			}
+
+			strcat(jasm, $1);
+			strcat(jasm, "\n");
+	}
+	/*: assignment_expression
 	| '(' assignment_expression ')'
 	| expression assignment_expression
-	;
+	;*/
 U_nary
 
 	: pre_expression
