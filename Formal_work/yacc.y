@@ -545,6 +545,9 @@ If_After_Ltrue:
 selection_statement
 : IF '('  expression If_After_Check ')'  '{'  statement_list  '}' If_After_Ltrue ELSE '{'  statement_list  '}' {strcat(jasm, "\tL3:\n");}  
 ;
+while_srarement
+	:WHILE '(' expression ')' block_stament
+	;
 
 iteration_statement
 :  FOR  '('   relational_expression 
@@ -612,6 +615,7 @@ statement
 | expression_statement
 | selection_statement
 | iteration_statement
+| while_srarement
 ;
 
 func_expression:
