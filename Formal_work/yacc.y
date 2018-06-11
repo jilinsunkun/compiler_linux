@@ -774,19 +774,7 @@ int main()
 	fprintf(fpt, jasm);
 	fclose(fpt);
 
-	char command[100] = "";
-	printf("\n\n%s\n", "------ Convert rust_test.jasm To rust_test.class By javaa program------");
-	strcat(command, "./javaa rust_test.jasm");
-	printf("%s%s\n\n", "Execute linux command1: ", command);
-	system(command);
-
-	// clear the command string 
-	memset(command, '\0', sizeof(command)-1);
-
-	printf("\n\n%s\n", "------ Result After Run rust_test.class ------");
-	strcat(command, "java rust_test");
-	printf("%s%s\n\n", "Execute linux command2: ", command);
-	system(command);
+	
 	return 0;
 }
 
