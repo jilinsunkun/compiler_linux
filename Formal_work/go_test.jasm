@@ -1,6 +1,7 @@
 class go_test
 {
- 		sipush 10
-	filed static interger a = 
-
+ 	method public static void main(java.lang.String[])
+	max_stack 15
+	max_locals 15
+	{
 }

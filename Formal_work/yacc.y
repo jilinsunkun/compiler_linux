@@ -91,7 +91,7 @@ assignment_expression
 				strcat(jasm,$1);
 				strcat(jasm,"\n");
 			}
-			
+
 		}
 		is_assigning=0;
 	}*/
@@ -313,7 +313,7 @@ val_delecation
 	}
 	| INTEGER 
 	{
-		char tempStr[50];
+		/*char tempStr[50];
 		sprintf( tempStr, "%d", $1 );
 
 		if (is_assigning == 0)
@@ -327,11 +327,11 @@ val_delecation
 		}
 		else{
 			strcpy($$, tempStr);
-		}
+		}*/
 		
-		/*char tempStr[50];
+		char tempStr[50];
 		sprintf( tempStr, "%d", $1 );
-		strcpy($$, tempStr);*/
+		strcpy($$, tempStr);
 	}
 	| REALCONSTANTS 
 	{
@@ -359,8 +359,8 @@ block_stament
 		// | block_start declaration_list block_end
 		// | block_start declaration_list statement_list block_end
 		// | block_start block_end
-	:|  {strcat(jasm, "\tLbody:\n");strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");depth--;}  
-	| {strcat(jasm, "\tLbody:\n");} statement_list {strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");depth--;}  
+	:|  {strcat(jasm, "\tLbody:\n");strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm,"\tLexit:\n");depth--;}  
+	| {strcat(jasm, "\tLbody:\n");} statement_list {strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm,"\tLexit:\n");depth--;}  
 	;
 	
 block_end
