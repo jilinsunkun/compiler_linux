@@ -555,8 +555,8 @@ static const yytype_uint16 yyrline[] =
      218,   248,   255,   258,   261,   283,   292,   304,   309,   310,
      310,   314,   320,   332,   337,   339,   343,   346,   347,   348,
      353,   354,   355,   356,   357,   360,   363,   364,   366,   371,
-     365,   381,   385,   381,   396,   397,   406,   407,   411,   416,
-     419,   434,   449,   452,   463,   478,   479,   480,   484,   485
+     365,   381,   385,   381,   396,   397,   406,   407,   411,   417,
+     420,   435,   451,   454,   465,   480,   481,   482,   486,   487
 };
 #endif
 
@@ -1669,8 +1669,8 @@ yyreduce:
   case 54:
 #line 262 "yacc.y" /* yacc.c:1646  */
     {
-		/*char tempStr[50];
-		sprintf( tempStr, "%d", $1 );
+		char tempStr[50];
+		sprintf( tempStr, "%d", (yyvsp[0].int_type) );
 
 		if (is_assigning == 0)
 		{
@@ -1682,12 +1682,12 @@ yyreduce:
 			}
 		}
 		else{
-			strcpy($$, tempStr);
-		}*/
+			strcpy((yyval.val), tempStr);
+		}
 		
-		char tempStr[50];
-		sprintf( tempStr, "%d", (yyvsp[0].int_type) );
-		strcpy((yyval.val), tempStr);
+		/*char tempStr[50];
+		sprintf( tempStr, "%d", $1 );
+		strcpy($$, tempStr);*/
 	}
 #line 1693 "y.tab.c" /* yacc.c:1646  */
     break;
@@ -1839,30 +1839,31 @@ yyreduce:
   case 88:
 #line 411 "yacc.y" /* yacc.c:1646  */
     {
+		is_assigning=1;
 		insert((yyvsp[-3].val), "const" , (yyvsp[-1].val));
 		is_assigning=0;
 
 	}
-#line 1847 "y.tab.c" /* yacc.c:1646  */
+#line 1848 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 89:
-#line 416 "yacc.y" /* yacc.c:1646  */
+#line 417 "yacc.y" /* yacc.c:1646  */
     {
 		insert((yyvsp[-5].val),(yyvsp[-3].val),(yyvsp[-1].val));
 	}
-#line 1855 "y.tab.c" /* yacc.c:1646  */
+#line 1856 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 90:
-#line 419 "yacc.y" /* yacc.c:1646  */
+#line 420 "yacc.y" /* yacc.c:1646  */
     {
 		insert((yyvsp[-3].val),"",(yyvsp[-1].val));
 		if(lookup((yyvsp[-3].val),0)>=0)
 		{
-			printf("aaa%s\n",(yyvsp[-1].val) );
+
 			is_assigning=1;
-			strcat(jasm,"\tfiled static");
+			strcat(jasm,"\tfiled static ");
 			strcat(jasm,"interger");
 			strcat(jasm," ");
 			strcat(jasm,(yyvsp[-3].val));
@@ -1871,17 +1872,18 @@ yyreduce:
 			strcat(jasm,"\n");
 		}
 	}
-#line 1875 "y.tab.c" /* yacc.c:1646  */
+#line 1876 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 91:
-#line 434 "yacc.y" /* yacc.c:1646  */
+#line 435 "yacc.y" /* yacc.c:1646  */
     {
+		is_assigning=1;
 		insert((yyvsp[-5].val),(yyvsp[-3].val),"");
 		if(lookup((yyvsp[-5].val),0)>=0)
 		{
 			is_assigning=1;
-			strcat(jasm,"\tfiled static");
+			strcat(jasm,"\tfiled static ");
 			strcat(jasm,(yyvsp[-3].val));
 			strcat(jasm," ");
 			strcat(jasm,(yyvsp[-5].val));
@@ -1891,35 +1893,35 @@ yyreduce:
 		}
 		is_assigning=0;
 	}
-#line 1895 "y.tab.c" /* yacc.c:1646  */
+#line 1897 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 92:
-#line 449 "yacc.y" /* yacc.c:1646  */
+#line 451 "yacc.y" /* yacc.c:1646  */
     {
 		insert((yyvsp[-6].val),"array",(yyvsp[-4].val));
 	}
-#line 1903 "y.tab.c" /* yacc.c:1646  */
+#line 1905 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 93:
-#line 452 "yacc.y" /* yacc.c:1646  */
+#line 454 "yacc.y" /* yacc.c:1646  */
     {
     	insert( (yyvsp[-1].val), "int", "" );
     	if(lookup((yyvsp[-1].val),0)>=0)
     	{
-    		strcat(jasm,"\tfiled static");
+    		strcat(jasm,"\tfiled static ");
     		strcat(jasm,"interger");
     		strcat(jasm," ");
     		strcat(jasm,(yyvsp[-1].val));
     		strcat(jasm,"\n");
     	}
 	}
-#line 1919 "y.tab.c" /* yacc.c:1646  */
+#line 1921 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 94:
-#line 463 "yacc.y" /* yacc.c:1646  */
+#line 465 "yacc.y" /* yacc.c:1646  */
     {
     	insert((yyvsp[-3].val) , (yyvsp[-1].val) , "" );
     	//global variable
@@ -1933,11 +1935,11 @@ yyreduce:
 		}
 		is_assigning=0;
 	}
-#line 1937 "y.tab.c" /* yacc.c:1646  */
+#line 1939 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1941 "y.tab.c" /* yacc.c:1646  */
+#line 1943 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2165,7 +2167,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 487 "yacc.y" /* yacc.c:1906  */
+#line 489 "yacc.y" /* yacc.c:1906  */
 
 void yyerror(const char *str){
     printf("error:%s\n",str);

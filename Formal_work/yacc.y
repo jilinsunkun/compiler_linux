@@ -409,6 +409,7 @@ declaration_list
 
 declaration
 	: LET IDENTIFIER '=' val_delecation ';'{
+		is_assigning=1;
 		insert($2, "const" , $4);
 		is_assigning=0;
 
@@ -420,7 +421,7 @@ declaration
 		insert($3,"",$5);
 		if(lookup($3,0)>=0)
 		{
-			printf("aaa%s\n",$5 );
+
 			is_assigning=1;
 			strcat(jasm,"\tfiled static ");
 			strcat(jasm,"interger");
@@ -432,6 +433,7 @@ declaration
 		}
 	}
 	| LET MUT IDENTIFIER ':'type_specifier'='val_delecation ';'{
+		is_assigning=1;
 		insert($3,$5,"");
 		if(lookup($3,0)>=0)
 		{
