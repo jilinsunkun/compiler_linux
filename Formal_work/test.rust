@@ -1,0 +1,3 @@
+fn main add(){
+	let mut a=10;
+}
