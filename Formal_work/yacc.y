@@ -48,6 +48,51 @@ assignment_expression
 		{
 			strcat(jasm,$3);
 		}
+		int is_found_ident=0;
+		int tempdepth=depth;
+		temp_fun_index=now_fun_index;
+		if (temp_fun_index!=0)
+		{
+			while(tempdepth>=-1){
+				int index_depth=lookup($1,tempdepth);
+				if(index_depth>=0){
+					strcat(jasm,index_depth_str,"%d",index_depth);
+					strcat(jasm,index_depth_str);
+					strcat(jasm,"\n");
+					is_found_ident=-1;
+					break;
+				}
+				tempdepth--;
+
+			}
+			temp_fun_index=0;
+			/* code */
+		}
+		if (is_found_ident==0)
+		{
+			if(strcmp(lookup_const($1),"")!=0)
+			{
+
+			}
+			else if(lookup($1,0)>=0)
+			{
+				strcat(jasm,"\t\tpusstatic int rust_test.");
+				strcat(jasm,$1);
+				strcat(jasm,"\n");
+			}
+			else{
+				strcat(jasm,"\t\tsipush");
+				strcat(jasm,$1);
+				strcat(jasm,"\n");
+			}
+			else{
+				strcat(jasm,"\t\tsipush ");
+				strcat(jasm,$1);
+				strcat(jasm,"\n");
+			}
+			/* code */
+		}
+		is_assigning=0;
 	}
 	;
 	
