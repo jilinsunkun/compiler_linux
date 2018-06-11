@@ -30,7 +30,7 @@
 
 %start program
 
-%type  <val> value_declaration program primary_expression type_specifier declarator_list declarator expression  assignment_expression relational_expression additive_expression  parameter_list parameter_declaration external_declaration unary_expression declaration function_definition declaration_list  '-'
+%type  <val> multp_expression value_declaration program primary_expression type_specifier declarator_list declarator expression  assignment_expression relational_expression additive_expression  parameter_list parameter_declaration external_declaration unary_expression declaration function_definition declaration_list  '-'
 
 %%
 
@@ -180,7 +180,6 @@ multp_expression
 	;
 additive_expression
 : declarator
-| multp_expression
 |  additive_expression  '+'  declarator
 {
 	char tempJasm[1000] = "";
@@ -205,6 +204,7 @@ additive_expression
 
 relational_expression
 : additive_expression
+| multp_expression
 | relational_expression '>'  primary_expression
 {
 	strcat(jasm, "\t\tisub\n");
@@ -451,9 +451,9 @@ compound_end
 
 
 declaration
-	: LET {is_assigning = 1;} IDENTIFIER '=' value_declaration {
+	: LET  IDENTIFIER '=' value_declaration ';'{
 
-		insert($3, "const" , $5);
+		insert($2, "const" , $4);
 		is_assigning = 0;
 	}
 	| LET IDENTIFIER {is_assigning=1;}':'type_specifier'='value_declaration ';'{
@@ -569,11 +569,11 @@ selection_statement
 : IF '('  expression If_After_Check ')'  '{'  statement_list  '}' If_After_Ltrue ELSE '{'  statement_list  '}' {strcat(jasm, "\tL3:\n");}  
 ;
 while_srarement
-	:WHILE '(' expression ')' '{'  statement_list  '}'
+	:WHILE '(' expression while_After_Check')' '{'  statement_list  '}'
 	;
 while_After_Check:
 {
-
+	strcat(jasm,"\tLbegin:\n");
 }
 ;
 iteration_statement

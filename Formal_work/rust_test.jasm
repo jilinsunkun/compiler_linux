@@ -1,11 +1,3 @@
 class rust_test
 {
- 	field static int a=10
-	method public static void main(java.lang.String[])
-	max_stack 15
-	max_locals 15
-	{
-		getstatic int rust_test.a
-		sipush 10
-		isub
-		ifgt }
+ }
