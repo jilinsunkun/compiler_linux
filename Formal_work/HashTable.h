@@ -1,4 +1,5 @@
-#include <stdio.h>#define SIZE 1024
+#include <stdio.h>
+#define SIZE 1024
 
 int  yylex  (void);
 void  yyerror  (const char *str);

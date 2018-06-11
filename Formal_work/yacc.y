@@ -42,7 +42,7 @@ EQU_express
 assignment_expression
 	: inclusive_or_expression
 	| inclusive_or_expression '=' assignment_expression
-	{
+	/*{
 		is_assigning=1;
 		if(strcmp($3,"\t\tisub\n")==0|strcmp($3,"\t\tiadd\n")==0)
 		{
@@ -56,7 +56,9 @@ assignment_expression
 			while(tempdepth>=-1){
 				int index_depth=lookup($1,tempdepth);
 				if(index_depth>=0){
-					strcat(jasm,index_depth_str,"%d",index_depth);
+					strcat(jasm,"\t\tistore");
+					char index_depth_str[10];
+					sprintf(index_depth_str,"%d",index_depth);
 					strcat(jasm,index_depth_str);
 					strcat(jasm,"\n");
 					is_found_ident=-1;
@@ -66,7 +68,6 @@ assignment_expression
 
 			}
 			temp_fun_index=0;
-			/* code */
 		}
 		if (is_found_ident==0)
 		{
@@ -90,10 +91,10 @@ assignment_expression
 				strcat(jasm,$1);
 				strcat(jasm,"\n");
 			}
-			/* code */
+			
 		}
 		is_assigning=0;
-	}
+	}*/
 	;
 	
 inclusive_or_expression
