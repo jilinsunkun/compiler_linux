@@ -133,6 +133,12 @@ U_nary
 
 	: pre_expression
 	| '-' pre_expression
+	{
+			if (is_print == 1)
+		{
+			strcpy(unary_symbol,"\t\tineg\n");
+		}
+	}
 	;
 
 multp_expression
@@ -143,7 +149,15 @@ multp_expression
 
 additive_expression
 	: multp_expression
-	| additive_expression '+' multp_expression
+	| additive_expression '+' declarator
+	{
+		char tempjasm[10010]="";
+		int is_found_ident=0;
+		int temp depth=depth;
+		temp_fun_index=now_fun_index;
+		strcat(tempjasm,"\t\tiadd\n");
+		strcpy($$,tempjasm);
+	}
 	| additive_expression '-' multp_expression
 	;
 
