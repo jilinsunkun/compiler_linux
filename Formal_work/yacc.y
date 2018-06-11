@@ -155,9 +155,32 @@ unary_expression
 } 
 primary_expression 
 ;
+multp_expression
+	:declarator
+	| multp_expression '*' declarator
+	{
+		char tempJasm[1000] = "";
+		int is_found_ident = 0;
+		int tempdepth = itemDepth;
 
+		temp_fun_index = now_fun_index;
+		strcat(tempJasm, "\t\timul\n");
+		strcpy($$, tempJasm);
+	}
+	| multp_expression '/' declarator
+	{
+		char tempJasm[1000] = "";
+		int is_found_ident = 0;
+		int tempdepth = itemDepth;
+
+		temp_fun_index = now_fun_index;
+		strcat(tempJasm, "\t\tidiv\n");
+		strcpy($$, tempJasm);
+	}
+	;
 additive_expression
 : declarator
+| multp_expression
 |  additive_expression  '+'  declarator
 {
 	char tempJasm[1000] = "";
@@ -546,9 +569,13 @@ selection_statement
 : IF '('  expression If_After_Check ')'  '{'  statement_list  '}' If_After_Ltrue ELSE '{'  statement_list  '}' {strcat(jasm, "\tL3:\n");}  
 ;
 while_srarement
-	:WHILE '(' expression ')' block_stament
+	:WHILE '(' expression ')' '{'  statement_list  '}'
 	;
+while_After_Check:
+{
 
+}
+;
 iteration_statement
 :  FOR  '('   relational_expression 
 {
