@@ -1778,7 +1778,7 @@ yyreduce:
   case 37:
 #line 322 "yacc.y" /* yacc.c:1646  */
     {
-		//insert($1, $3 , "");
+		insert((yyvsp[-2].val), (yyvsp[0].val) , "");
 		strcat(temp_parameter, (yyvsp[0].val));
 		strcat(temp_parameter, ",");
 	}
