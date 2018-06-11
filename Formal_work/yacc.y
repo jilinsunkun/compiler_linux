@@ -144,7 +144,23 @@ U_nary
 multp_expression
 	: U_nary
 	| multp_expression '*' U_nary
+	{
+		char tempjasm[10010]="";
+		int is_found_ident=0;
+		int temp depth=depth;
+		temp_fun_index=now_fun_index;
+		strcat(tempjasm,"\t\timul\n");
+		strcpy($$,tempjasm)
+	}
 	| multp_expression '/' U_nary
+	{
+		char tempjasm[10010]="";
+		int is_found_ident=0;
+		int temp depth=depth;
+		temp_fun_index=now_fun_index;
+		strcat(tempjasm,"\t\tidiv\n");
+		strcpy($$,tempjasm)
+	}
 	;
 
 additive_expression
@@ -159,6 +175,15 @@ additive_expression
 		strcpy($$,tempjasm)
 	}
 	| additive_expression '-' multp_expression
+	{
+		char tempJasm[1000] = "";
+		int is_found_ident = 0;
+		int tempdepth = itemDepth;
+
+		temp_fun_index = now_fun_index;
+		strcat(tempJasm, "\t\tisub\n");
+		strcpy($$, tempJasm);
+	}
 	;
 
 Delector_list
