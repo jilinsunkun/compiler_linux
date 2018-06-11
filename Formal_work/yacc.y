@@ -451,13 +451,37 @@ compound_end
 
 
 declaration
-	: LET  IDENTIFIER '=' value_declaration ';'{
+	: LET  IDENTIFIER {is_assigning=1;} '=' value_declaration ';'{
 
-		insert($2, "const" , $4);
+		insert($2, "const" , $5);
 		is_assigning = 0;
+		if (lookup($2, 0) >= 0)
+		{
+			// global variable
+			strcat(jasm, "\tfield static ");
+			strcat(jasm, "int");
+			strcat(jasm, " ");
+			strcat(jasm, $2);
+			strcat(jasm," = " );
+			strcat(jasm, $5);
+			strcat(jasm, "\n");
+		}
+		is_assigning=0;
 	}
 	| LET IDENTIFIER {is_assigning=1;}':'type_specifier'='value_declaration ';'{
 		insert($2,$5,$7);
+		if (lookup($2, 0) >= 0)
+		{
+			// global variable
+			strcat(jasm, "\tfield static ");
+			strcat(jasm, $5);
+			strcat(jasm, " ");
+			strcat(jasm, $2);
+			strcat(jasm," = " );
+			strcat(jasm, $7);
+			strcat(jasm, "\n");
+		}
+		is_assigning=0;
 		//let a:int;
 	}
 	| LET MUT IDENTIFIER ';'
