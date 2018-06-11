@@ -15,7 +15,7 @@ class rust_test
 	max_stack 15
 	max_locals 15
 	{
-		iload 0
+		getstatic int rust_test.a
 		sipush 10
 		invokestatic int rust_test.add(int,int)
 		putstatic int rust_test.c

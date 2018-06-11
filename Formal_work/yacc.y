@@ -718,8 +718,12 @@ function_definition:
 	 	strcat(jasm, "\t}\n");
 	 	now_fun_index--;
  	}
- 	| func_expression  IDENTIFIER '('')' {insert($2,"","");now_fun_index++;function_index++;} add_main_func_first  compound_start  statement_list  compound_end 
-	 {
+ 	| func_expression  IDENTIFIER '('
+	  {now_fun_index++;function_index++;} 
+ 	')' 
+ 	{now_fun_index++;}
+ 	add_main_func_first  compound_start  statement_list  compound_end 
+	 {insert($2,"","");
 	 	if (strcmp($2,"main")==0)
 	 	{
 	 		strcat(jasm,"\t\treturn\n\t}\n");
