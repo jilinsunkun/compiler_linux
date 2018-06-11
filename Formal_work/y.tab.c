@@ -2528,28 +2528,6 @@ int yywrap(){
 
 int main()
 {
-	/*isShouldAdd = 0;
-	depth = 0;
-	hashArray = create();
-
-    yyparse();
-    
-    if (lookup("a" , 0) >= 0 && lookup("a" , 1) >= 0)
-    {
-    	printf("%-*s%-*d\n", 20 ,hashArray[lookup("a" , 0)]->idName ,5 , hashArray[lookup("a" , 0)]->depth);
-    	printf("%-*s%-*d\n", 20 ,hashArray[lookup("a" , 1)]->idName ,5 , hashArray[lookup("a" , 1)]->depth);
-    }
-    
-    printf("\n\n%s\n", "------Symbol Table:------");
-    printf("%-*s%-*s\n", 20 ,"Name" ,10 , "Depth");
-    printf("%-*s:%-*s%-*s%-*s%-*s\n", 5, "Index", 20, "Name", 15, "Type", 30, "Value", 5, "Depth");
-  	dump();
-  	int a=0;
-  	if(statment_number==0)
-  	{
-  		printf("statment_number wrong\n");
-  	}
-  	return 0;*/
 	itemDepth = 0;
 	hashArray = create();
 
