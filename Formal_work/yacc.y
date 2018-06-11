@@ -30,7 +30,7 @@
 
 %start program
 
-%type  <val> multp_expression value_declaration program primary_expression type_specifier declarator_list declarator expression  assignment_expression relational_expression additive_expression  parameter_list parameter_declaration external_declaration unary_expression declaration function_definition declaration_list  '-'
+%type  <val> multp_expression value_declaration program pre_expression type_specifier declarator_list declarator expression  assignment_expression relational_expression additive_expression  parameter_list parameter_declaration external_declation U_nary declaration function_definition declaration_list  '-'
 
 %%
 
@@ -139,13 +139,13 @@ declarator_list
 	;
 
 
-primary_expression
+pre_expression
 : declarator_list
-| primary_expression declarator_list
+| pre_expression declarator_list
 ;
 
-unary_expression
-: primary_expression 
+U_nary
+: pre_expression 
 | '-' 
 {
 	if (is_print == 1)
@@ -153,7 +153,7 @@ unary_expression
 		strcpy(unary_symbol,"\t\tineg\n");
 	}
 } 
-primary_expression 
+pre_expression 
 ;
 multp_expression
 	:declarator
@@ -205,17 +205,17 @@ additive_expression
 relational_expression
 : additive_expression
 | multp_expression
-| relational_expression '>'  primary_expression
+| relational_expression '>'  pre_expression
 {
 	strcat(jasm, "\t\tisub\n");
 	strcat(jasm, "\t\tifgt ");
 }
-| relational_expression LE_OP primary_expression
+| relational_expression LE_OP pre_expression
 {
 	strcat(jasm, "\t\tisub\n");
 	strcat(jasm, "\t\tifle ");
 }
-| relational_expression '<' primary_expression
+| relational_expression '<' pre_expression
 {
 	if (lookup($1, 0) >= 0)
 	{
@@ -298,7 +298,7 @@ assignment_expression
 ;
 
 expression
-: unary_expression
+: U_nary
 | assignment_expression
 | expression assignment_expression
 | relational_expression
@@ -734,15 +734,15 @@ function_definition:
 
 ;
 	
-external_declaration
+external_declation
 	: function_definition
 	| declaration_list
 	| IDENTIFIER '(' declarator_list ')' 
 ;
 
 program
-: external_declaration
-| program external_declaration
+: external_declation
+| program external_declation
 ;
 %%
 void yyerror(const char *str){
