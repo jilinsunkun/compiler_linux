@@ -443,11 +443,10 @@ declaration
 		is_assigning=0;
 
 	}
-	| LET MUT IDENTIFIER '=' value_declaration ';'
+	| LET MUT IDENTIFIER{is_assigning = 1;} '=' value_declaration ';'
 	{
 		//let mut a=9;
-		is_assigning = 1;
-		insert($3,"",$5);
+		insert($3,"",$6);
 		if (lookup($3, 0) >= 0)
 		{
 			// global variable
@@ -456,7 +455,7 @@ declaration
 			strcat(jasm, " ");
 			strcat(jasm, $3);
 			strcat(jasm,"=");
-			strcat(jasm,$5);
+			strcat(jasm,$6);
 			strcat(jasm, "\n");
 		}
 		is_assigning = 0;
