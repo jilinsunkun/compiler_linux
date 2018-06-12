@@ -30,7 +30,7 @@
 
 %start program
 
-%type  <val> multp_expression Val_declation program pre_expression type_specifier Declarator_l declarator expression  assignment_expression RE_expression additive_expression  parameter_list parameter_declaration external_declation U_nary declaration function_definition declaration_list  '-'
+%type  <val> multp_expression Val_declation program pre_expression type_specifier Declarator_l declarator expression  assion_expression RE_expression add_expression  parameter_list parameter_declaration external_declation U_nary declaration function_definition declaration_list  '-'
 
 %%
 
@@ -179,9 +179,9 @@ Val_declation
 	strcpy($$, tempStr);
 };
 
-additive_expression
+add_expression
 : declarator
-|  additive_expression  '+'  declarator
+|  add_expression  '+'  declarator
 {
 	char tempJasm[1000] = "";
 	int is_found_ident = 0;
@@ -191,7 +191,7 @@ additive_expression
 	strcat(tempJasm, "\t\tiadd\n");
 	strcpy($$, tempJasm);
 }
-| additive_expression  '-' declarator
+| add_expression  '-' declarator
 {
 	char tempJasm[1000] = "";
 	int is_found_ident = 0;
@@ -203,8 +203,37 @@ additive_expression
 }
 ;
 
-assignment_expression
-:  IDENTIFIER  '='   additive_expression 
+
+expression
+: U_nary
+| assion_expression
+| expression assion_expression
+| RE_expression
+| expression RE_expression
+| IDENTIFIER '=' IDENTIFIER '(' Declarator_l  ')' ';'
+{
+	strcat(jasm, "\t\tinvokestatic int rust_test.");
+	strcat(jasm, $3);
+	strcat(jasm, "(");
+	strcat(jasm, "int,int");
+	strcat(jasm, ")");
+	strcat(jasm, "\n");
+
+		if (lookup($1, 0) >= 0)
+		{
+			strcat(jasm, "\t\tputstatic int rust_test.");
+		}
+		else{
+			strcat(jasm, "\t\tistore ");
+		}
+
+		strcat(jasm, $1);
+		strcat(jasm, "\n");
+}
+;
+
+assion_expression
+:  IDENTIFIER  '='   add_expression 
  {
  	is_assigning =1;
  	if (strcmp($3, "\t\tisub\n") == 0 | strcmp($3, "\t\tiadd\n") == 0)
@@ -258,37 +287,8 @@ assignment_expression
  	is_assigning =0;
 }
 ;
-
-expression
-: U_nary
-| assignment_expression
-| expression assignment_expression
-| RE_expression
-| expression RE_expression
-| IDENTIFIER '=' IDENTIFIER '(' Declarator_l  ')' ';'
-{
-	strcat(jasm, "\t\tinvokestatic int rust_test.");
-	strcat(jasm, $3);
-	strcat(jasm, "(");
-	strcat(jasm, "int,int");
-	strcat(jasm, ")");
-	strcat(jasm, "\n");
-
-		if (lookup($1, 0) >= 0)
-		{
-			strcat(jasm, "\t\tputstatic int rust_test.");
-		}
-		else{
-			strcat(jasm, "\t\tistore ");
-		}
-
-		strcat(jasm, $1);
-		strcat(jasm, "\n");
-}
-;
-
 RE_expression
-: additive_expression
+: add_expression
 | multp_expression
 | RE_expression '>'  pre_expression
 {
@@ -646,10 +646,10 @@ iteration_statement
 {
 	strcat(jasm, "\tLpost:\n");
 }
-  assignment_expression {strcat(jasm, "\t\tgoto Ltest\n");} ')'  '{' compound_statement  '}'
+  assion_expression {strcat(jasm, "\t\tgoto Ltest\n");} ')'  '{' compound_statement  '}'
 
 |
-FOR  '('  assignment_expression ';' {strcat(jasm, "\tLtest:\n");} RE_expression 
+FOR  '('  assion_expression ';' {strcat(jasm, "\tLtest:\n");} RE_expression 
 {
 	strcat(jasm, " Ltrue\n");
 	strcat(jasm, "\t\ticonst_0\n");
