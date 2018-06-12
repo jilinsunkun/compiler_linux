@@ -1511,12 +1511,12 @@ yyreduce:
 #line 39 "yacc.y" /* yacc.c:1646  */
     {
 	int is_found_ident = 0;
-	int tempdepth = itemDepth;
+	int tmp_depth = itemDepth;
 	tp_fun_index = now_fun_index;
 
 	if(tp_fun_index != 0){
-		while(tempdepth > -1){
-			int index_depth = lookup((yyvsp[0].val), tempdepth);
+		while(tmp_depth > -1){
+			int index_depth = lookup((yyvsp[0].val), tmp_depth);
 			if(index_depth >= 0)
 			{
 				strcat(jasm, "\t\tiload ");
@@ -1528,7 +1528,7 @@ yyreduce:
 				is_found_ident = 1;
 				break;
 			}
-			tempdepth--;
+			tmp_depth--;
 		}
 		tp_fun_index = 0;
 	}
@@ -1581,7 +1581,7 @@ yyreduce:
     {
 		char tempJasm[1000] = "";
 		int is_found_ident = 0;
-		int tempdepth = itemDepth;
+		int tmp_depth = itemDepth;
 
 		tp_fun_index = now_fun_index;
 		strcat(tempJasm, "\t\timul\n");
@@ -1595,7 +1595,7 @@ yyreduce:
     {
 		char tempJasm[1000] = "";
 		int is_found_ident = 0;
-		int tempdepth = itemDepth;
+		int tmp_depth = itemDepth;
 
 		tp_fun_index = now_fun_index;
 		strcat(tempJasm, "\t\tidiv\n");
@@ -1670,7 +1670,7 @@ yyreduce:
     {
 	char tempJasm[1000] = "";
 	int is_found_ident = 0;
-	int tempdepth = itemDepth;
+	int tmp_depth = itemDepth;
 
 	tp_fun_index = now_fun_index;
 	strcat(tempJasm, "\t\tiadd\n");
@@ -1684,7 +1684,7 @@ yyreduce:
     {
 	char tempJasm[1000] = "";
 	int is_found_ident = 0;
-	int tempdepth = itemDepth;
+	int tmp_depth = itemDepth;
 
 	tp_fun_index = now_fun_index;
 	strcat(tempJasm, "\t\tisub\n");
@@ -1727,12 +1727,12 @@ yyreduce:
  	}
  	
  	int is_found_ident = 0;
-	int tempdepth = itemDepth;
+	int tmp_depth = itemDepth;
 	tp_fun_index = now_fun_index;
 
 	if(tp_fun_index != 0){
-		while(tempdepth > -1){
-			int index_depth = lookup((yyvsp[-2].val), tempdepth);
+		while(tmp_depth > -1){
+			int index_depth = lookup((yyvsp[-2].val), tmp_depth);
 			if(index_depth >= 0)
 			{
 				strcat(jasm, "\t\tistore ");
@@ -1743,7 +1743,7 @@ yyreduce:
 				is_found_ident = 1;
 				break;
 			}
-			tempdepth--;
+			tmp_depth--;
 		}
 		tp_fun_index = 0;
 	}
