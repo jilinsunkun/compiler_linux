@@ -30,49 +30,9 @@
 
 %start program
 
-%type  <val> multp_expression value_declaration program pre_expression type_specifier Declarator_l declarator expression  assignment_expression relational_expression additive_expression  parameter_list parameter_declaration external_declation U_nary declaration function_definition declaration_list  '-'
+%type  <val> multp_expression Val_declation program pre_expression type_specifier Declarator_l declarator expression  assignment_expression relational_expression additive_expression  parameter_list parameter_declaration external_declation U_nary declaration function_definition declaration_list  '-'
 
 %%
-
-value_declaration
-: STR  {
-	strcat(jasm, "\t\tldc ");
-	strcat(jasm, "\"");
-	strcat(jasm, $1);
-	strcat(jasm, "\"");
-	strcat(jasm, "\n");
-}
-| TRUE  {
-	strcpy($$, $1);
-}
-| FALSE {
-	strcpy($$, $1);
-}
-| INTEGER
-{
-		char tempStr[50];
-	sprintf( tempStr, "%d", $1 );
-
-	if (is_assigning == 0)
-	{
-		if (is_print != 1)
-		{
-			strcat(jasm, "\t\tsipush ");
-			strcat(jasm, tempStr);
-			strcat(jasm, "\n");
-		}
-	}
-	else{
-		strcpy($$, tempStr);
-	}
-	
-}
-| REALCONSTANTS
-{
-	char tempStr[50];
-	sprintf( tempStr, "%g", $1 );
-	strcpy($$, tempStr);
-};
 
 declarator
 : IDENTIFIER
@@ -129,7 +89,7 @@ declarator
 		memset(unary_symbol,0,strlen(unary_symbol));
 	}
 } 
-| value_declaration
+| Val_declation
 ;
 
 // when function be called
@@ -178,6 +138,47 @@ multp_expression
 		strcpy($$, tempJasm);
 	}
 	;
+	
+Val_declation
+: STR  {
+	strcat(jasm, "\t\tldc ");
+	strcat(jasm, "\"");
+	strcat(jasm, $1);
+	strcat(jasm, "\"");
+	strcat(jasm, "\n");
+}
+| TRUE  {
+	strcpy($$, $1);
+}
+| FALSE {
+	strcpy($$, $1);
+}
+| INTEGER
+{
+		char tempStr[50];
+	sprintf( tempStr, "%d", $1 );
+
+	if (is_assigning == 0)
+	{
+		if (is_print != 1)
+		{
+			strcat(jasm, "\t\tsipush ");
+			strcat(jasm, tempStr);
+			strcat(jasm, "\n");
+		}
+	}
+	else{
+		strcpy($$, tempStr);
+	}
+	
+}
+| REALCONSTANTS
+{
+	char tempStr[50];
+	sprintf( tempStr, "%g", $1 );
+	strcpy($$, tempStr);
+};
+
 additive_expression
 : declarator
 |  additive_expression  '+'  declarator
@@ -199,45 +200,6 @@ additive_expression
 	temp_fun_index = now_fun_index;
 	strcat(tempJasm, "\t\tisub\n");
 	strcpy($$, tempJasm);
-}
-;
-
-relational_expression
-: additive_expression
-| multp_expression
-| relational_expression '>'  pre_expression
-{
-	strcat(jasm, "\t\tisub\n");
-	strcat(jasm, "\t\tifgt ");
-}
-| relational_expression LE_OP pre_expression
-{
-	strcat(jasm, "\t\tisub\n");
-	strcat(jasm, "\t\tifle ");
-}
-| relational_expression '<' pre_expression
-{
-	if (lookup($1, 0) >= 0)
-	{
-		strcat(jasm, "\tgetstatic int rust_test.");
-		strcat(jasm, $1);
-		strcat(jasm, "\n");
-		strcat(jasm, "\tsipush ");
-		strcat(jasm, $3);
-		strcat(jasm, "\n");
-		strcat(jasm, "\tisub\n");
-		strcat(jasm, "\tiflt ");
-	}
-	else{
-		strcat(jasm, "\tiload ");
-		strcat(jasm, $1);
-		strcat(jasm, "\n");
-		strcat(jasm, "\tsipush ");
-		strcat(jasm, $3);
-		strcat(jasm, "\n");
-		strcat(jasm, "\tisub\n");
-		strcat(jasm, "\tiflt ");
-	}
 }
 ;
 
@@ -322,6 +284,45 @@ expression
 
 		strcat(jasm, $1);
 		strcat(jasm, "\n");
+}
+;
+
+relational_expression
+: additive_expression
+| multp_expression
+| relational_expression '>'  pre_expression
+{
+	strcat(jasm, "\t\tisub\n");
+	strcat(jasm, "\t\tifgt ");
+}
+| relational_expression LE_OP pre_expression
+{
+	strcat(jasm, "\t\tisub\n");
+	strcat(jasm, "\t\tifle ");
+}
+| relational_expression '<' pre_expression
+{
+	if (lookup($1, 0) >= 0)
+	{
+		strcat(jasm, "\tgetstatic int rust_test.");
+		strcat(jasm, $1);
+		strcat(jasm, "\n");
+		strcat(jasm, "\tsipush ");
+		strcat(jasm, $3);
+		strcat(jasm, "\n");
+		strcat(jasm, "\tisub\n");
+		strcat(jasm, "\tiflt ");
+	}
+	else{
+		strcat(jasm, "\tiload ");
+		strcat(jasm, $1);
+		strcat(jasm, "\n");
+		strcat(jasm, "\tsipush ");
+		strcat(jasm, $3);
+		strcat(jasm, "\n");
+		strcat(jasm, "\tisub\n");
+		strcat(jasm, "\tiflt ");
+	}
 }
 ;
 
@@ -451,7 +452,7 @@ compound_end
 
 
 declaration
-	: LET  IDENTIFIER {is_assigning=1;} '=' value_declaration ';'{
+	: LET  IDENTIFIER {is_assigning=1;} '=' Val_declation ';'{
 
 		insert($2, "const" , $5);
 		is_assigning = 0;
@@ -468,7 +469,7 @@ declaration
 		}
 		is_assigning=0;
 	}
-	| LET IDENTIFIER {is_assigning=1;}':'type_specifier'='value_declaration ';'{
+	| LET IDENTIFIER {is_assigning=1;}':'type_specifier'='Val_declation ';'{
 		insert($2,$5,$7);
 		if (lookup($2, 0) >= 0)
 		{
@@ -502,7 +503,7 @@ declaration
 		is_assigning=0;
 
 	}
-	| LET MUT IDENTIFIER{is_assigning = 1;} '=' value_declaration ';'
+	| LET MUT IDENTIFIER{is_assigning = 1;} '=' Val_declation ';'
 	{
 		//let mut a=9;
 		insert($3,"",$6);
@@ -534,7 +535,7 @@ declaration
 		}
 		is_assigning = 0;
 	}
-	| LET MUT IDENTIFIER ':' type_specifier {is_assigning = 1;} '=' value_declaration {
+	| LET MUT IDENTIFIER ':' type_specifier {is_assigning = 1;} '=' Val_declation {
 		//let mut a:int =10;
 		is_assigning = 1;
 		insert($3, $5, "");
@@ -552,7 +553,7 @@ declaration
 		is_assigning = 0;
 	}
 
-	| LET MUT IDENTIFIER'['type_specifier','value_declaration']' ';'{
+	| LET MUT IDENTIFIER'['type_specifier','Val_declation']' ';'{
 		insert($3,"array",$5);
 	}
 	;
