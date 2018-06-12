@@ -30,7 +30,7 @@
 
 %start program
 
-%type  <val> multp_expression Val_declation program pre_expression type_specifier Declarator_l declarator expression  assignment_expression relational_expression additive_expression  parameter_list parameter_declaration external_declation U_nary declaration function_definition declaration_list  '-'
+%type  <val> multp_expression Val_declation program pre_expression type_specifier Declarator_l declarator expression  assignment_expression RE_expression additive_expression  parameter_list parameter_declaration external_declation U_nary declaration function_definition declaration_list  '-'
 
 %%
 
@@ -39,9 +39,9 @@ declarator
 {
 	int is_found_ident = 0;
 	int tempdepth = itemDepth;
-	temp_fun_index = now_fun_index;
+	tp_fun_index = now_fun_index;
 
-	if(temp_fun_index != 0){
+	if(tp_fun_index != 0){
 		while(tempdepth > -1){
 			int index_depth = lookup($1, tempdepth);
 			if(index_depth >= 0)
@@ -57,7 +57,7 @@ declarator
 			}
 			tempdepth--;
 		}
-		temp_fun_index = 0;
+		tp_fun_index = 0;
 	}
 
 	if (is_found_ident == 0)
@@ -123,7 +123,7 @@ multp_expression
 		int is_found_ident = 0;
 		int tempdepth = itemDepth;
 
-		temp_fun_index = now_fun_index;
+		tp_fun_index = now_fun_index;
 		strcat(tempJasm, "\t\timul\n");
 		strcpy($$, tempJasm);
 	}
@@ -133,12 +133,12 @@ multp_expression
 		int is_found_ident = 0;
 		int tempdepth = itemDepth;
 
-		temp_fun_index = now_fun_index;
+		tp_fun_index = now_fun_index;
 		strcat(tempJasm, "\t\tidiv\n");
 		strcpy($$, tempJasm);
 	}
 	;
-	
+
 Val_declation
 : STR  {
 	strcat(jasm, "\t\tldc ");
@@ -187,7 +187,7 @@ additive_expression
 	int is_found_ident = 0;
 	int tempdepth = itemDepth;
 
-	temp_fun_index = now_fun_index;
+	tp_fun_index = now_fun_index;
 	strcat(tempJasm, "\t\tiadd\n");
 	strcpy($$, tempJasm);
 }
@@ -197,7 +197,7 @@ additive_expression
 	int is_found_ident = 0;
 	int tempdepth = itemDepth;
 
-	temp_fun_index = now_fun_index;
+	tp_fun_index = now_fun_index;
 	strcat(tempJasm, "\t\tisub\n");
 	strcpy($$, tempJasm);
 }
@@ -214,9 +214,9 @@ assignment_expression
  	
  	int is_found_ident = 0;
 	int tempdepth = itemDepth;
-	temp_fun_index = now_fun_index;
+	tp_fun_index = now_fun_index;
 
-	if(temp_fun_index != 0){
+	if(tp_fun_index != 0){
 		while(tempdepth > -1){
 			int index_depth = lookup($1, tempdepth);
 			if(index_depth >= 0)
@@ -231,10 +231,10 @@ assignment_expression
 			}
 			tempdepth--;
 		}
-		temp_fun_index = 0;
+		tp_fun_index = 0;
 	}
 	
-	temp_fun_index = 0;
+	tp_fun_index = 0;
 
 	if (is_found_ident == 0)
 	{
@@ -263,8 +263,8 @@ expression
 : U_nary
 | assignment_expression
 | expression assignment_expression
-| relational_expression
-| expression relational_expression
+| RE_expression
+| expression RE_expression
 | IDENTIFIER '=' IDENTIFIER '(' Declarator_l  ')' ';'
 {
 	strcat(jasm, "\t\tinvokestatic int rust_test.");
@@ -287,20 +287,20 @@ expression
 }
 ;
 
-relational_expression
+RE_expression
 : additive_expression
 | multp_expression
-| relational_expression '>'  pre_expression
+| RE_expression '>'  pre_expression
 {
 	strcat(jasm, "\t\tisub\n");
 	strcat(jasm, "\t\tifgt ");
 }
-| relational_expression LE_OP pre_expression
+| RE_expression LE_OP pre_expression
 {
 	strcat(jasm, "\t\tisub\n");
 	strcat(jasm, "\t\tifle ");
 }
-| relational_expression '<' pre_expression
+| RE_expression '<' pre_expression
 {
 	if (lookup($1, 0) >= 0)
 	{
@@ -613,9 +613,9 @@ while_After_Ltrue:
 {strcat(jasm, "\t\tgoto Lexit\n");
 	strcat(jasm, "\tLext:");}
 iteration_statement
-:  FOR  '('   relational_expression 
+:  FOR  '('   RE_expression 
 {
-	// move the chars of relational_expression 
+	// move the chars of RE_expression 
 	int i, len;
 	int pos = 0;
 	for (i = 0; i < strlen(jasm) ; ++i)
@@ -649,7 +649,7 @@ iteration_statement
   assignment_expression {strcat(jasm, "\t\tgoto Ltest\n");} ')'  '{' compound_statement  '}'
 
 |
-FOR  '('  assignment_expression ';' {strcat(jasm, "\tLtest:\n");} relational_expression 
+FOR  '('  assignment_expression ';' {strcat(jasm, "\tLtest:\n");} RE_expression 
 {
 	strcat(jasm, " Ltrue\n");
 	strcat(jasm, "\t\ticonst_0\n");

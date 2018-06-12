@@ -13,7 +13,7 @@ char temp_parameter[1000];
 char unary_symbol[20];
 int now_fun_index = 0;
 int function_index = 0;
-int temp_fun_index = 0;
+int tp_fun_index = 0;
 int is_print = 0;
 int is_assigning = 0;
 
@@ -41,7 +41,7 @@ int lookup(char *idName , int depth) {
 	int first_index = 0;
 
 	while (hashArray[hashIndex] != NULL) {
-		if ( hashArray[hashIndex]->depth == depth && hashArray[hashIndex]->fun_index == temp_fun_index)
+		if ( hashArray[hashIndex]->depth == depth && hashArray[hashIndex]->fun_index == tp_fun_index)
 		{
 			first_index = hashIndex;
 			break;
@@ -53,7 +53,7 @@ int lookup(char *idName , int depth) {
 	}
 
 	while (hashArray[hashIndex] != NULL) {
-		if (strcmp(hashArray[hashIndex]->idName, idName) == 0 && hashArray[hashIndex]->depth == depth && hashArray[hashIndex]->fun_index == temp_fun_index && strcmp(hashArray[hashIndex]->type, "const") != 0)
+		if (strcmp(hashArray[hashIndex]->idName, idName) == 0 && hashArray[hashIndex]->depth == depth && hashArray[hashIndex]->fun_index == tp_fun_index && strcmp(hashArray[hashIndex]->type, "const") != 0)
 		{
 			isFind = 1;
 			break;
@@ -102,7 +102,7 @@ char* lookup_const(char *idName) {
 	int depth = 0;
 
 	while (hashArray[hashIndex] != NULL) {
-			if (strcmp(hashArray[hashIndex]->idName, idName) == 0 && hashArray[hashIndex]->depth == depth && hashArray[hashIndex]->fun_index == temp_fun_index 
+			if (strcmp(hashArray[hashIndex]->idName, idName) == 0 && hashArray[hashIndex]->depth == depth && hashArray[hashIndex]->fun_index == tp_fun_index 
 				&& strcmp(hashArray[hashIndex]->type, "const") == 0)
 		{
 			isFind = 1;
