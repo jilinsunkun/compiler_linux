@@ -215,7 +215,7 @@ expression
 	strcat(jasm, "\t\tinvokestatic int rust_test.");
 	strcat(jasm, $3);
 	strcat(jasm, "(");
-	strcat(jasm, "int,int");
+	strcat(jasm, "int,inoooo");
 	strcat(jasm, ")");
 	strcat(jasm, "\n");
 

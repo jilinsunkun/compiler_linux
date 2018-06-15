@@ -1699,7 +1699,7 @@ yyreduce:
 	strcat(jasm, "\t\tinvokestatic int rust_test.");
 	strcat(jasm, (yyvsp[-4].val));
 	strcat(jasm, "(");
-	strcat(jasm, "int,int");
+	strcat(jasm, "int,inoooo");
 	strcat(jasm, ")");
 	strcat(jasm, "\n");
 
