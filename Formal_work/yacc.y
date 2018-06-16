@@ -182,16 +182,6 @@ Val_declation
 
 add_expression
 : declarator
-| add_expression  '-' declarator
-{
-	char tempJasm[1000] = "";
-	int is_found_ident = 0;
-	int tmp_depth = itemDepth;
-
-	tp_fun_index = now_fun_index;
-	strcat(tempJasm, "\t\tisub\n");
-	strcpy($$, tempJasm);
-}
 |  add_expression  '+'  declarator
 {
 	char tempJasm[1000] = "";
@@ -202,7 +192,16 @@ add_expression
 	strcat(tempJasm, "\t\tiadd\n");
 	strcpy($$, tempJasm);
 }
+| add_expression  '-' declarator
+{
+	char tempJasm[1000] = "";
+	int is_found_ident = 0;
+	int tmp_depth = itemDepth;
 
+	tp_fun_index = now_fun_index;
+	strcat(tempJasm, "\t\tisub\n");
+	strcpy($$, tempJasm);
+}
 ;
 
 
