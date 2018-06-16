@@ -6,6 +6,8 @@ class rust_test
 	{
 
 		getstatic java.io.PrintStream java.lang.System.out
-		ldc "sdsd"
+		ldc "sdsdd"
 		invokevirtual void java.io.PrintStream.print(java.lang.String)
+		return
+	}
 }

@@ -207,9 +207,9 @@ add_expression
 expression
 : U_nary
 | assion_expression
-| '(' assion_expression ')'
+// | '(' expression ')'
 | expression assion_expression
-| RE_expression
+//| RE_expression
 | expression RE_expression
 | IDENTIFIER '=' IDENTIFIER '(' Declarator_l  ')' ';'
 {
