@@ -1268,13 +1268,14 @@ YY_RULE_SETUP
                      
                       BEGIN 0;
                      }
+                     tokenString(c,STR);
                      return (STR);
                       str[0] = '\0';
                     }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 153 "scaner.l"
+#line 154 "scaner.l"
 {
                        lineNum;
                        strcat(str,yytext);
@@ -1282,13 +1283,13 @@ YY_RULE_SETUP
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 159 "scaner.l"
+#line 160 "scaner.l"
 {lineNum;}
 	YY_BREAK
 case 75:
 /* rule 75 can match eol */
 YY_RULE_SETUP
-#line 160 "scaner.l"
+#line 161 "scaner.l"
 {
         			lineNum;
         			printf("%d: %s", linecount++, buf);
@@ -1297,10 +1298,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 166 "scaner.l"
+#line 167 "scaner.l"
 ECHO;
 	YY_BREAK
-#line 1304 "lex.yy.c"
+#line 1305 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(String):
 case YY_STATE_EOF(commion):
@@ -2304,7 +2305,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 166 "scaner.l"
+#line 167 "scaner.l"
 
 
 

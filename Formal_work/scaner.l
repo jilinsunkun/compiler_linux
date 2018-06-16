@@ -147,6 +147,7 @@ bool	{strcpy(yylval.val, yytext);return (BOOL);}
                      
                       BEGIN 0;
                      }
+                     tokenString(c,STR);
                      return (STR);
                       str[0] = '\0';
                     }
