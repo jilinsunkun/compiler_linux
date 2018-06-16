@@ -106,6 +106,7 @@ pre_expression
 
 U_nary
 : pre_expression 
+| '(' pre_expression ')'
 | '-' 
 {
 	if (is_print == 1)
@@ -205,11 +206,12 @@ add_expression
 
 
 expression
-: U_nary
+: 
+U_nary
 | assion_expression
-// | '(' expression ')'
+//| '(' expression ')'
 | expression assion_expression
-//| RE_expression
+| RE_expression
 | expression RE_expression
 | IDENTIFIER '=' IDENTIFIER '(' Declarator_l  ')' ';'
 {
@@ -677,11 +679,12 @@ statement_list
 ;
 
 statement
-: simple_statment
-| expression_statement
-| selection_statement
-| iteration_statement
-| while_srarement
+:
+  simple_statment
+// | expression_statement
+// | selection_statement
+// | iteration_statement
+// | while_srarement
 ;
 
 func_expression:
