@@ -208,32 +208,32 @@ add_expression
 expression
 : 
 // U_nary
-// | assion_expression
-// //| '(' expression ')'
-// | expression assion_expression
+| assion_expression
+//| '(' expression ')'
+| expression assion_expression
 | RE_expression
-// | expression RE_expression
-// | IDENTIFIER '=' IDENTIFIER '(' Declarator_l  ')' ';'
-// {
-// 	strcat(jasm, "\t\tinvokestatic int rust_test.");
-// 	strcat(jasm, $3);
-// 	strcat(jasm, "(");
-// 	strcat(jasm, temp_parameter);
-// 	memset(temp_parameter,0,strlen(temp_parameter));
-// 	strcat(jasm, ")");
-// 	strcat(jasm, "\n");
+| expression RE_expression
+| IDENTIFIER '=' IDENTIFIER '(' Declarator_l  ')' ';'
+{
+	strcat(jasm, "\t\tinvokestatic int rust_test.");
+	strcat(jasm, $3);
+	strcat(jasm, "(");
+	strcat(jasm, temp_parameter);
+	memset(temp_parameter,0,strlen(temp_parameter));
+	strcat(jasm, ")");
+	strcat(jasm, "\n");
 
-// 		if (lookup($1, 0) >= 0)
-// 		{
-// 			strcat(jasm, "\t\tputstatic int rust_test.");
-// 		}
-// 		else{
-// 			strcat(jasm, "\t\tistore ");
-// 		}
+		if (lookup($1, 0) >= 0)
+		{
+			strcat(jasm, "\t\tputstatic int rust_test.");
+		}
+		else{
+			strcat(jasm, "\t\tistore ");
+		}
 
-// 		strcat(jasm, $1);
-// 		strcat(jasm, "\n");
-// }
+		strcat(jasm, $1);
+		strcat(jasm, "\n");
+}
 ;
 
 assion_expression
