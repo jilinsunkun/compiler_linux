@@ -2,7 +2,7 @@ class rust_test
 {
  	field static int c
 	field static int a=5
-	method public static add int(int,int)
+	method public static int add(int,int)
 	max_stack 15
 	max_locals 15
 	{

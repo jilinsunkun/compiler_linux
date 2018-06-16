@@ -698,9 +698,9 @@ function_definition:
 		insert($2,$8,"");
 
 		strcat(jasm, "\tmethod public static ");
-		strcat(jasm, $2);
-		strcat(jasm, " ");
 		strcat(jasm, $8);
+		strcat(jasm, " ");
+		strcat(jasm, $2);
 		strcat(jasm, "(");
 
 		for (int i = 0; i < sizeof(temp_parameter)/sizeof(temp_parameter[0]); ++i)

@@ -2232,9 +2232,9 @@ yyreduce:
 		insert((yyvsp[-6].val),(yyvsp[0].val),"");
 
 		strcat(jasm, "\tmethod public static ");
-		strcat(jasm, (yyvsp[-6].val));
-		strcat(jasm, " ");
 		strcat(jasm, (yyvsp[0].val));
+		strcat(jasm, " ");
+		strcat(jasm, (yyvsp[-6].val));
 		strcat(jasm, "(");
 
 		for (int i = 0; i < sizeof(temp_parameter)/sizeof(temp_parameter[0]); ++i)
