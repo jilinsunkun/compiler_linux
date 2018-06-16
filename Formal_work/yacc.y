@@ -207,6 +207,7 @@ add_expression
 expression
 : U_nary
 | assion_expression
+| '(' assion_expression ')'
 | expression assion_expression
 | RE_expression
 | expression RE_expression
