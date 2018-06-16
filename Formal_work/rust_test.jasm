@@ -5,9 +5,4 @@ class rust_test
 	max_locals 15
 	{
 		sipush n
-		sipush 1
-		sipush n
-		sipush 1
-		return
-	}
 }

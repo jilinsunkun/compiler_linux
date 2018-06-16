@@ -1,6 +1,7 @@
 // Hello World Example
 fn main() {
   // Print text to the console
+  n=n-1;
  n=n+1;
-n=n-1;
+
 }
