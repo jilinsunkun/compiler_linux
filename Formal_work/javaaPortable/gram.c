@@ -1,14 +1,13 @@
-/* A Bison parser, made by GNU Bison 2.3.  */
+/* A Bison parser, made by GNU Bison 3.0.4.  */
 
-/* Skeleton implementation for Bison's Yacc-like parsers in C
+/* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
-   Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
 
-   This program is free software; you can redistribute it and/or modify
+   This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
-   any later version.
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -16,9 +15,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor,
-   Boston, MA 02110-1301, USA.  */
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -47,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "2.3"
+#define YYBISON_VERSION "3.0.4"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -55,542 +52,17 @@
 /* Pure parsers.  */
 #define YYPURE 0
 
-/* Using locations.  */
-#define YYLSP_NEEDED 0
+/* Push parsers.  */
+#define YYPUSH 0
 
-
-
-/* Tokens.  */
-#ifndef YYTOKENTYPE
-# define YYTOKENTYPE
-   /* Put the tokens into the symbol table, so that GDB and other debuggers
-      know about them.  */
-   enum yytokentype {
-     LABEL = 258,
-     IDENTIFIER = 259,
-     INTCONSTANT = 260,
-     LONGCONSTANT = 261,
-     FLOATCONSTANT = 262,
-     DOUBLECONSTANT = 263,
-     CHARCONSTANT = 264,
-     STRING_LITERAL = 265,
-     CLASS = 266,
-     EXTENDS = 267,
-     ACCESS = 268,
-     IMPLEMENTS = 269,
-     FIELD = 270,
-     METHOD = 271,
-     MAX_STACK = 272,
-     MAX_LOCALS = 273,
-     CODE = 274,
-     PUBLIC = 275,
-     PRIVATE = 276,
-     PROTECTED = 277,
-     ABSTRACT = 278,
-     FINAL = 279,
-     INTERFACE = 280,
-     STATIC = 281,
-     NATIVE = 282,
-     SYNCHRONIZED = 283,
-     TRANSIENT = 284,
-     VOLATILE = 285,
-     BYTE = 286,
-     CHAR = 287,
-     DOUBLE = 288,
-     FLOAT = 289,
-     INT = 290,
-     LONG = 291,
-     SHORT = 292,
-     BOOLEAN = 293,
-     VOID = 294,
-     DEFAULT = 295,
-     TO = 296,
-     EXCEPTIONS = 297,
-     SOURCEFILE = 298,
-     THROWS = 299,
-     LINENUMBERTABLE = 300,
-     LOCALVARIABLETABLE = 301,
-     ACC_PUBLIC = 302,
-     ACC_PRIVATE = 303,
-     ACC_PROTECTED = 304,
-     ACC_STATIC = 305,
-     ACC_FINAL = 306,
-     ACC_SYNCHRONIZED = 307,
-     ACC_VOLATILE = 308,
-     ACC_TRANSIENT = 309,
-     ACC_NATIVE = 310,
-     ACC_INTERFACE = 311,
-     ACC_ABSTRACT = 312,
-     AALOAD = 313,
-     AASTORE = 314,
-     ACONST_NULL = 315,
-     ALOAD_0 = 316,
-     ALOAD_1 = 317,
-     ALOAD_2 = 318,
-     ALOAD_3 = 319,
-     ANEWARRAY = 320,
-     ARETURN = 321,
-     ARRAYLENGTH = 322,
-     ASTORE_0 = 323,
-     ASTORE_1 = 324,
-     ASTORE_2 = 325,
-     ASTORE_3 = 326,
-     ATHROW = 327,
-     BALOAD = 328,
-     BASTORE = 329,
-     BIPUSH = 330,
-     CALOAD = 331,
-     CASTORE = 332,
-     CHECKCAST = 333,
-     D2F = 334,
-     D2I = 335,
-     D2L = 336,
-     DADD = 337,
-     DALOAD = 338,
-     DASTORE = 339,
-     DCMPG = 340,
-     DCMPL = 341,
-     DCONST_0 = 342,
-     DCONST_1 = 343,
-     DDIV = 344,
-     DLOAD_0 = 345,
-     DLOAD_1 = 346,
-     DLOAD_2 = 347,
-     DLOAD_3 = 348,
-     DMUL = 349,
-     DNEG = 350,
-     DREM = 351,
-     DRETURN = 352,
-     DSTORE_0 = 353,
-     DSTORE_1 = 354,
-     DSTORE_2 = 355,
-     DSTORE_3 = 356,
-     DSUB = 357,
-     DUP = 358,
-     DUP_X1 = 359,
-     DUP_X2 = 360,
-     DUP2 = 361,
-     DUP2_X1 = 362,
-     DUP2_X2 = 363,
-     F2D = 364,
-     F2I = 365,
-     F2L = 366,
-     FADD = 367,
-     FALOAD = 368,
-     FASTORE = 369,
-     FCMPG = 370,
-     FCMPL = 371,
-     FCONST_0 = 372,
-     FCONST_1 = 373,
-     FCONST_2 = 374,
-     FDIV = 375,
-     FLOAD_0 = 376,
-     FLOAD_1 = 377,
-     FLOAD_2 = 378,
-     FLOAD_3 = 379,
-     FMUL = 380,
-     FNEG = 381,
-     FREM = 382,
-     FRETURN = 383,
-     FSTORE_0 = 384,
-     FSTORE_1 = 385,
-     FSTORE_2 = 386,
-     FSTORE_3 = 387,
-     FSUB = 388,
-     GETFIELD = 389,
-     GETSTATIC = 390,
-     GOTO = 391,
-     GOTO_W = 392,
-     I2B = 393,
-     I2C = 394,
-     I2D = 395,
-     I2F = 396,
-     I2L = 397,
-     I2S = 398,
-     IADD = 399,
-     IALOAD = 400,
-     IAND = 401,
-     IASTORE = 402,
-     ICONST_0 = 403,
-     ICONST_1 = 404,
-     ICONST_2 = 405,
-     ICONST_3 = 406,
-     ICONST_4 = 407,
-     ICONST_5 = 408,
-     ICONST_M1 = 409,
-     IDIV = 410,
-     IF_ACMPEQ = 411,
-     IF_ACMPNE = 412,
-     IF_ICMPEQ = 413,
-     IF_ICMPNE = 414,
-     IF_ICMPLT = 415,
-     IF_ICMPGE = 416,
-     IF_ICMPGT = 417,
-     IF_ICMPLE = 418,
-     IFEQ = 419,
-     IFNE = 420,
-     IFLT = 421,
-     IFGE = 422,
-     IFGT = 423,
-     IFLE = 424,
-     IFNONNULL = 425,
-     IFNULL = 426,
-     ILOAD_0 = 427,
-     ILOAD_1 = 428,
-     ILOAD_2 = 429,
-     ILOAD_3 = 430,
-     IMUL = 431,
-     INEG = 432,
-     IOR = 433,
-     IREM = 434,
-     IRETURN = 435,
-     ISHL = 436,
-     ISHR = 437,
-     ISTORE_0 = 438,
-     ISTORE_1 = 439,
-     ISTORE_2 = 440,
-     ISTORE_3 = 441,
-     ISUB = 442,
-     IUSHR = 443,
-     IXOR = 444,
-     JSR = 445,
-     JSR_W = 446,
-     L2D = 447,
-     L2F = 448,
-     L2I = 449,
-     LADD = 450,
-     LALOAD = 451,
-     LAND = 452,
-     LASTORE = 453,
-     LCMP = 454,
-     LCONST_0 = 455,
-     LCONST_1 = 456,
-     LDIV = 457,
-     LLOAD_0 = 458,
-     LLOAD_1 = 459,
-     LLOAD_2 = 460,
-     LLOAD_3 = 461,
-     LMUL = 462,
-     LNEG = 463,
-     LOR = 464,
-     LREM = 465,
-     LRETURN = 466,
-     LSHL = 467,
-     LSHR = 468,
-     LSTORE_0 = 469,
-     LSTORE_1 = 470,
-     LSTORE_2 = 471,
-     LSTORE_3 = 472,
-     LSUB = 473,
-     LUSHR = 474,
-     LXOR = 475,
-     MONITORENTER = 476,
-     MONITOREXIT = 477,
-     NOP = 478,
-     POP = 479,
-     POP2 = 480,
-     RETURN = 481,
-     SALOAD = 482,
-     SASTORE = 483,
-     SWAP = 484,
-     IINC = 485,
-     INSTANCEOF = 486,
-     INVOKEINTERFACE = 487,
-     INVOKENONVIRTUAL = 488,
-     INVOKESTATIC = 489,
-     INVOKEVIRTUAL = 490,
-     LDC = 491,
-     LDC_W = 492,
-     LDC2_W = 493,
-     MULTIANEWARRAY = 494,
-     NEW = 495,
-     NEWARRAY = 496,
-     PUTFIELD = 497,
-     PUTSTATIC = 498,
-     SIPUSH = 499,
-     ILOAD = 500,
-     FLOAD = 501,
-     ALOAD = 502,
-     LLOAD = 503,
-     DLOAD = 504,
-     ISTORE = 505,
-     FSTORE = 506,
-     ASTORE = 507,
-     LSTORE = 508,
-     DSTORE = 509,
-     RET = 510,
-     WIDE = 511,
-     LOAD = 512,
-     STORE = 513,
-     LOOKUPSWITCH = 514,
-     TABLESWITCH = 515
-   };
-#endif
-/* Tokens.  */
-#define LABEL 258
-#define IDENTIFIER 259
-#define INTCONSTANT 260
-#define LONGCONSTANT 261
-#define FLOATCONSTANT 262
-#define DOUBLECONSTANT 263
-#define CHARCONSTANT 264
-#define STRING_LITERAL 265
-#define CLASS 266
-#define EXTENDS 267
-#define ACCESS 268
-#define IMPLEMENTS 269
-#define FIELD 270
-#define METHOD 271
-#define MAX_STACK 272
-#define MAX_LOCALS 273
-#define CODE 274
-#define PUBLIC 275
-#define PRIVATE 276
-#define PROTECTED 277
-#define ABSTRACT 278
-#define FINAL 279
-#define INTERFACE 280
-#define STATIC 281
-#define NATIVE 282
-#define SYNCHRONIZED 283
-#define TRANSIENT 284
-#define VOLATILE 285
-#define BYTE 286
-#define CHAR 287
-#define DOUBLE 288
-#define FLOAT 289
-#define INT 290
-#define LONG 291
-#define SHORT 292
-#define BOOLEAN 293
-#define VOID 294
-#define DEFAULT 295
-#define TO 296
-#define EXCEPTIONS 297
-#define SOURCEFILE 298
-#define THROWS 299
-#define LINENUMBERTABLE 300
-#define LOCALVARIABLETABLE 301
-#define ACC_PUBLIC 302
-#define ACC_PRIVATE 303
-#define ACC_PROTECTED 304
-#define ACC_STATIC 305
-#define ACC_FINAL 306
-#define ACC_SYNCHRONIZED 307
-#define ACC_VOLATILE 308
-#define ACC_TRANSIENT 309
-#define ACC_NATIVE 310
-#define ACC_INTERFACE 311
-#define ACC_ABSTRACT 312
-#define AALOAD 313
-#define AASTORE 314
-#define ACONST_NULL 315
-#define ALOAD_0 316
-#define ALOAD_1 317
-#define ALOAD_2 318
-#define ALOAD_3 319
-#define ANEWARRAY 320
-#define ARETURN 321
-#define ARRAYLENGTH 322
-#define ASTORE_0 323
-#define ASTORE_1 324
-#define ASTORE_2 325
-#define ASTORE_3 326
-#define ATHROW 327
-#define BALOAD 328
-#define BASTORE 329
-#define BIPUSH 330
-#define CALOAD 331
-#define CASTORE 332
-#define CHECKCAST 333
-#define D2F 334
-#define D2I 335
-#define D2L 336
-#define DADD 337
-#define DALOAD 338
-#define DASTORE 339
-#define DCMPG 340
-#define DCMPL 341
-#define DCONST_0 342
-#define DCONST_1 343
-#define DDIV 344
-#define DLOAD_0 345
-#define DLOAD_1 346
-#define DLOAD_2 347
-#define DLOAD_3 348
-#define DMUL 349
-#define DNEG 350
-#define DREM 351
-#define DRETURN 352
-#define DSTORE_0 353
-#define DSTORE_1 354
-#define DSTORE_2 355
-#define DSTORE_3 356
-#define DSUB 357
-#define DUP 358
-#define DUP_X1 359
-#define DUP_X2 360
-#define DUP2 361
-#define DUP2_X1 362
-#define DUP2_X2 363
-#define F2D 364
-#define F2I 365
-#define F2L 366
-#define FADD 367
-#define FALOAD 368
-#define FASTORE 369
-#define FCMPG 370
-#define FCMPL 371
-#define FCONST_0 372
-#define FCONST_1 373
-#define FCONST_2 374
-#define FDIV 375
-#define FLOAD_0 376
-#define FLOAD_1 377
-#define FLOAD_2 378
-#define FLOAD_3 379
-#define FMUL 380
-#define FNEG 381
-#define FREM 382
-#define FRETURN 383
-#define FSTORE_0 384
-#define FSTORE_1 385
-#define FSTORE_2 386
-#define FSTORE_3 387
-#define FSUB 388
-#define GETFIELD 389
-#define GETSTATIC 390
-#define GOTO 391
-#define GOTO_W 392
-#define I2B 393
-#define I2C 394
-#define I2D 395
-#define I2F 396
-#define I2L 397
-#define I2S 398
-#define IADD 399
-#define IALOAD 400
-#define IAND 401
-#define IASTORE 402
-#define ICONST_0 403
-#define ICONST_1 404
-#define ICONST_2 405
-#define ICONST_3 406
-#define ICONST_4 407
-#define ICONST_5 408
-#define ICONST_M1 409
-#define IDIV 410
-#define IF_ACMPEQ 411
-#define IF_ACMPNE 412
-#define IF_ICMPEQ 413
-#define IF_ICMPNE 414
-#define IF_ICMPLT 415
-#define IF_ICMPGE 416
-#define IF_ICMPGT 417
-#define IF_ICMPLE 418
-#define IFEQ 419
-#define IFNE 420
-#define IFLT 421
-#define IFGE 422
-#define IFGT 423
-#define IFLE 424
-#define IFNONNULL 425
-#define IFNULL 426
-#define ILOAD_0 427
-#define ILOAD_1 428
-#define ILOAD_2 429
-#define ILOAD_3 430
-#define IMUL 431
-#define INEG 432
-#define IOR 433
-#define IREM 434
-#define IRETURN 435
-#define ISHL 436
-#define ISHR 437
-#define ISTORE_0 438
-#define ISTORE_1 439
-#define ISTORE_2 440
-#define ISTORE_3 441
-#define ISUB 442
-#define IUSHR 443
-#define IXOR 444
-#define JSR 445
-#define JSR_W 446
-#define L2D 447
-#define L2F 448
-#define L2I 449
-#define LADD 450
-#define LALOAD 451
-#define LAND 452
-#define LASTORE 453
-#define LCMP 454
-#define LCONST_0 455
-#define LCONST_1 456
-#define LDIV 457
-#define LLOAD_0 458
-#define LLOAD_1 459
-#define LLOAD_2 460
-#define LLOAD_3 461
-#define LMUL 462
-#define LNEG 463
-#define LOR 464
-#define LREM 465
-#define LRETURN 466
-#define LSHL 467
-#define LSHR 468
-#define LSTORE_0 469
-#define LSTORE_1 470
-#define LSTORE_2 471
-#define LSTORE_3 472
-#define LSUB 473
-#define LUSHR 474
-#define LXOR 475
-#define MONITORENTER 476
-#define MONITOREXIT 477
-#define NOP 478
-#define POP 479
-#define POP2 480
-#define RETURN 481
-#define SALOAD 482
-#define SASTORE 483
-#define SWAP 484
-#define IINC 485
-#define INSTANCEOF 486
-#define INVOKEINTERFACE 487
-#define INVOKENONVIRTUAL 488
-#define INVOKESTATIC 489
-#define INVOKEVIRTUAL 490
-#define LDC 491
-#define LDC_W 492
-#define LDC2_W 493
-#define MULTIANEWARRAY 494
-#define NEW 495
-#define NEWARRAY 496
-#define PUTFIELD 497
-#define PUTSTATIC 498
-#define SIPUSH 499
-#define ILOAD 500
-#define FLOAD 501
-#define ALOAD 502
-#define LLOAD 503
-#define DLOAD 504
-#define ISTORE 505
-#define FSTORE 506
-#define ASTORE 507
-#define LSTORE 508
-#define DSTORE 509
-#define RET 510
-#define WIDE 511
-#define LOAD 512
-#define STORE 513
-#define LOOKUPSWITCH 514
-#define TABLESWITCH 515
+/* Pull parsers.  */
+#define YYPULL 1
 
 
 
 
 /* Copy the first part of user declarations.  */
-#line 260 "javaa.y"
+#line 260 "javaa.y" /* yacc.c:339  */
 
 #include <string.h>
 #include <stdlib.h>
@@ -601,11 +73,15 @@
 #include "protos.h"
 #include "listing.h"
 
+#line 77 "javaa.tab.c" /* yacc.c:339  */
 
-/* Enabling traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 1
-#endif
+# ifndef YY_NULLPTR
+#  if defined __cplusplus && 201103L <= __cplusplus
+#   define YY_NULLPTR nullptr
+#  else
+#   define YY_NULLPTR 0
+#  endif
+# endif
 
 /* Enabling verbose error messages.  */
 #ifdef YYERROR_VERBOSE
@@ -615,15 +91,291 @@
 # define YYERROR_VERBOSE 0
 #endif
 
-/* Enabling the token table.  */
-#ifndef YYTOKEN_TABLE
-# define YYTOKEN_TABLE 0
+/* In a future release of Bison, this section will be replaced
+   by #include "javaa.tab.h".  */
+#ifndef YY_YY_JAVAA_TAB_H_INCLUDED
+# define YY_YY_JAVAA_TAB_H_INCLUDED
+/* Debug traces.  */
+#ifndef YYDEBUG
+# define YYDEBUG 1
+#endif
+#if YYDEBUG
+extern int yydebug;
 #endif
 
+/* Token type.  */
+#ifndef YYTOKENTYPE
+# define YYTOKENTYPE
+  enum yytokentype
+  {
+    LABEL = 258,
+    IDENTIFIER = 259,
+    INTCONSTANT = 260,
+    LONGCONSTANT = 261,
+    FLOATCONSTANT = 262,
+    DOUBLECONSTANT = 263,
+    CHARCONSTANT = 264,
+    STRING_LITERAL = 265,
+    CLASS = 266,
+    EXTENDS = 267,
+    ACCESS = 268,
+    IMPLEMENTS = 269,
+    FIELD = 270,
+    METHOD = 271,
+    MAX_STACK = 272,
+    MAX_LOCALS = 273,
+    CODE = 274,
+    PUBLIC = 275,
+    PRIVATE = 276,
+    PROTECTED = 277,
+    ABSTRACT = 278,
+    FINAL = 279,
+    INTERFACE = 280,
+    STATIC = 281,
+    NATIVE = 282,
+    SYNCHRONIZED = 283,
+    TRANSIENT = 284,
+    VOLATILE = 285,
+    BYTE = 286,
+    CHAR = 287,
+    DOUBLE = 288,
+    FLOAT = 289,
+    INT = 290,
+    LONG = 291,
+    SHORT = 292,
+    BOOLEAN = 293,
+    VOID = 294,
+    DEFAULT = 295,
+    TO = 296,
+    EXCEPTIONS = 297,
+    SOURCEFILE = 298,
+    THROWS = 299,
+    LINENUMBERTABLE = 300,
+    LOCALVARIABLETABLE = 301,
+    ACC_PUBLIC = 302,
+    ACC_PRIVATE = 303,
+    ACC_PROTECTED = 304,
+    ACC_STATIC = 305,
+    ACC_FINAL = 306,
+    ACC_SYNCHRONIZED = 307,
+    ACC_VOLATILE = 308,
+    ACC_TRANSIENT = 309,
+    ACC_NATIVE = 310,
+    ACC_INTERFACE = 311,
+    ACC_ABSTRACT = 312,
+    AALOAD = 313,
+    AASTORE = 314,
+    ACONST_NULL = 315,
+    ALOAD_0 = 316,
+    ALOAD_1 = 317,
+    ALOAD_2 = 318,
+    ALOAD_3 = 319,
+    ANEWARRAY = 320,
+    ARETURN = 321,
+    ARRAYLENGTH = 322,
+    ASTORE_0 = 323,
+    ASTORE_1 = 324,
+    ASTORE_2 = 325,
+    ASTORE_3 = 326,
+    ATHROW = 327,
+    BALOAD = 328,
+    BASTORE = 329,
+    BIPUSH = 330,
+    CALOAD = 331,
+    CASTORE = 332,
+    CHECKCAST = 333,
+    D2F = 334,
+    D2I = 335,
+    D2L = 336,
+    DADD = 337,
+    DALOAD = 338,
+    DASTORE = 339,
+    DCMPG = 340,
+    DCMPL = 341,
+    DCONST_0 = 342,
+    DCONST_1 = 343,
+    DDIV = 344,
+    DLOAD_0 = 345,
+    DLOAD_1 = 346,
+    DLOAD_2 = 347,
+    DLOAD_3 = 348,
+    DMUL = 349,
+    DNEG = 350,
+    DREM = 351,
+    DRETURN = 352,
+    DSTORE_0 = 353,
+    DSTORE_1 = 354,
+    DSTORE_2 = 355,
+    DSTORE_3 = 356,
+    DSUB = 357,
+    DUP = 358,
+    DUP_X1 = 359,
+    DUP_X2 = 360,
+    DUP2 = 361,
+    DUP2_X1 = 362,
+    DUP2_X2 = 363,
+    F2D = 364,
+    F2I = 365,
+    F2L = 366,
+    FADD = 367,
+    FALOAD = 368,
+    FASTORE = 369,
+    FCMPG = 370,
+    FCMPL = 371,
+    FCONST_0 = 372,
+    FCONST_1 = 373,
+    FCONST_2 = 374,
+    FDIV = 375,
+    FLOAD_0 = 376,
+    FLOAD_1 = 377,
+    FLOAD_2 = 378,
+    FLOAD_3 = 379,
+    FMUL = 380,
+    FNEG = 381,
+    FREM = 382,
+    FRETURN = 383,
+    FSTORE_0 = 384,
+    FSTORE_1 = 385,
+    FSTORE_2 = 386,
+    FSTORE_3 = 387,
+    FSUB = 388,
+    GETFIELD = 389,
+    GETSTATIC = 390,
+    GOTO = 391,
+    GOTO_W = 392,
+    I2B = 393,
+    I2C = 394,
+    I2D = 395,
+    I2F = 396,
+    I2L = 397,
+    I2S = 398,
+    IADD = 399,
+    IALOAD = 400,
+    IAND = 401,
+    IASTORE = 402,
+    ICONST_0 = 403,
+    ICONST_1 = 404,
+    ICONST_2 = 405,
+    ICONST_3 = 406,
+    ICONST_4 = 407,
+    ICONST_5 = 408,
+    ICONST_M1 = 409,
+    IDIV = 410,
+    IF_ACMPEQ = 411,
+    IF_ACMPNE = 412,
+    IF_ICMPEQ = 413,
+    IF_ICMPNE = 414,
+    IF_ICMPLT = 415,
+    IF_ICMPGE = 416,
+    IF_ICMPGT = 417,
+    IF_ICMPLE = 418,
+    IFEQ = 419,
+    IFNE = 420,
+    IFLT = 421,
+    IFGE = 422,
+    IFGT = 423,
+    IFLE = 424,
+    IFNONNULL = 425,
+    IFNULL = 426,
+    ILOAD_0 = 427,
+    ILOAD_1 = 428,
+    ILOAD_2 = 429,
+    ILOAD_3 = 430,
+    IMUL = 431,
+    INEG = 432,
+    IOR = 433,
+    IREM = 434,
+    IRETURN = 435,
+    ISHL = 436,
+    ISHR = 437,
+    ISTORE_0 = 438,
+    ISTORE_1 = 439,
+    ISTORE_2 = 440,
+    ISTORE_3 = 441,
+    ISUB = 442,
+    IUSHR = 443,
+    IXOR = 444,
+    JSR = 445,
+    JSR_W = 446,
+    L2D = 447,
+    L2F = 448,
+    L2I = 449,
+    LADD = 450,
+    LALOAD = 451,
+    LAND = 452,
+    LASTORE = 453,
+    LCMP = 454,
+    LCONST_0 = 455,
+    LCONST_1 = 456,
+    LDIV = 457,
+    LLOAD_0 = 458,
+    LLOAD_1 = 459,
+    LLOAD_2 = 460,
+    LLOAD_3 = 461,
+    LMUL = 462,
+    LNEG = 463,
+    LOR = 464,
+    LREM = 465,
+    LRETURN = 466,
+    LSHL = 467,
+    LSHR = 468,
+    LSTORE_0 = 469,
+    LSTORE_1 = 470,
+    LSTORE_2 = 471,
+    LSTORE_3 = 472,
+    LSUB = 473,
+    LUSHR = 474,
+    LXOR = 475,
+    MONITORENTER = 476,
+    MONITOREXIT = 477,
+    NOP = 478,
+    POP = 479,
+    POP2 = 480,
+    RETURN = 481,
+    SALOAD = 482,
+    SASTORE = 483,
+    SWAP = 484,
+    IINC = 485,
+    INSTANCEOF = 486,
+    INVOKEINTERFACE = 487,
+    INVOKENONVIRTUAL = 488,
+    INVOKESTATIC = 489,
+    INVOKEVIRTUAL = 490,
+    LDC = 491,
+    LDC_W = 492,
+    LDC2_W = 493,
+    MULTIANEWARRAY = 494,
+    NEW = 495,
+    NEWARRAY = 496,
+    PUTFIELD = 497,
+    PUTSTATIC = 498,
+    SIPUSH = 499,
+    ILOAD = 500,
+    FLOAD = 501,
+    ALOAD = 502,
+    LLOAD = 503,
+    DLOAD = 504,
+    ISTORE = 505,
+    FSTORE = 506,
+    ASTORE = 507,
+    LSTORE = 508,
+    DSTORE = 509,
+    RET = 510,
+    WIDE = 511,
+    LOAD = 512,
+    STORE = 513,
+    LOOKUPSWITCH = 514,
+    TABLESWITCH = 515
+  };
+#endif
+
+/* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE
-#line 289 "javaa.y"
+
+union YYSTYPE
 {
+#line 289 "javaa.y" /* yacc.c:355  */
+
    Terminal        rk;
    Terminal        NT;
    Terminal        RK;
@@ -721,19 +473,24 @@ typedef union YYSTYPE
    } exprslast;
 
    TreeNode       *node;
-}
-/* Line 187 of yacc.c.  */
-#line 727 "javaa.tab.c"
-	YYSTYPE;
-# define yystype YYSTYPE /* obsolescent; will be withdrawn */
-# define YYSTYPE_IS_DECLARED 1
+
+#line 478 "javaa.tab.c" /* yacc.c:355  */
+};
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
+# define YYSTYPE_IS_DECLARED 1
 #endif
 
 
+extern YYSTYPE yylval;
+
+int yyparse (void);
+
+#endif /* !YY_YY_JAVAA_TAB_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
-#line 389 "javaa.y"
+#line 389 "javaa.y" /* yacc.c:358  */
 
    static void     CheckStructDcl(Type,int);
    static MimeType GenBlankMimeType();
@@ -744,9 +501,7 @@ typedef union YYSTYPE
               TreeNode *, TreeNode *);
    static TreeNode *GenEntryArgs(TreeNode *);
 
-
-/* Line 216 of yacc.c.  */
-#line 750 "javaa.tab.c"
+#line 505 "javaa.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -760,11 +515,8 @@ typedef unsigned char yytype_uint8;
 
 #ifdef YYTYPE_INT8
 typedef YYTYPE_INT8 yytype_int8;
-#elif (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
-typedef signed char yytype_int8;
 #else
-typedef short int yytype_int8;
+typedef signed char yytype_int8;
 #endif
 
 #ifdef YYTYPE_UINT16
@@ -784,8 +536,7 @@ typedef short int yytype_int16;
 #  define YYSIZE_T __SIZE_TYPE__
 # elif defined size_t
 #  define YYSIZE_T size_t
-# elif ! defined YYSIZE_T && (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
+# elif ! defined YYSIZE_T
 #  include <stddef.h> /* INFRINGES ON USER NAME SPACE */
 #  define YYSIZE_T size_t
 # else
@@ -796,41 +547,70 @@ typedef short int yytype_int16;
 #define YYSIZE_MAXIMUM ((YYSIZE_T) -1)
 
 #ifndef YY_
-# if YYENABLE_NLS
+# if defined YYENABLE_NLS && YYENABLE_NLS
 #  if ENABLE_NLS
 #   include <libintl.h> /* INFRINGES ON USER NAME SPACE */
-#   define YY_(msgid) dgettext ("bison-runtime", msgid)
+#   define YY_(Msgid) dgettext ("bison-runtime", Msgid)
 #  endif
 # endif
 # ifndef YY_
-#  define YY_(msgid) msgid
+#  define YY_(Msgid) Msgid
+# endif
+#endif
+
+#ifndef YY_ATTRIBUTE
+# if (defined __GNUC__                                               \
+      && (2 < __GNUC__ || (__GNUC__ == 2 && 96 <= __GNUC_MINOR__)))  \
+     || defined __SUNPRO_C && 0x5110 <= __SUNPRO_C
+#  define YY_ATTRIBUTE(Spec) __attribute__(Spec)
+# else
+#  define YY_ATTRIBUTE(Spec) /* empty */
+# endif
+#endif
+
+#ifndef YY_ATTRIBUTE_PURE
+# define YY_ATTRIBUTE_PURE   YY_ATTRIBUTE ((__pure__))
+#endif
+
+#ifndef YY_ATTRIBUTE_UNUSED
+# define YY_ATTRIBUTE_UNUSED YY_ATTRIBUTE ((__unused__))
+#endif
+
+#if !defined _Noreturn \
+     && (!defined __STDC_VERSION__ || __STDC_VERSION__ < 201112)
+# if defined _MSC_VER && 1200 <= _MSC_VER
+#  define _Noreturn __declspec (noreturn)
+# else
+#  define _Noreturn YY_ATTRIBUTE ((__noreturn__))
 # endif
 #endif
 
 /* Suppress unused-variable warnings by "using" E.  */
 #if ! defined lint || defined __GNUC__
-# define YYUSE(e) ((void) (e))
+# define YYUSE(E) ((void) (E))
 #else
-# define YYUSE(e) /* empty */
+# define YYUSE(E) /* empty */
 #endif
 
-/* Identity function, used to suppress warnings about constant conditions.  */
-#ifndef lint
-# define YYID(n) (n)
+#if defined __GNUC__ && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
+/* Suppress an incorrect diagnostic about yylval being uninitialized.  */
+# define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN \
+    _Pragma ("GCC diagnostic push") \
+    _Pragma ("GCC diagnostic ignored \"-Wuninitialized\"")\
+    _Pragma ("GCC diagnostic ignored \"-Wmaybe-uninitialized\"")
+# define YY_IGNORE_MAYBE_UNINITIALIZED_END \
+    _Pragma ("GCC diagnostic pop")
 #else
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
-static int
-YYID (int i)
-#else
-static int
-YYID (i)
-    int i;
+# define YY_INITIAL_VALUE(Value) Value
 #endif
-{
-  return i;
-}
+#ifndef YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+# define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+# define YY_IGNORE_MAYBE_UNINITIALIZED_END
 #endif
+#ifndef YY_INITIAL_VALUE
+# define YY_INITIAL_VALUE(Value) /* Nothing. */
+#endif
+
 
 #if ! defined yyoverflow || YYERROR_VERBOSE
 
@@ -849,11 +629,11 @@ YYID (i)
 #    define alloca _alloca
 #   else
 #    define YYSTACK_ALLOC alloca
-#    if ! defined _ALLOCA_H && ! defined _STDLIB_H && (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
+#    if ! defined _ALLOCA_H && ! defined EXIT_SUCCESS
 #     include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
-#     ifndef _STDLIB_H
-#      define _STDLIB_H 1
+      /* Use EXIT_SUCCESS as a witness for stdlib.h.  */
+#     ifndef EXIT_SUCCESS
+#      define EXIT_SUCCESS 0
 #     endif
 #    endif
 #   endif
@@ -861,8 +641,8 @@ YYID (i)
 # endif
 
 # ifdef YYSTACK_ALLOC
-   /* Pacify GCC's `empty if-body' warning.  */
-#  define YYSTACK_FREE(Ptr) do { /* empty */; } while (YYID (0))
+   /* Pacify GCC's 'empty if-body' warning.  */
+#  define YYSTACK_FREE(Ptr) do { /* empty */; } while (0)
 #  ifndef YYSTACK_ALLOC_MAXIMUM
     /* The OS might guarantee only one guard page at the bottom of the stack,
        and a page size can be as small as 4096 bytes.  So we cannot safely
@@ -876,25 +656,23 @@ YYID (i)
 #  ifndef YYSTACK_ALLOC_MAXIMUM
 #   define YYSTACK_ALLOC_MAXIMUM YYSIZE_MAXIMUM
 #  endif
-#  if (defined __cplusplus && ! defined _STDLIB_H \
+#  if (defined __cplusplus && ! defined EXIT_SUCCESS \
        && ! ((defined YYMALLOC || defined malloc) \
-	     && (defined YYFREE || defined free)))
+             && (defined YYFREE || defined free)))
 #   include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
-#   ifndef _STDLIB_H
-#    define _STDLIB_H 1
+#   ifndef EXIT_SUCCESS
+#    define EXIT_SUCCESS 0
 #   endif
 #  endif
 #  ifndef YYMALLOC
 #   define YYMALLOC malloc
-#   if ! defined malloc && ! defined _STDLIB_H && (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
+#   if ! defined malloc && ! defined EXIT_SUCCESS
 void *malloc (YYSIZE_T); /* INFRINGES ON USER NAME SPACE */
 #   endif
 #  endif
 #  ifndef YYFREE
 #   define YYFREE free
-#   if ! defined free && ! defined _STDLIB_H && (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
+#   if ! defined free && ! defined EXIT_SUCCESS
 void free (void *); /* INFRINGES ON USER NAME SPACE */
 #   endif
 #  endif
@@ -904,14 +682,14 @@ void free (void *); /* INFRINGES ON USER NAME SPACE */
 
 #if (! defined yyoverflow \
      && (! defined __cplusplus \
-	 || (defined YYSTYPE_IS_TRIVIAL && YYSTYPE_IS_TRIVIAL)))
+         || (defined YYSTYPE_IS_TRIVIAL && YYSTYPE_IS_TRIVIAL)))
 
 /* A type that is properly aligned for any stack member.  */
 union yyalloc
 {
-  yytype_int16 yyss;
-  YYSTYPE yyvs;
-  };
+  yytype_int16 yyss_alloc;
+  YYSTYPE yyvs_alloc;
+};
 
 /* The size of the maximum gap between one aligned stack and the next.  */
 # define YYSTACK_GAP_MAXIMUM (sizeof (union yyalloc) - 1)
@@ -922,41 +700,45 @@ union yyalloc
      ((N) * (sizeof (yytype_int16) + sizeof (YYSTYPE)) \
       + YYSTACK_GAP_MAXIMUM)
 
-/* Copy COUNT objects from FROM to TO.  The source and destination do
-   not overlap.  */
-# ifndef YYCOPY
-#  if defined __GNUC__ && 1 < __GNUC__
-#   define YYCOPY(To, From, Count) \
-      __builtin_memcpy (To, From, (Count) * sizeof (*(From)))
-#  else
-#   define YYCOPY(To, From, Count)		\
-      do					\
-	{					\
-	  YYSIZE_T yyi;				\
-	  for (yyi = 0; yyi < (Count); yyi++)	\
-	    (To)[yyi] = (From)[yyi];		\
-	}					\
-      while (YYID (0))
-#  endif
-# endif
+# define YYCOPY_NEEDED 1
 
 /* Relocate STACK from its old location to the new one.  The
    local variables YYSIZE and YYSTACKSIZE give the old and new number of
    elements in the stack, and YYPTR gives the new location of the
    stack.  Advance YYPTR to a properly aligned location for the next
    stack.  */
-# define YYSTACK_RELOCATE(Stack)					\
-    do									\
-      {									\
-	YYSIZE_T yynewbytes;						\
-	YYCOPY (&yyptr->Stack, Stack, yysize);				\
-	Stack = &yyptr->Stack;						\
-	yynewbytes = yystacksize * sizeof (*Stack) + YYSTACK_GAP_MAXIMUM; \
-	yyptr += yynewbytes / sizeof (*yyptr);				\
-      }									\
-    while (YYID (0))
+# define YYSTACK_RELOCATE(Stack_alloc, Stack)                           \
+    do                                                                  \
+      {                                                                 \
+        YYSIZE_T yynewbytes;                                            \
+        YYCOPY (&yyptr->Stack_alloc, Stack, yysize);                    \
+        Stack = &yyptr->Stack_alloc;                                    \
+        yynewbytes = yystacksize * sizeof (*Stack) + YYSTACK_GAP_MAXIMUM; \
+        yyptr += yynewbytes / sizeof (*yyptr);                          \
+      }                                                                 \
+    while (0)
 
 #endif
+
+#if defined YYCOPY_NEEDED && YYCOPY_NEEDED
+/* Copy COUNT objects from SRC to DST.  The source and destination do
+   not overlap.  */
+# ifndef YYCOPY
+#  if defined __GNUC__ && 1 < __GNUC__
+#   define YYCOPY(Dst, Src, Count) \
+      __builtin_memcpy (Dst, Src, (Count) * sizeof (*(Src)))
+#  else
+#   define YYCOPY(Dst, Src, Count)              \
+      do                                        \
+        {                                       \
+          YYSIZE_T yyi;                         \
+          for (yyi = 0; yyi < (Count); yyi++)   \
+            (Dst)[yyi] = (Src)[yyi];            \
+        }                                       \
+      while (0)
+#  endif
+# endif
+#endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  3
@@ -969,17 +751,19 @@ union yyalloc
 #define YYNNTS  71
 /* YYNRULES -- Number of rules.  */
 #define YYNRULES  346
-/* YYNRULES -- Number of states.  */
+/* YYNSTATES -- Number of states.  */
 #define YYNSTATES  434
 
-/* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
+/* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
+   by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
 #define YYMAXUTOK   515
 
-#define YYTRANSLATE(YYX)						\
+#define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
 
-/* YYTRANSLATE[YYLEX] -- Bison symbol number corresponding to YYLEX.  */
+/* YYTRANSLATE[TOKEN-NUM] -- Symbol number corresponding to TOKEN-NUM
+   as returned by yylex, without out-of-bounds checking.  */
 static const yytype_uint16 yytranslate[] =
 {
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -1037,134 +821,7 @@ static const yytype_uint16 yytranslate[] =
 };
 
 #if YYDEBUG
-/* YYPRHS[YYN] -- Index of the first RHS symbol of rule number YYN in
-   YYRHS.  */
-static const yytype_uint16 yyprhs[] =
-{
-       0,     0,     3,     4,     7,    10,    12,    13,    25,    30,
-      32,    33,    36,    37,    41,    43,    47,    49,    53,    55,
-      57,    58,    60,    61,    63,    64,    66,    67,    69,    70,
-      72,    73,    75,    76,    78,    79,    81,    82,    84,    87,
-      89,    91,    92,    95,    96,    99,   101,   104,   105,   112,
-     115,   118,   121,   124,   125,   130,   133,   134,   135,   136,
-     157,   160,   161,   164,   166,   169,   170,   172,   174,   176,
-     177,   181,   183,   185,   186,   190,   192,   194,   197,   200,
-     202,   204,   206,   208,   210,   212,   214,   216,   218,   222,
-     223,   229,   232,   234,   239,   241,   244,   245,   248,   250,
-     252,   255,   257,   259,   262,   266,   273,   276,   279,   287,
-     290,   293,   297,   304,   314,   318,   321,   323,   325,   327,
-     329,   331,   333,   335,   337,   339,   341,   343,   345,   347,
-     349,   351,   353,   355,   357,   359,   361,   363,   365,   367,
-     369,   371,   373,   375,   377,   379,   381,   383,   385,   387,
-     389,   391,   393,   395,   397,   399,   401,   403,   405,   407,
-     409,   411,   413,   415,   417,   419,   421,   423,   425,   427,
-     429,   431,   433,   435,   437,   439,   441,   443,   445,   447,
-     449,   451,   453,   455,   457,   459,   461,   463,   465,   467,
-     469,   471,   473,   475,   477,   479,   481,   483,   485,   487,
-     489,   491,   493,   495,   497,   499,   501,   503,   505,   507,
-     509,   511,   513,   515,   517,   519,   521,   523,   525,   527,
-     529,   531,   533,   535,   537,   539,   541,   543,   545,   547,
-     549,   551,   553,   555,   557,   559,   561,   563,   565,   567,
-     569,   571,   573,   575,   577,   579,   581,   583,   585,   587,
-     589,   591,   593,   595,   597,   599,   601,   603,   605,   607,
-     609,   611,   613,   615,   617,   619,   621,   623,   625,   627,
-     629,   631,   633,   635,   637,   639,   641,   643,   645,   647,
-     649,   651,   653,   655,   657,   659,   661,   663,   665,   667,
-     669,   671,   673,   675,   677,   679,   681,   683,   685,   687,
-     689,   691,   693,   695,   697,   699,   701,   703,   705,   707,
-     709,   711,   713,   715,   717,   722,   723,   726,   727,   729,
-     731,   733,   735,   737,   739,   741,   743,   745,   747,   749,
-     751,   753,   755,   760,   761,   767,   773,   774,   779,   780,
-     784,   785,   790,   791,   798,   799,   802
-};
-
-/* YYRHS -- A `-1'-separated list of the rules' RHS.  */
-static const yytype_int16 yyrhs[] =
-{
-     272,     0,    -1,    -1,   273,   274,    -1,   275,   274,    -1,
-     275,    -1,    -1,   277,   278,     4,   279,   293,   261,   295,
-     276,   299,   341,   262,    -1,   283,   284,   285,   286,    -1,
-      11,    -1,    -1,    12,   280,    -1,    -1,     4,   263,   280,
-      -1,     4,    -1,     4,   263,   282,    -1,     4,    -1,     4,
-     263,   282,    -1,     4,    -1,    23,    -1,    -1,    24,    -1,
-      -1,    20,    -1,    -1,    25,    -1,    -1,    26,    -1,    -1,
-      27,    -1,    -1,    28,    -1,    -1,    29,    -1,    -1,    30,
-      -1,    -1,    21,    -1,    21,    22,    -1,    22,    -1,    20,
-      -1,    -1,    14,   294,    -1,    -1,   294,   280,    -1,   280,
-      -1,   295,   296,    -1,    -1,    15,   292,   298,   312,     4,
-     297,    -1,   264,     5,    -1,   264,     7,    -1,   264,     6,
-      -1,   264,     8,    -1,    -1,   287,   284,   290,   291,    -1,
-     299,   300,    -1,    -1,    -1,    -1,    16,   292,   315,   301,
-     306,     4,   265,   309,   266,   303,    17,     5,   305,   302,
-     261,   318,   335,   337,   339,   262,    -1,    44,   304,    -1,
-      -1,   304,   280,    -1,   280,    -1,    18,     5,    -1,    -1,
-     312,    -1,    39,    -1,   308,    -1,    -1,   312,   267,   308,
-      -1,   312,    -1,   310,    -1,    -1,   311,   267,   310,    -1,
-     311,    -1,   312,    -1,   312,     4,    -1,   313,   314,    -1,
-      31,    -1,    32,    -1,    33,    -1,    34,    -1,    35,    -1,
-      36,    -1,    37,    -1,    38,    -1,   280,    -1,   268,   269,
-     314,    -1,    -1,   287,   283,   284,   288,   289,    -1,   312,
-       4,    -1,   280,    -1,   313,   268,   269,   314,    -1,   319,
-      -1,   319,   320,    -1,    -1,   321,   322,    -1,   322,    -1,
-     316,    -1,   321,   316,    -1,     3,    -1,   323,    -1,   324,
-     334,    -1,   326,   312,   281,    -1,   325,   306,   281,   265,
-     307,   266,    -1,   327,   280,    -1,    65,   317,    -1,   232,
-     306,   281,   265,   307,   266,     5,    -1,   328,     4,    -1,
-     329,   330,    -1,   230,   330,     5,    -1,   259,    40,     4,
-     261,   331,   262,    -1,   260,     5,    41,     5,    40,     4,
-     261,   332,   262,    -1,   239,   317,     5,    -1,   241,   333,
-      -1,    58,    -1,    59,    -1,    60,    -1,    61,    -1,    62,
-      -1,    63,    -1,    64,    -1,    66,    -1,    67,    -1,    68,
-      -1,    69,    -1,    70,    -1,    71,    -1,    72,    -1,    73,
-      -1,    74,    -1,    76,    -1,    77,    -1,    79,    -1,    80,
-      -1,    81,    -1,    82,    -1,    83,    -1,    84,    -1,    85,
-      -1,    86,    -1,    87,    -1,    88,    -1,    89,    -1,    90,
-      -1,    91,    -1,    92,    -1,    93,    -1,    94,    -1,    95,
-      -1,    96,    -1,    97,    -1,    98,    -1,    99,    -1,   100,
-      -1,   101,    -1,   102,    -1,   103,    -1,   104,    -1,   105,
-      -1,   106,    -1,   107,    -1,   108,    -1,   109,    -1,   110,
-      -1,   111,    -1,   112,    -1,   113,    -1,   114,    -1,   115,
-      -1,   116,    -1,   117,    -1,   118,    -1,   119,    -1,   120,
-      -1,   121,    -1,   122,    -1,   123,    -1,   124,    -1,   125,
-      -1,   126,    -1,   127,    -1,   128,    -1,   129,    -1,   130,
-      -1,   131,    -1,   132,    -1,   133,    -1,   138,    -1,   139,
-      -1,   140,    -1,   141,    -1,   142,    -1,   143,    -1,   144,
-      -1,   145,    -1,   146,    -1,   147,    -1,   148,    -1,   149,
-      -1,   150,    -1,   151,    -1,   152,    -1,   153,    -1,   154,
-      -1,   155,    -1,   172,    -1,   173,    -1,   174,    -1,   175,
-      -1,   176,    -1,   177,    -1,   178,    -1,   179,    -1,   180,
-      -1,   181,    -1,   182,    -1,   183,    -1,   184,    -1,   185,
-      -1,   186,    -1,   187,    -1,   188,    -1,   189,    -1,   192,
-      -1,   193,    -1,   194,    -1,   195,    -1,   196,    -1,   197,
-      -1,   198,    -1,   199,    -1,   200,    -1,   201,    -1,   202,
-      -1,   203,    -1,   204,    -1,   205,    -1,   206,    -1,   207,
-      -1,   208,    -1,   209,    -1,   210,    -1,   211,    -1,   212,
-      -1,   213,    -1,   214,    -1,   215,    -1,   216,    -1,   217,
-      -1,   218,    -1,   219,    -1,   220,    -1,   221,    -1,   222,
-      -1,   223,    -1,   224,    -1,   225,    -1,   226,    -1,   227,
-      -1,   228,    -1,   229,    -1,   256,    -1,    75,    -1,   236,
-      -1,   237,    -1,   238,    -1,   244,    -1,   234,    -1,   233,
-      -1,   235,    -1,   134,    -1,   135,    -1,   242,    -1,   243,
-      -1,    78,    -1,   231,    -1,   240,    -1,   136,    -1,   137,
-      -1,   156,    -1,   157,    -1,   158,    -1,   159,    -1,   160,
-      -1,   161,    -1,   162,    -1,   163,    -1,   164,    -1,   165,
-      -1,   166,    -1,   167,    -1,   168,    -1,   169,    -1,   170,
-      -1,   171,    -1,   190,    -1,   191,    -1,   245,    -1,   246,
-      -1,   247,    -1,   248,    -1,   249,    -1,   250,    -1,   251,
-      -1,   252,    -1,   253,    -1,   254,    -1,   255,    -1,   257,
-      -1,   258,    -1,     5,    -1,     4,    -1,     5,   270,     4,
-     331,    -1,    -1,     4,   332,    -1,    -1,    38,    -1,    32,
-      -1,    34,    -1,    33,    -1,    31,    -1,    37,    -1,    35,
-      -1,    36,    -1,     4,    -1,     5,    -1,     6,    -1,    10,
-      -1,     7,    -1,     8,    -1,    42,   261,   336,   262,    -1,
-      -1,   336,     4,     4,     4,   280,    -1,   336,     4,     4,
-       4,     5,    -1,    -1,    45,   261,   338,   262,    -1,    -1,
-     338,     4,     5,    -1,    -1,    46,   261,   340,   262,    -1,
-      -1,   340,     4,     4,   312,     4,     5,    -1,    -1,    43,
-      10,    -1,    -1
-};
-
-/* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
+  /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
        0,   403,   403,   403,   408,   409,   414,   412,   421,   425,
@@ -1205,7 +862,7 @@ static const yytype_uint16 yyrline[] =
 };
 #endif
 
-#if YYDEBUG || YYERROR_VERBOSE || YYTOKEN_TABLE
+#if YYDEBUG || YYERROR_VERBOSE || 0
 /* YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
@@ -1252,14 +909,14 @@ static const char *const yytname[] =
   "ILOAD", "FLOAD", "ALOAD", "LLOAD", "DLOAD", "ISTORE", "FSTORE",
   "ASTORE", "LSTORE", "DSTORE", "RET", "WIDE", "LOAD", "STORE",
   "LOOKUPSWITCH", "TABLESWITCH", "'{'", "'}'", "'.'", "'='", "'('", "')'",
-  "','", "'['", "']'", "':'", "$accept", "compilation_unit", "@1",
-  "classlist", "class", "@2", "class_modifiers", "classword", "superclass",
-  "classname", "classfieldmethodname", "endname", "abstract_entry",
-  "final_entry", "public_entry", "interface_entry", "static_entry",
-  "native_entry", "synchronized_entry", "transient_entry",
+  "','", "'['", "']'", "':'", "$accept", "compilation_unit", "$@1",
+  "classlist", "class", "$@2", "class_modifiers", "classword",
+  "superclass", "classname", "classfieldmethodname", "endname",
+  "abstract_entry", "final_entry", "public_entry", "interface_entry",
+  "static_entry", "native_entry", "synchronized_entry", "transient_entry",
   "volatile_entry", "access_specifier", "interfaces", "interfacelist",
   "fieldlist", "field", "fieldconstant", "field_modifiers", "methodlist",
-  "method", "@3", "@4", "throwslist", "throwsentries", "max_locals_decl",
+  "method", "$@3", "$@4", "throwslist", "throwsentries", "max_locals_decl",
   "returntype", "arguments", "argumentlist", "methodarguments",
   "methodargumentlist", "methodargument", "type", "basetype", "arrayadder",
   "method_modifiers", "localvar", "arrayorclassname", "code", "op_list",
@@ -1267,13 +924,13 @@ static const char *const yytname[] =
   "fieldref_arg_op", "class_arg_op", "label_arg_op", "localvar_arg_op",
   "localvar_arg", "lookuplist", "tablelist", "newarraytype", "argument",
   "exceptiontable", "exceptionslist", "linenumbertable", "linenumberlist",
-  "localvariabletable", "localvariablelist", "sourcefilename", 0
+  "localvariabletable", "localvariablelist", "sourcefilename", YY_NULLPTR
 };
 #endif
 
 # ifdef YYPRINT
-/* YYTOKNUM[YYLEX-NUM] -- Internal token number corresponding to
-   token YYLEX-NUM.  */
+/* YYTOKNUM[NUM] -- (External) token number corresponding to the
+   (internal) symbol number NUM (which must be that of a token).  */
 static const yytype_uint16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
@@ -1307,153 +964,18 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-/* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
-static const yytype_uint16 yyr1[] =
-{
-       0,   271,   273,   272,   274,   274,   276,   275,   277,   278,
-     278,   279,   279,   280,   280,   281,   281,   282,   282,   283,
-     283,   284,   284,   285,   285,   286,   286,   287,   287,   288,
-     288,   289,   289,   290,   290,   291,   291,   292,   292,   292,
-     292,   292,   293,   293,   294,   294,   295,   295,   296,   297,
-     297,   297,   297,   297,   298,   299,   299,   301,   302,   300,
-     303,   303,   304,   304,   305,   305,   306,   306,   307,   307,
-     308,   308,   309,   309,   310,   310,   311,   311,   312,   313,
-     313,   313,   313,   313,   313,   313,   313,   313,   314,   314,
-     315,   316,   317,   317,   318,   319,   319,   320,   320,   320,
-     320,   321,   322,   322,   322,   322,   322,   322,   322,   322,
-     322,   322,   322,   322,   322,   322,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
-     323,   323,   323,   323,   324,   324,   324,   324,   324,   325,
-     325,   325,   326,   326,   326,   326,   327,   327,   327,   328,
-     328,   328,   328,   328,   328,   328,   328,   328,   328,   328,
-     328,   328,   328,   328,   328,   328,   328,   328,   328,   329,
-     329,   329,   329,   329,   329,   329,   329,   329,   329,   329,
-     329,   329,   330,   330,   331,   331,   332,   332,   333,   333,
-     333,   333,   333,   333,   333,   333,   334,   334,   334,   334,
-     334,   334,   335,   335,   336,   336,   336,   337,   337,   338,
-     338,   339,   339,   340,   340,   341,   341
-};
-
-/* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
-static const yytype_uint8 yyr2[] =
-{
-       0,     2,     0,     2,     2,     1,     0,    11,     4,     1,
-       0,     2,     0,     3,     1,     3,     1,     3,     1,     1,
-       0,     1,     0,     1,     0,     1,     0,     1,     0,     1,
-       0,     1,     0,     1,     0,     1,     0,     1,     2,     1,
-       1,     0,     2,     0,     2,     1,     2,     0,     6,     2,
-       2,     2,     2,     0,     4,     2,     0,     0,     0,    20,
-       2,     0,     2,     1,     2,     0,     1,     1,     1,     0,
-       3,     1,     1,     0,     3,     1,     1,     2,     2,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     3,     0,
-       5,     2,     1,     4,     1,     2,     0,     2,     1,     1,
-       2,     1,     1,     2,     3,     6,     2,     2,     7,     2,
-       2,     3,     6,     9,     3,     2,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     4,     0,     2,     0,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     4,     0,     5,     5,     0,     4,     0,     3,
-       0,     4,     0,     6,     0,     2,     0
-};
-
-/* YYDEFACT[STATE-NAME] -- Default rule to reduce with in state
-   STATE-NUM when YYTABLE doesn't specify something else to do.  Zero
-   means the default is an error.  */
-static const yytype_uint16 yydefact[] =
-{
-       2,     0,    20,     1,    19,     3,    20,    10,    22,     4,
-       9,     0,    21,    24,    12,    23,    26,     0,    43,    25,
-       8,    14,    11,     0,     0,     0,    45,    42,    47,    13,
-      44,     6,    41,    56,    46,    40,    37,    39,    28,   346,
-      38,    27,    22,     0,    41,     0,    55,     0,    34,    79,
-      80,    81,    82,    83,    84,    85,    86,    87,     0,    89,
-      28,   345,     7,    33,    36,    53,     0,    78,    20,    57,
-      35,    54,     0,    48,    89,    22,     0,    49,    51,    50,
-      52,    88,    30,    67,     0,    66,    29,    32,     0,    31,
-      90,    73,     0,    72,    75,    76,    61,     0,    77,     0,
-       0,    74,    63,    60,     0,    62,    65,     0,    58,    64,
-       0,    96,   333,    94,     0,   338,   101,   116,   117,   118,
-     119,   120,   121,   122,     0,   123,   124,   125,   126,   127,
-     128,   129,   130,   131,   264,   132,   133,   276,   134,   135,
-     136,   137,   138,   139,   140,   141,   142,   143,   144,   145,
-     146,   147,   148,   149,   150,   151,   152,   153,   154,   155,
-     156,   157,   158,   159,   160,   161,   162,   163,   164,   165,
-     166,   167,   168,   169,   170,   171,   172,   173,   174,   175,
-     176,   177,   178,   179,   180,   181,   182,   183,   184,   185,
-     186,   187,   188,   272,   273,   279,   280,   189,   190,   191,
-     192,   193,   194,   195,   196,   197,   198,   199,   200,   201,
-     202,   203,   204,   205,   206,   281,   282,   283,   284,   285,
-     286,   287,   288,   289,   290,   291,   292,   293,   294,   295,
-     296,   207,   208,   209,   210,   211,   212,   213,   214,   215,
-     216,   217,   218,   219,   220,   221,   222,   223,   224,   297,
-     298,   225,   226,   227,   228,   229,   230,   231,   232,   233,
-     234,   235,   236,   237,   238,   239,   240,   241,   242,   243,
-     244,   245,   246,   247,   248,   249,   250,   251,   252,   253,
-     254,   255,   256,   257,   258,   259,   260,   261,   262,     0,
-     277,     0,   270,   269,   271,   265,   266,   267,     0,   278,
-       0,   274,   275,   268,   299,   300,   301,   302,   303,   304,
-     305,   306,   307,   308,   309,   263,   310,   311,     0,     0,
-       0,    99,    95,     0,    98,   102,     0,     0,     0,     0,
-       0,     0,   336,     0,   342,    92,     0,   107,   313,   312,
-       0,     0,     0,   322,   319,   321,   320,   324,   325,   323,
-     318,   115,     0,     0,    91,   100,    97,   326,   327,   328,
-     330,   331,   329,   103,     0,     0,   106,   109,   110,     0,
-     340,     0,     0,     0,   111,    16,     0,   114,     0,     0,
-       0,   104,     0,   332,     0,   344,    59,    89,     0,    69,
-     315,     0,    69,     0,     0,   337,     0,    93,    18,    15,
-       0,    68,    71,     0,     0,     0,     0,     0,   339,     0,
-     341,     0,     0,     0,     0,   112,     0,   105,   335,   334,
-       0,    17,   108,    70,   315,   317,     0,   314,   317,     0,
-       0,   316,   113,   343
-};
-
-/* YYDEFGOTO[NTERM-NUM].  */
-static const yytype_int16 yydefgoto[] =
-{
-      -1,     1,     2,     5,     6,    33,     7,    11,    18,    57,
-     376,   399,     8,    13,    16,    20,    42,    87,    90,    64,
-      71,    38,    24,    27,    31,    34,    73,    43,    39,    46,
-      76,   110,   100,   103,   108,    84,   400,   401,    92,    93,
-      94,    85,    59,    67,    69,   321,   337,   112,   113,   322,
-     323,   324,   325,   326,   327,   328,   329,   330,   331,   340,
-     404,   429,   351,   363,   115,   369,   334,   384,   372,   396,
-      47
-};
-
-/* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
-   STATE-NUM.  */
 #define YYPACT_NINF -314
+
+#define yypact_value_is_default(Yystate) \
+  (!!((Yystate) == (-314)))
+
+#define YYTABLE_NINF -88
+
+#define yytable_value_is_error(Yytable_value) \
+  0
+
+  /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
+     STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
     -314,    14,     5,  -314,  -314,  -314,    13,    32,     7,  -314,
@@ -1502,7 +1024,58 @@ static const yytype_int16 yypact[] =
      146,  -314,  -314,  -314
 };
 
-/* YYPGOTO[NTERM-NUM].  */
+  /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
+     Performed when YYTABLE does not specify something else to do.  Zero
+     means the default is an error.  */
+static const yytype_uint16 yydefact[] =
+{
+       2,     0,    20,     1,    19,     3,    20,    10,    22,     4,
+       9,     0,    21,    24,    12,    23,    26,     0,    43,    25,
+       8,    14,    11,     0,     0,     0,    45,    42,    47,    13,
+      44,     6,    41,    56,    46,    40,    37,    39,    28,   346,
+      38,    27,    22,     0,    41,     0,    55,     0,    34,    79,
+      80,    81,    82,    83,    84,    85,    86,    87,     0,    89,
+      28,   345,     7,    33,    36,    53,     0,    78,    20,    57,
+      35,    54,     0,    48,    89,    22,     0,    49,    51,    50,
+      52,    88,    30,    67,     0,    66,    29,    32,     0,    31,
+      90,    73,     0,    72,    75,    76,    61,     0,    77,     0,
+       0,    74,    63,    60,     0,    62,    65,     0,    58,    64,
+       0,    96,   333,    94,     0,   338,   101,   116,   117,   118,
+     119,   120,   121,   122,     0,   123,   124,   125,   126,   127,
+     128,   129,   130,   131,   264,   132,   133,   276,   134,   135,
+     136,   137,   138,   139,   140,   141,   142,   143,   144,   145,
+     146,   147,   148,   149,   150,   151,   152,   153,   154,   155,
+     156,   157,   158,   159,   160,   161,   162,   163,   164,   165,
+     166,   167,   168,   169,   170,   171,   172,   173,   174,   175,
+     176,   177,   178,   179,   180,   181,   182,   183,   184,   185,
+     186,   187,   188,   272,   273,   279,   280,   189,   190,   191,
+     192,   193,   194,   195,   196,   197,   198,   199,   200,   201,
+     202,   203,   204,   205,   206,   281,   282,   283,   284,   285,
+     286,   287,   288,   289,   290,   291,   292,   293,   294,   295,
+     296,   207,   208,   209,   210,   211,   212,   213,   214,   215,
+     216,   217,   218,   219,   220,   221,   222,   223,   224,   297,
+     298,   225,   226,   227,   228,   229,   230,   231,   232,   233,
+     234,   235,   236,   237,   238,   239,   240,   241,   242,   243,
+     244,   245,   246,   247,   248,   249,   250,   251,   252,   253,
+     254,   255,   256,   257,   258,   259,   260,   261,   262,     0,
+     277,     0,   270,   269,   271,   265,   266,   267,     0,   278,
+       0,   274,   275,   268,   299,   300,   301,   302,   303,   304,
+     305,   306,   307,   308,   309,   263,   310,   311,     0,     0,
+       0,    99,    95,     0,    98,   102,     0,     0,     0,     0,
+       0,     0,   336,     0,   342,    92,     0,   107,   313,   312,
+       0,     0,     0,   322,   319,   321,   320,   324,   325,   323,
+     318,   115,     0,     0,    91,   100,    97,   326,   327,   328,
+     330,   331,   329,   103,     0,     0,   106,   109,   110,     0,
+     340,     0,     0,     0,   111,    16,     0,   114,     0,     0,
+       0,   104,     0,   332,     0,   344,    59,    89,     0,    69,
+     315,     0,    69,     0,     0,   337,     0,    93,    18,    15,
+       0,    68,    71,     0,     0,     0,     0,     0,   339,     0,
+     341,     0,     0,     0,     0,   112,     0,   105,   335,   334,
+       0,    17,   108,    70,   315,   317,     0,   314,   317,     0,
+       0,   316,   113,   343
+};
+
+  /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
     -314,  -314,  -314,   147,  -314,  -314,  -314,  -314,  -314,   -17,
@@ -1515,11 +1088,22 @@ static const yytype_int16 yypgoto[] =
     -314
 };
 
-/* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
-   positive, shift that token.  If negative, reduce the rule which
-   number is the opposite.  If zero, do what YYDEFACT says.
-   If YYTABLE_NINF, syntax error.  */
-#define YYTABLE_NINF -88
+  /* YYDEFGOTO[NTERM-NUM].  */
+static const yytype_int16 yydefgoto[] =
+{
+      -1,     1,     2,     5,     6,    33,     7,    11,    18,    57,
+     376,   399,     8,    13,    16,    20,    42,    87,    90,    64,
+      71,    38,    24,    27,    31,    34,    73,    43,    39,    46,
+      76,   110,   100,   103,   108,    84,   400,   401,    92,    93,
+      94,    85,    59,    67,    69,   321,   337,   112,   113,   322,
+     323,   324,   325,   326,   327,   328,   329,   330,   331,   340,
+     404,   429,   351,   363,   115,   369,   334,   384,   372,   396,
+      47
+};
+
+  /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
+     positive, shift that token.  If negative, reduce the rule whose
+     number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int16 yytable[] =
 {
       22,    81,    58,   382,   394,   409,    26,   336,    29,   341,
@@ -1700,8 +1284,8 @@ static const yytype_int16 yycheck[] =
      260
 };
 
-/* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
-   symbol of state STATE-NUM.  */
+  /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
+     symbol of state STATE-NUM.  */
 static const yytype_uint16 yystos[] =
 {
        0,   272,   273,     0,    23,   274,   275,   277,   283,   274,
@@ -1750,95 +1334,121 @@ static const yytype_uint16 yystos[] =
        4,   332,   262,     5
 };
 
-#define yyerrok		(yyerrstatus = 0)
-#define yyclearin	(yychar = YYEMPTY)
-#define YYEMPTY		(-2)
-#define YYEOF		0
+  /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
+static const yytype_uint16 yyr1[] =
+{
+       0,   271,   273,   272,   274,   274,   276,   275,   277,   278,
+     278,   279,   279,   280,   280,   281,   281,   282,   282,   283,
+     283,   284,   284,   285,   285,   286,   286,   287,   287,   288,
+     288,   289,   289,   290,   290,   291,   291,   292,   292,   292,
+     292,   292,   293,   293,   294,   294,   295,   295,   296,   297,
+     297,   297,   297,   297,   298,   299,   299,   301,   302,   300,
+     303,   303,   304,   304,   305,   305,   306,   306,   307,   307,
+     308,   308,   309,   309,   310,   310,   311,   311,   312,   313,
+     313,   313,   313,   313,   313,   313,   313,   313,   314,   314,
+     315,   316,   317,   317,   318,   319,   319,   320,   320,   320,
+     320,   321,   322,   322,   322,   322,   322,   322,   322,   322,
+     322,   322,   322,   322,   322,   322,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   323,   323,   323,   323,   323,   323,
+     323,   323,   323,   323,   324,   324,   324,   324,   324,   325,
+     325,   325,   326,   326,   326,   326,   327,   327,   327,   328,
+     328,   328,   328,   328,   328,   328,   328,   328,   328,   328,
+     328,   328,   328,   328,   328,   328,   328,   328,   328,   329,
+     329,   329,   329,   329,   329,   329,   329,   329,   329,   329,
+     329,   329,   330,   330,   331,   331,   332,   332,   333,   333,
+     333,   333,   333,   333,   333,   333,   334,   334,   334,   334,
+     334,   334,   335,   335,   336,   336,   336,   337,   337,   338,
+     338,   339,   339,   340,   340,   341,   341
+};
 
-#define YYACCEPT	goto yyacceptlab
-#define YYABORT		goto yyabortlab
-#define YYERROR		goto yyerrorlab
+  /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
+static const yytype_uint8 yyr2[] =
+{
+       0,     2,     0,     2,     2,     1,     0,    11,     4,     1,
+       0,     2,     0,     3,     1,     3,     1,     3,     1,     1,
+       0,     1,     0,     1,     0,     1,     0,     1,     0,     1,
+       0,     1,     0,     1,     0,     1,     0,     1,     2,     1,
+       1,     0,     2,     0,     2,     1,     2,     0,     6,     2,
+       2,     2,     2,     0,     4,     2,     0,     0,     0,    20,
+       2,     0,     2,     1,     2,     0,     1,     1,     1,     0,
+       3,     1,     1,     0,     3,     1,     1,     2,     2,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     3,     0,
+       5,     2,     1,     4,     1,     2,     0,     2,     1,     1,
+       2,     1,     1,     2,     3,     6,     2,     2,     7,     2,
+       2,     3,     6,     9,     3,     2,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     4,     0,     2,     0,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     4,     0,     5,     5,     0,     4,     0,     3,
+       0,     4,     0,     6,     0,     2,     0
+};
 
 
-/* Like YYERROR except do call yyerror.  This remains here temporarily
-   to ease the transition to the new meaning of YYERROR, for GCC.
-   Once GCC version 2 has supplanted version 1, this can go.  */
+#define yyerrok         (yyerrstatus = 0)
+#define yyclearin       (yychar = YYEMPTY)
+#define YYEMPTY         (-2)
+#define YYEOF           0
 
-#define YYFAIL		goto yyerrlab
+#define YYACCEPT        goto yyacceptlab
+#define YYABORT         goto yyabortlab
+#define YYERROR         goto yyerrorlab
+
 
 #define YYRECOVERING()  (!!yyerrstatus)
 
-#define YYBACKUP(Token, Value)					\
-do								\
-  if (yychar == YYEMPTY && yylen == 1)				\
-    {								\
-      yychar = (Token);						\
-      yylval = (Value);						\
-      yytoken = YYTRANSLATE (yychar);				\
-      YYPOPSTACK (1);						\
-      goto yybackup;						\
-    }								\
-  else								\
-    {								\
+#define YYBACKUP(Token, Value)                                  \
+do                                                              \
+  if (yychar == YYEMPTY)                                        \
+    {                                                           \
+      yychar = (Token);                                         \
+      yylval = (Value);                                         \
+      YYPOPSTACK (yylen);                                       \
+      yystate = *yyssp;                                         \
+      goto yybackup;                                            \
+    }                                                           \
+  else                                                          \
+    {                                                           \
       yyerror (YY_("syntax error: cannot back up")); \
-      YYERROR;							\
-    }								\
-while (YYID (0))
+      YYERROR;                                                  \
+    }                                                           \
+while (0)
+
+/* Error token number */
+#define YYTERROR        1
+#define YYERRCODE       256
 
 
-#define YYTERROR	1
-#define YYERRCODE	256
-
-
-/* YYLLOC_DEFAULT -- Set CURRENT to span from RHS[1] to RHS[N].
-   If N is 0, then set CURRENT to the empty location which ends
-   the previous symbol: RHS[0] (always defined).  */
-
-#define YYRHSLOC(Rhs, K) ((Rhs)[K])
-#ifndef YYLLOC_DEFAULT
-# define YYLLOC_DEFAULT(Current, Rhs, N)				\
-    do									\
-      if (YYID (N))                                                    \
-	{								\
-	  (Current).first_line   = YYRHSLOC (Rhs, 1).first_line;	\
-	  (Current).first_column = YYRHSLOC (Rhs, 1).first_column;	\
-	  (Current).last_line    = YYRHSLOC (Rhs, N).last_line;		\
-	  (Current).last_column  = YYRHSLOC (Rhs, N).last_column;	\
-	}								\
-      else								\
-	{								\
-	  (Current).first_line   = (Current).last_line   =		\
-	    YYRHSLOC (Rhs, 0).last_line;				\
-	  (Current).first_column = (Current).last_column =		\
-	    YYRHSLOC (Rhs, 0).last_column;				\
-	}								\
-    while (YYID (0))
-#endif
-
-
-/* YY_LOCATION_PRINT -- Print the location on the stream.
-   This macro was not mandated originally: define only if we know
-   we won't break user code: when these are the locations we know.  */
-
-#ifndef YY_LOCATION_PRINT
-# if YYLTYPE_IS_TRIVIAL
-#  define YY_LOCATION_PRINT(File, Loc)			\
-     fprintf (File, "%d.%d-%d.%d",			\
-	      (Loc).first_line, (Loc).first_column,	\
-	      (Loc).last_line,  (Loc).last_column)
-# else
-#  define YY_LOCATION_PRINT(File, Loc) ((void) 0)
-# endif
-#endif
-
-
-/* YYLEX -- calling `yylex' with the right arguments.  */
-
-#ifdef YYLEX_PARAM
-# define YYLEX yylex (YYLEX_PARAM)
-#else
-# define YYLEX yylex ()
-#endif
 
 /* Enable debugging if requested.  */
 #if YYDEBUG
@@ -1848,54 +1458,46 @@ while (YYID (0))
 #  define YYFPRINTF fprintf
 # endif
 
-# define YYDPRINTF(Args)			\
-do {						\
-  if (yydebug)					\
-    YYFPRINTF Args;				\
-} while (YYID (0))
+# define YYDPRINTF(Args)                        \
+do {                                            \
+  if (yydebug)                                  \
+    YYFPRINTF Args;                             \
+} while (0)
 
-# define YY_SYMBOL_PRINT(Title, Type, Value, Location)			  \
-do {									  \
-  if (yydebug)								  \
-    {									  \
-      YYFPRINTF (stderr, "%s ", Title);					  \
-      yy_symbol_print (stderr,						  \
-		  Type, Value); \
-      YYFPRINTF (stderr, "\n");						  \
-    }									  \
-} while (YYID (0))
+/* This macro is provided for backward compatibility. */
+#ifndef YY_LOCATION_PRINT
+# define YY_LOCATION_PRINT(File, Loc) ((void) 0)
+#endif
 
 
-/*--------------------------------.
-| Print this symbol on YYOUTPUT.  |
-`--------------------------------*/
+# define YY_SYMBOL_PRINT(Title, Type, Value, Location)                    \
+do {                                                                      \
+  if (yydebug)                                                            \
+    {                                                                     \
+      YYFPRINTF (stderr, "%s ", Title);                                   \
+      yy_symbol_print (stderr,                                            \
+                  Type, Value); \
+      YYFPRINTF (stderr, "\n");                                           \
+    }                                                                     \
+} while (0)
 
-/*ARGSUSED*/
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
+
+/*----------------------------------------.
+| Print this symbol's value on YYOUTPUT.  |
+`----------------------------------------*/
+
 static void
 yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep)
-#else
-static void
-yy_symbol_value_print (yyoutput, yytype, yyvaluep)
-    FILE *yyoutput;
-    int yytype;
-    YYSTYPE const * const yyvaluep;
-#endif
 {
+  FILE *yyo = yyoutput;
+  YYUSE (yyo);
   if (!yyvaluep)
     return;
 # ifdef YYPRINT
   if (yytype < YYNTOKENS)
     YYPRINT (yyoutput, yytoknum[yytype], *yyvaluep);
-# else
-  YYUSE (yyoutput);
 # endif
-  switch (yytype)
-    {
-      default:
-	break;
-    }
+  YYUSE (yytype);
 }
 
 
@@ -1903,22 +1505,11 @@ yy_symbol_value_print (yyoutput, yytype, yyvaluep)
 | Print this symbol on YYOUTPUT.  |
 `--------------------------------*/
 
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 static void
 yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep)
-#else
-static void
-yy_symbol_print (yyoutput, yytype, yyvaluep)
-    FILE *yyoutput;
-    int yytype;
-    YYSTYPE const * const yyvaluep;
-#endif
 {
-  if (yytype < YYNTOKENS)
-    YYFPRINTF (yyoutput, "token %s (", yytname[yytype]);
-  else
-    YYFPRINTF (yyoutput, "nterm %s (", yytname[yytype]);
+  YYFPRINTF (yyoutput, "%s %s (",
+             yytype < YYNTOKENS ? "token" : "nterm", yytname[yytype]);
 
   yy_symbol_value_print (yyoutput, yytype, yyvaluep);
   YYFPRINTF (yyoutput, ")");
@@ -1929,66 +1520,54 @@ yy_symbol_print (yyoutput, yytype, yyvaluep)
 | TOP (included).                                                   |
 `------------------------------------------------------------------*/
 
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 static void
-yy_stack_print (yytype_int16 *bottom, yytype_int16 *top)
-#else
-static void
-yy_stack_print (bottom, top)
-    yytype_int16 *bottom;
-    yytype_int16 *top;
-#endif
+yy_stack_print (yytype_int16 *yybottom, yytype_int16 *yytop)
 {
   YYFPRINTF (stderr, "Stack now");
-  for (; bottom <= top; ++bottom)
-    YYFPRINTF (stderr, " %d", *bottom);
+  for (; yybottom <= yytop; yybottom++)
+    {
+      int yybot = *yybottom;
+      YYFPRINTF (stderr, " %d", yybot);
+    }
   YYFPRINTF (stderr, "\n");
 }
 
-# define YY_STACK_PRINT(Bottom, Top)				\
-do {								\
-  if (yydebug)							\
-    yy_stack_print ((Bottom), (Top));				\
-} while (YYID (0))
+# define YY_STACK_PRINT(Bottom, Top)                            \
+do {                                                            \
+  if (yydebug)                                                  \
+    yy_stack_print ((Bottom), (Top));                           \
+} while (0)
 
 
 /*------------------------------------------------.
 | Report that the YYRULE is going to be reduced.  |
 `------------------------------------------------*/
 
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 static void
-yy_reduce_print (YYSTYPE *yyvsp, int yyrule)
-#else
-static void
-yy_reduce_print (yyvsp, yyrule)
-    YYSTYPE *yyvsp;
-    int yyrule;
-#endif
+yy_reduce_print (yytype_int16 *yyssp, YYSTYPE *yyvsp, int yyrule)
 {
+  unsigned long int yylno = yyrline[yyrule];
   int yynrhs = yyr2[yyrule];
   int yyi;
-  unsigned long int yylno = yyrline[yyrule];
   YYFPRINTF (stderr, "Reducing stack by rule %d (line %lu):\n",
-	     yyrule - 1, yylno);
+             yyrule - 1, yylno);
   /* The symbols being reduced.  */
   for (yyi = 0; yyi < yynrhs; yyi++)
     {
-      fprintf (stderr, "   $%d = ", yyi + 1);
-      yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],
-		       &(yyvsp[(yyi + 1) - (yynrhs)])
-		       		       );
-      fprintf (stderr, "\n");
+      YYFPRINTF (stderr, "   $%d = ", yyi + 1);
+      yy_symbol_print (stderr,
+                       yystos[yyssp[yyi + 1 - yynrhs]],
+                       &(yyvsp[(yyi + 1) - (yynrhs)])
+                                              );
+      YYFPRINTF (stderr, "\n");
     }
 }
 
-# define YY_REDUCE_PRINT(Rule)		\
-do {					\
-  if (yydebug)				\
-    yy_reduce_print (yyvsp, Rule); \
-} while (YYID (0))
+# define YY_REDUCE_PRINT(Rule)          \
+do {                                    \
+  if (yydebug)                          \
+    yy_reduce_print (yyssp, yyvsp, Rule); \
+} while (0)
 
 /* Nonzero means print parse trace.  It is left uninitialized so that
    multiple parsers can coexist.  */
@@ -2002,7 +1581,7 @@ int yydebug;
 
 
 /* YYINITDEPTH -- initial size of the parser's stacks.  */
-#ifndef	YYINITDEPTH
+#ifndef YYINITDEPTH
 # define YYINITDEPTH 200
 #endif
 
@@ -2017,7 +1596,6 @@ int yydebug;
 # define YYMAXDEPTH 10000
 #endif
 
-
 
 #if YYERROR_VERBOSE
 
@@ -2026,15 +1604,8 @@ int yydebug;
 #   define yystrlen strlen
 #  else
 /* Return the length of YYSTR.  */
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 static YYSIZE_T
 yystrlen (const char *yystr)
-#else
-static YYSIZE_T
-yystrlen (yystr)
-    const char *yystr;
-#endif
 {
   YYSIZE_T yylen;
   for (yylen = 0; yystr[yylen]; yylen++)
@@ -2050,16 +1621,8 @@ yystrlen (yystr)
 #  else
 /* Copy YYSRC to YYDEST, returning the address of the terminating '\0' in
    YYDEST.  */
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 static char *
 yystpcpy (char *yydest, const char *yysrc)
-#else
-static char *
-yystpcpy (yydest, yysrc)
-    char *yydest;
-    const char *yysrc;
-#endif
 {
   char *yyd = yydest;
   const char *yys = yysrc;
@@ -2089,27 +1652,27 @@ yytnamerr (char *yyres, const char *yystr)
       char const *yyp = yystr;
 
       for (;;)
-	switch (*++yyp)
-	  {
-	  case '\'':
-	  case ',':
-	    goto do_not_strip_quotes;
+        switch (*++yyp)
+          {
+          case '\'':
+          case ',':
+            goto do_not_strip_quotes;
 
-	  case '\\':
-	    if (*++yyp != '\\')
-	      goto do_not_strip_quotes;
-	    /* Fall through.  */
-	  default:
-	    if (yyres)
-	      yyres[yyn] = *yyp;
-	    yyn++;
-	    break;
+          case '\\':
+            if (*++yyp != '\\')
+              goto do_not_strip_quotes;
+            /* Fall through.  */
+          default:
+            if (yyres)
+              yyres[yyn] = *yyp;
+            yyn++;
+            break;
 
-	  case '"':
-	    if (yyres)
-	      yyres[yyn] = '\0';
-	    return yyn;
-	  }
+          case '"':
+            if (yyres)
+              yyres[yyn] = '\0';
+            return yyn;
+          }
     do_not_strip_quotes: ;
     }
 
@@ -2120,211 +1683,209 @@ yytnamerr (char *yyres, const char *yystr)
 }
 # endif
 
-/* Copy into YYRESULT an error message about the unexpected token
-   YYCHAR while in state YYSTATE.  Return the number of bytes copied,
-   including the terminating null byte.  If YYRESULT is null, do not
-   copy anything; just return the number of bytes that would be
-   copied.  As a special case, return 0 if an ordinary "syntax error"
-   message will do.  Return YYSIZE_MAXIMUM if overflow occurs during
-   size calculation.  */
-static YYSIZE_T
-yysyntax_error (char *yyresult, int yystate, int yychar)
+/* Copy into *YYMSG, which is of size *YYMSG_ALLOC, an error message
+   about the unexpected token YYTOKEN for the state stack whose top is
+   YYSSP.
+
+   Return 0 if *YYMSG was successfully written.  Return 1 if *YYMSG is
+   not large enough to hold the message.  In that case, also set
+   *YYMSG_ALLOC to the required number of bytes.  Return 2 if the
+   required number of bytes is too large to store.  */
+static int
+yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
+                yytype_int16 *yyssp, int yytoken)
 {
-  int yyn = yypact[yystate];
+  YYSIZE_T yysize0 = yytnamerr (YY_NULLPTR, yytname[yytoken]);
+  YYSIZE_T yysize = yysize0;
+  enum { YYERROR_VERBOSE_ARGS_MAXIMUM = 5 };
+  /* Internationalized format string. */
+  const char *yyformat = YY_NULLPTR;
+  /* Arguments of yyformat. */
+  char const *yyarg[YYERROR_VERBOSE_ARGS_MAXIMUM];
+  /* Number of reported tokens (one for the "unexpected", one per
+     "expected"). */
+  int yycount = 0;
 
-  if (! (YYPACT_NINF < yyn && yyn <= YYLAST))
-    return 0;
-  else
+  /* There are many possibilities here to consider:
+     - If this state is a consistent state with a default action, then
+       the only way this function was invoked is if the default action
+       is an error action.  In that case, don't check for expected
+       tokens because there are none.
+     - The only way there can be no lookahead present (in yychar) is if
+       this state is a consistent state with a default action.  Thus,
+       detecting the absence of a lookahead is sufficient to determine
+       that there is no unexpected or expected token to report.  In that
+       case, just report a simple "syntax error".
+     - Don't assume there isn't a lookahead just because this state is a
+       consistent state with a default action.  There might have been a
+       previous inconsistent state, consistent state with a non-default
+       action, or user semantic action that manipulated yychar.
+     - Of course, the expected token list depends on states to have
+       correct lookahead information, and it depends on the parser not
+       to perform extra reductions after fetching a lookahead from the
+       scanner and before detecting a syntax error.  Thus, state merging
+       (from LALR or IELR) and default reductions corrupt the expected
+       token list.  However, the list is correct for canonical LR with
+       one exception: it will still contain any token that will not be
+       accepted due to an error action in a later state.
+  */
+  if (yytoken != YYEMPTY)
     {
-      int yytype = YYTRANSLATE (yychar);
-      YYSIZE_T yysize0 = yytnamerr (0, yytname[yytype]);
-      YYSIZE_T yysize = yysize0;
-      YYSIZE_T yysize1;
-      int yysize_overflow = 0;
-      enum { YYERROR_VERBOSE_ARGS_MAXIMUM = 5 };
-      char const *yyarg[YYERROR_VERBOSE_ARGS_MAXIMUM];
-      int yyx;
+      int yyn = yypact[*yyssp];
+      yyarg[yycount++] = yytname[yytoken];
+      if (!yypact_value_is_default (yyn))
+        {
+          /* Start YYX at -YYN if negative to avoid negative indexes in
+             YYCHECK.  In other words, skip the first -YYN actions for
+             this state because they are default actions.  */
+          int yyxbegin = yyn < 0 ? -yyn : 0;
+          /* Stay within bounds of both yycheck and yytname.  */
+          int yychecklim = YYLAST - yyn + 1;
+          int yyxend = yychecklim < YYNTOKENS ? yychecklim : YYNTOKENS;
+          int yyx;
 
-# if 0
-      /* This is so xgettext sees the translatable formats that are
-	 constructed on the fly.  */
-      YY_("syntax error, unexpected %s");
-      YY_("syntax error, unexpected %s, expecting %s");
-      YY_("syntax error, unexpected %s, expecting %s or %s");
-      YY_("syntax error, unexpected %s, expecting %s or %s or %s");
-      YY_("syntax error, unexpected %s, expecting %s or %s or %s or %s");
-# endif
-      char *yyfmt;
-      char const *yyf;
-      static char const yyunexpected[] = "syntax error, unexpected %s";
-      static char const yyexpecting[] = ", expecting %s";
-      static char const yyor[] = " or %s";
-      char yyformat[sizeof yyunexpected
-		    + sizeof yyexpecting - 1
-		    + ((YYERROR_VERBOSE_ARGS_MAXIMUM - 2)
-		       * (sizeof yyor - 1))];
-      char const *yyprefix = yyexpecting;
-
-      /* Start YYX at -YYN if negative to avoid negative indexes in
-	 YYCHECK.  */
-      int yyxbegin = yyn < 0 ? -yyn : 0;
-
-      /* Stay within bounds of both yycheck and yytname.  */
-      int yychecklim = YYLAST - yyn + 1;
-      int yyxend = yychecklim < YYNTOKENS ? yychecklim : YYNTOKENS;
-      int yycount = 1;
-
-      yyarg[0] = yytname[yytype];
-      yyfmt = yystpcpy (yyformat, yyunexpected);
-
-      for (yyx = yyxbegin; yyx < yyxend; ++yyx)
-	if (yycheck[yyx + yyn] == yyx && yyx != YYTERROR)
-	  {
-	    if (yycount == YYERROR_VERBOSE_ARGS_MAXIMUM)
-	      {
-		yycount = 1;
-		yysize = yysize0;
-		yyformat[sizeof yyunexpected - 1] = '\0';
-		break;
-	      }
-	    yyarg[yycount++] = yytname[yyx];
-	    yysize1 = yysize + yytnamerr (0, yytname[yyx]);
-	    yysize_overflow |= (yysize1 < yysize);
-	    yysize = yysize1;
-	    yyfmt = yystpcpy (yyfmt, yyprefix);
-	    yyprefix = yyor;
-	  }
-
-      yyf = YY_(yyformat);
-      yysize1 = yysize + yystrlen (yyf);
-      yysize_overflow |= (yysize1 < yysize);
-      yysize = yysize1;
-
-      if (yysize_overflow)
-	return YYSIZE_MAXIMUM;
-
-      if (yyresult)
-	{
-	  /* Avoid sprintf, as that infringes on the user's name space.
-	     Don't have undefined behavior even if the translation
-	     produced a string with the wrong number of "%s"s.  */
-	  char *yyp = yyresult;
-	  int yyi = 0;
-	  while ((*yyp = *yyf) != '\0')
-	    {
-	      if (*yyp == '%' && yyf[1] == 's' && yyi < yycount)
-		{
-		  yyp += yytnamerr (yyp, yyarg[yyi++]);
-		  yyf += 2;
-		}
-	      else
-		{
-		  yyp++;
-		  yyf++;
-		}
-	    }
-	}
-      return yysize;
+          for (yyx = yyxbegin; yyx < yyxend; ++yyx)
+            if (yycheck[yyx + yyn] == yyx && yyx != YYTERROR
+                && !yytable_value_is_error (yytable[yyx + yyn]))
+              {
+                if (yycount == YYERROR_VERBOSE_ARGS_MAXIMUM)
+                  {
+                    yycount = 1;
+                    yysize = yysize0;
+                    break;
+                  }
+                yyarg[yycount++] = yytname[yyx];
+                {
+                  YYSIZE_T yysize1 = yysize + yytnamerr (YY_NULLPTR, yytname[yyx]);
+                  if (! (yysize <= yysize1
+                         && yysize1 <= YYSTACK_ALLOC_MAXIMUM))
+                    return 2;
+                  yysize = yysize1;
+                }
+              }
+        }
     }
+
+  switch (yycount)
+    {
+# define YYCASE_(N, S)                      \
+      case N:                               \
+        yyformat = S;                       \
+      break
+      YYCASE_(0, YY_("syntax error"));
+      YYCASE_(1, YY_("syntax error, unexpected %s"));
+      YYCASE_(2, YY_("syntax error, unexpected %s, expecting %s"));
+      YYCASE_(3, YY_("syntax error, unexpected %s, expecting %s or %s"));
+      YYCASE_(4, YY_("syntax error, unexpected %s, expecting %s or %s or %s"));
+      YYCASE_(5, YY_("syntax error, unexpected %s, expecting %s or %s or %s or %s"));
+# undef YYCASE_
+    }
+
+  {
+    YYSIZE_T yysize1 = yysize + yystrlen (yyformat);
+    if (! (yysize <= yysize1 && yysize1 <= YYSTACK_ALLOC_MAXIMUM))
+      return 2;
+    yysize = yysize1;
+  }
+
+  if (*yymsg_alloc < yysize)
+    {
+      *yymsg_alloc = 2 * yysize;
+      if (! (yysize <= *yymsg_alloc
+             && *yymsg_alloc <= YYSTACK_ALLOC_MAXIMUM))
+        *yymsg_alloc = YYSTACK_ALLOC_MAXIMUM;
+      return 1;
+    }
+
+  /* Avoid sprintf, as that infringes on the user's name space.
+     Don't have undefined behavior even if the translation
+     produced a string with the wrong number of "%s"s.  */
+  {
+    char *yyp = *yymsg;
+    int yyi = 0;
+    while ((*yyp = *yyformat) != '\0')
+      if (*yyp == '%' && yyformat[1] == 's' && yyi < yycount)
+        {
+          yyp += yytnamerr (yyp, yyarg[yyi++]);
+          yyformat += 2;
+        }
+      else
+        {
+          yyp++;
+          yyformat++;
+        }
+  }
+  return 0;
 }
 #endif /* YYERROR_VERBOSE */
-
 
 /*-----------------------------------------------.
 | Release the memory associated to this symbol.  |
 `-----------------------------------------------*/
 
-/*ARGSUSED*/
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 static void
 yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep)
-#else
-static void
-yydestruct (yymsg, yytype, yyvaluep)
-    const char *yymsg;
-    int yytype;
-    YYSTYPE *yyvaluep;
-#endif
 {
   YYUSE (yyvaluep);
-
   if (!yymsg)
     yymsg = "Deleting";
   YY_SYMBOL_PRINT (yymsg, yytype, yyvaluep, yylocationp);
 
-  switch (yytype)
-    {
-
-      default:
-	break;
-    }
+  YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+  YYUSE (yytype);
+  YY_IGNORE_MAYBE_UNINITIALIZED_END
 }
-
-
-/* Prevent warnings from -Wmissing-prototypes.  */
-
-#ifdef YYPARSE_PARAM
-#if defined __STDC__ || defined __cplusplus
-int yyparse (void *YYPARSE_PARAM);
-#else
-int yyparse ();
-#endif
-#else /* ! YYPARSE_PARAM */
-#if defined __STDC__ || defined __cplusplus
-int yyparse (void);
-#else
-int yyparse ();
-#endif
-#endif /* ! YYPARSE_PARAM */
 
 
 
-/* The look-ahead symbol.  */
+
+/* The lookahead symbol.  */
 int yychar;
 
-/* The semantic value of the look-ahead symbol.  */
+/* The semantic value of the lookahead symbol.  */
 YYSTYPE yylval;
-
 /* Number of syntax errors so far.  */
 int yynerrs;
-
 
 
 /*----------.
 | yyparse.  |
 `----------*/
 
-#ifdef YYPARSE_PARAM
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
-int
-yyparse (void *YYPARSE_PARAM)
-#else
-int
-yyparse (YYPARSE_PARAM)
-    void *YYPARSE_PARAM;
-#endif
-#else /* ! YYPARSE_PARAM */
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
 int
 yyparse (void)
-#else
-int
-yyparse ()
-
-#endif
-#endif
 {
-  
-  int yystate;
+    int yystate;
+    /* Number of tokens to shift before error messages enabled.  */
+    int yyerrstatus;
+
+    /* The stacks and their tools:
+       'yyss': related to states.
+       'yyvs': related to semantic values.
+
+       Refer to the stacks through separate pointers, to allow yyoverflow
+       to reallocate them elsewhere.  */
+
+    /* The state stack.  */
+    yytype_int16 yyssa[YYINITDEPTH];
+    yytype_int16 *yyss;
+    yytype_int16 *yyssp;
+
+    /* The semantic value stack.  */
+    YYSTYPE yyvsa[YYINITDEPTH];
+    YYSTYPE *yyvs;
+    YYSTYPE *yyvsp;
+
+    YYSIZE_T yystacksize;
+
   int yyn;
   int yyresult;
-  /* Number of tokens to shift before error messages enabled.  */
-  int yyerrstatus;
-  /* Look-ahead token as an internal (translated) token number.  */
+  /* Lookahead token as an internal (translated) token number.  */
   int yytoken = 0;
+  /* The variables used to return semantic value and location from the
+     action routines.  */
+  YYSTYPE yyval;
+
 #if YYERROR_VERBOSE
   /* Buffer for error messages, and its allocated size.  */
   char yymsgbuf[128];
@@ -2332,54 +1893,22 @@ yyparse ()
   YYSIZE_T yymsg_alloc = sizeof yymsgbuf;
 #endif
 
-  /* Three stacks and their tools:
-     `yyss': related to states,
-     `yyvs': related to semantic values,
-     `yyls': related to locations.
-
-     Refer to the stacks thru separate pointers, to allow yyoverflow
-     to reallocate them elsewhere.  */
-
-  /* The state stack.  */
-  yytype_int16 yyssa[YYINITDEPTH];
-  yytype_int16 *yyss = yyssa;
-  yytype_int16 *yyssp;
-
-  /* The semantic value stack.  */
-  YYSTYPE yyvsa[YYINITDEPTH];
-  YYSTYPE *yyvs = yyvsa;
-  YYSTYPE *yyvsp;
-
-
-
 #define YYPOPSTACK(N)   (yyvsp -= (N), yyssp -= (N))
-
-  YYSIZE_T yystacksize = YYINITDEPTH;
-
-  /* The variables used to return semantic value and location from the
-     action routines.  */
-  YYSTYPE yyval;
-
 
   /* The number of symbols on the RHS of the reduced rule.
      Keep to zero when no symbol should be popped.  */
   int yylen = 0;
+
+  yyssp = yyss = yyssa;
+  yyvsp = yyvs = yyvsa;
+  yystacksize = YYINITDEPTH;
 
   YYDPRINTF ((stderr, "Starting parse\n"));
 
   yystate = 0;
   yyerrstatus = 0;
   yynerrs = 0;
-  yychar = YYEMPTY;		/* Cause a token to be read.  */
-
-  /* Initialize stack pointers.
-     Waste one element of value and location stack
-     so that they stay on the same level as the state stack.
-     The wasted elements are never initialized.  */
-
-  yyssp = yyss;
-  yyvsp = yyvs;
-
+  yychar = YYEMPTY; /* Cause a token to be read.  */
   goto yysetstate;
 
 /*------------------------------------------------------------.
@@ -2400,25 +1929,23 @@ yyparse ()
 
 #ifdef yyoverflow
       {
-	/* Give user a chance to reallocate the stack.  Use copies of
-	   these so that the &'s don't force the real ones into
-	   memory.  */
-	YYSTYPE *yyvs1 = yyvs;
-	yytype_int16 *yyss1 = yyss;
+        /* Give user a chance to reallocate the stack.  Use copies of
+           these so that the &'s don't force the real ones into
+           memory.  */
+        YYSTYPE *yyvs1 = yyvs;
+        yytype_int16 *yyss1 = yyss;
 
+        /* Each stack pointer address is followed by the size of the
+           data in use in that stack, in bytes.  This used to be a
+           conditional around just the two extra args, but that might
+           be undefined if yyoverflow is a macro.  */
+        yyoverflow (YY_("memory exhausted"),
+                    &yyss1, yysize * sizeof (*yyssp),
+                    &yyvs1, yysize * sizeof (*yyvsp),
+                    &yystacksize);
 
-	/* Each stack pointer address is followed by the size of the
-	   data in use in that stack, in bytes.  This used to be a
-	   conditional around just the two extra args, but that might
-	   be undefined if yyoverflow is a macro.  */
-	yyoverflow (YY_("memory exhausted"),
-		    &yyss1, yysize * sizeof (*yyssp),
-		    &yyvs1, yysize * sizeof (*yyvsp),
-
-		    &yystacksize);
-
-	yyss = yyss1;
-	yyvs = yyvs1;
+        yyss = yyss1;
+        yyvs = yyvs1;
       }
 #else /* no yyoverflow */
 # ifndef YYSTACK_RELOCATE
@@ -2426,23 +1953,22 @@ yyparse ()
 # else
       /* Extend the stack our own way.  */
       if (YYMAXDEPTH <= yystacksize)
-	goto yyexhaustedlab;
+        goto yyexhaustedlab;
       yystacksize *= 2;
       if (YYMAXDEPTH < yystacksize)
-	yystacksize = YYMAXDEPTH;
+        yystacksize = YYMAXDEPTH;
 
       {
-	yytype_int16 *yyss1 = yyss;
-	union yyalloc *yyptr =
-	  (union yyalloc *) YYSTACK_ALLOC (YYSTACK_BYTES (yystacksize));
-	if (! yyptr)
-	  goto yyexhaustedlab;
-	YYSTACK_RELOCATE (yyss);
-	YYSTACK_RELOCATE (yyvs);
-
+        yytype_int16 *yyss1 = yyss;
+        union yyalloc *yyptr =
+          (union yyalloc *) YYSTACK_ALLOC (YYSTACK_BYTES (yystacksize));
+        if (! yyptr)
+          goto yyexhaustedlab;
+        YYSTACK_RELOCATE (yyss_alloc, yyss);
+        YYSTACK_RELOCATE (yyvs_alloc, yyvs);
 #  undef YYSTACK_RELOCATE
-	if (yyss1 != yyssa)
-	  YYSTACK_FREE (yyss1);
+        if (yyss1 != yyssa)
+          YYSTACK_FREE (yyss1);
       }
 # endif
 #endif /* no yyoverflow */
@@ -2450,15 +1976,17 @@ yyparse ()
       yyssp = yyss + yysize - 1;
       yyvsp = yyvs + yysize - 1;
 
-
       YYDPRINTF ((stderr, "Stack size increased to %lu\n",
-		  (unsigned long int) yystacksize));
+                  (unsigned long int) yystacksize));
 
       if (yyss + yystacksize - 1 <= yyssp)
-	YYABORT;
+        YYABORT;
     }
 
   YYDPRINTF ((stderr, "Entering state %d\n", yystate));
+
+  if (yystate == YYFINAL)
+    YYACCEPT;
 
   goto yybackup;
 
@@ -2468,20 +1996,20 @@ yyparse ()
 yybackup:
 
   /* Do appropriate processing given the current state.  Read a
-     look-ahead token if we need one and don't already have one.  */
+     lookahead token if we need one and don't already have one.  */
 
-  /* First try to decide what to do without reference to look-ahead token.  */
+  /* First try to decide what to do without reference to lookahead token.  */
   yyn = yypact[yystate];
-  if (yyn == YYPACT_NINF)
+  if (yypact_value_is_default (yyn))
     goto yydefault;
 
-  /* Not known => get a look-ahead token if don't already have one.  */
+  /* Not known => get a lookahead token if don't already have one.  */
 
-  /* YYCHAR is either YYEMPTY or YYEOF or a valid look-ahead symbol.  */
+  /* YYCHAR is either YYEMPTY or YYEOF or a valid lookahead symbol.  */
   if (yychar == YYEMPTY)
     {
       YYDPRINTF ((stderr, "Reading a token: "));
-      yychar = YYLEX;
+      yychar = yylex ();
     }
 
   if (yychar <= YYEOF)
@@ -2503,29 +2031,27 @@ yybackup:
   yyn = yytable[yyn];
   if (yyn <= 0)
     {
-      if (yyn == 0 || yyn == YYTABLE_NINF)
-	goto yyerrlab;
+      if (yytable_value_is_error (yyn))
+        goto yyerrlab;
       yyn = -yyn;
       goto yyreduce;
     }
-
-  if (yyn == YYFINAL)
-    YYACCEPT;
 
   /* Count tokens shifted since error; after three, turn off error
      status.  */
   if (yyerrstatus)
     yyerrstatus--;
 
-  /* Shift the look-ahead token.  */
+  /* Shift the lookahead token.  */
   YY_SYMBOL_PRINT ("Shifting", yytoken, &yylval, &yylloc);
 
-  /* Discard the shifted token unless it is eof.  */
-  if (yychar != YYEOF)
-    yychar = YYEMPTY;
+  /* Discard the shifted token.  */
+  yychar = YYEMPTY;
 
   yystate = yyn;
+  YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
   *++yyvsp = yylval;
+  YY_IGNORE_MAYBE_UNINITIALIZED_END
 
   goto yynewstate;
 
@@ -2548,7 +2074,7 @@ yyreduce:
   yylen = yyr2[yyn];
 
   /* If YYLEN is nonzero, implement the default value of the action:
-     `$$ = $1'.
+     '$$ = $1'.
 
      Otherwise, the following line sets YYVAL to garbage.
      This behavior is undocumented and Bison
@@ -2562,1804 +2088,2154 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 403 "javaa.y"
-    { InitAssembler();;}
+#line 403 "javaa.y" /* yacc.c:1646  */
+    { InitAssembler();}
+#line 2094 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 404 "javaa.y"
-    { EndAssembler();;}
+#line 404 "javaa.y" /* yacc.c:1646  */
+    { EndAssembler();}
+#line 2100 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 414 "javaa.y"
+#line 414 "javaa.y" /* yacc.c:1646  */
     {
-        SetThisClass((yyvsp[(1) - (7)].intval), (yyvsp[(3) - (7)].string), (yyvsp[(4) - (7)].string));
-        ;}
+        SetThisClass((yyvsp[-6].intval), (yyvsp[-4].string), (yyvsp[-3].string));
+        }
+#line 2108 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 422 "javaa.y"
-    {(yyval.intval) = (yyvsp[(1) - (4)].intval) | (yyvsp[(2) - (4)].intval) | (yyvsp[(3) - (4)].intval) | (yyvsp[(4) - (4)].intval);;}
+#line 422 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = (yyvsp[-3].intval) | (yyvsp[-2].intval) | (yyvsp[-1].intval) | (yyvsp[0].intval);}
+#line 2114 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 426 "javaa.y"
-    {break;;}
+#line 426 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2120 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 427 "javaa.y"
-    {break;;}
+#line 427 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2126 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 433 "javaa.y"
-    { (yyval.string) = (yyvsp[(2) - (2)].string);;}
+#line 433 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = (yyvsp[0].string);}
+#line 2132 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 434 "javaa.y"
+#line 434 "javaa.y" /* yacc.c:1646  */
     {
         char* tempstring;
         int len = strlen("java/lang/Object")+1;
         tempstring = (char *) malloc(sizeof(char)*len);
         strncpy(tempstring,"java/lang/Object", len);
         (yyval.string) = tempstring;
-      ;}
+      }
+#line 2144 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 444 "javaa.y"
+#line 444 "javaa.y" /* yacc.c:1646  */
     {
-          (yyval.string) = ConsStrings((yyvsp[(1) - (3)].string),ConsStrings("/",(yyvsp[(3) - (3)].string)));
-        ;}
+          (yyval.string) = ConsStrings((yyvsp[-2].string),ConsStrings("/",(yyvsp[0].string)));
+        }
+#line 2152 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 448 "javaa.y"
+#line 448 "javaa.y" /* yacc.c:1646  */
     {
-          (yyval.string) = (yyvsp[(1) - (1)].string);
-        ;}
+          (yyval.string) = (yyvsp[0].string);
+        }
+#line 2160 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 455 "javaa.y"
+#line 455 "javaa.y" /* yacc.c:1646  */
     {
-          if ((yyvsp[(3) - (3)].classfieldmethodstruct).classname == NULL) (yyval.classfieldmethodstruct).classname = (yyvsp[(1) - (3)].string);
-          else (yyval.classfieldmethodstruct).classname = ConsStrings((yyvsp[(1) - (3)].string),ConsStrings("/",(yyvsp[(3) - (3)].classfieldmethodstruct).classname));
-          (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[(3) - (3)].classfieldmethodstruct).fieldmethodname;
-        ;}
+          if ((yyvsp[0].classfieldmethodstruct).classname == NULL) (yyval.classfieldmethodstruct).classname = (yyvsp[-2].string);
+          else (yyval.classfieldmethodstruct).classname = ConsStrings((yyvsp[-2].string),ConsStrings("/",(yyvsp[0].classfieldmethodstruct).classname));
+          (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[0].classfieldmethodstruct).fieldmethodname;
+        }
+#line 2170 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 461 "javaa.y"
+#line 461 "javaa.y" /* yacc.c:1646  */
     {
           (yyval.classfieldmethodstruct).classname = GetThisClass();
-          (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[(1) - (1)].string);
-        ;}
+          (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[0].string);
+        }
+#line 2179 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 469 "javaa.y"
+#line 469 "javaa.y" /* yacc.c:1646  */
     {
-          if ((yyvsp[(3) - (3)].classfieldmethodstruct).classname == NULL) (yyval.classfieldmethodstruct).classname = (yyvsp[(1) - (3)].string);
-          else (yyval.classfieldmethodstruct).classname = ConsStrings((yyvsp[(1) - (3)].string),ConsStrings("/",(yyvsp[(3) - (3)].classfieldmethodstruct).classname));
-          (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[(3) - (3)].classfieldmethodstruct).fieldmethodname;
-        ;}
+          if ((yyvsp[0].classfieldmethodstruct).classname == NULL) (yyval.classfieldmethodstruct).classname = (yyvsp[-2].string);
+          else (yyval.classfieldmethodstruct).classname = ConsStrings((yyvsp[-2].string),ConsStrings("/",(yyvsp[0].classfieldmethodstruct).classname));
+          (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[0].classfieldmethodstruct).fieldmethodname;
+        }
+#line 2189 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 475 "javaa.y"
+#line 475 "javaa.y" /* yacc.c:1646  */
     {
           (yyval.classfieldmethodstruct).classname = NULL;
-          (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[(1) - (1)].string);
-        ;}
+          (yyval.classfieldmethodstruct).fieldmethodname = (yyvsp[0].string);
+        }
+#line 2198 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 483 "javaa.y"
-    {(yyval.intval) = 0x0400;;}
+#line 483 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 0x0400;}
+#line 2204 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 484 "javaa.y"
-    {(yyval.intval)=0;;}
+#line 484 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=0;}
+#line 2210 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 489 "javaa.y"
-    {(yyval.intval) = 0x0010;;}
+#line 489 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 0x0010;}
+#line 2216 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 490 "javaa.y"
-    {(yyval.intval)=0;;}
+#line 490 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=0;}
+#line 2222 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 495 "javaa.y"
-    {(yyval.intval) = 0x0001;;}
+#line 495 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 0x0001;}
+#line 2228 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 496 "javaa.y"
-    {(yyval.intval)=0;;}
+#line 496 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=0;}
+#line 2234 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 501 "javaa.y"
-    {(yyval.intval) = 0x0200;;}
+#line 501 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 0x0200;}
+#line 2240 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 502 "javaa.y"
-    {(yyval.intval)=0;;}
+#line 502 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=0;}
+#line 2246 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 507 "javaa.y"
-    {(yyval.intval) = 0x0008;;}
+#line 507 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 0x0008;}
+#line 2252 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 508 "javaa.y"
-    {(yyval.intval)=0;;}
+#line 508 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=0;}
+#line 2258 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 513 "javaa.y"
-    {(yyval.intval) = 0x0100;;}
+#line 513 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 0x0100;}
+#line 2264 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 514 "javaa.y"
-    {(yyval.intval)=0;;}
+#line 514 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=0;}
+#line 2270 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 519 "javaa.y"
-    {(yyval.intval) = 0x0020;;}
+#line 519 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 0x0020;}
+#line 2276 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 520 "javaa.y"
-    {(yyval.intval)=0;;}
+#line 520 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=0;}
+#line 2282 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 525 "javaa.y"
-    {(yyval.intval) = 0x0080;;}
+#line 525 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 0x0080;}
+#line 2288 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 526 "javaa.y"
-    {(yyval.intval)=0;;}
+#line 526 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=0;}
+#line 2294 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 531 "javaa.y"
-    {(yyval.intval) = 0x0040;;}
+#line 531 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 0x0040;}
+#line 2300 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 532 "javaa.y"
-    {(yyval.intval)=0;;}
+#line 532 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=0;}
+#line 2306 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 537 "javaa.y"
-    {(yyval.intval) = 2;;}
+#line 537 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 2;}
+#line 2312 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 539 "javaa.y"
-    {(yyval.intval) = 6;;}
+#line 539 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 6;}
+#line 2318 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 541 "javaa.y"
-    {(yyval.intval) = 4;;}
+#line 541 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 4;}
+#line 2324 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 543 "javaa.y"
-    {(yyval.intval) = 1;;}
+#line 543 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = 1;}
+#line 2330 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 544 "javaa.y"
-    {(yyval.intval)=0;;}
+#line 544 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=0;}
+#line 2336 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 549 "javaa.y"
-    {break;;}
+#line 549 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2342 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 550 "javaa.y"
-    {break;;}
+#line 550 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2348 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 555 "javaa.y"
-    { AddToInterfaceList((yyvsp[(2) - (2)].string));;}
+#line 555 "javaa.y" /* yacc.c:1646  */
+    { AddToInterfaceList((yyvsp[0].string));}
+#line 2354 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 557 "javaa.y"
-    { AddToInterfaceList((yyvsp[(1) - (1)].string));;}
+#line 557 "javaa.y" /* yacc.c:1646  */
+    { AddToInterfaceList((yyvsp[0].string));}
+#line 2360 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 562 "javaa.y"
-    {break;;}
+#line 562 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2366 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 566 "javaa.y"
-    {NewField((yyvsp[(2) - (6)].intval)|(yyvsp[(3) - (6)].intval), (yyvsp[(5) - (6)].string), (yyvsp[(4) - (6)].string), (yyvsp[(6) - (6)].argtype));;}
+#line 566 "javaa.y" /* yacc.c:1646  */
+    {NewField((yyvsp[-4].intval)|(yyvsp[-3].intval), (yyvsp[-1].string), (yyvsp[-2].string), (yyvsp[0].argtype));}
+#line 2372 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 571 "javaa.y"
+#line 571 "javaa.y" /* yacc.c:1646  */
     {(yyval.argtype).type = INTCONSTANT;
-              (yyval.argtype).intval = (yyvsp[(2) - (2)].intval);
-             ;}
+              (yyval.argtype).intval = (yyvsp[0].intval);
+             }
+#line 2380 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 575 "javaa.y"
+#line 575 "javaa.y" /* yacc.c:1646  */
     {(yyval.argtype).type = FLOATCONSTANT;
-              (yyval.argtype).floatval = (yyvsp[(2) - (2)].floatval);
-             ;}
+              (yyval.argtype).floatval = (yyvsp[0].floatval);
+             }
+#line 2388 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 579 "javaa.y"
+#line 579 "javaa.y" /* yacc.c:1646  */
     {(yyval.argtype).type = LONGCONSTANT;
-              (yyval.argtype).longval = (yyvsp[(2) - (2)].longval);
-             ;}
+              (yyval.argtype).longval = (yyvsp[0].longval);
+             }
+#line 2396 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 583 "javaa.y"
+#line 583 "javaa.y" /* yacc.c:1646  */
     {(yyval.argtype).type = DOUBLECONSTANT;
-              (yyval.argtype).doubleval = (yyvsp[(2) - (2)].doubleval);
-             ;}
+              (yyval.argtype).doubleval = (yyvsp[0].doubleval);
+             }
+#line 2404 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 53:
-#line 587 "javaa.y"
+#line 587 "javaa.y" /* yacc.c:1646  */
     {(yyval.argtype).type = 0;
-             ;}
+             }
+#line 2411 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 54:
-#line 593 "javaa.y"
-    { (yyval.intval) = (yyvsp[(1) - (4)].intval) | (yyvsp[(2) - (4)].intval) | (yyvsp[(3) - (4)].intval) | (yyvsp[(4) - (4)].intval) ;;}
+#line 593 "javaa.y" /* yacc.c:1646  */
+    { (yyval.intval) = (yyvsp[-3].intval) | (yyvsp[-2].intval) | (yyvsp[-1].intval) | (yyvsp[0].intval) ;}
+#line 2417 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 598 "javaa.y"
-    {break;;}
+#line 598 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2423 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 602 "javaa.y"
-    {NewNewMethod((yyvsp[(2) - (3)].intval)|(yyvsp[(3) - (3)].intval));;}
+#line 602 "javaa.y" /* yacc.c:1646  */
+    {NewNewMethod((yyvsp[-1].intval)|(yyvsp[0].intval));}
+#line 2429 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 607 "javaa.y"
+#line 607 "javaa.y" /* yacc.c:1646  */
     {
         char* tmpstr;
         /*message("Calling NewMethod.");*/
-        tmpstr = ConsStrings("(",ConsStrings((yyvsp[(8) - (13)].string),ConsStrings(")",(yyvsp[(5) - (13)].string))));
+        tmpstr = ConsStrings("(",ConsStrings((yyvsp[-5].string),ConsStrings(")",(yyvsp[-8].string))));
         /*message(tmpstr);*/
-        NewMethod((yyvsp[(6) - (13)].string), tmpstr, (yyvsp[(12) - (13)].intval), (yyvsp[(13) - (13)].intval)); ;}
+        NewMethod((yyvsp[-7].string), tmpstr, (yyvsp[-1].intval), (yyvsp[0].intval)); }
+#line 2440 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 619 "javaa.y"
-    {EndMethod();;}
+#line 619 "javaa.y" /* yacc.c:1646  */
+    {EndMethod();}
+#line 2446 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 624 "javaa.y"
-    {break;;}
+#line 624 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2452 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 625 "javaa.y"
-    {break;;}
+#line 625 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2458 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 630 "javaa.y"
-    {AddToThrowsList((yyvsp[(2) - (2)].string));;}
+#line 630 "javaa.y" /* yacc.c:1646  */
+    {AddToThrowsList((yyvsp[0].string));}
+#line 2464 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 632 "javaa.y"
-    {AddToThrowsList((yyvsp[(1) - (1)].string));;}
+#line 632 "javaa.y" /* yacc.c:1646  */
+    {AddToThrowsList((yyvsp[0].string));}
+#line 2470 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 637 "javaa.y"
-    {(yyval.intval) = (yyvsp[(2) - (2)].intval);;}
+#line 637 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = (yyvsp[0].intval);}
+#line 2476 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 638 "javaa.y"
-    {(yyval.intval) = -1;;}
+#line 638 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval) = -1;}
+#line 2482 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 643 "javaa.y"
-    { (yyval.string) = (yyvsp[(1) - (1)].string); ;}
+#line 643 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = (yyvsp[0].string); }
+#line 2488 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 645 "javaa.y"
+#line 645 "javaa.y" /* yacc.c:1646  */
     { char* tempstring;
               tempstring = (char *) malloc(sizeof(char) * (strlen("B")+1));
               strcpy(tempstring,"V");
               (yyval.string) = tempstring;
-        ;}
+        }
+#line 2498 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 654 "javaa.y"
-    { (yyval.string) = (yyvsp[(1) - (1)].string);;}
+#line 654 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = (yyvsp[0].string);}
+#line 2504 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 655 "javaa.y"
-    {(yyval.string) = NULL;;}
+#line 655 "javaa.y" /* yacc.c:1646  */
+    {(yyval.string) = NULL;}
+#line 2510 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 70:
-#line 659 "javaa.y"
+#line 659 "javaa.y" /* yacc.c:1646  */
     {
           /*message("in arguments with comma.");*/
-          (yyval.string) = ConsStrings((yyvsp[(1) - (3)].string),(yyvsp[(3) - (3)].string));
-        ;}
+          (yyval.string) = ConsStrings((yyvsp[-2].string),(yyvsp[0].string));
+        }
+#line 2519 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 71:
-#line 664 "javaa.y"
-    { (yyval.string) = (yyvsp[(1) - (1)].string); /*message("in arguments");*/;}
+#line 664 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = (yyvsp[0].string); /*message("in arguments");*/}
+#line 2525 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 670 "javaa.y"
-    { (yyval.string) = (yyvsp[(1) - (1)].string);;}
+#line 670 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = (yyvsp[0].string);}
+#line 2531 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 671 "javaa.y"
-    {(yyval.string) = NULL;;}
+#line 671 "javaa.y" /* yacc.c:1646  */
+    {(yyval.string) = NULL;}
+#line 2537 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 675 "javaa.y"
+#line 675 "javaa.y" /* yacc.c:1646  */
     {
           /*message("in arguments with comma.");*/
-          (yyval.string) = ConsStrings((yyvsp[(1) - (3)].string),(yyvsp[(3) - (3)].string));
-        ;}
+          (yyval.string) = ConsStrings((yyvsp[-2].string),(yyvsp[0].string));
+        }
+#line 2546 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 75:
-#line 680 "javaa.y"
-    { (yyval.string) = (yyvsp[(1) - (1)].string); /*message("in arguments");*/;}
+#line 680 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = (yyvsp[0].string); /*message("in arguments");*/}
+#line 2552 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 76:
-#line 683 "javaa.y"
-    { (yyval.string) = (yyvsp[(1) - (1)].string);
+#line 683 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = (yyvsp[0].string);
           /*message("calling IncrementLocalVarSlot");*/
-          IncrementLocalVarSlot((yyvsp[(1) - (1)].string)); /*message("in methodargument");*/;}
+          IncrementLocalVarSlot((yyvsp[0].string)); /*message("in methodargument");*/}
+#line 2560 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 77:
-#line 687 "javaa.y"
-    { (yyval.string) = (yyvsp[(1) - (2)].string); NewLocalVar((yyvsp[(2) - (2)].string), (yyvsp[(1) - (2)].string));/*message("in methodargument");*/;}
+#line 687 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = (yyvsp[-1].string); NewLocalVar((yyvsp[0].string), (yyvsp[-1].string));/*message("in methodargument");*/}
+#line 2566 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 78:
-#line 692 "javaa.y"
+#line 692 "javaa.y" /* yacc.c:1646  */
     {
           /*message("In type.");*/
-          (yyval.string) = ConsStrings((yyvsp[(2) - (2)].string),(yyvsp[(1) - (2)].string));
-        ;}
+          (yyval.string) = ConsStrings((yyvsp[0].string),(yyvsp[-1].string));
+        }
+#line 2575 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 79:
-#line 699 "javaa.y"
-    { (yyval.string) = ConsStrings("B",""); ;}
+#line 699 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = ConsStrings("B",""); }
+#line 2581 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 80:
-#line 701 "javaa.y"
-    { (yyval.string) = ConsStrings("C",""); ;}
+#line 701 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = ConsStrings("C",""); }
+#line 2587 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 81:
-#line 703 "javaa.y"
-    { (yyval.string) = ConsStrings("D",""); ;}
+#line 703 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = ConsStrings("D",""); }
+#line 2593 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 82:
-#line 705 "javaa.y"
-    { (yyval.string) = ConsStrings("F",""); ;}
+#line 705 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = ConsStrings("F",""); }
+#line 2599 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 83:
-#line 707 "javaa.y"
-    { (yyval.string) = ConsStrings("I",""); ;}
+#line 707 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = ConsStrings("I",""); }
+#line 2605 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 84:
-#line 709 "javaa.y"
-    { (yyval.string) = ConsStrings("J",""); ;}
+#line 709 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = ConsStrings("J",""); }
+#line 2611 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 85:
-#line 711 "javaa.y"
-    { (yyval.string) = ConsStrings("S",""); ;}
+#line 711 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = ConsStrings("S",""); }
+#line 2617 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 86:
-#line 713 "javaa.y"
-    { (yyval.string) = ConsStrings("Z",""); ;}
+#line 713 "javaa.y" /* yacc.c:1646  */
+    { (yyval.string) = ConsStrings("Z",""); }
+#line 2623 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 87:
-#line 715 "javaa.y"
+#line 715 "javaa.y" /* yacc.c:1646  */
     {
-         (yyval.string) = ConsStrings("L", ConsStrings((yyvsp[(1) - (1)].string),";"));
+         (yyval.string) = ConsStrings("L", ConsStrings((yyvsp[0].string),";"));
          /*message($$);*/
-         /*message("Got classname.");*/;}
+         /*message("Got classname.");*/}
+#line 2632 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 88:
-#line 723 "javaa.y"
-    {(yyval.string) = ConsStrings("[",(yyvsp[(3) - (3)].string));;}
+#line 723 "javaa.y" /* yacc.c:1646  */
+    {(yyval.string) = ConsStrings("[",(yyvsp[0].string));}
+#line 2638 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 89:
-#line 724 "javaa.y"
-    {(yyval.string)=NULL;;}
+#line 724 "javaa.y" /* yacc.c:1646  */
+    {(yyval.string)=NULL;}
+#line 2644 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 90:
-#line 730 "javaa.y"
-    { (yyval.intval) = (yyvsp[(1) - (5)].intval) | (yyvsp[(2) - (5)].intval) | (yyvsp[(3) - (5)].intval) | (yyvsp[(4) - (5)].intval) | (yyvsp[(5) - (5)].intval);;}
+#line 730 "javaa.y" /* yacc.c:1646  */
+    { (yyval.intval) = (yyvsp[-4].intval) | (yyvsp[-3].intval) | (yyvsp[-2].intval) | (yyvsp[-1].intval) | (yyvsp[0].intval);}
+#line 2650 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 91:
-#line 734 "javaa.y"
-    {NewLocalVar((yyvsp[(2) - (2)].string), (yyvsp[(1) - (2)].string));;}
+#line 734 "javaa.y" /* yacc.c:1646  */
+    {NewLocalVar((yyvsp[0].string), (yyvsp[-1].string));}
+#line 2656 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 92:
-#line 739 "javaa.y"
-    {(yyval.string) = (yyvsp[(1) - (1)].string);;}
+#line 739 "javaa.y" /* yacc.c:1646  */
+    {(yyval.string) = (yyvsp[0].string);}
+#line 2662 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 93:
-#line 741 "javaa.y"
-    {(yyval.string) = ConsStrings("[",ConsStrings((yyvsp[(4) - (4)].string),(yyvsp[(1) - (4)].string)));;}
+#line 741 "javaa.y" /* yacc.c:1646  */
+    {(yyval.string) = ConsStrings("[",ConsStrings((yyvsp[0].string),(yyvsp[-3].string)));}
+#line 2668 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 94:
-#line 746 "javaa.y"
-    {break;;}
+#line 746 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2674 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 95:
-#line 750 "javaa.y"
-    {break;;}
+#line 750 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2680 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 96:
-#line 752 "javaa.y"
-    {break;;}
+#line 752 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2686 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 97:
-#line 756 "javaa.y"
-    {break;;}
+#line 756 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2692 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 98:
-#line 758 "javaa.y"
-    {break;;}
+#line 758 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2698 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 99:
-#line 760 "javaa.y"
-    {break;;}
+#line 760 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2704 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 100:
-#line 762 "javaa.y"
-    {break;;}
+#line 762 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 2710 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 101:
-#line 766 "javaa.y"
-    {DefineLabel((yyvsp[(1) - (1)].string));;}
+#line 766 "javaa.y" /* yacc.c:1646  */
+    {DefineLabel((yyvsp[0].string));}
+#line 2716 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 102:
-#line 770 "javaa.y"
-    {GenNoArgCode((yyvsp[(1) - (1)].intval));
-        ;}
+#line 770 "javaa.y" /* yacc.c:1646  */
+    {GenNoArgCode((yyvsp[0].intval));
+        }
+#line 2723 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 103:
-#line 773 "javaa.y"
-    {GenOneArgCode((yyvsp[(1) - (2)].intval), (yyvsp[(2) - (2)].argtype));
-        ;}
+#line 773 "javaa.y" /* yacc.c:1646  */
+    {GenOneArgCode((yyvsp[-1].intval), (yyvsp[0].argtype));
+        }
+#line 2730 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 104:
-#line 776 "javaa.y"
-    {GenFieldArgCode((yyvsp[(1) - (3)].intval), (yyvsp[(3) - (3)].classfieldmethodstruct).classname, (yyvsp[(3) - (3)].classfieldmethodstruct).fieldmethodname, (yyvsp[(2) - (3)].string));
-        ;}
+#line 776 "javaa.y" /* yacc.c:1646  */
+    {GenFieldArgCode((yyvsp[-2].intval), (yyvsp[0].classfieldmethodstruct).classname, (yyvsp[0].classfieldmethodstruct).fieldmethodname, (yyvsp[-1].string));
+        }
+#line 2737 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 105:
-#line 780 "javaa.y"
-    {GenMethodArgCode((yyvsp[(1) - (6)].intval), (yyvsp[(3) - (6)].classfieldmethodstruct).classname, (yyvsp[(3) - (6)].classfieldmethodstruct).fieldmethodname,
-                     ConsStrings("(",ConsStrings((yyvsp[(5) - (6)].string),
-                   ConsStrings(")",(yyvsp[(2) - (6)].string)))));
-        ;}
+#line 780 "javaa.y" /* yacc.c:1646  */
+    {GenMethodArgCode((yyvsp[-5].intval), (yyvsp[-3].classfieldmethodstruct).classname, (yyvsp[-3].classfieldmethodstruct).fieldmethodname,
+                     ConsStrings("(",ConsStrings((yyvsp[-1].string),
+                   ConsStrings(")",(yyvsp[-4].string)))));
+        }
+#line 2746 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 106:
-#line 785 "javaa.y"
-    {GenClassArgCode((yyvsp[(1) - (2)].intval), (yyvsp[(2) - (2)].string));
-        ;}
+#line 785 "javaa.y" /* yacc.c:1646  */
+    {GenClassArgCode((yyvsp[-1].intval), (yyvsp[0].string));
+        }
+#line 2753 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 107:
-#line 788 "javaa.y"
-    {GenClassArgCode((yyvsp[(1) - (2)].Rk).terminal, (yyvsp[(2) - (2)].string));
-        ;}
+#line 788 "javaa.y" /* yacc.c:1646  */
+    {GenClassArgCode((yyvsp[-1].Rk).terminal, (yyvsp[0].string));
+        }
+#line 2760 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 108:
-#line 792 "javaa.y"
-    {GenINVOKEINTERFACECode((yyvsp[(1) - (7)].Rk).terminal, (yyvsp[(3) - (7)].classfieldmethodstruct).classname,
-                 (yyvsp[(3) - (7)].classfieldmethodstruct).fieldmethodname,
-                     ConsStrings("(",ConsStrings((yyvsp[(5) - (7)].string),
-                   ConsStrings(")",(yyvsp[(2) - (7)].string)))), (yyvsp[(7) - (7)].intval));
-        ;}
+#line 792 "javaa.y" /* yacc.c:1646  */
+    {GenINVOKEINTERFACECode((yyvsp[-6].Rk).terminal, (yyvsp[-4].classfieldmethodstruct).classname,
+                 (yyvsp[-4].classfieldmethodstruct).fieldmethodname,
+                     ConsStrings("(",ConsStrings((yyvsp[-2].string),
+                   ConsStrings(")",(yyvsp[-5].string)))), (yyvsp[0].intval));
+        }
+#line 2770 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 109:
-#line 798 "javaa.y"
-    {GenLabelArgCode((yyvsp[(1) - (2)].intval), (yyvsp[(2) - (2)].string));
-        ;}
+#line 798 "javaa.y" /* yacc.c:1646  */
+    {GenLabelArgCode((yyvsp[-1].intval), (yyvsp[0].string));
+        }
+#line 2777 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 110:
-#line 801 "javaa.y"
-    {GenLocalVarArgCode((yyvsp[(1) - (2)].intval),(yyvsp[(2) - (2)].intval));
-        ;}
+#line 801 "javaa.y" /* yacc.c:1646  */
+    {GenLocalVarArgCode((yyvsp[-1].intval),(yyvsp[0].intval));
+        }
+#line 2784 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 111:
-#line 804 "javaa.y"
-    {GenIINCCode((yyvsp[(1) - (3)].Rk).terminal,(yyvsp[(2) - (3)].intval),(yyvsp[(3) - (3)].intval));
-        ;}
+#line 804 "javaa.y" /* yacc.c:1646  */
+    {GenIINCCode((yyvsp[-2].Rk).terminal,(yyvsp[-1].intval),(yyvsp[0].intval));
+        }
+#line 2791 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 112:
-#line 807 "javaa.y"
-    {GenLOOKUPSWITCHCode((yyvsp[(1) - (6)].Rk).terminal,(yyvsp[(3) - (6)].string),(yyvsp[(5) - (6)].lookuplistptr));
-        ;}
+#line 807 "javaa.y" /* yacc.c:1646  */
+    {GenLOOKUPSWITCHCode((yyvsp[-5].Rk).terminal,(yyvsp[-3].string),(yyvsp[-1].lookuplistptr));
+        }
+#line 2798 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 113:
-#line 811 "javaa.y"
-    {GenTABLESWITCHCode((yyvsp[(1) - (9)].Rk).terminal,(yyvsp[(2) - (9)].intval),(yyvsp[(4) - (9)].intval),(yyvsp[(6) - (9)].string),(yyvsp[(8) - (9)].tablelistptr));
-        ;}
+#line 811 "javaa.y" /* yacc.c:1646  */
+    {GenTABLESWITCHCode((yyvsp[-8].Rk).terminal,(yyvsp[-7].intval),(yyvsp[-5].intval),(yyvsp[-3].string),(yyvsp[-1].tablelistptr));
+        }
+#line 2805 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 114:
-#line 814 "javaa.y"
-    {GenMULTIANEWARRAYCode((yyvsp[(1) - (3)].Rk).terminal,(yyvsp[(2) - (3)].string),(yyvsp[(3) - (3)].intval));
-        ;}
+#line 814 "javaa.y" /* yacc.c:1646  */
+    {GenMULTIANEWARRAYCode((yyvsp[-2].Rk).terminal,(yyvsp[-1].string),(yyvsp[0].intval));
+        }
+#line 2812 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 115:
-#line 817 "javaa.y"
-    {GenNEWARRAYCode((yyvsp[(1) - (2)].Rk).terminal,(yyvsp[(2) - (2)].intval));
-        ;}
+#line 817 "javaa.y" /* yacc.c:1646  */
+    {GenNEWARRAYCode((yyvsp[-1].Rk).terminal,(yyvsp[0].intval));
+        }
+#line 2819 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 116:
-#line 822 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 822 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2825 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 117:
-#line 824 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 824 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2831 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 118:
-#line 826 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 826 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2837 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 119:
-#line 828 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 828 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2843 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 120:
-#line 830 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 830 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2849 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 121:
-#line 832 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 832 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2855 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 122:
-#line 834 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 834 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2861 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 123:
-#line 836 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 836 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2867 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 124:
-#line 838 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 838 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2873 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 125:
-#line 840 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 840 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2879 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 126:
-#line 842 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 842 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2885 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 127:
-#line 844 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 844 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2891 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 128:
-#line 846 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 846 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2897 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 129:
-#line 848 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 848 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2903 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 130:
-#line 850 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 850 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2909 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 131:
-#line 852 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 852 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2915 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 132:
-#line 854 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 854 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2921 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 133:
-#line 856 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 856 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2927 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 134:
-#line 858 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 858 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2933 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 135:
-#line 860 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 860 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2939 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 136:
-#line 862 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 862 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2945 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 137:
-#line 864 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 864 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2951 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 138:
-#line 866 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 866 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2957 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 139:
-#line 868 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 868 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2963 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 140:
-#line 870 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 870 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2969 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 141:
-#line 872 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 872 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2975 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 142:
-#line 874 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 874 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2981 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 143:
-#line 876 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 876 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2987 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 144:
-#line 878 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 878 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2993 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 145:
-#line 880 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 880 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 2999 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 146:
-#line 882 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 882 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3005 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 147:
-#line 884 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 884 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3011 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 148:
-#line 886 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 886 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3017 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 149:
-#line 888 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 888 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3023 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 150:
-#line 890 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 890 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3029 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 151:
-#line 892 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 892 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3035 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 152:
-#line 894 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 894 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3041 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 153:
-#line 896 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 896 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3047 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 154:
-#line 898 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 898 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3053 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 155:
-#line 900 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 900 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3059 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 156:
-#line 902 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 902 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3065 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 157:
-#line 904 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 904 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3071 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 158:
-#line 906 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 906 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3077 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 159:
-#line 908 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 908 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3083 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 160:
-#line 910 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 910 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3089 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 161:
-#line 912 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 912 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3095 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 162:
-#line 914 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 914 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3101 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 163:
-#line 916 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 916 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3107 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 164:
-#line 918 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 918 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3113 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 165:
-#line 920 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 920 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3119 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 166:
-#line 922 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 922 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3125 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 167:
-#line 924 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 924 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3131 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 168:
-#line 926 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 926 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3137 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 169:
-#line 928 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 928 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3143 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 170:
-#line 930 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 930 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3149 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 171:
-#line 932 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 932 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3155 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 172:
-#line 934 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 934 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3161 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 173:
-#line 936 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 936 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3167 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 174:
-#line 938 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 938 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3173 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 175:
-#line 940 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 940 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3179 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 176:
-#line 942 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 942 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3185 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 177:
-#line 944 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 944 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3191 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 178:
-#line 946 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 946 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3197 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 179:
-#line 948 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 948 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3203 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 180:
-#line 950 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 950 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3209 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 181:
-#line 952 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 952 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3215 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 182:
-#line 954 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 954 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3221 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 183:
-#line 956 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 956 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3227 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 184:
-#line 958 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 958 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3233 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 185:
-#line 960 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 960 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3239 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 186:
-#line 962 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 962 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3245 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 187:
-#line 964 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 964 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3251 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 188:
-#line 966 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 966 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3257 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 189:
-#line 968 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 968 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3263 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 190:
-#line 970 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 970 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3269 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 191:
-#line 972 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 972 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3275 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 192:
-#line 974 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 974 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3281 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 193:
-#line 976 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 976 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3287 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 194:
-#line 978 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 978 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3293 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 195:
-#line 980 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 980 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3299 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 196:
-#line 982 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 982 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3305 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 197:
-#line 984 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 984 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3311 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 198:
-#line 986 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 986 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3317 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 199:
-#line 988 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 988 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3323 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 200:
-#line 990 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 990 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3329 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 201:
-#line 992 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 992 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3335 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 202:
-#line 994 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 994 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3341 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 203:
-#line 996 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 996 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3347 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 204:
-#line 998 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 998 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3353 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 205:
-#line 1000 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1000 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3359 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 206:
-#line 1002 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1002 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3365 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 207:
-#line 1004 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1004 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3371 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 208:
-#line 1006 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1006 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3377 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 209:
-#line 1008 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1008 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3383 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 210:
-#line 1010 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1010 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3389 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 211:
-#line 1012 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1012 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3395 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 212:
-#line 1014 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1014 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3401 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 213:
-#line 1016 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1016 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3407 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 214:
-#line 1018 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1018 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3413 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 215:
-#line 1020 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1020 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3419 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 216:
-#line 1022 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1022 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3425 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 217:
-#line 1024 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1024 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3431 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 218:
-#line 1026 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1026 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3437 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 219:
-#line 1028 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1028 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3443 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 220:
-#line 1030 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1030 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3449 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 221:
-#line 1032 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1032 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3455 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 222:
-#line 1034 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1034 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3461 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 223:
-#line 1036 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1036 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3467 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 224:
-#line 1038 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1038 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3473 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 225:
-#line 1040 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1040 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3479 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 226:
-#line 1042 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1042 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3485 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 227:
-#line 1044 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1044 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3491 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 228:
-#line 1046 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1046 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3497 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 229:
-#line 1048 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1048 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3503 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 230:
-#line 1050 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1050 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3509 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 231:
-#line 1052 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1052 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3515 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 232:
-#line 1054 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1054 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3521 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 233:
-#line 1056 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1056 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3527 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 234:
-#line 1058 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1058 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3533 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 235:
-#line 1060 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1060 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3539 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 236:
-#line 1062 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1062 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3545 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 237:
-#line 1064 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1064 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3551 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 238:
-#line 1066 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1066 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3557 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 239:
-#line 1068 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1068 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3563 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 240:
-#line 1070 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1070 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3569 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 241:
-#line 1072 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1072 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3575 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 242:
-#line 1074 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1074 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3581 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 243:
-#line 1076 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1076 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3587 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 244:
-#line 1078 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1078 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3593 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 245:
-#line 1080 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1080 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3599 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 246:
-#line 1082 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1082 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3605 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 247:
-#line 1084 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1084 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3611 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 248:
-#line 1086 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1086 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3617 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 249:
-#line 1088 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1088 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3623 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 250:
-#line 1090 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1090 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3629 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 251:
-#line 1092 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1092 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3635 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 252:
-#line 1094 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1094 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3641 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 253:
-#line 1096 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1096 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3647 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 254:
-#line 1098 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1098 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3653 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 255:
-#line 1100 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1100 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3659 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 256:
-#line 1102 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1102 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3665 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 257:
-#line 1104 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1104 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3671 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 258:
-#line 1106 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1106 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3677 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 259:
-#line 1108 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1108 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3683 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 260:
-#line 1110 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1110 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3689 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 261:
-#line 1112 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1112 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3695 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 262:
-#line 1114 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1114 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3701 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 263:
-#line 1116 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1116 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3707 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 264:
-#line 1120 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1120 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3713 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 265:
-#line 1122 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1122 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3719 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 266:
-#line 1124 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1124 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3725 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 267:
-#line 1126 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1126 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3731 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 268:
-#line 1128 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1128 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3737 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 269:
-#line 1134 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1134 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3743 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 270:
-#line 1136 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1136 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3749 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 271:
-#line 1138 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1138 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3755 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 272:
-#line 1143 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1143 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3761 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 273:
-#line 1145 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1145 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3767 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 274:
-#line 1147 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1147 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3773 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 275:
-#line 1149 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1149 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3779 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 276:
-#line 1154 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1154 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3785 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 277:
-#line 1156 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1156 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3791 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 278:
-#line 1158 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1158 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3797 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 279:
-#line 1162 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1162 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3803 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 280:
-#line 1164 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1164 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3809 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 281:
-#line 1166 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1166 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3815 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 282:
-#line 1168 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1168 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3821 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 283:
-#line 1170 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1170 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3827 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 284:
-#line 1172 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1172 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3833 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 285:
-#line 1174 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1174 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3839 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 286:
-#line 1176 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1176 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3845 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 287:
-#line 1178 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1178 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3851 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 288:
-#line 1180 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1180 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3857 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 289:
-#line 1182 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1182 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3863 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 290:
-#line 1184 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1184 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3869 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 291:
-#line 1186 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1186 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3875 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 292:
-#line 1188 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1188 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3881 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 293:
-#line 1190 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1190 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3887 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 294:
-#line 1192 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1192 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3893 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 295:
-#line 1194 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1194 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3899 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 296:
-#line 1196 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1196 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3905 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 297:
-#line 1198 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1198 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3911 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 298:
-#line 1200 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1200 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3917 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 299:
-#line 1205 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1205 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3923 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 300:
-#line 1207 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1207 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3929 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 301:
-#line 1209 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1209 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3935 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 302:
-#line 1211 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1211 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3941 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 303:
-#line 1213 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1213 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3947 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 304:
-#line 1215 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1215 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3953 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 305:
-#line 1217 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1217 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3959 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 306:
-#line 1219 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1219 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3965 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 307:
-#line 1221 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1221 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3971 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 308:
-#line 1223 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1223 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3977 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 309:
-#line 1225 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1225 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3983 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 310:
-#line 1227 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1227 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3989 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 311:
-#line 1229 "javaa.y"
-    {(yyval.intval)=(yyvsp[(1) - (1)].Rk).terminal;;}
+#line 1229 "javaa.y" /* yacc.c:1646  */
+    {(yyval.intval)=(yyvsp[0].Rk).terminal;}
+#line 3995 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 312:
-#line 1233 "javaa.y"
-    { (yyval.intval) = (yyvsp[(1) - (1)].intval);;}
+#line 1233 "javaa.y" /* yacc.c:1646  */
+    { (yyval.intval) = (yyvsp[0].intval);}
+#line 4001 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 313:
-#line 1235 "javaa.y"
-    { (yyval.intval) = GetLocalVar((yyvsp[(1) - (1)].string));;}
+#line 1235 "javaa.y" /* yacc.c:1646  */
+    { (yyval.intval) = GetLocalVar((yyvsp[0].string));}
+#line 4007 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 314:
-#line 1239 "javaa.y"
-    { (yyval.lookuplistptr) = AddToLookupList((yyvsp[(4) - (4)].lookuplistptr),(yyvsp[(1) - (4)].intval),(yyvsp[(3) - (4)].string)); ;}
+#line 1239 "javaa.y" /* yacc.c:1646  */
+    { (yyval.lookuplistptr) = AddToLookupList((yyvsp[0].lookuplistptr),(yyvsp[-3].intval),(yyvsp[-1].string)); }
+#line 4013 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 315:
-#line 1240 "javaa.y"
-    {(yyval.lookuplistptr) = NULL;;}
+#line 1240 "javaa.y" /* yacc.c:1646  */
+    {(yyval.lookuplistptr) = NULL;}
+#line 4019 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 316:
-#line 1244 "javaa.y"
-    { (yyval.tablelistptr) = AddToTableList((yyvsp[(2) - (2)].tablelistptr),(yyvsp[(1) - (2)].string)); ;}
+#line 1244 "javaa.y" /* yacc.c:1646  */
+    { (yyval.tablelistptr) = AddToTableList((yyvsp[0].tablelistptr),(yyvsp[-1].string)); }
+#line 4025 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 317:
-#line 1245 "javaa.y"
-    {(yyval.tablelistptr) = NULL;;}
+#line 1245 "javaa.y" /* yacc.c:1646  */
+    {(yyval.tablelistptr) = NULL;}
+#line 4031 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 318:
-#line 1250 "javaa.y"
-    { (yyval.intval) = 4;;}
+#line 1250 "javaa.y" /* yacc.c:1646  */
+    { (yyval.intval) = 4;}
+#line 4037 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 319:
-#line 1252 "javaa.y"
-    { (yyval.intval) = 5;;}
+#line 1252 "javaa.y" /* yacc.c:1646  */
+    { (yyval.intval) = 5;}
+#line 4043 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 320:
-#line 1254 "javaa.y"
-    { (yyval.intval) = 6;;}
+#line 1254 "javaa.y" /* yacc.c:1646  */
+    { (yyval.intval) = 6;}
+#line 4049 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 321:
-#line 1256 "javaa.y"
-    { (yyval.intval) = 7;;}
+#line 1256 "javaa.y" /* yacc.c:1646  */
+    { (yyval.intval) = 7;}
+#line 4055 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 322:
-#line 1258 "javaa.y"
-    { (yyval.intval) = 8;;}
+#line 1258 "javaa.y" /* yacc.c:1646  */
+    { (yyval.intval) = 8;}
+#line 4061 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 323:
-#line 1260 "javaa.y"
-    { (yyval.intval) = 9;;}
+#line 1260 "javaa.y" /* yacc.c:1646  */
+    { (yyval.intval) = 9;}
+#line 4067 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 324:
-#line 1262 "javaa.y"
-    { (yyval.intval) = 10;;}
+#line 1262 "javaa.y" /* yacc.c:1646  */
+    { (yyval.intval) = 10;}
+#line 4073 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 325:
-#line 1264 "javaa.y"
-    { (yyval.intval) = 11;;}
+#line 1264 "javaa.y" /* yacc.c:1646  */
+    { (yyval.intval) = 11;}
+#line 4079 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 326:
-#line 1268 "javaa.y"
+#line 1268 "javaa.y" /* yacc.c:1646  */
     {(yyval.argtype).type = IDENTIFIER;
-              (yyval.argtype).stringval = (yyvsp[(1) - (1)].string);
-             ;}
+              (yyval.argtype).stringval = (yyvsp[0].string);
+             }
+#line 4087 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 327:
-#line 1272 "javaa.y"
+#line 1272 "javaa.y" /* yacc.c:1646  */
     {(yyval.argtype).type = INTCONSTANT;
-              (yyval.argtype).intval = (yyvsp[(1) - (1)].intval);
-             ;}
+              (yyval.argtype).intval = (yyvsp[0].intval);
+             }
+#line 4095 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 328:
-#line 1276 "javaa.y"
+#line 1276 "javaa.y" /* yacc.c:1646  */
     {(yyval.argtype).type = LONGCONSTANT;
-              (yyval.argtype).longval = (yyvsp[(1) - (1)].longval);
-             ;}
+              (yyval.argtype).longval = (yyvsp[0].longval);
+             }
+#line 4103 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 329:
-#line 1280 "javaa.y"
+#line 1280 "javaa.y" /* yacc.c:1646  */
     {(yyval.argtype).type = STRING_LITERAL;
-              (yyval.argtype).stringval = (yyvsp[(1) - (1)].string);
-             ;}
+              (yyval.argtype).stringval = (yyvsp[0].string);
+             }
+#line 4111 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 330:
-#line 1284 "javaa.y"
+#line 1284 "javaa.y" /* yacc.c:1646  */
     {(yyval.argtype).type = FLOATCONSTANT;
-              (yyval.argtype).floatval = (yyvsp[(1) - (1)].floatval);
+              (yyval.argtype).floatval = (yyvsp[0].floatval);
           /*message("got a float constant.");*/
-             ;}
+             }
+#line 4120 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 331:
-#line 1289 "javaa.y"
+#line 1289 "javaa.y" /* yacc.c:1646  */
     {(yyval.argtype).type = DOUBLECONSTANT;
-              (yyval.argtype).doubleval = (yyvsp[(1) - (1)].doubleval);
+              (yyval.argtype).doubleval = (yyvsp[0].doubleval);
           /*message("got a double constant.");*/
-             ;}
+             }
+#line 4129 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 332:
-#line 1297 "javaa.y"
-    { break; ;}
+#line 1297 "javaa.y" /* yacc.c:1646  */
+    { break; }
+#line 4135 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 333:
-#line 1298 "javaa.y"
-    {break;;}
+#line 1298 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 4141 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 334:
-#line 1302 "javaa.y"
-    { AddToExceptionList((yyvsp[(2) - (5)].string),(yyvsp[(3) - (5)].string),(yyvsp[(4) - (5)].string),(yyvsp[(5) - (5)].string)); ;}
+#line 1302 "javaa.y" /* yacc.c:1646  */
+    { AddToExceptionList((yyvsp[-3].string),(yyvsp[-2].string),(yyvsp[-1].string),(yyvsp[0].string)); }
+#line 4147 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 335:
-#line 1304 "javaa.y"
+#line 1304 "javaa.y" /* yacc.c:1646  */
     {
-          if ((yyvsp[(5) - (5)].intval) != 0) oops("Must have a class name or 0 here.");
-              AddToExceptionList((yyvsp[(2) - (5)].string),(yyvsp[(3) - (5)].string),(yyvsp[(4) - (5)].string),NULL);
-        ;}
+          if ((yyvsp[0].intval) != 0) oops("Must have a class name or 0 here.");
+              AddToExceptionList((yyvsp[-3].string),(yyvsp[-2].string),(yyvsp[-1].string),NULL);
+        }
+#line 4156 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 336:
-#line 1308 "javaa.y"
-    {break;;}
+#line 1308 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 4162 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 337:
-#line 1313 "javaa.y"
-    { break; ;}
+#line 1313 "javaa.y" /* yacc.c:1646  */
+    { break; }
+#line 4168 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 338:
-#line 1314 "javaa.y"
-    {break;;}
+#line 1314 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 4174 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 339:
-#line 1318 "javaa.y"
-    { AddToLineNumberList((yyvsp[(2) - (3)].string),(yyvsp[(3) - (3)].intval)); ;}
+#line 1318 "javaa.y" /* yacc.c:1646  */
+    { AddToLineNumberList((yyvsp[-1].string),(yyvsp[0].intval)); }
+#line 4180 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 340:
-#line 1319 "javaa.y"
-    {break;;}
+#line 1319 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 4186 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 341:
-#line 1324 "javaa.y"
-    { break; ;}
+#line 1324 "javaa.y" /* yacc.c:1646  */
+    { break; }
+#line 4192 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 342:
-#line 1325 "javaa.y"
-    {break;;}
+#line 1325 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 4198 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 343:
-#line 1330 "javaa.y"
-    { AddToUserLocalVarList((yyvsp[(2) - (6)].string),(yyvsp[(3) - (6)].string),(yyvsp[(4) - (6)].string),(yyvsp[(5) - (6)].string),(yyvsp[(6) - (6)].intval)); ;}
+#line 1330 "javaa.y" /* yacc.c:1646  */
+    { AddToUserLocalVarList((yyvsp[-4].string),(yyvsp[-3].string),(yyvsp[-2].string),(yyvsp[-1].string),(yyvsp[0].intval)); }
+#line 4204 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 344:
-#line 1331 "javaa.y"
-    {break;;}
+#line 1331 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 4210 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 345:
-#line 1336 "javaa.y"
-    { SetSourceFile((yyvsp[(2) - (2)].string)); ;}
+#line 1336 "javaa.y" /* yacc.c:1646  */
+    { SetSourceFile((yyvsp[0].string)); }
+#line 4216 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
   case 346:
-#line 1337 "javaa.y"
-    {break;;}
+#line 1337 "javaa.y" /* yacc.c:1646  */
+    {break;}
+#line 4222 "javaa.tab.c" /* yacc.c:1646  */
     break;
 
 
-/* Line 1267 of yacc.c.  */
-#line 4361 "javaa.tab.c"
+#line 4226 "javaa.tab.c" /* yacc.c:1646  */
       default: break;
     }
+  /* User semantic actions sometimes alter yychar, and that requires
+     that yytoken be updated with the new translation.  We take the
+     approach of translating immediately before every use of yytoken.
+     One alternative is translating here after every semantic action,
+     but that translation would be missed if the semantic action invokes
+     YYABORT, YYACCEPT, or YYERROR immediately after altering yychar or
+     if it invokes YYBACKUP.  In the case of YYABORT or YYACCEPT, an
+     incorrect destructor might then be invoked immediately.  In the
+     case of YYERROR or YYBACKUP, subsequent parser actions might lead
+     to an incorrect destructor call or verbose syntax error message
+     before the lookahead is translated.  */
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
 
   YYPOPSTACK (yylen);
@@ -4368,8 +4244,7 @@ yyreduce:
 
   *++yyvsp = yyval;
 
-
-  /* Now `shift' the result of the reduction.  Determine what state
+  /* Now 'shift' the result of the reduction.  Determine what state
      that goes to, based on the state we popped back to and the rule
      number reduced by.  */
 
@@ -4384,10 +4259,14 @@ yyreduce:
   goto yynewstate;
 
 
-/*------------------------------------.
-| yyerrlab -- here on detecting error |
-`------------------------------------*/
+/*--------------------------------------.
+| yyerrlab -- here on detecting error.  |
+`--------------------------------------*/
 yyerrlab:
+  /* Make sure we have latest lookahead translation.  See comments at
+     user semantic actions for why this is necessary.  */
+  yytoken = yychar == YYEMPTY ? YYEMPTY : YYTRANSLATE (yychar);
+
   /* If not already recovering from an error, report this error.  */
   if (!yyerrstatus)
     {
@@ -4395,37 +4274,36 @@ yyerrlab:
 #if ! YYERROR_VERBOSE
       yyerror (YY_("syntax error"));
 #else
+# define YYSYNTAX_ERROR yysyntax_error (&yymsg_alloc, &yymsg, \
+                                        yyssp, yytoken)
       {
-	YYSIZE_T yysize = yysyntax_error (0, yystate, yychar);
-	if (yymsg_alloc < yysize && yymsg_alloc < YYSTACK_ALLOC_MAXIMUM)
-	  {
-	    YYSIZE_T yyalloc = 2 * yysize;
-	    if (! (yysize <= yyalloc && yyalloc <= YYSTACK_ALLOC_MAXIMUM))
-	      yyalloc = YYSTACK_ALLOC_MAXIMUM;
-	    if (yymsg != yymsgbuf)
-	      YYSTACK_FREE (yymsg);
-	    yymsg = (char *) YYSTACK_ALLOC (yyalloc);
-	    if (yymsg)
-	      yymsg_alloc = yyalloc;
-	    else
-	      {
-		yymsg = yymsgbuf;
-		yymsg_alloc = sizeof yymsgbuf;
-	      }
-	  }
-
-	if (0 < yysize && yysize <= yymsg_alloc)
-	  {
-	    (void) yysyntax_error (yymsg, yystate, yychar);
-	    yyerror (yymsg);
-	  }
-	else
-	  {
-	    yyerror (YY_("syntax error"));
-	    if (yysize != 0)
-	      goto yyexhaustedlab;
-	  }
+        char const *yymsgp = YY_("syntax error");
+        int yysyntax_error_status;
+        yysyntax_error_status = YYSYNTAX_ERROR;
+        if (yysyntax_error_status == 0)
+          yymsgp = yymsg;
+        else if (yysyntax_error_status == 1)
+          {
+            if (yymsg != yymsgbuf)
+              YYSTACK_FREE (yymsg);
+            yymsg = (char *) YYSTACK_ALLOC (yymsg_alloc);
+            if (!yymsg)
+              {
+                yymsg = yymsgbuf;
+                yymsg_alloc = sizeof yymsgbuf;
+                yysyntax_error_status = 2;
+              }
+            else
+              {
+                yysyntax_error_status = YYSYNTAX_ERROR;
+                yymsgp = yymsg;
+              }
+          }
+        yyerror (yymsgp);
+        if (yysyntax_error_status == 2)
+          goto yyexhaustedlab;
       }
+# undef YYSYNTAX_ERROR
 #endif
     }
 
@@ -4433,24 +4311,24 @@ yyerrlab:
 
   if (yyerrstatus == 3)
     {
-      /* If just tried and failed to reuse look-ahead token after an
-	 error, discard it.  */
+      /* If just tried and failed to reuse lookahead token after an
+         error, discard it.  */
 
       if (yychar <= YYEOF)
-	{
-	  /* Return failure if at end of input.  */
-	  if (yychar == YYEOF)
-	    YYABORT;
-	}
+        {
+          /* Return failure if at end of input.  */
+          if (yychar == YYEOF)
+            YYABORT;
+        }
       else
-	{
-	  yydestruct ("Error: discarding",
-		      yytoken, &yylval);
-	  yychar = YYEMPTY;
-	}
+        {
+          yydestruct ("Error: discarding",
+                      yytoken, &yylval);
+          yychar = YYEMPTY;
+        }
     }
 
-  /* Else will try to reuse look-ahead token after shifting the error
+  /* Else will try to reuse lookahead token after shifting the error
      token.  */
   goto yyerrlab1;
 
@@ -4466,7 +4344,7 @@ yyerrorlab:
   if (/*CONSTCOND*/ 0)
      goto yyerrorlab;
 
-  /* Do not reclaim the symbols of the rule which action triggered
+  /* Do not reclaim the symbols of the rule whose action triggered
      this YYERROR.  */
   YYPOPSTACK (yylen);
   yylen = 0;
@@ -4479,38 +4357,37 @@ yyerrorlab:
 | yyerrlab1 -- common code for both syntax error and YYERROR.  |
 `-------------------------------------------------------------*/
 yyerrlab1:
-  yyerrstatus = 3;	/* Each real token shifted decrements this.  */
+  yyerrstatus = 3;      /* Each real token shifted decrements this.  */
 
   for (;;)
     {
       yyn = yypact[yystate];
-      if (yyn != YYPACT_NINF)
-	{
-	  yyn += YYTERROR;
-	  if (0 <= yyn && yyn <= YYLAST && yycheck[yyn] == YYTERROR)
-	    {
-	      yyn = yytable[yyn];
-	      if (0 < yyn)
-		break;
-	    }
-	}
+      if (!yypact_value_is_default (yyn))
+        {
+          yyn += YYTERROR;
+          if (0 <= yyn && yyn <= YYLAST && yycheck[yyn] == YYTERROR)
+            {
+              yyn = yytable[yyn];
+              if (0 < yyn)
+                break;
+            }
+        }
 
       /* Pop the current state because it cannot handle the error token.  */
       if (yyssp == yyss)
-	YYABORT;
+        YYABORT;
 
 
       yydestruct ("Error: popping",
-		  yystos[yystate], yyvsp);
+                  yystos[yystate], yyvsp);
       YYPOPSTACK (1);
       yystate = *yyssp;
       YY_STACK_PRINT (yyss, yyssp);
     }
 
-  if (yyn == YYFINAL)
-    YYACCEPT;
-
+  YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
   *++yyvsp = yylval;
+  YY_IGNORE_MAYBE_UNINITIALIZED_END
 
 
   /* Shift the error token.  */
@@ -4534,7 +4411,7 @@ yyabortlab:
   yyresult = 1;
   goto yyreturn;
 
-#ifndef yyoverflow
+#if !defined yyoverflow || YYERROR_VERBOSE
 /*-------------------------------------------------.
 | yyexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
@@ -4545,17 +4422,22 @@ yyexhaustedlab:
 #endif
 
 yyreturn:
-  if (yychar != YYEOF && yychar != YYEMPTY)
-     yydestruct ("Cleanup: discarding lookahead",
-		 yytoken, &yylval);
-  /* Do not reclaim the symbols of the rule which action triggered
+  if (yychar != YYEMPTY)
+    {
+      /* Make sure we have latest lookahead translation.  See comments at
+         user semantic actions for why this is necessary.  */
+      yytoken = YYTRANSLATE (yychar);
+      yydestruct ("Cleanup: discarding lookahead",
+                  yytoken, &yylval);
+    }
+  /* Do not reclaim the symbols of the rule whose action triggered
      this YYABORT or YYACCEPT.  */
   YYPOPSTACK (yylen);
   YY_STACK_PRINT (yyss, yyssp);
   while (yyssp != yyss)
     {
       yydestruct ("Cleanup: popping",
-		  yystos[*yyssp], yyvsp);
+                  yystos[*yyssp], yyvsp);
       YYPOPSTACK (1);
     }
 #ifndef yyoverflow
@@ -4566,11 +4448,7 @@ yyreturn:
   if (yymsg != yymsgbuf)
     YYSTACK_FREE (yymsg);
 #endif
-  /* Make sure YYID is used.  */
-  return YYID (yyresult);
+  return yyresult;
 }
-
-
-#line 1339 "javaa.y"
-
+#line 1339 "javaa.y" /* yacc.c:1906  */
 
