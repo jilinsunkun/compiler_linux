@@ -5,9 +5,7 @@
 #define MAX_LINE_LENG 256
 #define lineNum         strcat(buf,yytext)
  #define token(t)   {lineNum; return t;}
-
-#define tokenString(t,s){lineNum; printf("<%s:%s>\n","tokenstring",s);return(s);}
-
+  #define tokenString(t,s){lineNum; return s;}
 #include"y.tab.h"
 int linecount = 1;
 char buf[MAX_LINE_LENG];
@@ -133,7 +131,6 @@ bool	{strcpy(yylval.val, yytext);return (BOOL);}
                   }
  
  <String>\"     {
-                       printf("%s\n",str );
                       char c = input();
                       if(c=='\"')
                      {
@@ -143,13 +140,14 @@ bool	{strcpy(yylval.val, yytext);return (BOOL);}
                      }
                       else
                      {
+                      strcpy(yylval.val,str);
+                      //return STR;
 
                       unput(c);
-                     
+                      str[0] = '\0';
                       BEGIN 0;
                      }
-
-                      str[0] = '\0';
+                     return (STR);
                     }
  <String>.      {
                        lineNum;
