@@ -194,46 +194,46 @@ add_expression
 }
 | add_expression  '-' declarator
 {
-	char tempJasm[1000] = "";
-	int is_found_ident = 0;
-	int tmp_depth = itemDepth;
+	// char tempJasm[1000] = "";
+	// int is_found_ident = 0;
+	// int tmp_depth = itemDepth;
 
-	tp_fun_index = now_fun_index;
-	strcat(tempJasm, "\t\tisub\n");
-	strcpy($$, tempJasm);
+	// tp_fun_index = now_fun_index;
+	// strcat(tempJasm, "\t\tisub\n");
+	// strcpy($$, tempJasm);
 }
 ;
 
 
 expression
 : 
-U_nary
-| assion_expression
-//| '(' expression ')'
-| expression assion_expression
+// U_nary
+// | assion_expression
+// //| '(' expression ')'
+// | expression assion_expression
 | RE_expression
-| expression RE_expression
-| IDENTIFIER '=' IDENTIFIER '(' Declarator_l  ')' ';'
-{
-	strcat(jasm, "\t\tinvokestatic int rust_test.");
-	strcat(jasm, $3);
-	strcat(jasm, "(");
-	strcat(jasm, temp_parameter);
-	memset(temp_parameter,0,strlen(temp_parameter));
-	strcat(jasm, ")");
-	strcat(jasm, "\n");
+// | expression RE_expression
+// | IDENTIFIER '=' IDENTIFIER '(' Declarator_l  ')' ';'
+// {
+// 	strcat(jasm, "\t\tinvokestatic int rust_test.");
+// 	strcat(jasm, $3);
+// 	strcat(jasm, "(");
+// 	strcat(jasm, temp_parameter);
+// 	memset(temp_parameter,0,strlen(temp_parameter));
+// 	strcat(jasm, ")");
+// 	strcat(jasm, "\n");
 
-		if (lookup($1, 0) >= 0)
-		{
-			strcat(jasm, "\t\tputstatic int rust_test.");
-		}
-		else{
-			strcat(jasm, "\t\tistore ");
-		}
+// 		if (lookup($1, 0) >= 0)
+// 		{
+// 			strcat(jasm, "\t\tputstatic int rust_test.");
+// 		}
+// 		else{
+// 			strcat(jasm, "\t\tistore ");
+// 		}
 
-		strcat(jasm, $1);
-		strcat(jasm, "\n");
-}
+// 		strcat(jasm, $1);
+// 		strcat(jasm, "\n");
+// }
 ;
 
 assion_expression
@@ -526,7 +526,7 @@ declaration
 		}
 		is_assigning = 0;
 	}
-	| LET MUT IDENTIFIER ':'type_specifier {
+	| LET MUT IDENTIFIER ':'type_specifier  ';'{
 		//let mut a:int;
 		is_assigning = 1;
 		insert($3, $5, "");
@@ -541,7 +541,7 @@ declaration
 		}
 		is_assigning = 0;
 	}
-	| LET MUT IDENTIFIER ':' type_specifier {is_assigning = 1;} '=' Val_declation {
+	| LET MUT IDENTIFIER ':' type_specifier {is_assigning = 1;} '=' Val_declation  ';'{
 		//let mut a:int =10;
 		is_assigning = 1;
 		insert($3, $5, "");
