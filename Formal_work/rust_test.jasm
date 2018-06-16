@@ -5,4 +5,7 @@ class rust_test
 	max_locals 15
 	{
 		getstatic java.io.PrintStream java.lang.System.out
+		invokevirtual void java.io.PrintStream.println(java.lang.String)
+		return
+	}
 }
