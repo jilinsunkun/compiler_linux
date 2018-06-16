@@ -1116,7 +1116,7 @@ YY_RULE_SETUP
 case 50:
 YY_RULE_SETUP
 #line 84 "scaner.l"
-{strcpy(yylval.val, yytext);return (PRINTLN);}
+{strcpy(yylval.val, yytext);printf("printlns");return (PRINTLN);}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
@@ -1254,6 +1254,7 @@ case 72:
 YY_RULE_SETUP
 #line 135 "scaner.l"
 {
+                       printf("%s\n",str );
                       char c = input();
                       if(c=='\"')
                      {
@@ -1268,8 +1269,7 @@ YY_RULE_SETUP
                      
                       BEGIN 0;
                      }
-                     tokenString(c,STR);
-                     return (STR);
+                     
                       str[0] = '\0';
                     }
 	YY_BREAK

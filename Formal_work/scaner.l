@@ -133,6 +133,7 @@ bool	{strcpy(yylval.val, yytext);return (BOOL);}
                   }
  
  <String>\"     {
+                       printf("%s\n",str );
                       char c = input();
                       if(c=='\"')
                      {
@@ -147,8 +148,7 @@ bool	{strcpy(yylval.val, yytext);return (BOOL);}
                      
                       BEGIN 0;
                      }
-                     tokenString(c,STR);
-                     return (STR);
+
                       str[0] = '\0';
                     }
  <String>.      {
