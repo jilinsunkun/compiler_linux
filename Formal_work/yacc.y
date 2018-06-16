@@ -357,6 +357,7 @@ parameter_declaration
 simple_statment
 	: IDENTIFIER '[' INTEGER ']' '=' expression ';'
 	| IDENTIFIER '=' expression  ';'
+	| declaration_list
 	| PRINT 
 	{
 		is_print=1;
@@ -680,11 +681,11 @@ statement_list
 
 statement
 :
-  simple_statment
-// | expression_statement
-// | selection_statement
-// | iteration_statement
-// | while_srarement
+ simple_statment
+| expression_statement
+| selection_statement
+| iteration_statement
+| while_srarement
 ;
 
 func_expression:
