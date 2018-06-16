@@ -194,13 +194,13 @@ add_expression
 }
 | add_expression  '-' declarator
 {
-	// char tempJasm[1000] = "";
-	// int is_found_ident = 0;
-	// int tmp_depth = itemDepth;
+	char tempJasm[1000] = "";
+	int is_found_ident = 0;
+	int tmp_depth = itemDepth;
 
-	// tp_fun_index = now_fun_index;
-	// strcat(tempJasm, "\t\tisub\n");
-	// strcpy($$, tempJasm);
+	tp_fun_index = now_fun_index;
+	strcat(tempJasm, "\t\tisub\n");
+	strcpy($$, tempJasm);
 }
 ;
 
