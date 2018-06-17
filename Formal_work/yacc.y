@@ -157,7 +157,7 @@ Val_declation
 | INTEGER
 {
 		char tempStr[50];
-	sprintf( tempStr, "%d", $1 );
+		sprintf( tempStr, "%d", $1 );
 
 	if (is_assigning == 0)
 	{
