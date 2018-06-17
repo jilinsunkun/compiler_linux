@@ -1657,7 +1657,7 @@ yyreduce:
 #line 158 "yacc.y" /* yacc.c:1646  */
     {
 		char tempStr[50];
-	sprintf( tempStr, "%d", (yyvsp[0].int_type) );
+		sprintf( tempStr, "%d", (yyvsp[0].int_type) );
 
 	if (is_assigning == 0)
 	{

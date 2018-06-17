@@ -1,3 +1,3 @@
 make clean
 make
-./a.out<lll.rust
+./a.out<fib.rust
