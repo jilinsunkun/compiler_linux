@@ -217,7 +217,7 @@ U_nary
 {
 	strcat(jasm, "\t\tinvokestatic int rust_test.");
 	strcat(jasm, $3);
-	strcat(jasm, "(");
+	strcat(jasm, "(");sprintf( tempStr, "%d", $1 );
 	strcat(jasm, temp_parameter);
 	memset(temp_parameter,0,strlen(temp_parameter));
 	strcat(jasm, ")");
@@ -227,7 +227,7 @@ U_nary
 		{
 			strcat(jasm, "\t\tputstatic int rust_test.");
 		}
-		else{
+		else{sprintf( tempStr, "%d", $1 );
 			strcat(jasm, "\t\tistore ");
 		}
 
