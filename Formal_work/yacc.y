@@ -544,7 +544,7 @@ declaration
 	| LET MUT IDENTIFIER ':' type_specifier {is_assigning = 1;} '=' Val_declation  ';'{
 		//let mut a:int =10;
 		is_assigning = 1;
-		insert($3, $5, "");
+		insert($3, $5, $8);
 		if (lookup($3, 0) >= 0)
 		{
 			// global variable
