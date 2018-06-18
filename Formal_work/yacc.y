@@ -358,7 +358,9 @@ parameter_declaration
 	;
 simple_statment
 	: IDENTIFIER '[' INTEGER ']' '=' expression ';'
-	| IDENTIFIER '=' expression  ';'
+	| IDENTIFIER '=' expression {strcat(jasm, "\t\tputstatic int rust_test.");
+     strcat(jasm, $1);
+     strcat(jasm, "\n");} ';'
 	| declaration_list
 	| PRINT 
 	{
@@ -626,25 +628,13 @@ while_srarement
 	compound_start
 	statement_list
 	{
-		strcat(jasm,"\t\tgoto Lbegin");
+		strcat(jasm,"\t\tgoto Lbegin\n");
 		strcat(jasm,"\t\tifeq Lexit\n");
 	}
 	compound_end
 	//:WHILE '(' expression while_After_Check')' '{'  statement_list  '}' while_After_Ltrue
 	;
-while_After_Check:
-{
-	strcat(jasm,"\tLbegin:\n");
-	strcat(jasm,"\t\ticonst_0\n");
-	strcat(jasm,"\t\tgoto Lfalse\n");
-	strcat(jasm,"\tLtrue:\n");
-	strcat(jasm,"\t\ticonst_1\n");
-	strcat(jasm,"\tLfalse:\n");
-	strcat(jasm,"\t\tifeq\tLexit\n");
 
-
-}
-;
 while_After_Ltrue:
 {strcat(jasm, "\t\tgoto Lexit\n");
 	strcat(jasm, "\tLext:");}
