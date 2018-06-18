@@ -39,12 +39,20 @@ declarator
 {
 	int is_found_ident = 0;
 	int tmp_depth = itemDepth;
+	printf("itemDepth %d\n",itemDepth );
 	tp_fun_index = now_fun_index;
+
+		printf("tp_fun_index is%d",tp_fun_index);
+			printf("tmp_depth%d\n",tmp_depth );
 
 	if(tp_fun_index != 0){
 		while(tmp_depth > -1){
 			int index_depth = lookup($1, tmp_depth);
+
+	printf("look up %s is%d\n", $1,lookup($1,1) );
+			printf("%s's index_depth%d\n",$1,index_depth );
 			if(index_depth >= 0)
+
 			{
 				strcat(jasm, "\t\tiload ");
 				char index_depth_str[10];
