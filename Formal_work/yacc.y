@@ -597,10 +597,29 @@ If_After_Ltrue:
 };
 
 selection_statement
-: IF '('  expression If_After_Check ')'  '{'  statement_list  '}' If_After_Ltrue ELSE '{'  statement_list  '}' {strcat(jasm, "\tL3:\n");}  
+: IF '(' {acs=1;} expression 
+ 	')' {acs=1;} 
+ 	'{' {  
+ 		strcat(jasm,"\t\tifgt L0\n");
+	    strcat(jasm,"\t\ticonst_0\n");
+	    strcat(jasm,"\t\tgoto L1\n");
+	    strcat(jasm,"\tL0:\n");
+	    strcat(jasm,"\t\ticonst_1\n");
+	    strcat(jasm,"\tL1:\n");
+	    strcat(jasm,"\t\tifeq L2\n");
+	} statement_list  '}' ELSE {strcat(jasm, "\t\tgoto L3\n");
+      strcat(jasm, "\tL2:\n");}'{'
+	  statement_list  '}' {strcat(jasm, "\tL3:\n");}  
 ;
 while_srarement
-	:WHILE '(' expression while_After_Check')' '{'  statement_list  '}' while_After_Ltrue
+	:WHILE
+	{acs=1; strcat(jasm,"\tLbegin:\n");}
+	'(' expression_statement ')'
+	{
+		is_cust=0;
+		strcat(jasm,"\t\tifle Ltrue\n");
+	}
+	//:WHILE '(' expression while_After_Check')' '{'  statement_list  '}' while_After_Ltrue
 	;
 while_After_Check:
 {

@@ -16,7 +16,8 @@ int function_index = 0;
 int tp_fun_index = 0;
 int is_print = 0;
 int is_assigning = 0;
-
+int is_cust=0;
+int is_over_op=0;
 struct DataItem {
 	char idName[100];
 	char type[100];
