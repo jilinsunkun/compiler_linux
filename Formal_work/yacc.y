@@ -30,7 +30,7 @@
 
 %start program
 
-%type  <val> multp_expression Val_declation program pre_expression type_specifier Declarator_l declarator expression  assion_expression RE_expression add_expression  parameter_list parameter_declaration external_declation U_nary declaration function_definition declaration_list  '-'
+%type  <val> multp_expression Val_declation program pre_expression type_specifier Declarator_l declarator expression  assign_expression RE_expression add_expression  parameter_list parameter_declaration external_declation U_nary declition function_definition declaration_list  '-'
 
 %%
 
@@ -49,7 +49,7 @@ declarator
 		while(tmp_depth > -1){
 			int index_depth = lookup($1, tmp_depth);
 
-	printf("look up %s is%d\n", $1,lookup($1,1) );
+	printf("look up %s is%d\n", $1,lookup($1,0) );
 			printf("%s's index_depth%d\n",$1,index_depth );
 			if(index_depth >= 0)
 
@@ -172,7 +172,7 @@ Val_declation
 		if (is_print != 1)
 		{
 			strcat(jasm, "\t\tsipush ");
-			strcat(jasm, tempStr);
+			//strcat(jasm, tempStr);
 			strcat(jasm, "\n");
 		}
 	}
@@ -216,9 +216,9 @@ add_expression
 expression
 : 
 U_nary
-| assion_expression
+| assign_expression
 //| '(' expression ')'
-| expression assion_expression
+| expression assign_expression
 | RE_expression
 | expression RE_expression
 | IDENTIFIER '=' IDENTIFIER '(' Declarator_l  ')' ';'
@@ -244,7 +244,7 @@ U_nary
 }
 ;
 
-assion_expression
+assign_expression
 :  IDENTIFIER  '='   add_expression 
  {
  	is_assigning =1;
@@ -412,7 +412,7 @@ simple_statment
 /*
 simple_statment
 : IDENTIFIER '[' INTEGER ']' '=' expression
-| declaration
+| declition
 | PRINT
 {
 	is_print = 1;
@@ -469,7 +469,7 @@ compound_end
 ;
 
 
-declaration
+declition
 	: LET  IDENTIFIER {is_assigning=1;} '=' Val_declation ';'{
 
 		insert($2, "const" , $5);
@@ -577,8 +577,8 @@ declaration
 	;
 	
 declaration_list
-: declaration
-| declaration_list declaration
+: declition
+| declaration_list declition
 ;
 
 compound_statement
@@ -615,14 +615,17 @@ while_srarement
 		strcat(jasm,"\t\tifle Ltrue\n");
 		if (is_over_op==1)
 		{
+			//pr
 			strcat(jasm,"\t\ticonst_1\n");
 		}
 		else if(is_over_op==2){
 			strcat(jasm,"\t\ticonst_0\n");
 
 		}
+		//sdasda
 		strcat(jasm,"\t\tgoto Lfalse\n");
 		strcat(jasm,"\tLtrue:\n");
+		// it is to do like the thing over op
 		if (is_over_op == 1)
       {
         strcat(jasm, "\t\ticonst_0\n");
@@ -680,10 +683,10 @@ iteration_statement
 {
 	strcat(jasm, "\tLpost:\n");
 }
-  assion_expression {strcat(jasm, "\t\tgoto Ltest\n");} ')'  '{' compound_statement  '}'
+  assign_expression {strcat(jasm, "\t\tgoto Ltest\n");} ')'  '{' compound_statement  '}'
 
 |
-FOR  '('  assion_expression ';' {strcat(jasm, "\tLtest:\n");} RE_expression 
+FOR  '('  assign_expression ';' {strcat(jasm, "\tLtest:\n");} RE_expression 
 {
 	strcat(jasm, " Ltrue\n");
 	strcat(jasm, "\t\ticonst_0\n");
@@ -703,11 +706,11 @@ FOR  '('  assion_expression ';' {strcat(jasm, "\tLtest:\n");} RE_expression
 
 
 statement_list
-: statement
-| statement_list statement
+: satment
+| statement_list satment
 ;
 
-statement
+satment
 :
  simple_statment
 | expression_statement

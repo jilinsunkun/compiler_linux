@@ -552,10 +552,10 @@ static const yytype_uint16 yyrline[] =
      373,   389,   393,   389,   404,   405,   458,   465,   473,   473,
      490,   490,   506,   524,   524,   541,   556,   556,   574,   580,
      581,   585,   586,   586,   590,   595,   596,   597,   605,   595,
-     611,   613,   638,   610,   651,   680,   683,   650,   686,   687,
-     686,   706,   707,   712,   713,   714,   715,   716,   720,   725,
-     730,   731,   730,   758,   760,   757,   774,   775,   776,   780,
-     781
+     611,   613,   641,   610,   654,   683,   686,   653,   689,   690,
+     689,   709,   710,   715,   716,   717,   718,   719,   723,   728,
+     733,   734,   733,   761,   763,   760,   777,   778,   779,   783,
+     784
 };
 #endif
 
@@ -574,14 +574,14 @@ static const char *const yytname[] =
   "USE", "WHILE", "CONST", "VAR", "','", "'('", "')'", "';'", "'>'", "'<'",
   "':'", "'['", "']'", "'{'", "'}'", "$accept", "declarator",
   "Declarator_l", "pre_expression", "U_nary", "$@1", "multp_expression",
-  "Val_declation", "add_expression", "expression", "assion_expression",
+  "Val_declation", "add_expression", "expression", "assign_expression",
   "RE_expression", "$@2", "type_specifier", "parameter_list",
   "parameter_declaration", "simple_statment", "$@3", "$@4", "$@5", "$@6",
-  "$@7", "compound_start", "compound_end", "declaration", "$@8", "$@9",
+  "$@7", "compound_start", "compound_end", "declition", "$@8", "$@9",
   "$@10", "$@11", "declaration_list", "compound_statement", "$@12",
   "expression_statement", "selection_statement", "$@13", "$@14", "$@15",
   "$@16", "while_srarement", "$@17", "$@18", "$@19", "iteration_statement",
-  "$@20", "$@21", "$@22", "$@23", "$@24", "statement_list", "statement",
+  "$@20", "$@21", "$@22", "$@23", "$@24", "statement_list", "satment",
   "func_expression", "add_main_func_first", "function_definition", "$@25",
   "$@26", "$@27", "$@28", "external_declation", "program", YY_NULLPTR
 };
@@ -1537,7 +1537,7 @@ yyreduce:
 		while(tmp_depth > -1){
 			int index_depth = lookup((yyvsp[0].val), tmp_depth);
 
-	printf("look up %s is%d\n", (yyvsp[0].val),lookup((yyvsp[0].val),1) );
+	printf("look up %s is%d\n", (yyvsp[0].val),lookup((yyvsp[0].val),0) );
 			printf("%s's index_depth%d\n",(yyvsp[0].val),index_depth );
 			if(index_depth >= 0)
 
@@ -2172,14 +2172,17 @@ yyreduce:
 		strcat(jasm,"\t\tifle Ltrue\n");
 		if (is_over_op==1)
 		{
+			//pr
 			strcat(jasm,"\t\ticonst_1\n");
 		}
 		else if(is_over_op==2){
 			strcat(jasm,"\t\ticonst_0\n");
 
 		}
+		//sdasda
 		strcat(jasm,"\t\tgoto Lfalse\n");
 		strcat(jasm,"\tLtrue:\n");
+		// it is to do like the thing over op
 		if (is_over_op == 1)
       {
         strcat(jasm, "\t\ticonst_0\n");
@@ -2190,20 +2193,20 @@ yyreduce:
     strcat(jasm, "\tLfalse:\n");
      strcat(jasm, "\t\tifeq Lexit\n");
 	}
-#line 2194 "y.tab.c" /* yacc.c:1646  */
+#line 2197 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 82:
-#line 638 "yacc.y" /* yacc.c:1646  */
+#line 641 "yacc.y" /* yacc.c:1646  */
     {
 		strcat(jasm,"\t\tgoto Lbegin\n");
 		strcat(jasm,"\t\tLexit:\n");
 	}
-#line 2203 "y.tab.c" /* yacc.c:1646  */
+#line 2206 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 84:
-#line 651 "yacc.y" /* yacc.c:1646  */
+#line 654 "yacc.y" /* yacc.c:1646  */
     {
 	// move the chars of RE_expression 
 	int i, len;
@@ -2232,31 +2235,31 @@ yyreduce:
 	strcat(jasm, "\t\tifeq Lexit\n");
 	strcat(jasm, "\t\tgoto Lbody\n");
 }
-#line 2236 "y.tab.c" /* yacc.c:1646  */
+#line 2239 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 85:
-#line 680 "yacc.y" /* yacc.c:1646  */
+#line 683 "yacc.y" /* yacc.c:1646  */
     {
 	strcat(jasm, "\tLpost:\n");
 }
-#line 2244 "y.tab.c" /* yacc.c:1646  */
+#line 2247 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 86:
-#line 683 "yacc.y" /* yacc.c:1646  */
+#line 686 "yacc.y" /* yacc.c:1646  */
     {strcat(jasm, "\t\tgoto Ltest\n");}
-#line 2250 "y.tab.c" /* yacc.c:1646  */
+#line 2253 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 88:
-#line 686 "yacc.y" /* yacc.c:1646  */
+#line 689 "yacc.y" /* yacc.c:1646  */
     {strcat(jasm, "\tLtest:\n");}
-#line 2256 "y.tab.c" /* yacc.c:1646  */
+#line 2259 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 89:
-#line 687 "yacc.y" /* yacc.c:1646  */
+#line 690 "yacc.y" /* yacc.c:1646  */
     {
 	strcat(jasm, " Ltrue\n");
 	strcat(jasm, "\t\ticonst_0\n");
@@ -2269,34 +2272,34 @@ yyreduce:
 
 	strcat(jasm, "\tLpost:\n");
 	strcat(jasm, "\t\tgoto Ltest\n");}
-#line 2273 "y.tab.c" /* yacc.c:1646  */
+#line 2276 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 98:
-#line 720 "yacc.y" /* yacc.c:1646  */
+#line 723 "yacc.y" /* yacc.c:1646  */
     {
 	itemDepth = 0;
 
 	}
-#line 2282 "y.tab.c" /* yacc.c:1646  */
+#line 2285 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 99:
-#line 725 "yacc.y" /* yacc.c:1646  */
+#line 728 "yacc.y" /* yacc.c:1646  */
     {
 	strcat(jasm, "\tmethod public static void main(java.lang.String[])\n\tmax_stack 15\n\tmax_locals 15\n\t{\n");
 }
-#line 2290 "y.tab.c" /* yacc.c:1646  */
+#line 2293 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 100:
-#line 730 "yacc.y" /* yacc.c:1646  */
+#line 733 "yacc.y" /* yacc.c:1646  */
     {memset(temp_parameter,0,strlen(temp_parameter));now_fun_index++;function_index++;}
-#line 2296 "y.tab.c" /* yacc.c:1646  */
+#line 2299 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 101:
-#line 731 "yacc.y" /* yacc.c:1646  */
+#line 734 "yacc.y" /* yacc.c:1646  */
     {
 		insert((yyvsp[-6].val),(yyvsp[0].val),"");
 
@@ -2319,32 +2322,32 @@ yyreduce:
 		strcat(jasm, ")\n");
 		strcat(jasm, "\tmax_stack 15\n\tmax_locals 15\n\t{\n");
 	}
-#line 2323 "y.tab.c" /* yacc.c:1646  */
+#line 2326 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 102:
-#line 753 "yacc.y" /* yacc.c:1646  */
+#line 756 "yacc.y" /* yacc.c:1646  */
     {
 	 	strcat(jasm, "\t}\n");
 	 	now_fun_index--;
  	}
-#line 2332 "y.tab.c" /* yacc.c:1646  */
+#line 2335 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 103:
-#line 758 "yacc.y" /* yacc.c:1646  */
+#line 761 "yacc.y" /* yacc.c:1646  */
     {now_fun_index++;function_index++;}
-#line 2338 "y.tab.c" /* yacc.c:1646  */
+#line 2341 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 104:
-#line 760 "yacc.y" /* yacc.c:1646  */
+#line 763 "yacc.y" /* yacc.c:1646  */
     {now_fun_index++;}
-#line 2344 "y.tab.c" /* yacc.c:1646  */
+#line 2347 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 105:
-#line 762 "yacc.y" /* yacc.c:1646  */
+#line 765 "yacc.y" /* yacc.c:1646  */
     {insert((yyvsp[-8].val),"","");
 	 	if (strcmp((yyvsp[-8].val),"main")==0)
 	 	{
@@ -2353,11 +2356,11 @@ yyreduce:
 	 	}
 	 	now_fun_index--;
 	 }
-#line 2357 "y.tab.c" /* yacc.c:1646  */
+#line 2360 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 2361 "y.tab.c" /* yacc.c:1646  */
+#line 2364 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2585,7 +2588,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 783 "yacc.y" /* yacc.c:1906  */
+#line 786 "yacc.y" /* yacc.c:1906  */
 
 void yyerror(const char *str){
     printf("error:%s\n",str);
