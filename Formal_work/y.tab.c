@@ -2188,8 +2188,8 @@ yyreduce:
   case 82:
 #line 630 "yacc.y" /* yacc.c:1646  */
     {
-		strcat(jasm,"\t\tgoto Lbegin");
-		strcat(jasm,"\t\tifeq Lexit\n");
+		strcat(jasm,"\t\tgoto Lbegin\n");
+		strcat(jasm,"\t\tLexit:\n");
 	}
 #line 2195 "y.tab.c" /* yacc.c:1646  */
     break;

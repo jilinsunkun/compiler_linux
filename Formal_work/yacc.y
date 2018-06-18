@@ -629,7 +629,7 @@ while_srarement
 	statement_list
 	{
 		strcat(jasm,"\t\tgoto Lbegin\n");
-		strcat(jasm,"\t\tifeq Lexit\n");
+		strcat(jasm,"\t\tLexit:\n");
 	}
 	compound_end
 	//:WHILE '(' expression while_After_Check')' '{'  statement_list  '}' while_After_Ltrue

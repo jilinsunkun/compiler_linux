@@ -1,15 +1,11 @@
 class rust_test
 {
- 	field static int n = 8
-	field static int Fn=1
-	field static int FNminus1=1
-	field static int temp
-	method public static void main(java.lang.String[])
+ 	method public static void main(java.lang.String[])
 	max_stack 15
 	max_locals 15
 	{
 	Lbegin:
-		getstatic int rust_test.n
+		sipush n
 		sipush 2
 		isub
 		ifle Ltrue
@@ -19,23 +15,24 @@ class rust_test
 		iconst_0
 	Lfalse:
 		ifeq Lexit
-		getstatic int rust_test.Fn
+		sipush Fn
 		putstatic int rust_test.temp
-		getstatic int rust_test.Fn
-		getstatic int rust_test.FNminus1
+		sipush Fn
+		sipush FNminus1
 		putstatic int rust_test.Fn
-		getstatic int rust_test.temp
+		sipush temp
 		putstatic int rust_test.FNminus1
-		getstatic int rust_test.n
+		sipush n
 		sipush 1
 		putstatic int rust_test.n
-		goto Lbegin		ifeq Lexit
+		goto Lbegin
+		Lexit:
 
 		getstatic java.io.PrintStream java.lang.System.out
 		ldc "Result of computation: "
 		invokevirtual void java.io.PrintStream.print(java.lang.String)
 		getstatic java.io.PrintStream java.lang.System.out
-		getstatic int rust_test.n
+		sipush n
 		invokevirtual void java.io.PrintStream.println(java.lang.String)
 		return
 	}
