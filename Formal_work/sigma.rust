@@ -12,6 +12,7 @@ fn main() {
   while (index <= n) {
     sum = sum + index;
     index = index + 1;
+    n=n-1;
   } 
   print "The sum is ";
   println sum;
