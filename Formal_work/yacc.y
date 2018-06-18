@@ -172,7 +172,7 @@ Val_declation
 		if (is_print != 1)
 		{
 			strcat(jasm, "\t\tsipush ");
-			//strcat(jasm, tempStr);
+			strcat(jasm, tempStr);
 			strcat(jasm, "\n");
 		}
 	}
