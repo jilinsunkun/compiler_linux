@@ -2,13 +2,14 @@
  *
  * This test program computes the Nth Fibonacci number
  */
-
-fn main() {
-    // variables
-    let mut n:int = 8;
+ let mut n:int = 8;
     let mut Fn = 1;
     let mut FNminus1 = 1;
     let mut temp:int;
+
+fn main() {
+    // variables
+    
 
     // compute the nth Fibonacci number
     while (n > 2) {
