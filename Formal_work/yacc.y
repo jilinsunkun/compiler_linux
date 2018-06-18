@@ -297,13 +297,15 @@ RE_expression
 | multp_expression
 | RE_expression '>'  pre_expression
 {
+	is_over_op=1;
 	strcat(jasm, "\t\tisub\n");
-	strcat(jasm, "\t\tifgt L0\n");
+
 }
-| RE_expression LE_OP pre_expression
+| RE_expression {is_cust=1;} LE_OP pre_expression
 {
+	is_over_op=2;
 	strcat(jasm, "\t\tisub\n");
-	strcat(jasm, "\t\tifle ");
+
 }
 | RE_expression '<' pre_expression
 {
@@ -578,23 +580,6 @@ expression_statement
 :  expression
 ;
 
-If_After_Check:
-{
-	strcat(jasm, " \tL0\n");
-	strcat(jasm, "\t\ticonst_0\n");
-	strcat(jasm, "\t\tgoto Lfalse\n");
-	strcat(jasm, "\tL0:\n");
-	strcat(jasm, "\t\ticonst_1\n");
-	strcat(jasm, "\tL1:\n");
-	strcat(jasm, "\t\tifeq L2\n");
-}
-;
-
-If_After_Ltrue:
-{
-	strcat(jasm, "\t\tgoto L3\n");
-	strcat(jasm, "\tL2:");
-};
 
 selection_statement
 : IF '(' {acs=1;} expression 
@@ -618,7 +603,33 @@ while_srarement
 	{
 		is_cust=0;
 		strcat(jasm,"\t\tifle Ltrue\n");
+		if (is_over_op==1)
+		{
+			strcat(jasm,"\t\ticonst_1\n");
+		}
+		else if(is_over_op==2){
+			strcat(jasm,"\t\ticonst_0\n");
+
+		}
+		strcat(jasm,"\t\tgoto Lfalse\n");
+		strcat(jasm,"\tLtrue:\n");
+		if (is_over_op == 1)
+      {
+        strcat(jasm, "\t\ticonst_0\n");
+      }
+      else if (is_over_op == 2){
+        strcat(jasm, "\t\ticonst_1\n");
+      }
+    strcat(jasm, "\tLfalse:\n");
+     strcat(jasm, "\t\tifeq Lexit\n");
 	}
+	compound_start
+	statement_list
+	{
+		strcat(jasm,"\t\tgoto Lbegin");
+		strcat(jasm,"\t\tifeq Lexit\n");
+	}
+	compound_end
 	//:WHILE '(' expression while_After_Check')' '{'  statement_list  '}' while_After_Ltrue
 	;
 while_After_Check:

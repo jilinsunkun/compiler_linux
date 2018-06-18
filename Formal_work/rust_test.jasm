@@ -8,25 +8,25 @@ class rust_test
 	max_stack 15
 	max_locals 15
 	{
+	Lbegin:
 		getstatic int rust_test.n
 		sipush 2
 		isub
-		ifgt L0
-	Lbegin:
-		iconst_0
+		ifle Ltrue
+		iconst_1
 		goto Lfalse
 	Ltrue:
-		iconst_1
+		iconst_0
 	Lfalse:
-		ifeq	Lexit
+		ifeq Lexit
 		getstatic int rust_test.Fn
 		getstatic int rust_test.Fn
 		getstatic int rust_test.FNminus1
 		getstatic int rust_test.temp
 		getstatic int rust_test.n
 		sipush 1
-		goto Lexit
-	Lext:
+		goto Lbegin		ifeq Lexit
+
 		getstatic java.io.PrintStream java.lang.System.out
 		ldc "Result of computation: "
 		invokevirtual void java.io.PrintStream.print(java.lang.String)
