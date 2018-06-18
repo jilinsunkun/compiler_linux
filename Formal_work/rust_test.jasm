@@ -11,7 +11,8 @@ class rust_test
 		getstatic int rust_test.n
 		sipush 2
 		isub
-		ifgt 	Lbegin:
+		ifgt L0
+	Lbegin:
 		iconst_0
 		goto Lfalse
 	Ltrue:

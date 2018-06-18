@@ -1800,7 +1800,7 @@ yyreduce:
 #line 299 "yacc.y" /* yacc.c:1646  */
     {
 	strcat(jasm, "\t\tisub\n");
-	strcat(jasm, "\t\tifgt ");
+	strcat(jasm, "\t\tifgt L0\n");
 }
 #line 1806 "y.tab.c" /* yacc.c:1646  */
     break;

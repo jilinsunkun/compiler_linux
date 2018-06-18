@@ -298,7 +298,7 @@ RE_expression
 | RE_expression '>'  pre_expression
 {
 	strcat(jasm, "\t\tisub\n");
-	strcat(jasm, "\t\tifgt ");
+	strcat(jasm, "\t\tifgt L0\n");
 }
 | RE_expression LE_OP pre_expression
 {
