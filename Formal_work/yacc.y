@@ -70,7 +70,7 @@ declarator
 
 	if (is_found_ident == 0)
 	{
-		if (lookup($1, 0) >= 0)
+		if (1)
 		{
 			strcat(jasm, "\t\tgetstatic int rust_test.");
 			strcat(jasm, $1);
