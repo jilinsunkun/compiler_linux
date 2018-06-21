@@ -577,13 +577,14 @@ static const char *const yytname[] =
   "Val_declation", "add_expression", "expression", "assign_expression",
   "RE_expression", "$@2", "type_specifier", "parameter_list",
   "parameter_declaration", "simple_statment", "$@3", "$@4", "$@5", "$@6",
-  "$@7", "compound_start", "compound_end", "declition", "$@8", "$@9",
-  "$@10", "$@11", "declaration_list", "compound_statement", "$@12",
+  "$@7", "block_start", "block_end", "declition", "$@8", "$@9", "$@10",
+  "$@11", "declaration_list", "compound_statement", "$@12",
   "expression_statement", "selection_statement", "$@13", "$@14", "$@15",
   "$@16", "while_srarement", "$@17", "$@18", "$@19", "iteration_statement",
-  "$@20", "$@21", "$@22", "$@23", "$@24", "statement_list", "satment",
-  "func_expression", "add_main_func_first", "function_definition", "$@25",
-  "$@26", "$@27", "$@28", "external_declation", "program", YY_NULLPTR
+  "$@20", "$@21", "$@22", "$@23", "$@24", "statement_list",
+  "satcompound_start", "func_expression", "add_main_func_first",
+  "function_definition", "$@25", "$@26", "$@27", "$@28",
+  "external_declation", "program", YY_NULLPTR
 };
 #endif
 
@@ -1558,7 +1559,7 @@ yyreduce:
 
 	if (is_found_ident == 0)
 	{
-		if (lookup((yyvsp[0].val), 0) >= 0)
+		if (1)
 		{
 			strcat(jasm, "\t\tgetstatic int rust_test.");
 			strcat(jasm, (yyvsp[0].val));
@@ -1585,7 +1586,7 @@ yyreduce:
 		memset(unary_symbol,0,strlen(unary_symbol));
 	}
 }
-#line 1589 "y.tab.c" /* yacc.c:1646  */
+#line 1590 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
@@ -1596,7 +1597,7 @@ yyreduce:
 		strcpy(unary_symbol,"\t\tineg\n");
 	}
 }
-#line 1600 "y.tab.c" /* yacc.c:1646  */
+#line 1601 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
@@ -1610,7 +1611,7 @@ yyreduce:
 		strcat(tempJasm, "\t\timul\n");
 		strcpy((yyval.val), tempJasm);
 	}
-#line 1614 "y.tab.c" /* yacc.c:1646  */
+#line 1615 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
@@ -1624,7 +1625,7 @@ yyreduce:
 		strcat(tempJasm, "\t\tidiv\n");
 		strcpy((yyval.val), tempJasm);
 	}
-#line 1628 "y.tab.c" /* yacc.c:1646  */
+#line 1629 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
@@ -1636,7 +1637,7 @@ yyreduce:
 	strcat(jasm, "\"");
 	strcat(jasm, "\n");
 }
-#line 1640 "y.tab.c" /* yacc.c:1646  */
+#line 1641 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
@@ -1644,7 +1645,7 @@ yyreduce:
     {
 	strcpy((yyval.val), (yyvsp[0].val));
 }
-#line 1648 "y.tab.c" /* yacc.c:1646  */
+#line 1649 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
@@ -1652,7 +1653,7 @@ yyreduce:
     {
 	strcpy((yyval.val), (yyvsp[0].val));
 }
-#line 1656 "y.tab.c" /* yacc.c:1646  */
+#line 1657 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
@@ -1675,7 +1676,7 @@ yyreduce:
 	}
 	
 }
-#line 1679 "y.tab.c" /* yacc.c:1646  */
+#line 1680 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
@@ -1685,7 +1686,7 @@ yyreduce:
 	sprintf( tempStr, "%g", (yyvsp[0].double_type) );
 	strcpy((yyval.val), tempStr);
 }
-#line 1689 "y.tab.c" /* yacc.c:1646  */
+#line 1690 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
@@ -1699,7 +1700,7 @@ yyreduce:
 	strcat(tempJasm, "\t\tiadd\n");
 	strcpy((yyval.val), tempJasm);
 }
-#line 1703 "y.tab.c" /* yacc.c:1646  */
+#line 1704 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
@@ -1713,7 +1714,7 @@ yyreduce:
 	strcat(tempJasm, "\t\tisub\n");
 	strcpy((yyval.val), tempJasm);
 }
-#line 1717 "y.tab.c" /* yacc.c:1646  */
+#line 1718 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
@@ -1738,7 +1739,7 @@ yyreduce:
 		strcat(jasm, (yyvsp[-6].val));
 		strcat(jasm, "\n");
 }
-#line 1742 "y.tab.c" /* yacc.c:1646  */
+#line 1743 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
@@ -1795,7 +1796,7 @@ yyreduce:
 	}
  	is_assigning =0;
 }
-#line 1799 "y.tab.c" /* yacc.c:1646  */
+#line 1800 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
@@ -1805,13 +1806,13 @@ yyreduce:
 	strcat(jasm, "\t\tisub\n");
 
 }
-#line 1809 "y.tab.c" /* yacc.c:1646  */
+#line 1810 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
 #line 312 "yacc.y" /* yacc.c:1646  */
     {is_cust=1;}
-#line 1815 "y.tab.c" /* yacc.c:1646  */
+#line 1816 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
@@ -1821,7 +1822,7 @@ yyreduce:
 	strcat(jasm, "\t\tisub\n");
 
 }
-#line 1825 "y.tab.c" /* yacc.c:1646  */
+#line 1826 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
@@ -1849,7 +1850,7 @@ yyreduce:
 		strcat(jasm, "\tiflt ");
 	}
 }
-#line 1853 "y.tab.c" /* yacc.c:1646  */
+#line 1854 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
@@ -1859,7 +1860,7 @@ yyreduce:
 		strcat(temp_parameter, (yyvsp[0].val));
 		strcat(temp_parameter, ",");
 	}
-#line 1863 "y.tab.c" /* yacc.c:1646  */
+#line 1864 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
@@ -1867,7 +1868,7 @@ yyreduce:
     {strcat(jasm, "\t\tputstatic int rust_test.");
      strcat(jasm, (yyvsp[-2].val));
      strcat(jasm, "\n");}
-#line 1871 "y.tab.c" /* yacc.c:1646  */
+#line 1872 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
@@ -1876,7 +1877,7 @@ yyreduce:
 		is_print=1;
 		strcat(jasm, "\n\t\tgetstatic java.io.PrintStream java.lang.System.out\n");
 	}
-#line 1880 "y.tab.c" /* yacc.c:1646  */
+#line 1881 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
@@ -1891,7 +1892,7 @@ yyreduce:
 		}
 		is_print=0;
 	}
-#line 1895 "y.tab.c" /* yacc.c:1646  */
+#line 1896 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
@@ -1899,7 +1900,7 @@ yyreduce:
     {	
 		is_print = 1;
 		strcat(jasm, "\t\tgetstatic java.io.PrintStream java.lang.System.out\n");}
-#line 1903 "y.tab.c" /* yacc.c:1646  */
+#line 1904 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 52:
@@ -1914,7 +1915,7 @@ yyreduce:
 		}
 		is_print=0;
 	}
-#line 1918 "y.tab.c" /* yacc.c:1646  */
+#line 1919 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
@@ -1923,7 +1924,7 @@ yyreduce:
 			strcat(jasm, (yyvsp[-1].val));
 			strcat(jasm, "\t\tireturn\n");
 		}
-#line 1927 "y.tab.c" /* yacc.c:1646  */
+#line 1928 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
@@ -1931,7 +1932,7 @@ yyreduce:
     {
 	itemDepth++;
 }
-#line 1935 "y.tab.c" /* yacc.c:1646  */
+#line 1936 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
@@ -1939,13 +1940,13 @@ yyreduce:
     {
 	itemDepth--;
 }
-#line 1943 "y.tab.c" /* yacc.c:1646  */
+#line 1944 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 58:
 #line 473 "yacc.y" /* yacc.c:1646  */
     {is_assigning=1;}
-#line 1949 "y.tab.c" /* yacc.c:1646  */
+#line 1950 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
@@ -1967,13 +1968,13 @@ yyreduce:
 		}
 		is_assigning=0;
 	}
-#line 1971 "y.tab.c" /* yacc.c:1646  */
+#line 1972 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
 #line 490 "yacc.y" /* yacc.c:1646  */
     {is_assigning=1;}
-#line 1977 "y.tab.c" /* yacc.c:1646  */
+#line 1978 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
@@ -1994,7 +1995,7 @@ yyreduce:
 		is_assigning=0;
 		//let a:int;
 	}
-#line 1998 "y.tab.c" /* yacc.c:1646  */
+#line 1999 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 62:
@@ -2016,13 +2017,13 @@ yyreduce:
 		is_assigning=0;
 
 	}
-#line 2020 "y.tab.c" /* yacc.c:1646  */
+#line 2021 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 63:
 #line 524 "yacc.y" /* yacc.c:1646  */
     {is_assigning = 1;}
-#line 2026 "y.tab.c" /* yacc.c:1646  */
+#line 2027 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
@@ -2043,7 +2044,7 @@ yyreduce:
 		}
 		is_assigning = 0;
 	}
-#line 2047 "y.tab.c" /* yacc.c:1646  */
+#line 2048 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
@@ -2063,13 +2064,13 @@ yyreduce:
 		}
 		is_assigning = 0;
 	}
-#line 2067 "y.tab.c" /* yacc.c:1646  */
+#line 2068 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 66:
 #line 556 "yacc.y" /* yacc.c:1646  */
     {is_assigning = 1;}
-#line 2073 "y.tab.c" /* yacc.c:1646  */
+#line 2074 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 67:
@@ -2091,7 +2092,7 @@ yyreduce:
 		}
 		is_assigning = 0;
 	}
-#line 2095 "y.tab.c" /* yacc.c:1646  */
+#line 2096 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 68:
@@ -2099,37 +2100,37 @@ yyreduce:
     {
 		insert((yyvsp[-6].val),"array",(yyvsp[-4].val));
 	}
-#line 2103 "y.tab.c" /* yacc.c:1646  */
+#line 2104 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 71:
 #line 585 "yacc.y" /* yacc.c:1646  */
     {strcat(jasm, "\tLbody:\n");strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");itemDepth--;}
-#line 2109 "y.tab.c" /* yacc.c:1646  */
+#line 2110 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 72:
 #line 586 "yacc.y" /* yacc.c:1646  */
     {strcat(jasm, "\tLbody:\n");}
-#line 2115 "y.tab.c" /* yacc.c:1646  */
+#line 2116 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 73:
 #line 586 "yacc.y" /* yacc.c:1646  */
     {strcat(jasm, "\t\tgoto Lpost\n");strcat(jasm, "\tLexit:\n");itemDepth--;}
-#line 2121 "y.tab.c" /* yacc.c:1646  */
+#line 2122 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 75:
 #line 595 "yacc.y" /* yacc.c:1646  */
     {acs=1;}
-#line 2127 "y.tab.c" /* yacc.c:1646  */
+#line 2128 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 76:
 #line 596 "yacc.y" /* yacc.c:1646  */
     {acs=1;}
-#line 2133 "y.tab.c" /* yacc.c:1646  */
+#line 2134 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 77:
@@ -2143,26 +2144,26 @@ yyreduce:
 	    strcat(jasm,"\tL1:\n");
 	    strcat(jasm,"\t\tifeq L2\n");
 	}
-#line 2147 "y.tab.c" /* yacc.c:1646  */
+#line 2148 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 78:
 #line 605 "yacc.y" /* yacc.c:1646  */
     {strcat(jasm, "\t\tgoto L3\n");
       strcat(jasm, "\tL2:\n");}
-#line 2154 "y.tab.c" /* yacc.c:1646  */
+#line 2155 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 79:
 #line 607 "yacc.y" /* yacc.c:1646  */
     {strcat(jasm, "\tL3:\n");}
-#line 2160 "y.tab.c" /* yacc.c:1646  */
+#line 2161 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 80:
 #line 611 "yacc.y" /* yacc.c:1646  */
     {acs=1; strcat(jasm,"\tLbegin:\n");}
-#line 2166 "y.tab.c" /* yacc.c:1646  */
+#line 2167 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 81:
@@ -2193,7 +2194,7 @@ yyreduce:
     strcat(jasm, "\tLfalse:\n");
      strcat(jasm, "\t\tifeq Lexit\n");
 	}
-#line 2197 "y.tab.c" /* yacc.c:1646  */
+#line 2198 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 82:
@@ -2202,7 +2203,7 @@ yyreduce:
 		strcat(jasm,"\t\tgoto Lbegin\n");
 		strcat(jasm,"\t\tLexit:\n");
 	}
-#line 2206 "y.tab.c" /* yacc.c:1646  */
+#line 2207 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 84:
@@ -2235,7 +2236,7 @@ yyreduce:
 	strcat(jasm, "\t\tifeq Lexit\n");
 	strcat(jasm, "\t\tgoto Lbody\n");
 }
-#line 2239 "y.tab.c" /* yacc.c:1646  */
+#line 2240 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 85:
@@ -2243,19 +2244,19 @@ yyreduce:
     {
 	strcat(jasm, "\tLpost:\n");
 }
-#line 2247 "y.tab.c" /* yacc.c:1646  */
+#line 2248 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 86:
 #line 686 "yacc.y" /* yacc.c:1646  */
     {strcat(jasm, "\t\tgoto Ltest\n");}
-#line 2253 "y.tab.c" /* yacc.c:1646  */
+#line 2254 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 88:
 #line 689 "yacc.y" /* yacc.c:1646  */
     {strcat(jasm, "\tLtest:\n");}
-#line 2259 "y.tab.c" /* yacc.c:1646  */
+#line 2260 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 89:
@@ -2272,7 +2273,7 @@ yyreduce:
 
 	strcat(jasm, "\tLpost:\n");
 	strcat(jasm, "\t\tgoto Ltest\n");}
-#line 2276 "y.tab.c" /* yacc.c:1646  */
+#line 2277 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 98:
@@ -2281,7 +2282,7 @@ yyreduce:
 	itemDepth = 0;
 
 	}
-#line 2285 "y.tab.c" /* yacc.c:1646  */
+#line 2286 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 99:
@@ -2289,13 +2290,13 @@ yyreduce:
     {
 	strcat(jasm, "\tmethod public static void main(java.lang.String[])\n\tmax_stack 15\n\tmax_locals 15\n\t{\n");
 }
-#line 2293 "y.tab.c" /* yacc.c:1646  */
+#line 2294 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 100:
 #line 733 "yacc.y" /* yacc.c:1646  */
     {memset(temp_parameter,0,strlen(temp_parameter));now_fun_index++;function_index++;}
-#line 2299 "y.tab.c" /* yacc.c:1646  */
+#line 2300 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 101:
@@ -2322,7 +2323,7 @@ yyreduce:
 		strcat(jasm, ")\n");
 		strcat(jasm, "\tmax_stack 15\n\tmax_locals 15\n\t{\n");
 	}
-#line 2326 "y.tab.c" /* yacc.c:1646  */
+#line 2327 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 102:
@@ -2331,19 +2332,19 @@ yyreduce:
 	 	strcat(jasm, "\t}\n");
 	 	now_fun_index--;
  	}
-#line 2335 "y.tab.c" /* yacc.c:1646  */
+#line 2336 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 103:
 #line 761 "yacc.y" /* yacc.c:1646  */
     {now_fun_index++;function_index++;}
-#line 2341 "y.tab.c" /* yacc.c:1646  */
+#line 2342 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 104:
 #line 763 "yacc.y" /* yacc.c:1646  */
     {now_fun_index++;}
-#line 2347 "y.tab.c" /* yacc.c:1646  */
+#line 2348 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 105:
@@ -2356,11 +2357,11 @@ yyreduce:
 	 	}
 	 	now_fun_index--;
 	 }
-#line 2360 "y.tab.c" /* yacc.c:1646  */
+#line 2361 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 2364 "y.tab.c" /* yacc.c:1646  */
+#line 2365 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

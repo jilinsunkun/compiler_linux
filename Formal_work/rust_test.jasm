@@ -5,7 +5,7 @@ class rust_test
 	max_locals 15
 	{
 	Lbegin:
-		sipush n
+		getstatic int rust_test.n
 		sipush 2
 		isub
 		ifle Ltrue
@@ -15,14 +15,14 @@ class rust_test
 		iconst_0
 	Lfalse:
 		ifeq Lexit
-		sipush Fn
+		getstatic int rust_test.Fn
 		putstatic int rust_test.temp
-		sipush Fn
-		sipush FNminus1
+		getstatic int rust_test.Fn
+		getstatic int rust_test.FNminus1
 		putstatic int rust_test.Fn
-		sipush temp
+		getstatic int rust_test.temp
 		putstatic int rust_test.FNminus1
-		sipush n
+		getstatic int rust_test.n
 		sipush 1
 		putstatic int rust_test.n
 		goto Lbegin
@@ -32,7 +32,7 @@ class rust_test
 		ldc "Result of computation: "
 		invokevirtual void java.io.PrintStream.print(java.lang.String)
 		getstatic java.io.PrintStream java.lang.System.out
-		sipush n
+		getstatic int rust_test.n
 		invokevirtual void java.io.PrintStream.println(java.lang.String)
 		return
 	}

@@ -70,7 +70,7 @@ declarator
 
 	if (is_found_ident == 0)
 	{
-		if (lookup($1, 0) >= 0)
+		if (1)
 		{
 			strcat(jasm, "\t\tgetstatic int rust_test.");
 			strcat(jasm, $1);
@@ -172,7 +172,7 @@ Val_declation
 		if (is_print != 1)
 		{
 			strcat(jasm, "\t\tsipush ");
-			//strcat(jasm, tempStr);
+			strcat(jasm, tempStr);
 			strcat(jasm, "\n");
 		}
 	}
@@ -454,14 +454,14 @@ expression
 }
 ;
 */
-compound_start
+block_start
 : '{'
 {
 	itemDepth++;
 }
 ;
 
-compound_end
+block_end
 : '}'
 {
 	itemDepth--;
@@ -636,13 +636,13 @@ while_srarement
     strcat(jasm, "\tLfalse:\n");
      strcat(jasm, "\t\tifeq Lexit\n");
 	}
-	compound_start
+	block_start
 	statement_list
 	{
 		strcat(jasm,"\t\tgoto Lbegin\n");
 		strcat(jasm,"\t\tLexit:\n");
 	}
-	compound_end
+	block_end
 	//:WHILE '(' expression while_After_Check')' '{'  statement_list  '}' while_After_Ltrue
 	;
 
@@ -706,11 +706,11 @@ FOR  '('  assign_expression ';' {strcat(jasm, "\tLtest:\n");} RE_expression
 
 
 statement_list
-: satment
-| statement_list satment
+: satcompound_start
+| statement_list satcompound_start
 ;
 
-satment
+satcompound_start
 :
  simple_statment
 | expression_statement
@@ -761,7 +761,7 @@ function_definition:
 	  {now_fun_index++;function_index++;} 
  	')' 
  	{now_fun_index++;}
- 	add_main_func_first  compound_start  statement_list  compound_end 
+ 	add_main_func_first  block_start  statement_list  block_end 
 	 {insert($2,"","");
 	 	if (strcmp($2,"main")==0)
 	 	{
