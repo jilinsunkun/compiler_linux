@@ -1559,7 +1559,7 @@ yyreduce:
 
 	if (is_found_ident == 0)
 	{
-		if (lookup((yyvsp[0].val), 0) >= 0)
+		if (1)
 		{
 			strcat(jasm, "\t\tgetstatic int rust_test.");
 			strcat(jasm, (yyvsp[0].val));
