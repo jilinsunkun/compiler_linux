@@ -4,6 +4,9 @@ class rust_test
 	max_stack 15
 	max_locals 15
 	{
-		sipush 5
-		sipush 3
+		getstatic int rust_test.a
+		sipush 1
+		putstatic int rust_test.a
+		return
+	}
 }
