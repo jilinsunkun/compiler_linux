@@ -4,36 +4,6 @@ class rust_test
 	max_stack 15
 	max_locals 15
 	{
-	Lbegin:
-		getstatic int rust_test.n
-		sipush 2
-		isub
-		ifle Ltrue
-		iconst_1
-		goto Lfalse
-	Ltrue:
-		iconst_0
-	Lfalse:
-		ifeq Lexit
-		getstatic int rust_test.Fn
-		putstatic int rust_test.temp
-		getstatic int rust_test.Fn
-		getstatic int rust_test.FNminus1
-		putstatic int rust_test.Fn
-		getstatic int rust_test.temp
-		putstatic int rust_test.FNminus1
-		getstatic int rust_test.n
-		sipush 1
-		putstatic int rust_test.n
-		goto Lbegin
-		Lexit:
-
-		getstatic java.io.PrintStream java.lang.System.out
-		ldc "Result of computation: "
-		invokevirtual void java.io.PrintStream.print(java.lang.String)
-		getstatic java.io.PrintStream java.lang.System.out
-		getstatic int rust_test.n
-		invokevirtual void java.io.PrintStream.println(java.lang.String)
-		return
-	}
+		sipush 5
+		sipush 3
 }
