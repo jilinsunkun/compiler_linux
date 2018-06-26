@@ -391,19 +391,19 @@ static yyconst flex_int16_t yy_accept[171] =
         3,   11,   13,   62,    4,    5,   15,   18,   16,   61,
         6,    7,   61,   61,   61,   61,   61,   61,   61,   61,
        61,   61,   61,   61,   61,   61,    8,   76,    9,   73,
-       72,   70,   68,   70,   66,   65,   74,   24,   25,   29,
-       20,   27,   21,    0,   28,   31,   67,   64,   30,    0,
+       72,   70,   68,   70,   66,   65,   74,   24,   28,   27,
+       20,   25,   21,    0,   26,   31,   67,   64,   30,    0,
        62,   22,   19,   23,   61,   61,   61,   61,   61,   36,
        61,   61,   61,   61,   61,   42,   61,   44,   45,   61,
        61,   61,   61,   61,   61,   61,   61,   61,   61,   61,
 
-       61,   26,   69,    0,   63,   61,   61,   61,   61,   61,
-       61,   61,   61,   61,   41,   43,   32,   61,   61,   48,
-       61,   51,   61,   61,   61,   61,   56,   61,   61,    0,
-       60,   61,   34,   61,   37,   38,   61,   61,   61,   46,
-       61,   61,   61,   53,   61,   58,   61,   61,    0,   63,
-       33,   61,   61,   59,   40,   47,   49,   61,   61,   55,
-       57,   61,   39,   61,   52,   54,   61,   50,   35,    0
+       61,   29,   69,    0,   63,   61,   61,   61,   61,   61,
+       61,   61,   61,   61,   41,   43,   32,   61,   61,   51,
+       61,   52,   61,   61,   61,   61,   47,   61,   61,    0,
+       60,   61,   34,   61,   37,   38,   61,   61,   61,   49,
+       61,   61,   61,   56,   61,   58,   61,   61,    0,   63,
+       33,   61,   61,   59,   40,   50,   54,   61,   61,   46,
+       48,   61,   39,   61,   53,   57,   61,   55,   35,    0
     } ;
 
 static yyconst YY_CHAR yy_ec[256] =
@@ -989,27 +989,27 @@ YY_RULE_SETUP
 case 25:
 YY_RULE_SETUP
 #line 54 "scaner.l"
-{strcpy(yylval.val, yytext);return (AND_AND);}
+{strcpy(yylval.val, yytext);return (ADD_OP);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 55 "scaner.l"
-{strcpy(yylval.val, yytext);return (OR_OR);}
+{strcpy(yylval.val, yytext);return (LES_OP);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 56 "scaner.l"
-{strcpy(yylval.val, yytext);return (ADD_OP);}
+{strcpy(yylval.val, yytext);return (MUL_OP);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 57 "scaner.l"
-{strcpy(yylval.val, yytext);return (LES_OP);}
+{strcpy(yylval.val, yytext);return (AND_AND);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 58 "scaner.l"
-{strcpy(yylval.val, yytext);return (MUL_OP);}
+{strcpy(yylval.val, yytext);return (OR_OR);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
@@ -1094,62 +1094,62 @@ YY_RULE_SETUP
 case 46:
 YY_RULE_SETUP
 #line 78 "scaner.l"
-{strcpy(yylval.val, yytext);return (LOOP);}
+{strcpy(yylval.val, yytext);return (WHERE);}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
 #line 79 "scaner.l"
-{strcpy(yylval.val, yytext);return (MATCH);}
+{strcpy(yylval.val, yytext);return (USE);}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
 #line 80 "scaner.l"
-{strcpy(yylval.val, yytext);return (MUT);}
+{strcpy(yylval.val, yytext);return (WHILE);}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 81 "scaner.l"
-{strcpy(yylval.val, yytext);return (PRINT);}
+#line 82 "scaner.l"
+{strcpy(yylval.val, yytext);return (LOOP);}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 82 "scaner.l"
-{strcpy(yylval.val, yytext);return (PRINTLN);}
+#line 83 "scaner.l"
+{strcpy(yylval.val, yytext);return (MATCH);}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 83 "scaner.l"
-{strcpy(yylval.val, yytext);return (PUB);}
+#line 84 "scaner.l"
+{strcpy(yylval.val, yytext);return (MUT);}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 84 "scaner.l"
-{strcpy(yylval.val, yytext);return (RETURN);}
+#line 85 "scaner.l"
+{strcpy(yylval.val, yytext);return (PUB);}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 85 "scaner.l"
-{strcpy(yylval.val, yytext);return (SELF);}
+#line 86 "scaner.l"
+{strcpy(yylval.val, yytext);return (RETURN);}
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 86 "scaner.l"
-{strcpy(yylval.val, yytext);return (STATIC);}
+#line 87 "scaner.l"
+{strcpy(yylval.val, yytext);return (PRINT);}
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
 #line 88 "scaner.l"
-{strcpy(yylval.val, yytext);return (WHERE);}
+{strcpy(yylval.val, yytext);return (PRINTLN);}
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
 #line 89 "scaner.l"
-{strcpy(yylval.val, yytext);return (USE);}
+{strcpy(yylval.val, yytext);return (SELF);}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
 #line 90 "scaner.l"
-{strcpy(yylval.val, yytext);return (WHILE);}
+{strcpy(yylval.val, yytext);return (STATIC);}
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
@@ -1195,7 +1195,7 @@ YY_RULE_SETUP
 #line 103 "scaner.l"
 {
                       lineNum;
-              printf("%d: %s", linecount++, buf);
+              //printf("%d: %s", linecount++, buf);
               buf[0] = '\0';
                       BEGIN 0;
                     }
@@ -1221,7 +1221,7 @@ YY_RULE_SETUP
 #line 116 "scaner.l"
 {
                      lineNum;
-              printf("%d: %s", linecount++, buf);
+             // printf("%d: %s", linecount++, buf);
               buf[0] = '\0';
                      	}
 	YY_BREAK
@@ -1290,7 +1290,7 @@ YY_RULE_SETUP
 #line 159 "scaner.l"
 {
         			lineNum;
-        			printf("%d: %s", linecount++, buf);
+        			//printf("%d: %s", linecount++, buf);
         			buf[0] = '\0';
         			}
 	YY_BREAK

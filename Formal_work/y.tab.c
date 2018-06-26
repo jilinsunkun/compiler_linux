@@ -2621,6 +2621,18 @@ int main()
 	fclose(fpt);
 
 	
+  char command[100] = "";
+  printf("\n\n%s\n", "------ Convert example.jasm To example.class By javaa program------");
+  strcat(command, "./javaa example.jasm");
+  printf("%s%s\n\n", "Execute  command : ", command);
+  system(command);
+
+  memset(command, '\0', sizeof(command)-1);
+
+  printf("\n\n%s\n", "------ Result After Run example.class ------");
+  strcat(command, "java example");
+  printf("%s%s\n\n", "Execute command : ", command);
+  system(command);
 	return 0;
 }
 
