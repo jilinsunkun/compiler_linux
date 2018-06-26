@@ -51,11 +51,11 @@ whitespace   [ \t]+
 "<="	{strcpy(yylval.val, yytext);return (LE_OP);}
 ">="	{strcpy(yylval.val, yytext);return (GE_OP);}
 "!="	{strcpy(yylval.val, yytext);return (NE_OP);}
+"+="  {strcpy(yylval.val, yytext);return (ADD_OP);}
+"-="  {strcpy(yylval.val, yytext);return (LES_OP);}
+"*="  {strcpy(yylval.val, yytext);return (MUL_OP);}
 "&&"	{strcpy(yylval.val, yytext);return (AND_AND);}
 "||"	{strcpy(yylval.val, yytext);return (OR_OR);}
-"+="	{strcpy(yylval.val, yytext);return (ADD_OP);}
-"-="	{strcpy(yylval.val, yytext);return (LES_OP);}
-"*="	{strcpy(yylval.val, yytext);return (MUL_OP);}
 "/="	{strcpy(yylval.val, yytext);return (DIV_OP);}
 "->"  {strcpy(yylval.val, yytext);return (OP_LE);}
 
@@ -75,19 +75,19 @@ whitespace   [ \t]+
 "if"	{strcpy(yylval.val, yytext);return (IF);}
 "in"	{strcpy(yylval.val, yytext);return (IN);}
 
+"where" {strcpy(yylval.val, yytext);return (WHERE);}
+"use" {strcpy(yylval.val, yytext);return (USE);}
+"while" {strcpy(yylval.val, yytext);return (WHILE);}
+
 "loop"	{strcpy(yylval.val, yytext);return (LOOP);}
 "match"	{strcpy(yylval.val, yytext);return (MATCH);}
 "mut"	{strcpy(yylval.val, yytext);return (MUT);}
-"print"	{strcpy(yylval.val, yytext);return (PRINT);}
-"println"	{strcpy(yylval.val, yytext);return (PRINTLN);}
 "pub"	{strcpy(yylval.val, yytext);return (PUB);}
 "return"	{strcpy(yylval.val, yytext);return (RETURN);}
+"print" {strcpy(yylval.val, yytext);return (PRINT);}
+"println" {strcpy(yylval.val, yytext);return (PRINTLN);}
 "self"	{strcpy(yylval.val, yytext);return (SELF);}
 "static"	{strcpy(yylval.val, yytext);return (STATIC);}
-
-"where"	{strcpy(yylval.val, yytext);return (WHERE);}
-"use"	{strcpy(yylval.val, yytext);return (USE);}
-"while"	{strcpy(yylval.val, yytext);return (WHILE);}
 
 true {strcpy(yylval.val, yytext);return (TRUE);}
 false {strcpy(yylval.val, yytext);return (FALSE);}
