@@ -2623,14 +2623,14 @@ int main()
 	
   char command[100] = "";
   printf("\n\n%s\n", "------ Convert example.jasm To example.class By javaa program------");
-  strcat(command, "./javaa example.jasm");
+  strcat(command, "./javaa rust_test.jasm");
   printf("%s%s\n\n", "Execute  command : ", command);
   system(command);
 
   memset(command, '\0', sizeof(command)-1);
 
   printf("\n\n%s\n", "------ Result After Run example.class ------");
-  strcat(command, "java example");
+  strcat(command, "java rust_test");
   printf("%s%s\n\n", "Execute command : ", command);
   system(command);
 	return 0;
