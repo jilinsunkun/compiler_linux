@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	for (int i = 0; i < 2; ++i)
 	{
 		arg=i;
-		stack=(char*)malloc(4069);
+		stack=(char*)malloc(4096);
 		retval=clone((void *)producter,&(stack[4095]),clone_flag,(void *)&arg);
 		stack=(char *)malloc(4096);
 		retval=clone((void *)consumer,&(stack[4095]),clone_flag,(void *)&arg);
