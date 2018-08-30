@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 		arg=i;
 		stack=(char*)malloc(4096);
 		retval=clone((void *)producter,&(stack[4095]),clone_flag,(void *)&arg);
-		stack=(char *)malloc(4096);
+		stack=(char*)malloc(4096);
 		retval=clone((void *)consumer,&(stack[4095]),clone_flag,(void *)&arg);
 		sleep(1);
 
