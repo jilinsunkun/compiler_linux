@@ -39,9 +39,10 @@ int main(int argc, char **argv)
 }
 int producter(void *args)
 {
+	//printf("dasdadsd\n");
 	int id =*((int*)args);
 	int i;
-	for (i = 0; i < 10; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
 		sleep(i+1);
 		sem_wait(&warehouse);
@@ -60,8 +61,8 @@ int producter(void *args)
 }
 int consumer (void *args){
 	int id = *((int*)args);
-	int i;
-	for (i = 0; i < 10; ++i)
+
+	for (int i = 0; i < 10; ++i)
 	{
 		sleep(10-i);
 		sem_wait(&product);
