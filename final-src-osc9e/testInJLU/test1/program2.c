@@ -1,4 +1,6 @@
+#define _GNU_SOURCE 
 #include <sched.h>
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +15,7 @@ sem_t warehouse;
 char buffer[8][4];
 int bp = 0;
 
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	pthread_mutex_init(&mutex,NULL);
 	sem_init(&product,0,0);
@@ -26,7 +28,7 @@ main(int argc, char **argv)
 	{
 		arg=i;
 		stack=(char*)malloc(4069);
-		retval=clone((void *)product,&(stack[4095]),clone_flag,(void *)&arg);
+		retval=clone((void *)producter,&(stack[4095]),clone_flag,(void *)&arg);
 		stack=(char *)malloc(4096);
 		retval=clone((void *)consumer,&(stack[4095]),clone_flag,(void *)&arg);
 		sleep(1);
