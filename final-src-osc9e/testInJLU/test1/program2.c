@@ -44,6 +44,32 @@ int producter(void *args)
 		sleep(i+1);
 		sem_wait(&warehouse);
 		pthread_mutex_lock(&mutex);
+		if(id==0)
+			strcpy(buffer[bp],"aaa\0");
+		else
+			strcpy(buffer[bp],"bbb\0");
+		bp++;
+		printf("producter %d produce %s in %d \n",id, buffer[bp-1],bp-1 );
+		pthread_mutex_unlock(&mutex);
+		sem_post(&product);
 		/* code */
 	}
+	printf("producter %d is over\n",id );
+}
+int consumer (void *args){
+	int id = *((int*)args);
+
+	for (int i = 0; i < 10; ++i)
+	{
+		sleep(10-i);
+		sem_wait(&product);
+		pthread_mutex_lock(&mutex);
+		bp--;
+		printf("consumer %d get %s in %d \n",id,buffer[bp],bp );
+		strcpy(buffer[bp],"zzz\0");
+		pthread_mutex_unlock(&mutex);
+		sem_post(&warehouse);
+		/* code */
+	}
+	printf("consumer %d is over\n",id );
 }
