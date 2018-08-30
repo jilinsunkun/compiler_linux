@@ -1,6 +1,6 @@
 #include <sys/types.h>
 #include <sys/file.h>
-
+#include "unistd.h"
 char r_buf[4];
 char w_buf[4];
 int pipe_fd[2];
@@ -10,7 +10,7 @@ pid_t pid1,pid2,pid3,pid4;
 int producer(int id);
 int consumer(int id);
 
-int main(int argc,char **argc)
+int main(int argc,char **argv)
 {
 	if(pipe(pipe_fd)<0)
 	{
@@ -93,5 +93,5 @@ int consumer(int id)
 	close(pipe_fd[0]);
 	printf("consumer %d is over\n",id );
 	exit(id);
-	
+
 }
