@@ -1,4 +1,4 @@
-
+#define _GNU_SOURCE 
 #include <sched.h>
 
 #include <pthread.h>
@@ -41,7 +41,7 @@ int producter(void *args)
 {
 	int id =*((int*)args);
 	int i;
-	for (int i = 0; i < 10; ++i)
+	for (i = 0; i < 10; ++i)
 	{
 		sleep(i+1);
 		sem_wait(&warehouse);
@@ -60,8 +60,8 @@ int producter(void *args)
 }
 int consumer (void *args){
 	int id = *((int*)args);
-
-	for (int i = 0; i < 10; ++i)
+	int i;
+	for (i = 0; i < 10; ++i)
 	{
 		sleep(10-i);
 		sem_wait(&product);
