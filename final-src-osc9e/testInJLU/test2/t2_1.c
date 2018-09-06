@@ -17,6 +17,7 @@ int curr_proc=-1;
 int alg;//所选算法，1为EDF,2为RMS
 int demo_time=100;//演示时间//
 
+	int curr_time=0;
 task *tasks;
 pthread_mutex_t proc_wait[100];
 pthread_mutex_t main_wait,idle_wait;
@@ -84,7 +85,6 @@ pthread_create(&tasks[i].th,NULL,(void*)proc,&tasks[i].arg);
     sleep(2);
 };
 void proc(int* args){
-	int curr_time=0;
     while(tasks[*args].ci_left>0){
         pthread_mutex_lock(&proc_wait[*args]);  //等待被调度
         if(idle_num!=0){
@@ -98,26 +98,29 @@ void proc(int* args){
             printf("(%d,%d)",tasks[*args].ci,curr_time);
             tasks[*args].flag=0;
             tasks[*args].call_num++;}
-        pthread_mutex_unlock(&main_wait); //唤醒主线程}
+        pthread_mutex_unlock(&main_wait); //唤醒主线程
+    }
 };
 void* idle()
-{while(1){
+{
+	while(1){
         pthread_mutex_lock(&idle_wait);  //等待被调度
         printf("->");  //空耗一个时间单位
         idle_num++;
         curr_time++;
         pthread_mutex_unlock(&main_wait);  //唤醒主控线程}
+	}
 };
 int select_proc(int alg)
-{
-    int j;
-    int temp1=10000,temp2=-1;
-    temp1=10000;
-    temp2=-1;
-    if((alg==2)&&(curr_proc!=-1)&&(tasks[curr_proc].flag!=0))
-        return curr_proc;  //非抢先调度
-    for(j=0; j<task_num; j++)
-    {
+	{
+	    int j;
+	    int temp1=10000,temp2=-1;
+	    temp1=10000;
+	    temp2=-1;
+	    if((alg==2)&&(curr_proc!=-1)&&(tasks[curr_proc].flag!=0))
+	        return curr_proc;  //非抢先调度
+	    for(j=0; j<task_num; j++)
+	    {
         if(tasks[j].flag==2) {
             switch(alg) {
             case 1:    //EDF算法
@@ -132,7 +135,6 @@ int select_proc(int alg)
                 }
             }
         }
+	         return temp2;
     }
-    return temp2;
-}
-}
+	   
