@@ -53,7 +53,7 @@ scanf("\n%c,%d,%d,%d",&tasks[i].task_id,&tasks[i].ci,&tasks[i].ti,&tasks[i].di);
     scanf("%d",&demo_time);
     double r=1;  //EDF算法
     if(alg==2){
-  r=((double)task_num)*(expf(log(2)/(double)task_num)-1);printf("r is %lf\n",r);  }if(sum>r){  printf("(sum=%lf > r=%lf) ,无法调度！\n",sum,r);
+  r=((double)task_num)*(exp(log(2)/(double)task_num)-1);printf("r is %lf\n",r);  }if(sum>r){  printf("(sum=%lf > r=%lf) ,无法调度！\n",sum,r);
         exit(2);}
     pthread_create(&idle_proc,NULL,(void*)idle,NULL); //创建闲逛线程
     for(i=0; i<task_num; i++) //创建实时任务线程
