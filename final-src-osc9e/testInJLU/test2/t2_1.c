@@ -84,11 +84,13 @@ pthread_create(&tasks[i].th,NULL,(void*)proc,&tasks[i].arg);
     sleep(2);
 };
 void proc(int* args){
+	int curr_time=0;
     while(tasks[*args].ci_left>0){
         pthread_mutex_lock(&proc_wait[*args]);  //等待被调度
         if(idle_num!=0){
-            printf("idle(%d)(%d)",idle_num,curr_time);
-            idle_num=0;}
+            printf("idle(%d)",idle_num,curr_time);
+            idle_num=0;
+        }
   printf("%c%d",tasks[*args].task_id,tasks[*args].call_num);
         tasks[*args].ci_left--;  //执行一个时间单位
         curr_time++;
@@ -121,11 +123,16 @@ int select_proc(int alg)
             case 1:    //EDF算法
                 if(temp1>tasks[j].di_left){
                     temp1=tasks[j].di_left;
-                    temp2=j;}
+                    temp2=j;
+                }
             case 2:    //RMS算法
                 if(temp1>tasks[j].ti){
                     temp1=tasks[j].ti;
-                    temp2=j;}}}
+                    temp2=j;}
+                }
+            }
+        }
     }
     return temp2;
+}
 }
