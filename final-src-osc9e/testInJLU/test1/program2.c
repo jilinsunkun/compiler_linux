@@ -1,8 +1,11 @@
-#include "sched.h"
-#include "pthread.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "semaphore.h"
+#define _GNU_SOURCE 
+#include <sched.h>
+
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <semaphore.h>
+
 int producer(void * args);
 int consumer(void *args);
 pthread_mutex_t mutex;
