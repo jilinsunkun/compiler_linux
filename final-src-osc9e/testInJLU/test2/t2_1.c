@@ -89,7 +89,7 @@ void proc(int* args){
     while(tasks[*args].ci_left>0){
         pthread_mutex_lock(&proc_wait[*args]);  //等待被调度
         if(idle_num!=0){
-            printf("idle(%d)",idle_num,curr_time);
+            printf("idle(%d)",idle_num);
             idle_num=0;
         }
   printf("%c%d",tasks[*args].task_id,tasks[*args].call_num);
