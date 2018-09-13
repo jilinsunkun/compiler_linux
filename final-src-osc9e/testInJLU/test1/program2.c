@@ -30,7 +30,7 @@ main(int argc,char** argv)
         stack =(char*)malloc(4096); 
         retval=clone((void*)consumer,&(stack[4095]),clone_flag,   (void*)&arg);
     //usleep(1000);
-    usleep(1);
+    //usleep(1);
     }
     exit(1);
 }
