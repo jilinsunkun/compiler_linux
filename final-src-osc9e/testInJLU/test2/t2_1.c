@@ -1,8 +1,9 @@
-#include <math.h>
+
 #include <sched.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <semaphore.h>
 typedef struct     //实时任务描述
 {char task_id;int call_num;    
